@@ -11,7 +11,7 @@
      The build plan for the vessel that carries the Quizzard to sea. Three parts:
      the HULL that remembers, the ENGINE that produces, the RIGGING that sails
      unattended. Companion to THE QUIZZARD (the specification). That brief says
-     WHAT a trial must be; this one says HOW the ship that makes them is built.
+     WHAT a quiz must be; this one says HOW the ship that makes them is built.
      ============================================================================ -->
 <style>
 @font-face {
@@ -127,7 +127,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
     <div class="sr">
       <span class="date">18 July 2026</span><span class="sep">·</span>
       <span class="iso">2026-07-18</span><span class="sep">·</span>
-      <span class="rev">Rev. A</span>
+      <span class="rev">Rev. B</span>
     </div>
   </div>
 
@@ -195,8 +195,8 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
   </section>
 
   <h2>Why she carries this name</h2>
-  <p>Leif Erikson holds no reading room. He has one row in <code>names.csv</code> — a rank, a title, two dates, a paragraph. By every assumption we held before tonight, that was not enough to build a trial from. Depth came first; the library was the prerequisite; a figure earned a quiz by having a room.</p>
-  <p>That assumption was tested and it broke. <strong>Leif's trial is complete, verified, and indistinguishable in quality from Lincoln's</strong> — who has the full reading room, the voice, the archive. The substance never came from the room. It came from the research.</p>
+  <p>Leif Erikson holds no reading room. He has one row in <code>names.csv</code> — a rank, a title, two dates, a paragraph. By every assumption we held before tonight, that was not enough to build a quiz from. Depth came first; the library was the prerequisite; a figure earned a quiz by having a room.</p>
+  <p>That assumption was tested and it broke. <strong>Leif's quiz is complete, verified, and indistinguishable in quality from Lincoln's</strong> — who has the full reading room, the voice, the archive. The substance never came from the room. It came from the research.</p>
   <p>The consequence is the whole reason this ship exists: <em>quiz production is decoupled from library depth.</em> The two resources grow on independent timelines. Breadth can run years ahead of depth, and neither waits on the other. A man who reached a new world with nothing but what he already carried is the right name for the vessel that does the same.</p>
 
   <div class="law">
@@ -205,7 +205,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
   </div>
 
   <h2>What she is, and what she is not</h2>
-  <p><strong>THE QUIZZARD</strong> is the specification — it says <em>what a trial must be</em>: the six steps, the invariant, the halt conditions, the duality. It is law, and it does not change often.</p>
+  <p><strong>THE QUIZZARD</strong> is the specification — it says <em>what a quiz must be</em>: the six steps, the invariant, the halt conditions, the duality. It is law, and it does not change often.</p>
   <p><strong>THE LEIF</strong> is the machine that executes it — she says <em>how the ship is built</em>: the tables, the Worker, the schedule, the sea trials. Where the two disagree, <strong>the Quizzard wins</strong>; she is the standing order, and the ship serves it.</p>
 
   <!-- ══════════════════ PART I ══════════════════ -->
@@ -216,7 +216,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
       <span class="pwhat">The Queue That Remembers</span>
     </div>
     <div class="pbody">
-      <p>A ship without a hull is a pile of timber. The hull here is <strong>memory</strong> — the record of which of the 893 have been attempted, which produced a trial, which were refused and why. Without it the station re-walks ground it has already covered, re-hits halts it has already learned, and no one can ever say how far the voyage has come.</p>
+      <p>A ship without a hull is a pile of timber. The hull here is <strong>memory</strong> — the record of which of the 893 have been attempted, which produced a quiz, which were refused and why. Without it the station re-walks ground it has already covered, re-hits halts it has already learned, and no one can ever say how far the voyage has come.</p>
 
       <h3>The record — one row per figure</h3>
 <pre>create table quizzard_queue (
@@ -259,7 +259,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
       <span class="pwhat">amenti-quizzard · The Worker</span>
     </div>
     <div class="pbody">
-      <p>The engine takes one row and returns either a trial or a refusal. It never returns a guess. It runs the six steps of the Quizzard with the specification itself as its standing order, and it is <strong>gated by a validator it cannot talk its way past</strong>.</p>
+      <p>The engine takes one row and returns either a quiz or a refusal. It never returns a guess. It runs the six steps of the Quizzard with the specification itself as its standing order, and it is <strong>gated by a validator it cannot talk its way past</strong>.</p>
 
       <h3>The passage of one row</h3>
 <pre>POST /quizzard/run   { figure_name }
@@ -275,7 +275,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
   -> { status:'halted', reason:'empty-pan', note:'...' }</pre>
 
       <h3>The validator — the gate that cannot be charmed</h3>
-      <p>Step 6 is not a review; it is a parser. A trial that fails any line is rejected before a human ever sees it:</p>
+      <p>Step 6 is not a review; it is a parser. A quiz that fails any line is rejected before a human ever sees it:</p>
 <pre>JSON parses                                    ✓
 questions.length === 6                         ✓
 cognitive   3 what · 1 why · 2 evaluate        ✓
@@ -290,15 +290,15 @@ topic_id is kebab-case and not already taken   ✓</pre>
       <div class="spec">
         <div class="sp"><div class="k">Isolation</div><div class="v">The engine holds a model key and a search key. It therefore <strong>never</strong> shares a Worker with the mint. Writes where the money is stay where the money is.</div></div>
         <div class="sp"><div class="k">Answer keys</div><div class="v">Emitted server-side only, into TOPICS. A key that reaches the page is a key that is already broken.</div></div>
-        <div class="sp"><div class="k">Sources retained</div><div class="v">Every URL the verification rested on is stored with the trial. A claim without a source is a claim that cannot be defended later.</div></div>
+        <div class="sp"><div class="k">Sources retained</div><div class="v">Every URL the verification rested on is stored with the quiz. A claim without a source is a claim that cannot be defended later.</div></div>
         <div class="sp"><div class="k">Refusal is output</div><div class="v">A halt returns cleanly with its reason. The engine that cannot say <em>no</em> will eventually say something false.</div></div>
       </div>
 
       <div class="test"><div class="tk">Sea trial · Part II — the Leif test</div>
-      <div class="tv">Feed the engine <strong>Leif Erikson's row and nothing else</strong> — no library, no reading room, no hint. It must return a trial that stands beside the hand-authored <code>leif-vinland</code>: same shape, verified facts, an honest explorer's duality. Then feed it <strong>Homer</strong>. It must <em>refuse</em>. Both results are required to pass. A ship that only knows how to say yes is not seaworthy.</div></div>
+      <div class="tv">Feed the engine <strong>Leif Erikson's row and nothing else</strong> — no library, no reading room, no hint. It must return a quiz that stands beside the hand-authored <code>leif-vinland</code>: same shape, verified facts, an honest explorer's duality. Then feed it <strong>Homer</strong>. It must <em>refuse</em>. Both results are required to pass. A ship that only knows how to say yes is not seaworthy.</div></div>
 
       <h3>Why Homer must be refused</h3>
-      <p>The refusal is not because Homer is unimportant — he may be the most consequential name in Western letters. It is because <strong>there is no verifiable life to build a trial from.</strong></p>
+      <p>The refusal is not because Homer is unimportant — he may be the most consequential name in Western letters. It is because <strong>there is no verifiable life to build a quiz from.</strong></p>
       <p>The trouble has a name: the <em>Homeric Question</em>, one of the oldest unresolved debates in scholarship. Was Homer a single poet, a succession of them, or simply a name later attached to an oral tradition that had been evolving for centuries? Antiquity never doubted him; from the eighteenth century onward, scholars did. The modern position is candid — Homer is the <em>presumed</em> author, a formulation that openly admits we do not know, and may never know.</p>
       <p>Now run him through the gates and watch where he stops:</p>
       <table>
@@ -307,12 +307,12 @@ topic_id is kebab-case and not already taken   ✓</pre>
         <tr><td class="s">02 Research</td><td>A pivotal moment?</td><td>The blind bard of Chios is <em>tradition</em>, not record.</td></tr>
         <tr><td class="s">03 Verify</td><td>Facts that become keys?</td><td><strong style="color:#f87171">HALT.</strong> No biographical evidence exists. Ancient sources contradict each other on when he lived.</td></tr>
       </table>
-      <p>Every answer key for a Homer trial would be a <strong>legend asserted as fact</strong> — and a seeker who knows the scholarship would be marked wrong for knowing better. That is precisely the failure the whole ship is built to prevent.</p>
-      <div class="note">The distinction worth keeping: the ship refuses <em>the biography</em>, not the subject. The poems are real, their influence is real, and the Homeric Question itself is a genuine, argue-able controversy. A future trial of <code>sourceType: "Idea"</code> could put <strong>the question</strong> on the scale — one poet or a tradition — without ever asserting a life that cannot be verified. The halt closes one door and leaves another honestly open.</div>
+      <p>Every answer key for a Homer quiz would be a <strong>legend asserted as fact</strong> — and a seeker who knows the scholarship would be marked wrong for knowing better. That is precisely the failure the whole ship is built to prevent.</p>
+      <div class="note">The distinction worth keeping: the ship refuses <em>the biography</em>, not the subject. The poems are real, their influence is real, and the Homeric Question itself is a genuine, argue-able controversy. A future quiz on <code>sourceType: "Idea"</code> could put <strong>the question</strong> on the scale — one poet or a tradition — without ever asserting a life that cannot be verified. The halt closes one door and leaves another honestly open.</div>
 
       <div class="fail"><div class="fk">How the engine fails</div>
       <ul>
-        <li><b>Confident fabrication</b> — the catastrophic failure. A trial that reads perfectly and is wrong poisons the ledger and the trust behind it.</li>
+        <li><b>Confident fabrication</b> — the catastrophic failure. A quiz that reads perfectly and is wrong poisons the ledger and the trust behind it.</li>
         <li><b>Verification skipped under load</b> — the speed limit is the research. An engine that outruns it is not faster, only wronger.</li>
         <li><b>Halts suppressed</b> — a run tuned to always produce will produce anything.</li>
         <li><b>Keys leaked to the client</b> — the quiz becomes a formality and the economy becomes free money.</li>
@@ -339,8 +339,8 @@ topic_id is kebab-case and not already taken   ✓</pre>
         publish a run summary the Probe Corps can read</pre>
 
       <div class="spec">
-        <div class="sp"><div class="k">Staged, not live</div><div class="v">Early runs land in staging. The captain merges into TOPICS. The gate loosens only once the trials have earned it.</div></div>
-        <div class="sp"><div class="k">Small batches</div><div class="v">A handful per run. A ship that produces two hundred bad trials overnight is worse than one that produces none.</div></div>
+        <div class="sp"><div class="k">Staged, not live</div><div class="v">Early runs land in staging. The captain merges into TOPICS. The gate loosens only once the quizzes have earned it.</div></div>
+        <div class="sp"><div class="k">Small batches</div><div class="v">A handful per run. A ship that produces two hundred bad quizzes overnight is worse than one that produces none.</div></div>
         <div class="sp"><div class="k">Visible refusals</div><div class="v">The halt log surfaces on a pane. The Glass Gate applies: show the real reading or the empty box, never a comfortable silence.</div></div>
         <div class="sp"><div class="k">Probeable</div><div class="v">The Corps gets a probe for her — does the queue advance, do halts carry reasons, does staging match what the engine claims it wrote?</div></div>
       </div>
@@ -348,18 +348,18 @@ topic_id is kebab-case and not already taken   ✓</pre>
       <h3>The loosening of the gate</h3>
       <table>
         <tr><th>Stage</th><th>Human role</th><th>Earned by</th></tr>
-        <tr><td class="s">Attended</td><td>Reviews every trial before merge</td><td class="m">the first runs</td></tr>
-        <tr><td class="s">Spot-checked</td><td>Reviews a sample; the rest merge</td><td class="m">~50 clean trials</td></tr>
+        <tr><td class="s">Attended</td><td>Reviews every quiz before merge</td><td class="m">the first runs</td></tr>
+        <tr><td class="s">Spot-checked</td><td>Reviews a sample; the rest merge</td><td class="m">~50 clean quizzes</td></tr>
         <tr><td class="s">Exception-only</td><td>Reviews halts and flagged output only</td><td class="m">a sustained clean record</td></tr>
         <tr><td class="s">Open sea</td><td>Reads the summary. The ship sails.</td><td class="m">the long quiet</td></tr>
       </table>
 
       <div class="test"><div class="tk">Sea trial · Part III</div>
-      <div class="tv">One week, unattended, small batches. At the end: the docket has grown, every halt carries a reason a stranger could understand, and <strong>not one fabricated fact has reached the live TOPICS</strong>. If the docket grew but a single trial cannot be traced to its sources, the trial was a failure regardless of the count.</div></div>
+      <div class="tv">One week, unattended, small batches. At the end: the docket has grown, every halt carries a reason a stranger could understand, and <strong>not one fabricated fact has reached the live TOPICS</strong>. If the docket grew but a single quiz cannot be traced to its sources, the quiz was a failure regardless of the count.</div></div>
 
       <div class="fail"><div class="fk">How the rigging fails</div>
       <ul>
-        <li><b>Volume mistaken for progress</b> — the count climbs while quality quietly falls. Trials are not tonnage.</li>
+        <li><b>Volume mistaken for progress</b> — the count climbs while quality quietly falls. Quizzes are not tonnage.</li>
         <li><b>The gate opened too early</b> — autonomy granted before it was earned by evidence.</li>
         <li><b>A silent patrol</b> — running but reporting nothing, so no one knows whether it works. <em>Being loaded is not being used.</em></li>
         <li><b>Nobody watching the watch</b> — the Corps has no probe on her, so her first failure is discovered by a user.</li>
@@ -392,7 +392,7 @@ topic_id is kebab-case and not already taken   ✓</pre>
     AND ONE DAY SHE WORKS THE DEAD WHILE NO ONE IS WATCHING.
   </div>
 
-  <div class="foot">Amenti.live &nbsp;·&nbsp; Ingram Manor LLC &nbsp;·&nbsp; THE LEIF &nbsp;·&nbsp; construction document &nbsp;·&nbsp; companion to THE QUIZZARD &nbsp;·&nbsp; 2026-07-18 &nbsp;·&nbsp; Rev. A</div>
+  <div class="foot">Amenti.live &nbsp;·&nbsp; Ingram Manor LLC &nbsp;·&nbsp; THE LEIF &nbsp;·&nbsp; construction document &nbsp;·&nbsp; companion to THE QUIZZARD &nbsp;·&nbsp; 2026-07-18 &nbsp;·&nbsp; Rev. B</div>
 </main>
 </body>
 </html>

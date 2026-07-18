@@ -133,7 +133,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
     <div class="sr">
       <span class="date">18 July 2026</span><span class="sep">·</span>
       <span class="iso">2026-07-18</span><span class="sep">·</span>
-      <span class="rev">Rev. A</span>
+      <span class="rev">Rev. B</span>
     </div>
   </div>
 
@@ -182,10 +182,10 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
   <div class="phase">
     <div class="phead"><span class="pn">Phase 0</span><span class="pt">Land What Is Already Built</span><span class="pw now">do first</span></div>
     <div class="pbody">
-      <p class="pgoal">Five verified trials are written, validated, and sitting in staging: <code>confucius-lu</code>, <code>manlius-capitol</code>, <code>keller-water</code>, <code>rand-atlas</code>, <code>leif-vinland</code>. They are doing nothing. Landing them takes the economy from <strong>8 topics to 13</strong> — a sixty percent increase in its entire foundation — with <em>no new code whatsoever</em>.</p>
+      <p class="pgoal">Five verified quizzes are written, validated, and sitting in staging: <code>confucius-lu</code>, <code>manlius-capitol</code>, <code>keller-water</code>, <code>rand-atlas</code>, <code>leif-vinland</code>. They are doing nothing. Landing them takes the economy from <strong>8 topics to 13</strong> — a sixty percent increase in its entire foundation — with <em>no new code whatsoever</em>.</p>
 
       <div class="deliv">
-        <div class="d"><div class="dk">Assistant builds</div><div class="dv">The merged <code>TOPICS</code> block, five trials inserted into the existing structure without disturbing the eight that are live.</div></div>
+        <div class="d"><div class="dk">Assistant builds</div><div class="dv">The merged <code>TOPICS</code> block, five quizzes inserted into the existing structure without disturbing the eight that are live.</div></div>
         <div class="d"><div class="dk">Captain deploys</div><div class="dv">One paste into the <code>amenti-mint</code> Worker, then deploy.</div></div>
       </div>
 
@@ -193,7 +193,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
       <div class="bv">The assistant no longer holds the current <code>amenti-mint</code> source, and will not guess at a file that handles money. <strong>The captain pastes the worker source; the merged file comes back the same session.</strong> This is the only blocker in the entire plan, and it costs one message.</div></div>
 
       <div class="acc"><div class="ak">Acceptance</div>
-      <div class="av"><code>/quiz/topics</code> returns 13. Each new trial opens, scores, and credits ET. The eight originals are untouched.</div></div>
+      <div class="av"><code>/quiz/topics</code> returns 13. Each new quiz opens, scores, and credits ET. The eight originals are untouched.</div></div>
     </div>
   </div>
 
@@ -201,12 +201,12 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
   <div class="phase">
     <div class="phead"><span class="pn">Phase 1</span><span class="pt">Topics Leave the Code</span><span class="pw gate">the scale gate</span></div>
     <div class="pbody">
-      <p class="pgoal">Today every trial lives inside the money Worker as a hardcoded object. At thirteen that is merely awkward. At three hundred it is untenable — and it means <em>every new quiz requires editing and redeploying the one Worker that holds the service key</em>. That is a bad place to be doing routine content work.</p>
+      <p class="pgoal">Today every quiz lives inside the money Worker as a hardcoded object. At thirteen that is merely awkward. At three hundred it is untenable — and it means <em>every new quiz requires editing and redeploying the one Worker that holds the service key</em>. That is a bad place to be doing routine content work.</p>
 
       <h3>The move</h3>
 <pre>create table topics (
   topic_id   text primary key,
-  payload    jsonb not null,     -- the whole trial, keys included
+  payload    jsonb not null,     -- the whole quiz, keys included
   mode       text default 'life',-- life | canon
   status     text default 'live',-- live | staged
   sources    jsonb,
@@ -216,14 +216,14 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
 -- Answer keys never leave the Worker. Nothing about that changes.</pre>
 
       <div class="deliv">
-        <div class="d"><div class="dk">Assistant builds</div><div class="dv">The table SQL, a migration inserting all 13 existing trials, and the revised mint Worker that reads the table instead of the constant.</div></div>
+        <div class="d"><div class="dk">Assistant builds</div><div class="dv">The table SQL, a migration inserting all 13 existing quizzes, and the revised mint Worker that reads the table instead of the constant.</div></div>
         <div class="d"><div class="dk">Captain deploys</div><div class="dv">Run the SQL, paste the revised Worker, deploy, test a quiz end to end.</div></div>
       </div>
 
       <div class="note">This is the one phase that touches the money Worker, so it is the one to be slowest about. Verify <code>/quiz/start</code> and <code>/quiz/submit</code> both still work before moving on. If anything is wrong, the old Worker is one paste away — keep a copy.</div>
 
       <div class="acc"><div class="ak">Acceptance</div>
-      <div class="av">A new trial can be added by inserting one row — <strong>with no Worker redeploy at all.</strong> That is the gate everything after this depends on.</div></div>
+      <div class="av">A new quiz can be added by inserting one row — <strong>with no Worker redeploy at all.</strong> That is the gate everything after this depends on.</div></div>
     </div>
   </div>
 
@@ -231,7 +231,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
   <div class="phase">
     <div class="phead"><span class="pn">Phase 2</span><span class="pt">The Engine on the Bench</span><span class="pw">the real unlock</span></div>
     <div class="pbody">
-      <p class="pgoal">Until now every trial has come out of a conversation. This phase ends that. A new isolated Worker takes one name and returns a validated trial or an honest refusal.</p>
+      <p class="pgoal">Until now every quiz has come out of a conversation. This phase ends that. A new isolated Worker takes one name and returns a validated quiz or an honest refusal.</p>
 
       <h3>How verification actually happens</h3>
       <p>The engine calls the Anthropic API <strong>with the web search tool enabled</strong>, carrying the Quizzard specification as its standing order. This is the load-bearing detail of the whole build: <em>a model writing from memory is precisely the fabrication risk every brief was written to prevent.</em> The search tool is what makes Step 3 real rather than decorative.</p>
@@ -253,10 +253,10 @@ POST /quizzard/run { figure_name, mode }
       </div>
 
       <div class="acc"><div class="ak">Acceptance — the Leif Test</div>
-      <div class="av">Feed it <strong>Leif Erikson</strong> and nothing else: it must return a trial that stands beside the hand-authored one. Then feed it <strong>Homer</strong>: it must <em>refuse</em>, with a reason. <strong>Both results are required.</strong> A ship that only knows how to say yes is not seaworthy.</div></div>
+      <div class="av">Feed it <strong>Leif Erikson</strong> and nothing else: it must return a quiz that stands beside the hand-authored one. Then feed it <strong>Homer</strong>: it must <em>refuse</em>, with a reason. <strong>Both results are required.</strong> A ship that only knows how to say yes is not seaworthy.</div></div>
 
       <h3>What it will cost</h3>
-      <p>One trial is one model call with a handful of searches. The honest answer is that nobody knows the real figure yet — <strong>measure it on the first ten and multiply.</strong> The order of magnitude is cents per trial, which puts a full roster in the tens-to-low-hundreds of dollars, not thousands. Worth confirming before running nine hundred.</p>
+      <p>One quiz is one model call with a handful of searches. The honest answer is that nobody knows the real figure yet — <strong>measure it on the first ten and multiply.</strong> The order of magnitude is cents per quiz, which puts a full roster in the tens-to-low-hundreds of dollars, not thousands. Worth confirming before running nine hundred.</p>
     </div>
   </div>
 
@@ -294,14 +294,14 @@ POST /quizzard/run { figure_name, mode }
       <h3>The gate loosens by evidence, never by impatience</h3>
       <table>
         <tr><th>Stage</th><th>Human role</th><th>Earned by</th></tr>
-        <tr><td class="s">Attended</td><td>Reviews every trial before promotion</td><td class="m">the first runs</td></tr>
-        <tr><td class="s">Spot-checked</td><td>Reviews a sample; the rest promote</td><td class="m">~50 clean trials</td></tr>
+        <tr><td class="s">Attended</td><td>Reviews every quiz before promotion</td><td class="m">the first runs</td></tr>
+        <tr><td class="s">Spot-checked</td><td>Reviews a sample; the rest promote</td><td class="m">~50 clean quizzes</td></tr>
         <tr><td class="s">Exception-only</td><td>Reviews halts and flags</td><td class="m">a sustained record</td></tr>
         <tr><td class="s">Open sea</td><td>Reads the summary</td><td class="m">the long quiet</td></tr>
       </table>
 
       <div class="acc"><div class="ak">Acceptance</div>
-      <div class="av">One week unattended. The docket grew, every halt is legible to a stranger, and <strong>no unsourced claim reached a live trial.</strong> If the count rose but one trial cannot be traced to its sources, the week failed regardless of the count.</div></div>
+      <div class="av">One week unattended. The docket grew, every halt is legible to a stranger, and <strong>no unsourced claim reached a live quiz.</strong> If the count rose but one quiz cannot be traced to its sources, the week failed regardless of the count.</div></div>
     </div>
   </div>
 
@@ -309,7 +309,7 @@ POST /quizzard/run { figure_name, mode }
   <div class="phase">
     <div class="phead"><span class="pn">Phase 5</span><span class="pt">Run Out the Cannons</span><span class="pw gate">captain first</span></div>
     <div class="pbody">
-      <p class="pgoal">Canon mode. The mythic band, the legendary founders, the scriptures — roughly a hundred and fifty trials in the highest-recognition part of the roster, and the layer that does the actual teaching.</p>
+      <p class="pgoal">Canon mode. The mythic band, the legendary founders, the scriptures — roughly a hundred and fifty quizzes in the highest-recognition part of the roster, and the layer that does the actual teaching.</p>
 
       <div class="blk"><div class="bk">Gated on the captain, by design</div>
       <div class="bv">The Cannons brief withholds one thing from the engine: <strong>no generator improvises a duality for a religious figure.</strong> Those frames are written by the captain and supplied to the engine. Canon mode does not run until they exist. This is the single place in the fleet where autonomy is deliberately refused.</div></div>
@@ -320,7 +320,7 @@ POST /quizzard/run { figure_name, mode }
       </div>
 
       <div class="acc"><div class="ak">Acceptance</div>
-      <div class="av">A canon trial produced with a citation on every key. Then a deliberate register breach — a passage stating flatly that Hippolyta ruled at Themiscyra — <strong>must be rejected by the validator</strong>, not caught by a human.</div></div>
+      <div class="av">A canon quiz produced with a citation on every key. Then a deliberate register breach — a passage stating flatly that Hippolyta ruled at Themiscyra — <strong>must be rejected by the validator</strong>, not caught by a human.</div></div>
     </div>
   </div>
 
@@ -328,7 +328,7 @@ POST /quizzard/run { figure_name, mode }
   <p>Everything above, reduced to what actually gates what:</p>
   <table>
     <tr><th>#</th><th>Move</th><th>Unblocks</th></tr>
-    <tr><td class="s">1</td><td>Captain pastes the <code>amenti-mint</code> source → five trials merged and deployed</td><td class="m">8 → 13 today</td></tr>
+    <tr><td class="s">1</td><td>Captain pastes the <code>amenti-mint</code> source → five quizzes merged and deployed</td><td class="m">8 → 13 today</td></tr>
     <tr><td class="s">2</td><td>Decide whether topics move from code to a table</td><td class="m">all volume</td></tr>
     <tr><td class="s">3</td><td>Build and bench the engine; run the Leif Test</td><td class="m">production without a chat window</td></tr>
     <tr><td class="s">4</td><td>Queue, staging, patrol</td><td class="m">unattended growth</td></tr>
@@ -339,7 +339,7 @@ POST /quizzard/run { figure_name, mode }
     <div class="dk2">Decisions the assistant should not make alone</div>
     <ol>
       <li><strong>Does <code>TOPICS</code> move to a table?</strong> Necessary for volume, and it touches the Worker that handles money. The risk is real and the timing is yours.</li>
-      <li><strong>What model, and what budget ceiling?</strong> Measure ten trials, then set a cap the Worker enforces.</li>
+      <li><strong>What model, and what budget ceiling?</strong> Measure ten quizzes, then set a cap the Worker enforces.</li>
       <li><strong>How long does review stay mandatory?</strong> The table above proposes evidence thresholds; the numbers are a suggestion, not a law.</li>
       <li><strong>The sacred frames.</strong> Captain only. No delegation, by design.</li>
     </ol>
@@ -353,7 +353,7 @@ POST /quizzard/run { figure_name, mode }
     <tr><td>Model returns malformed JSON</td><td class="m">validator + bounded retry; a failure is a halt, not a guess</td></tr>
     <tr><td>Quality drifts once volume rises</td><td class="m">staging, spot checks, sources on every claim</td></tr>
     <tr><td>The API key ends up in a public repo</td><td class="m">Worker secret only — never in a file that gets uploaded</td></tr>
-    <tr><td>Building the whole ship before proving one trial</td><td class="m">Phase 0 first. It needs no new code and moves the number today.</td></tr>
+    <tr><td>Building the whole ship before proving one quiz</td><td class="m">Phase 0 first. It needs no new code and moves the number today.</td></tr>
   </table>
 
   <div class="law">
@@ -361,7 +361,7 @@ POST /quizzard/run { figure_name, mode }
     EVERYTHING ELSE IS CONSTRUCTION. START THERE.
   </div>
 
-  <div class="foot">Amenti.live &nbsp;·&nbsp; Ingram Manor LLC &nbsp;·&nbsp; THE SLIPWAY &nbsp;·&nbsp; implementation plan &nbsp;·&nbsp; companion to THE QUIZZARD · THE LEIF · THE CANNONS &nbsp;·&nbsp; 2026-07-18 &nbsp;·&nbsp; Rev. A</div>
+  <div class="foot">Amenti.live &nbsp;·&nbsp; Ingram Manor LLC &nbsp;·&nbsp; THE SLIPWAY &nbsp;·&nbsp; implementation plan &nbsp;·&nbsp; companion to THE QUIZZARD · THE LEIF · THE CANNONS &nbsp;·&nbsp; 2026-07-18 &nbsp;·&nbsp; Rev. B</div>
 </main>
 </body>
 </html>
