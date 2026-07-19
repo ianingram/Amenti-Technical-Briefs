@@ -1,0 +1,526 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE QUIZ SURFACE · Amenti Engineering Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&family=Rajdhani:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+@font-face {
+    font-family: 'Amenti Display';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url(data:font/woff2;base64,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) format('woff2');
+  }
+@font-face {
+    font-family: 'Amenti Display';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url(data:font/woff2;base64,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) format('woff2');
+  }
+@font-face {
+    font-family: 'Amenti Display';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url(data:font/woff2;base64,d09GMgABAAAAABmoABAAAAAAP8QAABlIAAIAQgAAAAAAAAAAAAAAAAAAAAAAAAAAGnwbkTwcKAZgP1NUQVQqAIRYEQgK0iS+CQE2AiQDhWwLgngABCAFhHwHg2MMBxseMxPueI8DeMjjiqJqE8n+Lwd0XJ29gkDZlgSpoqdnmNPDJEO6TlPpuNpdt8Ix9U7LYhmWQXwcCNIJJ3/59CyDZMcoXv4sX5bI6MeWEZLMtjwEx3jf3f1Mi61Bh5U47bDQog1oOKFon609waLveJqzn91NgstBG2R3g3iyJMFiQH8bvKJQQVsoPazieQnmB9SRigIVpPktUFNyPaCpeHLuvdrTXO9Mkj14bzeb+0DUOgQHFOi/LTDanK7wFb7CkO7R3CKhQ0jiJREaIa90Gq2R8LQ5Yn575ND7GQR0tdndm/5X64QjC0vL4u0swEjCBzGKjii6zd5DhomkmkCScIxZ1l5O1fszP11Kx6RNUKehfTJZaJ6Yx0lk+E48QWUFxFbdFH5KAtCE4t3b24P84mayKGgmqAxqCuD//2ya7XyN54A3xHoviL03XFJR5V2b169mdyzNjMYrOBqtdYDa26OVDyXnPa189yIpRA4QdSSfHWDusGgAqyva1Cmq9GWuqJuYDrU/O2tRp7IQZFDe5ef/a1qLpnaf6Yh0EX6QEKbcPO78hwpgAoBkD2MCY84CxoodjBM3mFlIGB4ejD9/mEChMHwxMBJSGLlEGKVUmAWWw6yyCiZbPkyhYpjT+hHOOouAAWMoEviOXcr5YH3xWNl6sMYC9AciIOAXTpWsB8c25cH6wcMACjK6cCg3ZTCFxY7AAYtclub6cQFfjzSMfAn6o/cI7p/0TRMjtSMvQH/n49v22o87wlpYpKbiaSxPuZx/MZakLJaRsw6NjaW42NiXOtyKD8baxigaG434IvR6OFvfYcAm2AxbYwf8EfbAntgbB+JgHIGFWIKlMgHo5rm9hwHDn4nltDP6nYUzhSFZRvvUCnIeNa43xjjHOQc51ZwtDUko+XNcOda6WWb/6lv13vQ0ey97mwudI8X2YL0tbhcdrG1FQuFBfJ6mUiVRltYmHv5ffB5P4l14K66MsGbFl+mN6kgORTj71+9+9BZGAGPGnCUr9hw4cfcRD55m4aL58RcgUJhwEbYI336FIjEqkcrkCqVKrdFiOr3BiBMkRYPwUf/5N3PVEIekJ7YjYJMsGsJHyZM8qcE5c3Pl66R/Fr9k4hdV1LaWOUvxzsiHKx+VK+GOwdgQHEsAAMJr2aV8lgUvEDDeLoNOMMDbHN70bgZc/a0CGPgjq/9kCC5FL7lPuRJeN23KkkrWbZ60HIx4l4+PAacm+fqNufJ5RtuXhIgsUO9yOwVHA38ARgHuS65J48bOafOyFjclmexf9ap9xiJxR55TgX5gnl0KoQigiARIoQzIgQKqgRZiHCMkIAkY4JQ7T7OJjIdaKPhKYOTagKMiL0HrsxfDlY/Cud0XjyStq4r0nYVRHT0oASzOyAHIQFqufCUjf8Ee9uGt6kAjsoXzlU+omgshT8RB7SUcqT2YWEbkUJ9leYQW2beCwDRBu7z5IUCk61nfE4ID57zPJwK49r5iyRJBM9IeWHFUASDPfasT6L0YEKOnkN6nT0FaGdngBJ6U62OxhY2F5D5BmmSqAcOBzwfiifXSlAYjVyYq6jtcEowDbr/qynnWFmB8pZFEPabqMPGGPE4q5S51SoOSOIqAmnlQE2GkAUs16w0yeWHyNY/FjtAEdPVoxsR5UCJaZUAZUEtCC/wXP8wgGNe4Fz+YJavwOeRV86j9waZVAKvwhM6YJnB8d8DSCweLDg8P4YIix1R3+yW6TKR817L7LKCPluyrfjttoOvX5KEENtywyraFHAzA4l+HXC3jHvrFBg8uQCAKlZUG3a8TN4nBj6Z75prn5cA/QY0FFXZ83PmU4T0218M8yk15iTSsLIIvL46gWGwgB0jfeXmIBTnfM+Fd7bN7cvOCPBb8F0YPiEeadYSx3xUevMOsHr6UXnzphdJAQ1qK0B7w+00m+Yfs3in84AKYKyy3pWM4z77iNmDzbBTWC+ENmD6YV4KRlxDCWsXvqbkluPCe4TeDAWMo1O8WYg/Afrs4l2fNHXkJG+SdXAzsL+45DguP5TZHvA7OANvQP7feFrpx19oTv9QBTK/RL0AAckfqgNVw2LesBxbQykvwa2fyy+o4lIeIAfwSwAO1VgT1D52VCmAbCTZcCJEVduhz3KALho2a9NgLP/jDex+wsMjIm/N0ni+MIAhT7gLXjevJ9eZS3NPe9h88YLVQYlm6HTfAP9S4Tz3xyk/++kfSMZxynuvK9fhjWwAYB6J/cIheUhd3APj3Ogvncfi+//3h19vcP+CK9ar14tX3LxtgZMBhh70FvgLwMThmjTkHEzJA7DL4e7trpw4a+x11XKdqNdQO2qrRFpW22e6wXn12O/Zbo7Xj+Ix440d+vSoNWlz45fG/vtYpdY7YY5d9DrjoJBU2HMEEC4cpC3as2bDlxpkLV7P58uKN5KNbqCDBQgisFkVIJIZYtFhSiRTiJUiVJFmKhZZZbInlluqRL0euPEUoK2CwrvEATwBxFXgBxteAidugpgDiJ0AiekNvR8EiOA/a1s0cmigfHZ8JgtIuGWJjiB09nXHAG/Hx0YkgZvh+l+wSI5IS6S3BJZ7Z2ySxfxRFBrAtjnAJLpctEbBOWMRievPiZbMI4q0e1IEsG7JZkiSyZpMh37BysdoZadbYU6Z+0r3t4VbaEe1vjjXFZ8Pdk45I30Q2aIxJTZZO9g+eMh1NWO3cdN+OPrqXOaWDzWZra69N1qZdOtvpzKWmZXbY8Bm3UZdNmmZzeHhqqt3OZWuGzHDLo7JLdN6ZjkGz+5uDHe670625fjGD2eJHmGU+MY43jLtEYxP1D+TS1ctWS6X5fu3SfqRwsPBIaRHT8XuH2Lod48b3HjTwrWvgxFn4NnFKWrleJyuvy7dPwm2Z1g8PxiKRD9XHkd9OeCZFROzixoDEKAOlx4u9TeM0pCGSIRzXQAipbX2e0MkaVI1GLtZEYhsFmXAVqaBJXLoWQ2hQ3LoN6cqUqtJ6+27RHHPrTlLz+/1lyYNEbf8NZuQocC0/IDanvOd7DU56cD0rKFI9D7jvaoFUUNRehrXv+3Me1iWnytFYeliLbUdFXVZpHR/o/Yd6r8hth93w96R7Ucm7d6hF5cyyMneM71Rkb0VN1cuUHs88xLGulKZtc284WuURbKyTQod+9Dh8qGy42QFvNJuKlzDN4T7ha5/dQWrDVhxMsTN3uypZXGiFRFUUEhUkrC0sn+2iVndk1zbYlWdCHRpcIRUl5DVOTn/EzWlqpDw6L84t8IdWSEGDF4ckUiZQV1e/Iby+IJg6l5VVrNVwMyVY1NiUdn4Iw+br8LRuwBJ9VadT0Cr7eqzLpDs92hN4Bp65lNHECOnq3LYfmTPthdJkQstkdx+zHciVjkvjQmnk24iEQlSCvaTRQd8qfcuhbr59AFMM2uI13g20pbkETWCJRrYSNzCbk7ML9IDtzJGPJXDWvr+Ilnc1UgjuUCnl9tLYI3V4NNbqV7mV6sTtAEfz3rOUfH+/Hxrfe5B8aedb8XvljDi8wCnfRVjG7ecjE2qPKA6JFyIUTRcfWBxGD93Ve9mAdzVdqXAV3prWClk6dVlTGI2rVeyzIq4+ZkP9OtGsDb6ZS2BZOVEIzxQ5epfKSqjjsZqPhYySSgRsmZIPdyENL6Dex2tIJqiugHZSip0UplPd4ph2jb3cR+prO3kK02vwzGlOA+zBbvDlaCLGcQ+PM6GkIh32Dh8rZGh7cVdUFCoAoArESN3Axa4Ke7BL6RrnCXVfG1yJlWYMQnS9QVrdQ4VRhqBMfnwapDMrvUrS0nblZ8RGQJcXF+CB0lfTbtPPtlOSjYmmoqRRojKYGaHglLnTVTmVJrafyItJqEbhWkHRPaCwhccjdGLFmzd4HddZv8ybuHb9Zj33r9RC7JdFb8F/7c3Db+3L3+7Cq9CCWnPdspHM6LP+nKLut8IcW9+tXPb8v4JRd9ykn+rb9EiDMlrHgQPLJ9/hWoeI69Hlofz5Pd372PDqoboLH4JaH6zpE6HgjrOFc/B6WFdvcIuCTW0ETekKSy32LSrNw4UcPXylHrPGx1V7vWeXL+uSeTrzvKza5IedO5f0oNPzVe+Jo2e+lS/cg8n7XmegvroexDpyUt0z+TbwXSBdLa8CBuKpTCO1SGPffbLyZLe9puPnWz9XwK077Fz72RXCouNRxkyqwSpyLke63kdl/kYpmtTPeZNYinIt7LMIaGUvVGUBcgu5XGMQWrEvQa6hbb3sdtl629IaEOsU1G+3VIS+oB6ooB8GUH9bxJpOTYdvZWdlB+lpzXRnkxpJUeIib1GoCVes+k1crOrT8KwkVoFIpyb1pPpYDv46pIMmxmK6WlkvF6dpL12015AnfvNtpqykA2nZ4ksnSBB9OrVTakCoa2ExBNOaLbO1VdjJbe5mX7Syrp7LtdY2dENcbSkvuMPes5aoCXzEsQPjQdNguvcQToLR5iqV9Ss1Dr9bbK2K5Y7KsPQXnkPZ+hYfq4XVPoUPU4UeP/P/F+RDgXbDdKQ6LKaOT9WcR3shT7cLtytMmpFDw4AY5lEanYacB8FlxKvjIG2rhevQPblXGiIL2aNrgR+wJx9nnrrU7vpJTz9tYE+ete8vvodgIK1leNJ90+MP05tJG9lQWjbP/OdeMaSC9bz3/p9Dfwg9pLxqBQOarbU2Gt3x6WCMMiZRT++msXMdQ9eu1tZeVkWtS8xi56aPR0+nG9F26aycokfYjMi576Nj1pCmHGbA0ZiEvTyUSjJSESoMp4gVPpep6RXpfa2Ypq6iy47CHPSITdhnTNNSXFH8ukzNoqaei7NAc2GCTZX6mXqGBgt+i95egRoDqFcM8xYcSCPvbkZSTE3fNyc6xkDx8zQw06maohYN4Z5uCPigQArVdlAjNfhfykD7FNS/vaOV6BMq2UBB6ZIKm7XtwbyHr+p9P39vfO9b5+fmvYYxUcZmdVlFcS4HBhSTLS3XqobYFU4KF2o1WIcYCn5UdbTdDKDzF7HAccdcPoBFTaNUg6kVDAd+HoHDFhnB/xrbdUo+t8gXuvylET6X+uayr/tfJhb4oAXVk6GYxsa0RWdkl6H4nPx7mWq+oCvMakK/PFoEIkigV0xRQ15nSrOOkzIptZ8hl41MhZZc1q2EJn6qKUgYFxouROfeorfhfFsz+RmMOy+PtGB96DAfYuWdhsPvDnfGycEEPnld/YK2BdUHFqkW1T2R5/arjqogGHymiKm/T+O+EZdqDKm/2r4+DfvH941D7UwQ4cTiKDovunQeNVGxczUw0FQXVo+Sji8GrlF6UkqepzNnqCFqJpM+T8ZhPTXEr4Gt9jLx1XtQGV8+HfzgIIw/o8dbdCACx3bzwTvVaZsXhhggqihDEt1LJhsrYOdcMYIJwLwARNXTFTaLHkO9B1XlHB2C+G9uR3fRUxWtlkKxvbf7Xke+zCG4B0M3tt4/tLUzR50ztFUIf+ngGoSWWfkrFa3y5/TdQWLl6qnXIGVIpg5wOvXEJZP0A3Q73Y1I+GCOpWKGtnVGDrFzeQwyFG7nB+anExn7HLC/sGvXBYdGL5/2AMo8Rsol9IFlNyhnRbbwvmydVzQO0sjKY8KrtTY7qgJN2SA9nUnta+dKQ9TUCvqSiAV9MHJgglpeDgwghECA4EMu93IdBcHVXKqO0yDiWQUZB0iNgEEyamCT+ojuAAdxVHf4e4EFslDFXwavugZyKtlA/myufVIw3L8KDDEQCb1/tMIY1TWawgFqGjMnc4r6adLy/L//Z5/FYYae/NW/okqnfRnG4ZF1iexfZKQLDDrB2nnz8jaR9I5NvF1o5yaa178Jcm5uvlKZAzII7clAWwPr69BQ+N5K/t5BIM0MJSo/r61Bg8E9mrCes3g3S3yhP6h+ADiw6qUf1+pl8AqeJNTw9Iq6ZFF+iU4yUAz6UkqfC7aBIIRrL5I0wDnXSMI9u/o2dW3q0NArDCT9gsONjYPTjojUwKXjCPVEoO6q2NPEWcmAbgLF3I1BtV5N9N1oNKEDsRHQHgQCA6BFJ7iOELo7WNAdKPd2G0mAOdCO8js2LLwFH+7lXrzRo5yXVTgOXhTIVX6oQNkyV8BjG9hVwyGHLIjDXDQMlqnraWOzUJYwS50VRydN0S/Rk/A+xA71DuEOtENU+SS/BK88yN84E2LvPPvGLWjLbfXtxNvodv6vX5cklsT74ChyIa+LZ4yl+Cj0/Nbae7poQwqvnY418LryUF4nz5BMs1Rh7ArbjkZPk0S2U8lGuivP2ar9aHv3taS09YF2Vk7UkMNAA8rqziLqh8/HnjQk0QHqIFaeHE9FbwyK6e5FsGcJ1NegmlpU24Aa6kFry18AjlWD1YNEY0qR001ETZjt2JRSiGow+xVkREG/hrjUfzdViFMBWSDz28eXCsehi+ggPuns+2kjHOPA9vPG3p86CP6kwf+57/grX3p/7lUeJZ8t47pyPbP5JFRBY29sekN3DKukPOdOKSn3QWoB1V2i3qcgClhu9ryT1nneXt65r8H92TOyh7Cgh1xIZSFqIZbPshmlq04+nYlkYie5tuXV1PbP6Vjqi+3UHL/0MbVYah3F8txnz4/rDd9WSKUNVrgSOcY72UavOr9/LfYroDM/I0u/OHJJKDHzfPkYKp6TRahvYwKqTQ75YzegWmEhUJf938hZtW1n5zIIv36vetIYmTVc0k306+JfCzd+dfcrTW/9CovvLoaRfHo6k1RSmVP0AtKQTCnJZCO5wHrDhZ3rMnmqyBs/G4I86EJd4LMT1Gp1irtLOyFouPLxpDBnJwQPqwOHobUask9kfjzlhuRYcKv06PSI8OjyEHhU07hdlccyJjAc8E2J4QrYFw5w8Io8WcOT3E6JWBaCU28sgfQ75Igm+AgsPCH9SAd8IwwY1p9emupvzDLDTHMSg7kPCiAoK9m4kVhFMjMIsdMJA4rMMoNQzTICtymu5saDmVlmmEmMA81hlhmEio9wq4pE2xYDZplhpjmJ0xKQY+eJ3FgKELlagmwUxStmoLwGiHWXzuoMTLVAO85QizTOWlK7uVlmmEmssiUYy2uPZKtlyEZRvGKmCnlmpQII4BTYoofQZ51cLzEPf+RGlhd6hrvkz6Y4Cf8YwOb5a73Np/6bAqqfJpUAWHUPxKDGiGsFGW/VjCOTh9QTtlAcXOdBviLRjIy7zVnJF/iAFfoURPI++iaIxTgLeIiEoRoh9BhsPURcI+MtmvMNpQEWX0uIv3PeqEgS0YqVEfnaShEt5K5UYBQYX5EkwmWhkjfwDiv0GITcPloEMR/Hgfs+A/LWdzm0SoBIWCscZ8wlKN4spiDhhDgiw7+DcWNF7pMF2bMrziNx1vfgJEBv4ftaE/UVwSl/Mb0GOGZr7ColuxbcZAMDkuwrde7K8tHfWhjxJeDlsgoDfN3/f7z49utaehgOHCBAL4/M4JHMqH//y4DZPFRP8ivHUhBPraIhMCURVQwhmpyMOP/jn008NhfOIDLDn5Dv6D5FN7fHKsu4J1FZ7NFNWJKTjcaEBjMJygVQxkV6/8UE+QdH2tI3fAb28WEqUHBRWKeWQEQO448a2HuY3IfJERFWMFzyQj30nNFPkKf45X6Ml/h2gTfo4fprwf3Q+KzERAJ+PcLkKGL8ddEhBvbgZxdGO6Z5+Gn6hZaUKIYJcgStU86cBnz48PLgPMMf+VpMyUp6V8Eqlgge7ynOpZxPlO0IUoICgXeYPXz3/fpFRMZiPCf2iCCPmp19HKLUxvzLrTxx0ww4aQrs8MIPH8Lw4hJeIsIBE44ikg1ReR1TDPxz4pxghBlPedMfN6YR4BdREQ7QK6pVfHIbr3LknS/RMcGOf11vgmSBee6w8Wf07+kJdrRzrZtCi4+pkwQlJYwRQWYwoJeA7gQ9AroIdDfouSAOpKvseIoyjYofZPuKU7RxjF8tMs0OBjyRgU2MHQevLWHAmB0I2IAZgO/gsgfGw+974EzDfg+CJO57sFCxdA8299i1B4dv7N3dGj/GDoABTMTPkiXvrcoV22CzEgXy5CvDFS5UGCGu+RfIeSUpSqxWoEyJYutxpZbBWjnW0Gup8mmofMVKlOLiydFlNhy0WIjz8hQQ/XKrBRcExYqEjHSOQuGrmJfrfSuWK0SxtlX9BOLayB/mSpejVHSJipZns0ygoWb4yVYpSoC4tbfZgbdgUhKl5AW0aRQKlNqg0CqbyRQrlE2uNzqzUXg3iHe95bvcMV8ICpYqgDQIFywU+g3OGbxs5JVa40O9QVmQwRK9QsEwPnGeECkSKC2S4+c8bjPZ3i/cF/MEWO+OW1Y7Y41+zUiUbDSeHLfdda9H2Mr3PfDQZF8s2/xvPlc4nU/l+cyAQRH4BBiRhKZMyzdDRCxKtG/EUCiwTqG11ivSLd6jfqI5NqBY6uNeZY+l9FiZChuV9+p6LanSbJJus6222WK7s/3O3ttCNRZZbIdddttpiaWWWe5bWiv6uDl9ypRbXzfPjk1/t83EKSx9vPWqYoXDXhwLljKtFEvC1jnnyVwwZNgINnNE4BgBaiY0rP3gR6O4vMy2iikfZqohWWFhbIyDmWCmmBlmDo3kGui98MRTL7fyywWhodKdrPgrJcVX144IFZr9DenmnP+KOTBbdaK8rGR4Fb64R2m77Fxh9qIyPHIU+1A9rAYAAA==) format('woff2');
+  }
+:root{--gold:#d4a017;--gold-b:#f5c542;--neon:#00ffe0;--term:#80ffc0;--violet:#c4a5ff;
+--ink:#07080d;--granite:#11131c;--slate:#232838;--wire:#343b52;--text:#c8ccdc;--dim:#8f95ab;
+--red:#f87171;--amber:#fbbf24;
+--mono:'Share Tech Mono',monospace;--body:'Rajdhani',sans-serif;--amenti:'Amenti Display','Special Elite',cursive;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-weight:300;font-size:18px;line-height:1.72}
+.bleed{position:relative;width:100%;height:min(78vh,760px);overflow:hidden}
+.bleed svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bleed .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,13,.45) 0%,rgba(7,8,13,0) 34%,rgba(7,8,13,.72) 82%,var(--ink) 100%)}
+.bleed .plate{position:absolute;left:0;right:0;bottom:5%;text-align:center;padding:0 20px}
+.bleed .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.4em;color:var(--neon);text-transform:uppercase;margin:0 0 14px}
+.bleed h1{font-family:var(--amenti);font-size:clamp(34px,6.4vw,82px);color:var(--gold-b);margin:0;line-height:1.04;
+  text-shadow:0 0 46px rgba(245,197,66,.28)}
+.bleed .the{display:block;font-size:.28em;letter-spacing:.36em;color:var(--gold);opacity:.9;margin-bottom:.1em;text-shadow:none}
+.bleed .sub{font-family:var(--amenti);font-size:clamp(13px,2vw,19px);color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin:16px 0 0}
+main{max-width:1020px;margin:0 auto;padding:0 24px 130px}
+.stamp{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:20px 2px 14px;border-bottom:1px solid var(--slate);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:20px}
+.stamp .doc{color:var(--gold)}.stamp .date{color:var(--term)}.stamp .rev{color:var(--violet)}.sep{opacity:.35;margin:0 3px}
+h2{font-family:var(--amenti);font-size:clamp(23px,3.2vw,32px);color:var(--gold);margin:58px 0 14px;border-bottom:1px solid var(--slate);padding-bottom:11px}
+h3{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--violet);margin:28px 0 6px}
+p{margin:13px 0}em{color:var(--gold-b);font-style:italic}strong{color:#fff}
+code{font-family:var(--mono);font-size:.83em;color:var(--neon);background:rgba(0,255,224,.06);padding:1px 6px;border-radius:3px}
+pre{background:#0c0f16;border:1px solid var(--slate);border-radius:8px;padding:15px 17px;overflow-x:auto;
+  font-family:var(--mono);font-size:12.5px;line-height:1.62;color:#d3dcf0}
+.lede{font-size:20.5px;color:#dfe4ee;border-left:2px solid var(--gold);padding-left:20px;margin:26px 0}
+.law{font-family:var(--mono);font-size:14px;letter-spacing:.04em;color:var(--term);text-align:center;border:1px solid var(--slate);
+  border-radius:6px;padding:19px 22px;margin:38px auto;max-width:800px;background:rgba(128,255,192,.045);line-height:1.85}
+.law.red{color:var(--red);border-color:rgba(248,113,113,.32);background:rgba(248,113,113,.05)}
+svg.fig{width:100%;height:auto;display:block;margin:22px 0 8px;border:1px solid var(--slate);border-radius:8px;background:#0a0d13;padding:10px}
+.cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--dim);text-align:center;margin:0 0 24px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #171d29;vertical-align:top}
+th{font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+td.m{font-family:var(--mono);font-size:11.5px;color:var(--term);white-space:nowrap}
+td.n{font-family:var(--mono);font-size:12px;color:var(--gold-b);text-align:right;white-space:nowrap}
+td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowrap}
+.note{border-left:3px solid var(--neon);padding:7px 0 7px 20px;margin:22px 0;font-style:italic;color:#a8c3cd;font-size:17px}
+.fail{border-left:3px solid var(--red);padding:7px 0 7px 20px;margin:22px 0}
+.fail .fk{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}
+.stat{border:1px solid var(--slate);border-radius:8px;background:var(--granite);padding:17px 13px;text-align:center}
+.stat .n{font-family:var(--amenti);font-size:33px;color:var(--gold-b);line-height:1}
+.stat .l{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-top:7px}
+.stat .d{font-family:var(--mono);font-size:9.5px;color:var(--term);margin-top:4px}
+.foot{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--violet);text-align:center;
+  padding:48px 0 12px;border-top:1px solid var(--slate);margin-top:56px}
+</style></head><body>
+
+<div class="bleed">
+<svg class="cover" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="A dark temple, wind, and figures approaching">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#05070c"/>
+      <stop offset="46%" stop-color="#0a1016"/>
+      <stop offset="72%" stop-color="#14181c"/>
+      <stop offset="100%" stop-color="#05070a"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="58%" r="42%">
+      <stop offset="0%"  stop-color="#d4a017" stop-opacity=".26"/>
+      <stop offset="55%" stop-color="#d4a017" stop-opacity=".07"/>
+      <stop offset="100%" stop-color="#d4a017" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#11151a"/><stop offset="100%" stop-color="#06090c"/>
+    </linearGradient>
+    <linearGradient id="doorlight" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"  stop-color="#f5c542" stop-opacity=".55"/>
+      <stop offset="60%" stop-color="#d4a017" stop-opacity=".16"/>
+      <stop offset="100%" stop-color="#d4a017" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="windg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#7CFFC4" stop-opacity="0"/>
+      <stop offset="45%"  stop-color="#7CFFC4" stop-opacity=".30"/>
+      <stop offset="100%" stop-color="#7CFFC4" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <ellipse cx="800" cy="520" rx="700" ry="380" fill="url(#halo)"/>
+
+  <!-- far ridge -->
+  <path d="M0 560 L180 512 L330 548 L470 500 L600 540 L760 496 L930 538 L1090 498 L1250 542 L1420 506 L1600 552 L1600 900 L0 900 Z"
+        fill="#080c11" opacity=".9"/>
+
+  <!-- THE TEMPLE — heavy, frontal, forbidding -->
+  <!-- stepped plinth -->
+  <path d="M300 792 L1300 792 L1300 830 L300 830 Z" fill="#0b0f14"/>
+  <path d="M340 754 L1260 754 L1260 792 L340 792 Z" fill="#0d1116"/>
+  <path d="M380 716 L1220 716 L1220 754 L380 754 Z" fill="#0f1319"/>
+  <!-- columns -->
+  <g fill="url(#stone)">
+    <rect x="424" y="352" width="58" height="364"/><rect x="530" y="352" width="58" height="364"/>
+    <rect x="636" y="352" width="58" height="364"/><rect x="906" y="352" width="58" height="364"/>
+    <rect x="1012" y="352" width="58" height="364"/><rect x="1118" y="352" width="58" height="364"/>
+  </g>
+  <!-- flutes -->
+  <g stroke="#161b21" stroke-width="1.4" opacity=".8">
+    <path d="M440 360 L440 712 M456 360 L456 712 M472 360 L472 712"/>
+    <path d="M546 360 L546 712 M562 360 L562 712 M578 360 L578 712"/>
+    <path d="M652 360 L652 712 M668 360 L668 712 M684 360 L684 712"/>
+    <path d="M922 360 L922 712 M938 360 L938 712 M954 360 L954 712"/>
+    <path d="M1028 360 L1028 712 M1044 360 L1044 712 M1060 360 L1060 712"/>
+    <path d="M1134 360 L1134 712 M1150 360 L1150 712 M1166 360 L1166 712"/>
+  </g>
+  <!-- capitals -->
+  <g fill="#12171d">
+    <rect x="414" y="336" width="78" height="20"/><rect x="520" y="336" width="78" height="20"/>
+    <rect x="626" y="336" width="78" height="20"/><rect x="896" y="336" width="78" height="20"/>
+    <rect x="1002" y="336" width="78" height="20"/><rect x="1108" y="336" width="78" height="20"/>
+  </g>
+  <!-- architrave + pediment -->
+  <path d="M396 336 L1204 336 L1204 296 L396 296 Z" fill="#0f1419"/>
+  <path d="M380 296 L1220 296 L800 168 Z" fill="#0c1116"/>
+  <path d="M380 296 L1220 296 L800 168 Z" fill="none" stroke="#1a2027" stroke-width="2"/>
+  <!-- the mark in the pediment: the scale, barely lit -->
+  <g opacity=".55">
+    <path d="M800 214 L800 266" stroke="#d4a017" stroke-width="2.4"/>
+    <path d="M760 226 L840 226" stroke="#d4a017" stroke-width="2.4"/>
+    <path d="M760 226 L748 246 M760 226 L772 246 M748 246 A12 12 0 0 0 772 246" fill="none" stroke="#d4a017" stroke-width="1.8"/>
+    <path d="M840 226 L828 246 M840 226 L852 246 M828 246 A12 12 0 0 0 852 246" fill="none" stroke="#d4a017" stroke-width="1.8"/>
+    <circle cx="800" cy="220" r="4.6" fill="#d4a017"/>
+  </g>
+
+  <!-- THE DOORWAY — the only light in the frame -->
+  <path d="M726 716 L726 396 Q800 356 874 396 L874 716 Z" fill="#05080b"/>
+  <path d="M740 716 L740 404 Q800 370 860 404 L860 716 Z" fill="url(#doorlight)"/>
+  <path d="M726 716 L726 396 Q800 356 874 396 L874 716" fill="none" stroke="#1d242c" stroke-width="2.4"/>
+
+  <!-- WIND — soft, crossing, low -->
+  <g fill="none" stroke="url(#windg)" stroke-linecap="round">
+    <path d="M60 640 Q300 610 520 634 T980 626" stroke-width="1.6" opacity=".55"/>
+    <path d="M120 672 Q380 646 640 668 T1180 656" stroke-width="1.2" opacity=".4"/>
+    <path d="M420 604 Q700 578 980 600 T1520 590" stroke-width="1" opacity=".3"/>
+    <path d="M240 706 Q560 684 880 702 T1460 692" stroke-width="1.4" opacity=".28"/>
+  </g>
+  <g fill="#7CFFC4">
+    <circle cx="286" cy="628" r="1.8" opacity=".5"/><circle cx="452" cy="656" r="1.4" opacity=".4"/>
+    <circle cx="1104" cy="618" r="1.6" opacity=".38"/><circle cx="1288" cy="662" r="1.3" opacity=".3"/>
+    <circle cx="640" cy="596" r="1.2" opacity=".3"/><circle cx="988" cy="682" r="1.5" opacity=".34"/>
+  </g>
+
+  <!-- THE APPROACHING — silhouettes, unlit, at the steps -->
+  <g fill="#04070a">
+    <path d="M596 830 q-9 -30 0 -54 q-5 -16 8 -20 q-4 -12 8 -12 q12 0 8 12 q13 4 8 20 q9 24 0 54 Z"/>
+    <path d="M652 830 q-8 -26 0 -48 q-4 -14 7 -18 q-3 -11 7 -11 q10 0 7 11 q11 4 7 18 q8 22 0 48 Z" opacity=".9"/>
+    <path d="M952 830 q-10 -34 0 -60 q-6 -18 9 -22 q-4 -13 9 -13 q13 0 9 13 q15 4 9 22 q10 26 0 60 Z"/>
+    <path d="M1016 830 q-8 -28 0 -50 q-5 -15 7 -19 q-3 -11 7 -11 q10 0 7 11 q12 4 7 19 q8 22 0 50 Z" opacity=".85"/>
+    <path d="M760 838 q-7 -24 0 -44 q-4 -13 6 -16 q-3 -10 6 -10 q9 0 6 10 q10 3 6 16 q7 20 0 44 Z" opacity=".95"/>
+  </g>
+
+  <!-- ground haze -->
+  <path d="M0 830 L1600 830 L1600 900 L0 900 Z" fill="#04060a"/>
+  <ellipse cx="800" cy="832" rx="620" ry="26" fill="#d4a017" opacity=".07"/>
+</svg>
+  <div class="veil"></div>
+  <div class="plate">
+    <p class="eyebrow">Amenti.live &nbsp;·&nbsp; Engineering Brief &nbsp;·&nbsp; The Shelf</p>
+    <h1><span class="the">The</span>QUIZ SURFACE</h1>
+    <p class="sub">Forty-eight hours · the engine, the bridge, and the cards</p>
+  </div>
+</div>
+
+<main>
+<div class="stamp">
+  <div><span class="doc">Engineering Brief</span><span class="sep">·</span>Ingram Manor LLC<span class="sep">·</span>Amenti.live</div>
+  <div><span class="date">19 July 2026 · 07:12 UTC</span><span class="sep">·</span>2026-07-19<span class="sep">·</span><span class="rev">Rev. A</span></div>
+</div>
+
+<p class="lede">In forty-eight hours the quiz surface went from thirteen hand-written quizzes locked inside a money Worker to a self-generating library of thirty-two, a roster that builds itself from live data, thirty-three complete character cards, and a machine that researches and writes new quizzes without either author present. This brief records what was built, what broke, and what the breakages taught.</p>
+
+<div class="grid4">
+  <div class="stat"><div class="n">32</div><div class="l">Quizzes Live</div><div class="d">from 13</div></div>
+  <div class="stat"><div class="n">33</div><div class="l">Complete Cards</div><div class="d">art · sheet · words · quiz</div></div>
+  <div class="stat"><div class="n">12</div><div class="l">Portraits Drawn</div><div class="d">library 21 → 33</div></div>
+  <div class="stat"><div class="n">$0.11</div><div class="l">Cost Per Quiz</div><div class="d">measured, not estimated</div></div>
+</div>
+
+<h2>I · What the surface was</h2>
+<p>At the start, everything lived in one place. The <code>amenti-mint</code> Worker held the quiz content, the answer keys, the scoring logic and the ledger writes in a single 66&nbsp;KB file. Adding a quiz meant editing and redeploying the one piece of infrastructure that moves money. The arena showed six hand-typed cards in front of that library, and the two lists had already drifted — a card claimed <em>"5 QUESTIONS"</em> for a quiz that held four, and gave Lincoln an era his own quiz contradicted.</p>
+<p>Worse, the count was wrong in the documents. Five briefs stated the library held eight quizzes. It held thirteen. The number had been carried forward from a summary and never checked against the source.</p>
+
+<div class="law red">A DOCUMENT THAT IS NEVER CHECKED AGAINST THE SHIP<br>BECOMES A CONFIDENT DESCRIPTION OF SOMETHING THAT NO LONGER EXISTS.</div>
+
+<h2>II · The migration</h2>
+<p>The first structural change moved the quiz library out of the money Worker and into a <code>topics</code> table. It was done in four steps, deliberately, because the Worker that scores answers also writes to the ledger.</p>
+
+<svg class="fig" viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+ <defs><marker id="a1" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#d4a017"/></marker></defs>
+ <text x="16" y="26" font-family="Share Tech Mono,monospace" font-size="10.5" letter-spacing="2.4" fill="#f87171">BEFORE</text>
+ <rect x="16" y="40" width="380" height="176" rx="5" fill="#11131c" stroke="#f87171" stroke-width="1.2"/>
+ <text x="206" y="64" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="11.5" letter-spacing="1.6" fill="#f87171">amenti-mint · 66 KB</text>
+ <rect x="38" y="80" width="336" height="26" rx="3" fill="#1a1d27" stroke="#3a3140"/><text x="50" y="98" font-family="Rajdhani,sans-serif" font-size="13" fill="#c8ccdc">the quiz library — passages, questions, ANSWER KEYS</text>
+ <rect x="38" y="112" width="336" height="24" rx="3" fill="#1a1d27" stroke="#343b52"/><text x="50" y="129" font-family="Rajdhani,sans-serif" font-size="13" fill="#c8ccdc">scoring · timed tiers · mastery</text>
+ <rect x="38" y="142" width="336" height="24" rx="3" fill="#1a1d27" stroke="#343b52"/><text x="50" y="159" font-family="Rajdhani,sans-serif" font-size="13" fill="#c8ccdc">the ledger — every ET written here</text>
+ <rect x="38" y="172" width="336" height="24" rx="3" fill="#1a1d27" stroke="#343b52"/><text x="50" y="189" font-family="Rajdhani,sans-serif" font-size="13" fill="#c8ccdc">the pool · the seal · the god-view</text>
+ <text x="206" y="240" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="13.5" fill="#f87171">adding a quiz = editing the Worker that moves money</text>
+ <text x="206" y="260" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="13.5" fill="#8f95ab">6 hand-typed cards standing in front of it, already drifted</text>
+
+ <path d="M410 128 L470 128" stroke="#d4a017" stroke-width="1.6" marker-end="url(#a1)"/>
+ <text x="440" y="118" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9" fill="#d4a017">4 steps</text>
+
+ <text x="486" y="26" font-family="Share Tech Mono,monospace" font-size="10.5" letter-spacing="2.4" fill="#80ffc0">AFTER</text>
+ <rect x="486" y="40" width="196" height="86" rx="5" fill="#11131c" stroke="#c4a5ff" stroke-width="1.2"/>
+ <text x="584" y="62" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="11" letter-spacing="1.4" fill="#c4a5ff">QUIZZARD</text>
+ <text x="584" y="82" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">researches · verifies</text>
+ <text x="584" y="99" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">composes · validates</text>
+ <text x="584" y="116" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9.5" fill="#8f95ab">writes, cannot publish</text>
+
+ <rect x="700" y="40" width="184" height="86" rx="5" fill="#11131c" stroke="#00ffe0" stroke-width="1.2"/>
+ <text x="792" y="62" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="11" letter-spacing="1.4" fill="#00ffe0">topics TABLE</text>
+ <text x="792" y="82" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">the whole library</text>
+ <text x="792" y="99" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">staged | live</text>
+ <text x="792" y="116" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9.5" fill="#f87171">RLS on · no policies</text>
+ <path d="M684 83 L698 83" stroke="#d4a017" stroke-width="1.4" marker-end="url(#a1)"/>
+
+ <rect x="486" y="148" width="398" height="76" rx="5" fill="#11131c" stroke="#80ffc0" stroke-width="1.2"/>
+ <text x="685" y="170" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="11" letter-spacing="1.4" fill="#80ffc0">amenti-mint · 31 KB · the cashier</text>
+ <text x="685" y="190" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">reads the table · scores · credits ET · seals the court</text>
+ <text x="685" y="209" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9.5" fill="#8f95ab">THE ANSWER KEYS STILL NEVER LEAVE THIS WORKER</text>
+ <path d="M792 130 L792 145" stroke="#d4a017" stroke-width="1.4" marker-end="url(#a1)"/>
+
+ <rect x="486" y="240" width="398" height="46" rx="5" fill="none" stroke="#343b52" stroke-width="1"/>
+ <text x="685" y="262" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="13" fill="#c8ccdc">the arena — 32 cards, generated from the library</text>
+ <text x="685" y="279" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9.5" fill="#80ffc0">a card cannot disagree with a quiz that does not exist</text>
+ <path d="M685 226 L685 237" stroke="#d4a017" stroke-width="1.4" marker-end="url(#a1)"/>
+
+ <text x="450" y="318" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="1.6" fill="#d4a017">ADDING A QUIZ · BEFORE: EDIT + REDEPLOY THE LEDGER WORKER &#160;·&#160; AFTER: ONE ROW INSERT</text>
+</svg>
+<p class="cap">Figure 1 · before and after. The library left the Worker; the keys did not.</p>
+
+<p>The order mattered more than the change. <strong>Copy first, verify the copy, then delete.</strong> A migration route was pasted into the live Worker so that it copied <em>its own</em> quizzes into the table — nothing retyped, nothing mistranscribed. Only once the count matched on both sides was the constant removed.</p>
+
+<table>
+<tr><th>Step</th><th>What it did</th><th>Verified by</th></tr>
+<tr><td class="s">1</td><td>Create the <code>topics</code> table, RLS on, no policies</td><td class="m">0 rows, no error</td></tr>
+<tr><td class="s">2</td><td>Temporary route copies in-code TOPICS into the table</td><td class="m">18 in table · 18 in code</td></tr>
+<tr><td class="s">3</td><td>Console fires the migration and reads it back</td><td class="m">ids matched exactly</td></tr>
+<tr><td class="s">4</td><td>Slim Worker reads the table; constant deleted</td><td class="m">Worker 66KB → 31KB</td></tr>
+</table>
+
+<div class="note">The proof the migration had truly happened came from an unexpected place: the JSON key order changed. Postgres <code>jsonb</code> sorts object keys by length then alphabetically, so <code>figure, domain, motif…</code> came back as <code>era, motif, domain…</code>. Code cannot do that. The data had made a round trip through the database.</div>
+
+<p>The result is the point: <strong>adding a quiz is now one row insert.</strong> Four hours later, nine quizzes were added without Cloudflare being opened at all.</p>
+
+<h2>III · The anatomy of a quiz</h2>
+<p>The format was already in production and did not need designing — it needed writing down. Each quiz is a verified passage and six questions across three cognitive tiers, ending in the pair that feeds the court.</p>
+
+<svg class="fig" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+ <rect x="16" y="16" width="868" height="52" rx="5" fill="#11131c" stroke="#d4a017" stroke-width="1.2"/>
+ <text x="30" y="38" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="2" fill="#f5c542">THE PASSAGE · 115–155 WORDS · VERIFIED</text>
+ <text x="30" y="57" font-family="Rajdhani,sans-serif" font-size="13" fill="#c8ccdc">the source of truth for every answer key. where sources disagree, the disagreement is written in.</text>
+
+ <g font-family="Share Tech Mono,monospace" font-size="9" letter-spacing="1.4">
+  <rect x="16" y="86" width="204" height="96" rx="5" fill="#11131c" stroke="#343b52"/>
+  <text x="30" y="106" fill="#00ffe0">WHAT · ×3</text>
+  <text x="30" y="126" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">2 timed multiple choice</text>
+  <text x="30" y="144" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">1 cloze — accepted[]</text>
+  <text x="30" y="166" font-size="9" fill="#8f95ab">6s full · 20s partial · else floor</text>
+
+  <rect x="236" y="86" width="204" height="96" rx="5" fill="#11131c" stroke="#343b52"/>
+  <text x="250" y="106" fill="#00ffe0">WHY · ×1</text>
+  <text x="250" y="126" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">multiple choice, always</text>
+  <text x="250" y="144" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">forces a judgement</text>
+  <text x="250" y="166" font-size="9" fill="#8f95ab">a cloze here tests recall, not cause</text>
+
+  <rect x="456" y="86" width="428" height="96" rx="5" fill="#11131c" stroke="#c4a5ff" stroke-width="1.3"/>
+  <text x="470" y="106" fill="#c4a5ff">EVALUATE · ×2 — THE PAIR THAT BECOMES THE COURT</text>
+  <text x="470" y="128" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">"Make the strongest case that…" · 40 words · never a question</text>
+  <text x="470" y="148" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">scored on the QUALITY of the case, never the conclusion</text>
+  <text x="470" y="168" font-size="9" fill="#8f95ab">the frame fits the figure — it is not always champion and tyrant</text>
+ </g>
+
+ <text x="30" y="212" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="1.8" fill="#d4a017">THE DUALITY FITS THE FIGURE</text>
+ <g font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">
+  <text x="30"  y="234">ruler · general</text><text x="200" y="234" fill="#8f95ab">great deeds  ⇄  tyranny</text>
+  <text x="30"  y="254">reformer · icon</text><text x="200" y="254" fill="#8f95ab">the inspiring myth  ⇄  the erased reality</text>
+  <text x="30"  y="274">thinker of ideas</text><text x="200" y="274" fill="#8f95ab">the promise  ⇄  the cost</text>
+  <text x="470" y="234">philosopher in power</text><text x="640" y="234" fill="#8f95ab">sage  ⇄  failed idealist</text>
+  <text x="470" y="254">explorer</text><text x="640" y="254" fill="#8f95ab">robbed pioneer  ⇄  "discovery" as myth</text>
+  <text x="470" y="274">a figure with one honest side</text><text x="700" y="274" fill="#f87171">HALT — nothing to weigh</text>
+ </g>
+ <text x="450" y="304" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9.5" letter-spacing="1.4" fill="#8f95ab">EXACTLY 6 QUESTIONS · 3 MC · 1 CLOZE · 2 PHILOSOPHICAL · 2 TIMED — ENFORCED BY A PARSER</text>
+</svg>
+<p class="cap">Figure 2 · the invariant. Every quiz, without exception.</p>
+
+<p>Two rules emerged from writing them by hand that no document had captured:</p>
+<p><strong>The evaluate pair is not always champion-and-tyrant.</strong> For a ruler it is great deeds against tyranny. For a reformer it is the inspiring myth against the erased reality — Helen Keller's pump against the socialist the story forgets. For an explorer it is the robbed pioneer against the idea that "discovery" erases the people already there. Forcing one frame on every figure produces false quizzes.</p>
+<p><strong>The pans are cases, not questions.</strong> Each must begin <em>"Make the strongest case that…"</em> The court scores the quality of an argument, and a yes/no question cannot elicit one. This rule was learned when the engine returned <em>"Was Einstein's 1905 work humanity's greatest achievement?"</em> — structurally valid, and it breaks the entire mechanic.</p>
+
+<h2>IV · The Quizzard</h2>
+<p>The bottleneck was never the format. It was that every quiz came out of a conversation. The Quizzard is a Cloudflare Worker that takes one name and returns a validated quiz or an honest refusal.</p>
+
+<svg class="fig" viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="g" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#d4a017"/></marker>
+  <marker id="r" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#f87171"/></marker>
+  <marker id="t" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6 Z" fill="#80ffc0"/></marker>
+ </defs>
+ <rect x="120" y="12" width="300" height="38" rx="4" fill="none" stroke="#00ffe0" stroke-width="1.2"/>
+ <text x="270" y="30" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="2" fill="#00ffe0">ONE NAME</text>
+ <text x="270" y="44" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9" fill="#8f95ab">from names.csv · dead only</text>
+ <path d="M270 50 L270 66" stroke="#d4a017" stroke-width="1.2" marker-end="url(#g)"/>
+
+ <path d="M700 82 L700 372" stroke="#f87171" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
+ <rect x="616" y="372" width="168" height="42" rx="4" fill="none" stroke="#f87171" stroke-width="1.2"/>
+ <text x="700" y="390" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="2" fill="#f87171">HALTED</text>
+ <text x="700" y="405" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="8.5" fill="#8f95ab">reason logged · nothing invented</text>
+ <path d="M700 360 L700 370" stroke="#f87171" stroke-width="1" marker-end="url(#r)"/>
+
+ <g font-family="Share Tech Mono,monospace" font-size="9.5" letter-spacing="1.6">
+  <rect x="120" y="70" width="380" height="42" rx="4" fill="#11131c" stroke="#d4a017" stroke-width="1.1"/>
+  <text x="134" y="88" fill="#f5c542">01 · IDENTIFY</text><text x="134" y="104" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">one real person, or halt</text>
+  <path d="M500 91 L696 91" stroke="#f87171" stroke-width=".9" marker-end="url(#r)" opacity=".8"/>
+  <text x="506" y="86" font-size="8.5" fill="#f87171">ambiguous · nonexistent</text>
+
+  <rect x="120" y="128" width="380" height="42" rx="4" fill="#11131c" stroke="#d4a017" stroke-width="1.1"/>
+  <text x="134" y="146" fill="#f5c542">02 · RESEARCH</text><text x="134" y="162" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">WEB SEARCH ARMED — find the pivot</text>
+  <path d="M500 149 L696 149" stroke="#f87171" stroke-width=".9" marker-end="url(#r)" opacity=".8"/>
+  <text x="506" y="144" font-size="8.5" fill="#f87171">no verifiable pivot</text>
+
+  <rect x="120" y="186" width="380" height="42" rx="4" fill="#11131c" stroke="#d4a017" stroke-width="1.1"/>
+  <text x="134" y="204" fill="#f5c542">03 · VERIFY</text><text x="134" y="220" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">every fact that becomes a key</text>
+  <path d="M500 207 L696 207" stroke="#f87171" stroke-width=".9" marker-end="url(#r)" opacity=".8"/>
+  <text x="506" y="202" font-size="8.5" fill="#f87171">contested existence</text>
+
+  <rect x="120" y="244" width="380" height="42" rx="4" fill="#11131c" stroke="#c4a5ff" stroke-width="1.3"/>
+  <text x="134" y="262" fill="#c4a5ff">04 · THE DUALITY</text><text x="134" y="278" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">the only creative act in the run</text>
+  <path d="M500 265 L696 265" stroke="#f87171" stroke-width=".9" marker-end="url(#r)" opacity=".8"/>
+  <text x="506" y="260" font-size="8.5" fill="#f87171">an empty pan</text>
+
+  <rect x="120" y="302" width="380" height="42" rx="4" fill="#11131c" stroke="#d4a017" stroke-width="1.1"/>
+  <text x="134" y="320" fill="#f5c542">05 · COMPOSE + 06 · VALIDATE</text>
+  <text x="134" y="336" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">a parser, not a review · 3 attempts</text>
+  <path d="M500 323 L696 323" stroke="#f87171" stroke-width=".9" marker-end="url(#r)" opacity=".8"/>
+  <text x="506" y="318" font-size="8.5" fill="#f87171">fails the shape</text>
+ </g>
+
+ <path d="M270 344 L270 366" stroke="#80ffc0" stroke-width="1.4" marker-end="url(#t)"/>
+ <rect x="120" y="370" width="380" height="44" rx="4" fill="none" stroke="#80ffc0" stroke-width="1.3"/>
+ <text x="310" y="389" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="2" fill="#80ffc0">EMIT → topics · status = staged</text>
+ <text x="310" y="405" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="8.5" fill="#8f95ab">it can write. it cannot publish. that gap is the review gate.</text>
+
+ <text x="120" y="444" font-family="Share Tech Mono,monospace" font-size="9.5" fill="#8f95ab">NORMALISED: tiers · wordLimit · rubric — constants only</text>
+ <text x="120" y="460" font-family="Share Tech Mono,monospace" font-size="9.5" fill="#f87171">NEVER NORMALISED: a fact · an option · an answer index · a count</text>
+</svg>
+<p class="cap">Figure 3 · six gates and a halt rail. Every gate can refuse.</p>
+
+<p>The load-bearing detail is that the model is called <strong>with the web search tool armed</strong>. A model writing from memory is precisely the fabrication risk the doctrine exists to prevent; search is what makes verification real rather than decorative.</p>
+
+<h3>The validator is a parser, not a review</h3>
+<p>Every returned quiz is checked in the Worker against the invariant — never by the model, never by a human first. Tested both directions before it was trusted: it accepts all five hand-written quizzes, and rejects nine deliberate corruptions including a dropped question, an out-of-range answer index, a tampered rubric and a third timed question.</p>
+
+<h3>Normalise constants, validate content</h3>
+<p>Three fields carry no information — the timed tiers, the philosophical word limit, the rubric. They are identical in every quiz ever written. Requiring a model to recall a constant, and discarding a researched quiz when it forgets, is friction with no benefit. The Worker supplies those three and <strong>nothing else</strong>: never a fact, never an option, never an answer index. Everything it fills is reported.</p>
+
+<div class="law">A HALT IS A SUCCESS, NOT A FAILURE.<br>THE ENGINE THAT CANNOT SAY NO WILL EVENTUALLY SAY SOMETHING FALSE.</div>
+
+<h3>What it refused</h3>
+<table>
+<tr><th>Input</th><th>Verdict</th><th>Why it matters</th></tr>
+<tr><td class="m">Leif Erikson</td><td>produced</td><td>no reading room, only a roster row — proof depth is optional</td></tr>
+<tr><td class="m">Homer</td><td>halted</td><td>contested existence; no biography can be asserted</td></tr>
+<tr><td class="m">nine names pasted as one</td><td>halted</td><td>caught before the API call — the mispaste cost nothing</td></tr>
+<tr><td class="m">Frederick Douglass ×2</td><td>halted, then produced</td><td>passage 211 then 170 words against a 165 ceiling</td></tr>
+</table>
+
+<h2>V · The Bridge</h2>
+<p>A Worker with a secret-guarded POST route is unreachable from a browser address bar. The bridge is the console that drives it — and it is the only place the engine's work becomes visible: searches run, tokens spent, sources retrieved, and the raw response one click away.</p>
+<p>It was first delivered as a file to download. That was a mistake, and it cost four rounds. A stale copy had no batch panel, so nine names pasted into a single-line field arrived as one sixteen-word figure. <strong>The Worker now serves its own console at its root</strong>, with <code>no-store</code>, so the tool and the engine cannot drift apart.</p>
+
+<div class="fail"><div class="fk">The bug beneath the bug</div>
+<p>Even after the batch panel existed, every paste still collapsed. The cause was in the embedding: escaping every backslash turned <code>split('\n')</code> into <code>split('\\n')</code> — a literal backslash-n that never matches. The same escaping mangled ten unicode symbol escapes. The bridge contained no backticks and no interpolation, so it never needed escaping at all.</p>
+<p>Probe 19 had reported eight green passes throughout, because it tested whether the <em>textarea</em> held nine lines. It did. The fault was one step later, in the splitter.</p></div>
+
+<div class="law red">A PROBE THAT CHECKS THE COMPONENT NEXT TO THE BROKEN ONE<br>IS WORSE THAN NO PROBE — IT CERTIFIES THE FAILURE.</div>
+
+<h2>VI · The card</h2>
+<p>A card is not a name. Four artifacts, in four places, and three of four is a gap wearing a border.</p>
+
+<svg class="fig" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+ <rect x="330" y="24" width="240" height="252" rx="6" fill="#0d1016" stroke="#d4a017" stroke-width="1.4"/>
+ <rect x="342" y="36" width="216" height="118" rx="3" fill="#151a24" stroke="#343b52"/>
+ <text x="450" y="100" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="2" fill="#8f95ab">THE PORTRAIT</text>
+ <circle cx="540" cy="52" r="11" fill="none" stroke="#d4a017" stroke-width="1.2"/>
+ <text x="352" y="180" font-family="Rajdhani,sans-serif" font-size="16" fill="#fff">Figure Name</text>
+ <text x="352" y="198" font-family="Share Tech Mono,monospace" font-size="9" letter-spacing="1.4" fill="#f5c542">ERA · YEAR</text>
+ <g>
+  <rect x="352" y="208" width="120" height="3" rx="1.5" fill="#d4a017"/><text x="482" y="212" font-family="Share Tech Mono,monospace" font-size="8" fill="#8f95ab">STR</text>
+  <rect x="352" y="218" width="150" height="3" rx="1.5" fill="#d4a017"/><text x="512" y="222" font-family="Share Tech Mono,monospace" font-size="8" fill="#8f95ab">CHA</text>
+  <rect x="352" y="228" width="134" height="3" rx="1.5" fill="#d4a017"/><text x="496" y="232" font-family="Share Tech Mono,monospace" font-size="8" fill="#8f95ab">FOR</text>
+  <rect x="352" y="238" width="72"  height="3" rx="1.5" fill="#d4a017"/><text x="434" y="242" font-family="Share Tech Mono,monospace" font-size="8" fill="#8f95ab">CBT</text>
+ </g>
+ <rect x="352" y="252" width="90" height="15" rx="2" fill="none" stroke="#00ffe0" stroke-width=".9"/>
+ <text x="397" y="263" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="8" fill="#00ffe0">6 QUESTIONS</text>
+
+ <g font-family="Share Tech Mono,monospace" font-size="9" letter-spacing="1.2">
+  <text x="20" y="60" fill="#f5c542">① THE PORTRAIT</text>
+  <text x="20" y="76" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">hand-built SVG, 320×560</text>
+  <text x="20" y="92" font-size="8.5" fill="#00ffe0">amenti-art-2.js → window.AMENTI_SVG</text>
+  <path d="M215 74 L326 88" stroke="#343b52" stroke-width="1"/>
+
+  <text x="20" y="150" fill="#f5c542">② THE SHEET</text>
+  <text x="20" y="166" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">STR · CHA · FOR · CBT, abilities, voice</text>
+  <text x="20" y="182" font-size="8.5" fill="#00ffe0">Page1 → AMENTI_CHARS (one declaration)</text>
+  <path d="M240 164 L326 218" stroke="#343b52" stroke-width="1"/>
+
+  <text x="620" y="60" fill="#f5c542">③ THE WORDS</text>
+  <text x="620" y="76" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">title, era, glyph, quote, bio</text>
+  <text x="620" y="92" font-size="8.5" fill="#00ffe0">the same codex record</text>
+  <path d="M574 84 L616 74" stroke="#343b52" stroke-width="1"/>
+
+  <text x="620" y="150" fill="#f5c542">④ THE QUIZ</text>
+  <text x="620" y="166" font-family="Rajdhani,sans-serif" font-size="12.5" fill="#c8ccdc">six questions and two cases</text>
+  <text x="620" y="182" font-size="8.5" fill="#00ffe0">topics table — one row, no deploy</text>
+  <path d="M574 214 L616 172" stroke="#343b52" stroke-width="1"/>
+ </g>
+
+ <text x="450" y="294" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9.5" letter-spacing="1.4" fill="#8f95ab">THREE OF FOUR IS NOT A CARD — IT IS A GAP WEARING A BORDER</text>
+</svg>
+<p class="cap">Figure 4 · the four artifacts and where each lives.</p>
+
+<p>The arena's cards were hand-written while the library was data — two lists maintained separately, already disagreeing. They are now <strong>generated from the live library</strong>: fetch <code>/quiz/topics</code>, build a card per quiz, attach the click handlers, then paint the portraits from the art library and the stat bars from the codex. Six cards became thirty-two, and drift became impossible.</p>
+
+<h3>Three failures worth recording</h3>
+<p><strong>A card with nothing behind it served a stranger's quiz.</strong> Clicking Lincoln opened Caesar, because <code>data-topic || DEFAULT_TOPIC</code> substituted silently. A card with no quiz now says so and offers a picker of what is ready.</p>
+<p><strong>Ten characters were written, pasted correctly, and did not appear.</strong> <code>AMENTI_CHARS</code> was declared <em>three separate times</em> in Page1 — once each for the codex, timeline and terminal blocks. The last to run overwrote the others. <code>AMENTI_ERAS</code> had the same fault. Both are now declared once, and the page shed 62&nbsp;KB.</p>
+<p><strong>The portraits were never six.</strong> A first attempt read <code>.char-slide .char-art</code> — the six hero-carousel slides — and concluded six figures were drawn. The real library was <code>window.AMENTI_SVG</code>: twenty-one hand-built portraits keyed by codex key. The correction doubled the faces on the roster before a single new one was drawn.</p>
+
+<div class="law">IF A LIST IS DECLARED TWICE, ONE OF THEM IS A LIE WAITING TO BE TOLD.</div>
+
+<h2>VII · The art migration</h2>
+<p>Twelve portraits were drawn to close the gap — Douglass, Keller, Prometheus, Loki, Odysseus, Gilgamesh, Arthur, Lycurgus, Manlius, Rand, Leif and Ingram. Each is a hand-built SVG on the house 320×560 stage, matching the head geometry and shared <code>defs()</code> of the twenty-one that came before, with accent colours read from each figure's codex record rather than invented.</p>
+<p>They were first delivered as blocks to paste into Page1. That was the wrong instruction and the captain said so: <strong>art belongs in files that grow, not pasted into a 1.6&nbsp;MB page every time.</strong> They now live in <code>amenti-art-2.js</code>, which attaches to the library Page1 created — or creates it if it loads first, so load order cannot break it — and refreshes the roster once the art is in.</p>
+
+<table>
+<tr><th>Where</th><th>Portraits</th><th>Note</th></tr>
+<tr><td class="m">Page1.html</td><td class="n">21</td><td>the original library; left in place, it works</td></tr>
+<tr><td class="m">amenti-art-2.js</td><td class="n">12</td><td>new file; every future portrait appends here</td></tr>
+<tr><td class="m">total</td><td class="n">33</td><td>every codex character now has a face</td></tr>
+</table>
+
+<p>Each was drawn from its own stat line rather than a generic pose. Gilgamesh — 96 combat, 66 foresight — stands with his back to the walls the epic offers as his true monument. Rand, at 14 combat the smallest fighter in the set, carries a cigarette holder and a manuscript. Odysseus is roped to his own mast, because he wanted to hear the song <em>and</em> survive it, so he arranged both.</p>
+
+<h2>VIII · The Corps turned on itself</h2>
+<p>The Probe Corps exists to cross-examine claims against the living system. It was the one thing nothing was checking.</p>
+<p>The scanner that catalogues the fleet excluded probes by name and never walked <code>probes/</code> at all: nineteen files on disk, one in the manifest, and a pane claiming twenty in rows typed by hand. It could have claimed any number.</p>
+<p>Both ends are fixed. The scan now catalogues the folder and reads each probe's codename from its own header; the pane renders that manifest instead of a remembered list, and goes dark rather than guessing if it cannot be read.</p>
+
+<table>
+<tr><th></th><th>Before</th><th>After</th></tr>
+<tr><td>Probe files on disk</td><td class="n">19</td><td class="n">20</td></tr>
+<tr><td>Known to the manifest</td><td class="n">1</td><td class="n">20</td></tr>
+<tr><td>Pane roster</td><td class="n">typed</td><td class="n">read</td></tr>
+</table>
+
+<div class="note">Eight of the twenty report <em>"codename unread"</em> rather than being listed as nameless. That is the scanner admitting blindness, not asserting absence — the third rule of the doctrine, applied to the instrument that enforces it.</div>
+
+<h2>IX · The ledger of the forty-eight hours</h2>
+<table>
+<tr><th>Measure</th><th>Before</th><th>After</th></tr>
+<tr><td>Quizzes live</td><td class="n">13</td><td class="n">32</td></tr>
+<tr><td>Written by machine</td><td class="n">0</td><td class="n">11</td></tr>
+<tr><td>Quiz library location</td><td class="n">in the mint</td><td class="n">a table</td></tr>
+<tr><td>Mint Worker size</td><td class="n">66 KB</td><td class="n">31 KB</td></tr>
+<tr><td>Adding a quiz</td><td class="n">edit + deploy</td><td class="n">one insert</td></tr>
+<tr><td>Arena cards</td><td class="n">6 typed</td><td class="n">32 generated</td></tr>
+<tr><td>Codex records</td><td class="n">23</td><td class="n">33</td></tr>
+<tr><td>Portraits</td><td class="n">21</td><td class="n">33</td></tr>
+<tr><td>Complete cards</td><td class="n">12</td><td class="n">32</td></tr>
+<tr><td>Character list declarations</td><td class="n">3</td><td class="n">1</td></tr>
+<tr><td>Probes in the manifest</td><td class="n">1</td><td class="n">20</td></tr>
+</table>
+
+<h2>X · What the failures taught</h2>
+<p>Nine faults were found and fixed. Every one was visible to anyone who looked, and none required insight.</p>
+<table>
+<tr><th>Fault</th><th>Found by</th></tr>
+<tr><td>Five briefs stating 8 quizzes; there were 13</td><td class="m">reading the Worker</td></tr>
+<tr><td>Cards without a quiz opening Caesar</td><td class="m">clicking Lincoln</td></tr>
+<tr><td>Three copies of the character list</td><td class="m">grepping for the assignment</td></tr>
+<tr><td>Portrait library found at 6, actually 21</td><td class="m">the captain saying so</td></tr>
+<tr><td>Batch splitter matching a literal backslash</td><td class="m">reading the embedded source</td></tr>
+<tr><td>A probe certifying a broken splitter</td><td class="m">auditing the probe</td></tr>
+<tr><td>A probe asserting an unverified cause</td><td class="m">auditing the probe</td></tr>
+<tr><td>Search counter unable to tell diligence from fabrication</td><td class="m">a run reporting zero</td></tr>
+<tr><td>Douglass filed as Early Modern</td><td class="m">reading the output</td></tr>
+</table>
+
+<div class="note">The last one is the instructive one. "Early Modern" is a legal value in the controlled vocabulary — the validator passed it. A vocabulary check catches invented words, not wrong choices among real ones. That class of error is exactly why quizzes are written as <code>staged</code> and promoted by hand.</div>
+
+<h2>XI · What remains</h2>
+<p><strong>Ingram has no quiz</strong>, and that is the correct gap: a living founder is precisely the case the doctrine says not to put on trial.</p>
+<p><strong>Canon mode is specified and unarmed.</strong> Roughly a hundred and fifty figures — the mythic tier, the legendary founders, the scriptures — sit behind it. The engine refuses <code>mode: canon</code> until the interpretive frames for religious figures are written, which is the single place in the fleet where autonomy is withheld by design.</p>
+<p><strong>The patrol is unbuilt.</strong> The engine runs when a button is pressed. The queue, the staging table and the schedule that would let it work down the roster unattended are drawn but not made.</p>
+
+<div class="law">THE CAPTAIN IS NOT A COMPONENT.<br>EVERY STAGE THAT STILL REQUIRES HIM IS A STAGE NOT YET FINISHED.</div>
+
+<div class="foot">Amenti.live &nbsp;·&nbsp; Ingram Manor LLC &nbsp;·&nbsp; THE QUIZ SURFACE &nbsp;·&nbsp; engineering brief &nbsp;·&nbsp; 2026-07-19 · 07:12 UTC &nbsp;·&nbsp; Rev. A</div>
+</main></body></html>
