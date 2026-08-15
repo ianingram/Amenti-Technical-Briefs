@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Living Voice — Engineering Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Amenti Display';font-weight:400;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,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);}
+
+:root{--gold:#d4a017;--gold-b:#f5c542;--neon:#00ffe0;--term:#57c98a;--violet:#c4a5ff;
+--tblue:#57b6ff;--soul:#bfe6ff;
+--ink:#08090e;--granite:#11131c;--slate:#232838;--wire:#343b52;--text:#c8ccdc;
+--dim:#8f95ab;--red:#f87171;--amber:#fbbf24;
+--mono:'Share Tech Mono',monospace;--body:'Rajdhani',sans-serif;
+--disp:'Amenti Display','Special Elite',serif;}
+*{box-sizing:border-box;}
+html,body{margin:0;background:var(--ink);}
+body{font-family:var(--body);font-weight:300;font-size:19px;line-height:1.72;color:var(--text);
+background-image:radial-gradient(ellipse at 50% -6%,rgba(87,182,255,.08),transparent 58%);
+padding:44px 40px 80px;}
+main{max-width:960px;margin:0 auto;}
+.stamp{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:0 2px 13px;
+border-bottom:1px solid var(--slate);font-family:var(--mono);font-size:13px;letter-spacing:.18em;
+text-transform:uppercase;color:var(--dim);}
+.stamp .sl,.stamp .sr{display:flex;gap:7px;flex-wrap:wrap;}
+.stamp .doc{color:var(--gold);}.stamp .date{color:var(--term);}.stamp .rev{color:var(--violet);}
+.stamp .sep{opacity:.35;}
+header{padding:40px 0 4px;}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.34em;text-transform:uppercase;
+color:var(--tblue);margin:0 0 16px;}
+h1{font-family:var(--disp);font-size:clamp(38px,6.6vw,68px);color:var(--gold-b);line-height:1;
+margin:0;text-shadow:0 0 34px rgba(245,197,66,.26);}
+h1 .the{display:block;font-size:.25em;letter-spacing:.34em;color:var(--gold);opacity:.85;
+text-shadow:none;margin-bottom:-.03em;}
+.tag{font-family:var(--disp);font-size:clamp(16px,2.2vw,21px);color:#e6e9f2;letter-spacing:.2em;
+text-transform:uppercase;margin:16px 0 0;}
+.rule{width:180px;height:1px;margin:26px 0;background:linear-gradient(90deg,var(--tblue),transparent);}
+.lede{font-size:19px;max-width:76ch;margin:0 0 16px;}
+em{color:var(--gold-b);font-style:italic;}
+b{font-weight:600;color:#e6e9f2;}
+h2{font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+color:var(--violet);margin:54px 0 16px;padding-bottom:9px;border-bottom:1px solid var(--slate);}
+h3{font-family:var(--mono);font-size:14px;letter-spacing:.16em;text-transform:uppercase;
+color:var(--tblue);margin:34px 0 12px;}
+p{max-width:80ch;}
+table{width:100%;border-collapse:collapse;margin:20px 0;border:1px solid var(--slate);}
+th{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--dim);text-align:left;padding:11px 14px;background:#0d0f17;
+border-bottom:1px solid var(--slate);}
+td{padding:11px 14px;font-size:16.5px;border-bottom:1px solid #171d29;vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td.m,th.r{font-family:var(--mono);font-size:14.5px;}
+td.r,th.r{text-align:right;}
+td.n{color:var(--gold-b);}td.ok{color:var(--term);}
+.bad{color:var(--red);}
+.acc{border-left:3px solid var(--term);background:rgba(87,201,138,.04);padding:14px 0 14px 20px;
+margin:24px 0;}
+.acc.violet{border-left-color:var(--violet);background:rgba(196,165,255,.04);}
+.acc .ak{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+color:var(--term);}
+.acc.violet .ak{color:var(--violet);}
+.acc .av{margin-top:6px;font-size:17px;max-width:82ch;}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;
+background:var(--slate);border:1px solid var(--slate);border-radius:8px;overflow:hidden;margin:24px 0;}
+.cell{background:var(--granite);padding:14px 16px;}
+.cell .ck{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--dim);}
+.cell .cv{font-family:var(--mono);font-size:25px;margin-top:5px;color:#fff;}
+.cv.n{color:var(--gold-b);}.cv.ok{color:var(--term);}.cv.am{color:var(--amber);}
+.cv.bad{color:var(--red);}
+.law{font-family:var(--mono);font-size:15.5px;line-height:1.9;text-align:center;color:var(--gold-b);
+border:1px solid rgba(245,197,66,.32);border-radius:6px;background:rgba(245,197,66,.05);
+padding:19px 22px;margin:34px 0;}
+.decide{border:1px solid rgba(251,191,36,.42);border-radius:8px;background:rgba(251,191,36,.05);
+padding:17px 22px;margin:26px 0;}
+.decide .dk{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+color:var(--amber);}
+.decide p{font-size:17px;margin:10px 0 0;}
+.m{font-family:var(--mono);font-size:14.5px;color:var(--tblue);}
+ul.open{list-style:none;padding:0;margin:16px 0;}
+ul.open li{border-left:2px solid var(--wire);padding:10px 0 10px 18px;margin-bottom:12px;
+font-size:17px;max-width:82ch;}
+.foot{font-family:var(--mono);font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--dim);text-align:center;line-height:2;border-top:1px solid var(--slate);
+margin-top:52px;padding-top:24px;}
+@media(max-width:640px){body{padding:30px 18px 60px;font-size:18px;}
+table{display:block;overflow-x:auto;}}
+</style>
+</head>
+<body>
+<main>
+<div class="stamp">
+  <div class="sl"><span class="doc">Engineering Brief</span><span class="sep">·</span><span>The Shelf</span><span class="sep">·</span><span>Ingram Manor LLC</span></div>
+  <div class="sr"><span class="date">15 August 2026</span><span class="sep">·</span><span>2026-08-15</span><span class="sep">·</span><span class="rev">Rev. A</span></div>
+</div>
+
+<header>
+  <p class="eyebrow">Handoff · the reciter, the certificate, and what the emerald is for</p>
+  <h1><span class="the">The</span>Living Voice</h1>
+  <p class="tag">Every spell before this one is about the dead</p>
+  <div class="rule"></div>
+  <p class="lede">One hundred and ninety spells, and every one of them is spoken
+  <em>for</em> the dead — recited over the body, written on the coffin, addressed to
+  gatekeepers on behalf of somebody who can no longer speak. The reading room holds the
+  same arrangement: a thousand figures, every one of them silent, their words preserved
+  and unable to be uttered by the mouths that wrote them.</p>
+  <p class="lede"><em>Read-aloud inverts it.</em> A living person puts breath through a
+  dead person's sentence. That is not a bonus mechanic bolted to a quiz. It is the only
+  place in this entire system where the direction of the transaction reverses — where
+  the seeker gives something to the record rather than taking something from it.</p>
+  <p class="lede">This brief is about building it to be worth that.</p>
+</header>
+
+<div class="law">
+  EVERY FIGURE BELOW WAS READ FROM THE DEPLOYED WORKER OR THE COMMITTED SOURCE<br>
+  ON 15 AUGUST 2026. NONE OF THEM IS REMEMBERED.
+</div>
+
+<h2>I · Where it stands</h2>
+
+<p>The reciter works and is honest about what it is. Its own header states the privacy
+position plainly: <span class="m">audio is NEVER captured or stored — recognition
+processes it live and we send only a coverage RATIO</span>. That was the right call and
+it stays.</p>
+
+<table>
+  <thead><tr><th>Piece</th><th>State</th><th>Where</th></tr></thead>
+  <tbody>
+    <tr><td class="m">The reciter</td><td>shipped, two paths</td><td class="m">amenti-readaloud.js</td></tr>
+    <tr><td class="m">Coverage floor</td><td class="m n">0.80</td><td class="m">client and Worker agree</td></tr>
+    <tr><td class="m">Curve</td><td class="m n">20 · 12 · 8 · 5 · 3</td><td class="m">per topic, resets daily</td></tr>
+    <tr><td class="m">Verification</td><td class="bad">none — the client sends the number</td><td class="m">/readaloud/complete</td></tr>
+    <tr><td class="m">Honour mode</td><td class="bad">a timer that pays in full</td><td class="m">startHonor()</td></tr>
+    <tr><td class="m">Artefact</td><td class="bad">nothing survives the session</td><td class="m">—</td></tr>
+  </tbody>
+</table>
+
+<div class="acc violet">
+  <div class="ak">The fleet already flagged half of this</div>
+  <div class="av">fleet-semantics.js, on the mint's watch: <b>ONE SOFT SPOT:
+  /readaloud/complete TRUSTS the client's coverage number</b> — bounded by a decaying
+  curve and a verified identity, so low severity. And then the line that matters:
+  <b>BUT A HAND-READING IS NOT A PROBE. This is UNPROVEN until an instrument
+  exists.</b></div>
+</div>
+
+<p>The half it did not flag is worse. <span class="m">startHonor()</span> exists because
+Safari and Firefox have no <span class="m">SpeechRecognition</span>, and it pays the full
+reward on a timer paced at roughly 360ms a word. No microphone is required. On those
+browsers, reading aloud is <em>waiting</em> aloud — and that is not an exploit anybody
+has to discover, it is the default behaviour on most of the phones in the world.</p>
+
+<h2>II · What the faucets actually pay</h2>
+
+<p>Measured against the deployed constants and the fifty-nine live quizzes.</p>
+
+<div class="strip">
+  <div class="cell"><div class="ck">One quiz, flawless</div><div class="cv n">280 ◈</div></div>
+  <div class="cell"><div class="ck">The whole library</div><div class="cv n">16,520 ◈</div></div>
+  <div class="cell"><div class="ck">Read-aloud, one topic/day</div><div class="cv am">48 ◈</div></div>
+  <div class="cell"><div class="ck">All 59 topics, one day</div><div class="cv bad">2,832 ◈</div></div>
+  <div class="cell"><div class="ck">In circulation now</div><div class="cv">512 ◈</div></div>
+</div>
+
+<p>Three readings follow from that table and each one is a decision, not a tuning knob.</p>
+
+<div class="acc">
+  <div class="ak">The quiz faucet is already correct — and correct by accident</div>
+  <div class="av">The unique index <span class="m">emerald_ledger_once</span> means a
+  question pays <b>once per seeker, ever</b>. Lifetime quiz minting is therefore bounded
+  at roughly 16,520 ◈ and cannot be farmed. That index was written for correctness rather
+  than for economics, and it happens to encode the Book's own logic: <b>you cannot pass
+  the same gate twice.</b> Leave it exactly as it is.</div>
+</div>
+
+<div class="decide">
+  <div class="dk">Read-aloud is the only unbounded faucet, and it out-pays thinking</div>
+  <p>The curve resets <b>daily, per topic</b>. Fifty-nine topics is 2,832 ◈ a day for one
+  determined person — on the order of a million a year. Meanwhile a complete quiz, six
+  questions answered and two arguments filed for the docket, pays 280.</p>
+  <p><b>Reading aloud currently pays roughly ten times better than thinking, every single
+  day.</b> That does not promote reading aloud. It makes everything else pointless, and
+  it is the one number in the economy that cannot survive contact with a thousand
+  users.</p>
+</div>
+
+<div class="decide">
+  <div class="dk">The pool does not scale, and it scales backwards</div>
+  <p><span class="m">POOL_SIZE</span> is 500 ◈ a week <b>regardless of how many people
+  exist</b>. One seeker takes 500. A thousand seekers split 500. The reward for arguing
+  therefore collapses precisely as the hall fills — and the 500 is minted from nothing,
+  so it is 26,000 ◈ of pure annual issuance whether or not anyone argued.</p>
+</div>
+
+<h2>III · Four decisions</h2>
+
+<h3>1 · The pool is the stake, not a subsidy</h3>
+
+<p>A vote burns 5 ◈. Settlement mints 500 ◈. Those are two unrelated flows, and joining
+them closes the loop: <b>the pool is what the hall actually staked, redistributed.</b></p>
+
+<table>
+  <thead><tr><th></th><th>Fixed pool</th><th>Parimutuel</th></tr></thead>
+  <tbody>
+    <tr><td class="m">Scales with users</td><td class="bad">no</td><td class="ok">automatically</td></tr>
+    <tr><td class="m">Inflationary</td><td class="bad">26,000 ◈/yr</td><td class="ok">zero — nothing new is minted</td></tr>
+    <tr><td class="m">A quiet week</td><td>pays 500 anyway</td><td class="ok">pays nothing, correctly</td></tr>
+    <tr><td class="m">The myth</td><td>the house funds the argument</td><td class="ok">Ma'at weighs what was put on the scales</td></tr>
+  </tbody>
+</table>
+
+<p>Keep <span class="m">POOL_SIZE</span> as a <em>floor</em> for thin weeks if a floor is
+wanted. But a pool conjured from nothing is not a weighing. On 14 August the court sealed
+its first case on zero votes and distributed nothing — and that was the system behaving
+correctly. The parimutuel makes that the rule rather than the accident.</p>
+
+<h3>2 · Honour mode acknowledges. It does not mint.</h3>
+
+<p>Two options and no third. Either those browsers get real capture via
+<span class="m">MediaRecorder</span> — which works everywhere
+<span class="m">SpeechRecognition</span> does not — or honour mode records the read and
+pays nothing. <b>A timer must never be a faucet.</b></p>
+
+<h3>3 · Cap the day, and invert the curve</h3>
+
+<p>Keep the daily reset. Repetition is the point — it is practice, and practice is what a
+reading site is for. But two changes:</p>
+
+<table>
+  <thead><tr><th></th><th>Now</th><th>Proposed</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td class="m">Daily ceiling</td><td class="bad">none</td><td class="m n">~60 ◈ across all topics</td>
+        <td>three careful passages earn what fifty-nine ground ones do</td></tr>
+    <tr><td class="m">Curve</td><td class="m">20 · 12 · 8 · 5 · 3</td><td class="m">rising, not falling</td>
+        <td>the fifth read of one passage is the one that is <em>improving</em>.
+            A falling curve pays for showing up; a rising one pays for fluency.</td></tr>
+  </tbody>
+</table>
+
+<h3>4 · Verify without storing</h3>
+
+<p>Keeping every reading is expensive and most readings will not be good. So:
+<b>cache only, and the seeker keeps their own.</b> The audio need not be stored to be
+checked — it needs to reach the Worker once. Score it there, discard the audio, keep the
+number. That closes the soft spot the fleet already named, and it costs one request
+rather than one object per read, forever.</p>
+
+<h2>IV · The certificate</h2>
+
+<p>This is the piece that changes what the emerald is <em>for</em>, and it is the reason
+the rest of this brief is worth doing.</p>
+
+<div class="acc violet">
+  <div class="ak">It is the Negative Confession, in reverse</div>
+  <div class="av">Spell 125 is forty-two declarations of what was <b>not</b> done. The
+  certificate is the affirmative form, and it is declared by the record rather than by
+  the seeker: <em>I read this passage aloud. I cleared eighty-four per cent. I answered
+  six of six on the Rubicon. I staked twelve emeralds on arguments that were not my
+  own.</em> Same structure, opposite sign — and both are statements of the conditions
+  for legitimate passage.</div>
+</div>
+
+<p><b>The audio is the proof. The metadata is the claim.</b> A file that says
+<em>some audio</em> is a voice memo. A file that says <em>this reading, of this passage,
+by this seeker, on this date, at this coverage</em> is checkable, and it is the thing a
+person actually keeps.</p>
+
+<table>
+  <thead><tr><th>Carries</th><th>From</th></tr></thead>
+  <tbody>
+    <tr><td class="m">the reading</td><td>the session cache — never stored server-side</td></tr>
+    <tr><td class="m">passage, work, room, figure</td><td class="m">library/&lt;key&gt;.json</td></tr>
+    <tr><td class="m">coverage, date, duration</td><td class="m">/readaloud/complete</td></tr>
+    <tr><td class="m">quiz standing, hearts and quills</td><td class="m">/quiz/progress</td></tr>
+    <tr><td class="m">ledger balance</td><td class="m">emerald_balance</td></tr>
+    <tr><td class="m">votes cast — the seeker's own</td><td class="m">argument_votes</td></tr>
+  </tbody>
+</table>
+
+<div class="decide">
+  <div class="dk">Two things to get right before the shape is fixed</div>
+  <p><b>Sign it.</b> The mint already holds the primitive —
+  <span class="m">makeSession</span> and <span class="m">readSession</span> HMAC with the
+  service key. The same primitive signs a certificate, and a seeker's claim then verifies
+  without the Worker surrendering anything private. <b>An unsigned certificate is a text
+  file anybody can write.</b></p>
+  <p><b>Do not let it de-anonymise the hall.</b> /hall publishes arguments and vote counts
+  with <em>no author attached</em>, deliberately. A seeker publishing their own
+  participation is theirs to publish — but the format must not make it easy to correlate
+  a certificate back to the anonymous rows. Decide the field list with that in mind, not
+  afterwards.</p>
+</div>
+
+<p>And the format itself: audio plus a JSON sidecar is honest and ugly. Audio plus a
+<em>rendered card</em> — terminal standard, the figure's plate, the numbers set in Share
+Tech Mono — is the thing somebody shares. The plates, the fonts and the whole visual
+language already exist.</p>
+
+<h2>V · What this does to the economics</h2>
+
+<p>It makes them almost incidental, which is the point.</p>
+
+<div class="acc">
+  <div class="ak">Three rewards, three instruments — instead of one doing all three badly</div>
+  <div class="av">
+  <b>The record</b> acknowledges. Every read that clears coverage writes a row —
+  passages read, days running, texts finished aloud. Uncapped, unfarmable, and worth more
+  to a serious reader than the currency.<br><br>
+  <b>The emerald</b> pays for what is scarce. Not the read — the record already
+  acknowledged that. The first complete read of a text, a return after a gap, coverage
+  well above the floor. Small numbers that stay meaningful at ten thousand users.<br><br>
+  <b>The certificate</b> is the reason. Your own voice, on a dead person's sentence,
+  with the record attached and signed. It costs nothing to issue and it is worth more
+  than any payout.</div>
+</div>
+
+<div class="law">
+  THE EMERALD BECOMES A THANK-YOU RATHER THAN A WAGE.<br>
+  THAT IS THE VERSION THAT SURVIVES TEN THOUSAND USERS.
+</div>
+
+<h2>VI · Order of work</h2>
+
+<table>
+  <thead><tr><th>#</th><th>Step</th><th>Blocks</th></tr></thead>
+  <tbody>
+    <tr><td class="m n r">1</td><td><b>Honour mode stops minting.</b> One condition. It is
+      the largest hole and the cheapest patch.</td><td class="m">everything downstream</td></tr>
+    <tr><td class="m n r">2</td><td><b>Daily ceiling across all topics.</b> One constant
+      and one query.</td><td class="m">the 2,832/day sweep</td></tr>
+    <tr><td class="m n r">3</td><td><b>Server-side scoring.</b> Audio reaches the Worker
+      once, is scored, is discarded. Closes the soft spot the fleet
+      named.</td><td class="m">the certificate's credibility</td></tr>
+    <tr><td class="m n r">4</td><td><b>The record table.</b> One row per cleared read.
+      Same shape as bell_log — an attendance register.</td><td class="m">streaks, the certificate</td></tr>
+    <tr><td class="m n r">5</td><td><b>The certificate.</b> Signed, rendered, downloadable.
+      The reading is cache-only throughout.</td><td class="m">—</td></tr>
+    <tr><td class="m n r">6</td><td><b>The parimutuel pool.</b> Independent of the above and
+      can be done any time.</td><td class="m">26,000 ◈/yr of issuance</td></tr>
+  </tbody>
+</table>
+
+<h2>VII · Open, and not answered here</h2>
+
+<ul class="open">
+  <li><b>Is 512 a cap or a reading?</b> It is 2⁹, which looks deliberate — but nothing in
+    the code enforces it, and one seeker sweeping the library mints thirty-two times that.
+    If it is a cap, the whole issuance schedule is two orders of magnitude out. If it is
+    a measurement, then what needs designing is the <em>rate</em>. Nothing else in this
+    brief can be finally costed until that is settled.</li>
+  <li><b>Does a great reading get offered a home?</b> Cache-only by default — but a read
+    that clears a high bar could be <em>invited</em> into the reading room. One voice per
+    passage, chosen. Rare enough to cost nothing, and it turns reading aloud into
+    something that can be won rather than ground.</li>
+  <li><b>Coverage is a weak instrument.</b> 0.80 of the words, in order, with a
+    three-word look-ahead. It measures neither pace, nor pauses, nor whether the reading
+    was any good. It is the right floor for <em>a read happened</em>. It is not a measure
+    of <em>a reading worth keeping</em>, and step 5 will want one.</li>
+</ul>
+
+<p class="foot">
+  Amenti.live · Ingram Manor LLC<br>
+  Engineering Brief · The Living Voice · Rev. A · 15 August 2026<br>
+  Constants read from the deployed mint · quiz count read from /quiz/topics
+</p>
+
+</main>
+</body>
+</html>
