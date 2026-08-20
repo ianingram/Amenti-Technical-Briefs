@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE INSTRUMENT IS NOT EXEMPT · Amenti Technical Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&family=Rajdhani:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<!--
+  ============================================================================
+   THE INSTRUMENT IS NOT EXEMPT  ·  19–20 August 2026
+   ----------------------------------------------------------------------------
+   A shop-floor account of one long session. Written at the end of it, while it
+   was still legible.
+
+   IT IS NOT A MANUAL. It is correct about the days it describes and makes no
+   claim about today. Where this brief and VOICE.json disagree about what is
+   wired now, the register is the reading and this document is a memory.
+
+   It continues THE WATER BETWEEN, which ends with the voice pane outlined,
+   unbuilt, and blocked on nine files nobody had read.
+  ============================================================================
+-->
+<style>
+:root{
+  --gold:#d4a017;--gold-b:#f5c542;--gold-d:#a87c14;
+  --neon:#00ffe0;--term:#57c98a;--violet:#c4a5ff;--tblue:#57b6ff;
+  --amber:#fbbf24;--red:#f87171;
+  --ink:#08090e;--granite:#11131c;--slate:#232838;--wire:#343b52;
+  --text:#c8ccdc;--dim:#8f95ab;
+  --mono:'Share Tech Mono',monospace;--body:'Rajdhani',sans-serif;
+  --disp:'Amenti Display','Special Elite',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-weight:300;
+  font-size:18px;line-height:1.68;padding:0 0 100px;
+  background-image:radial-gradient(ellipse at 50% -8%,rgba(212,160,23,.09),transparent 60%)}
+main{max-width:940px;margin:0 auto;padding:30px 30px 0}
+
+.stamp{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 18px;
+  padding:0 2px 12px;border-bottom:1px solid var(--slate);
+  font-family:var(--disp);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.stamp .doc{color:var(--gold)}
+.stamp .live{color:var(--term)}
+
+header{padding:38px 0 6px}
+.eyebrow{font-family:var(--disp);font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:var(--neon);margin:0 0 14px}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,6vw,60px);color:var(--gold-b);line-height:1;margin:0;
+  text-shadow:0 0 34px rgba(245,197,66,.22)}
+h1 .the{display:block;font-size:.26em;letter-spacing:.34em;color:var(--gold);opacity:.85;text-shadow:none;margin-bottom:.05em}
+.tag{font-family:var(--disp);font-weight:500;font-size:clamp(16px,2.1vw,21px);color:#e6e9f2;letter-spacing:.16em;text-transform:uppercase;margin:14px 0 0}
+.rule{width:170px;height:1px;margin:22px 0 26px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+h2{font-family:var(--disp);font-weight:600;font-size:clamp(23px,3vw,32px);letter-spacing:.05em;color:var(--gold);
+  margin:52px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--slate)}
+h3{font-family:var(--disp);font-weight:500;font-size:clamp(18px,2.2vw,23px);color:#e6e9f2;letter-spacing:.04em;margin:32px 0 10px}
+p{max-width:82ch;margin:13px 0}
+em{color:var(--gold-b);font-style:italic}
+b,strong{color:#e6e9f2;font-weight:600}
+code{font-family:var(--mono);font-size:15px;color:var(--neon);background:rgba(0,255,224,.07);padding:1px 6px;border-radius:3px}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;border:1px solid var(--slate)}
+th{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:left;padding:11px 13px;background:#0d0f17;border-bottom:1px solid var(--slate)}
+td{padding:11px 13px;font-size:16.5px;border-bottom:1px solid #171d29;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.g{font-family:var(--mono);font-size:14px;color:var(--gold-b);white-space:nowrap}
+td.m{font-family:var(--mono);font-size:13.5px;color:var(--dim)}
+td.n{font-family:var(--mono);font-size:14px;color:var(--tblue);text-align:right;white-space:nowrap}
+
+.law{font-family:var(--disp);font-weight:500;font-size:clamp(16px,2.1vw,21px);letter-spacing:.05em;line-height:1.85;
+  text-align:center;color:var(--gold-b);border:1px solid rgba(245,197,66,.30);border-radius:6px;
+  background:rgba(245,197,66,.05);padding:20px 24px;margin:32px 0}
+.law.red{color:var(--red);border-color:rgba(248,113,113,.30);background:rgba(248,113,113,.05)}
+.law.blue{color:var(--tblue);border-color:rgba(87,182,255,.30);background:rgba(87,182,255,.05)}
+
+blockquote{margin:20px 0;padding:4px 0 4px 20px;border-left:2px solid var(--gold-d);
+  font-size:19px;color:#d6d2c4}
+
+pre{background:#0a0c12;border:1px solid var(--slate);border-radius:8px;padding:16px 18px;
+  overflow-x:auto;font-family:var(--mono);font-size:14px;line-height:1.75;color:#b9c4dc}
+
+.ship{border:1px solid var(--wire);border-left:3px solid var(--term);border-radius:0 8px 8px 0;
+  background:#0c0e15;padding:16px 20px;margin:16px 0}
+.ship.red{border-left-color:var(--red)}
+.ship.amber{border-left-color:var(--amber)}
+.ship .k{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--term)}
+.ship.red .k{color:var(--red)}
+.ship.amber .k{color:var(--amber)}
+.ship .v{margin-top:6px}
+
+.foot{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:center;line-height:2;border-top:1px solid var(--slate);margin-top:56px;padding-top:24px}
+@media(max-width:640px){main{padding:22px 16px 0}body{font-size:17px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<main>
+
+<div class="stamp">
+  <div><span class="doc">Technical Brief</span> · Ingram Manor LLC</div>
+  <div><span class="live">19 – 20 August 2026</span></div>
+</div>
+
+<header>
+  <p class="eyebrow">A shop-floor account</p>
+  <h1><span class="the">The</span>Instrument Is Not Exempt</h1>
+  <p class="tag">Almost every fault this session was in the thing doing the looking</p>
+  <div class="rule"></div>
+
+  <p>This is an account of one long session. It is not a manual and it will not
+  be updated — it is correct about the days it describes and makes no claim
+  about today.</p>
+
+  <p>It begins exactly where <em>The Water Between</em> stops: the voice pane
+  outlined, unbuilt, blocked on nine files nobody had read. It ends with five
+  instruments running unattended, a fifteenth pane reading a register, and the
+  936-line gap measured shut with 5,203 lines of margin.</p>
+
+  <p>In between, the voice platform was destroyed and recovered, and the probe
+  built to watch it <b>lied four times</b> before it was allowed to speak.</p>
+
+  <div class="law">A PROBE THAT REPORTS ON A FILE IT DID NOT VERIFY<br>
+  IS THE SILENT SIGNATURE WEARING A PROBE'S COAT.</div>
+</header>
+
+<h2>I · The probe, audited four times</h2>
+
+<p>The previous brief established that the specification was audited by the ship
+before the ship was audited by the specification. The same discipline was
+applied here, and it earned its keep immediately: <b>four defects, all found by
+feeding the instrument real output rather than accepting a green run.</b></p>
+
+<h3>It read HTML as JavaScript</h3>
+
+<p>The first version ran its comment-and-string stripper over the whole
+document. An apostrophe in a paragraph opened a string that never closed;
+<code>https://</code> in an <code>href</code> opened a line comment. The damage
+ran <b>forward</b>, blanking the script block beneath it.</p>
+
+<p>The probe reported a live engine as unregistered. The engine was there. The
+instrument had erased it, and then reported confidently on what remained.</p>
+
+<h3>It could not see the only door</h3>
+
+<p>An independent grep found nine <code>speak</code>/<code>play</code> call
+sites per surface. The probe had attributed six and three. Among the misses:</p>
+
+<pre>onclick="Sovereign.Atlantica.speak('${key}', this)"</pre>
+
+<p>A handler inside an HTML attribute inside a template literal, blanked with
+every other string. <b>It is the only entry point to Atlantica read-aloud on
+Page2.</b> A pane built on that reading would have drawn the path as
+unreachable.</p>
+
+<p>Call sites are now gathered from the code mirror, the literal mirror, and the
+static HTML region; receivers resolve through <code>this</code> and through
+local aliases; the remainder is published as <code>unattributedCalls</code>. The
+count reconciles — 19 of 19 on Page1, 9 of 11 on Page2, with both remainders
+named as the <code>&lt;audio&gt;</code> elements they are.</p>
+
+<h3>It went green on a file it could not parse</h3>
+
+<p>Fed a file whose unterminated string had swallowed a live engine, the probe
+reported <b>zero findings and exited clean</b>. The stripper now records where it
+ran off the end, and an <code>unstrippable</code> finding is blocking.</p>
+
+<h3>It measured each surface against a universe it does not live in</h3>
+
+<p>The first repository run reported six globals <b>adrift</b> on Page2 —
+<code>Amenti.voice</code>, <code>throttle</code>, <code>conversation</code>,
+<code>listen</code>, <code>chat</code>, <code>doctrine</code> — on the grounds
+that Page2 registers them and never calls them.</p>
+
+<p><b>Page2 does not load the bundle at all.</b> Its only local script is
+<code>config.js</code>. Every global from every readable file had been handed to
+every surface.</p>
+
+<blockquote>"Loaded is not used" about a file that was never loaded is a worse
+lie than the one the probe was built to catch, because it is confident and
+specific.</blockquote>
+
+<p>The same error ran the other way. <code>Amenti.doctrine</code> read as adrift
+on Page1 because the page never names it — the platform reads it, inside the
+bundle, in <code>REG()</code>. A reference in a file the surface loads is a
+reference.</p>
+
+<p>A surface's universe is now its own inline code plus the files it actually
+loads. Nothing wider, nothing narrower. Verified by planting a real orphan — an
+engine with <code>speak()</code> and <code>stop()</code> that nothing calls — and
+confirming <code>adrift</code> still fires. That test caught a fifth defect: the
+candidate filter was dropping globals whose <em>name</em> lacked a speech word,
+so an engine called <code>Amenti.speaker</code> would have been invisible.</p>
+
+<div class="law red">EIGHT OF ELEVEN FINDINGS IN THE FIRST REPOSITORY RUN WERE FALSE.<br>
+THE RUN WAS GREEN. THE COUNT WAS CONFIDENT. THE LINE NUMBERS WERE EXACT.</div>
+
+<h2>II · The engine was replaced, and nothing complained</h2>
+
+<p>At approximately 02:05, <code>amenti-voice.js</code> was replaced with the
+contents of <code>VOICE.json</code>. 644 lines of engine became 1,624 lines of
+JSON. Commit <code>0a4b396</code>. The message read:</p>
+
+<blockquote>Update print statement from 'Hello' to 'Goodbye'</blockquote>
+
+<p>— describing work with no relation to either file. The commit was
+<b>Verified</b>. Signed. Three of five checks failing.</p>
+
+<p>The signature attested that the captain made the change. <b>It did not attest
+that the change was what the message said.</b> Nothing else noticed. It was found
+by opening the file.</p>
+
+<p>The file already carried one of the better headers in the fleet — a rule, the
+ownership line, <code>THE VOICE PLATFORM</code>, and forty lines on what changing
+it costs. Every line of it was overwritten too.</p>
+
+<div class="law">A WARNING ONLY WORKS ON SOMEBODY WHO IS READING.</div>
+
+<h3>And it has happened before</h3>
+
+<p>This was first written up as a mistaken paste at two in the morning. That
+account is <b>withdrawn</b>. Set the two incidents side by side:</p>
+
+<table>
+  <thead><tr><th>When</th><th>What was replaced</th><th>With</th><th>Commit message</th><th>Unnoticed</th></tr></thead>
+  <tbody>
+    <tr><td class="m">17 Aug</td><td class="g">index.html</td><td>a Go hello-world</td>
+        <td class="m">"Update fmt.Println message from 'Hello' to 'Goodbye'"</td><td class="n">12 h</td></tr>
+    <tr><td class="m">20 Aug</td><td class="g">amenti-voice.js</td><td>the contents of VOICE.json</td>
+        <td class="m">"Update print statement from 'Hello' to 'Goodbye'"</td><td class="n">40 m</td></tr>
+  </tbody>
+</table>
+
+<p>Both signed. Both Verified. Both authored as the captain. Three days apart,
+in two different repositories, replacing two unrelated live files — and carrying
+<b>the same commit message template with the same substitution</b>.</p>
+
+<p>Two incidents sharing a message template is a <b>reading</b>. The cause is
+<b>not read</b>, and this brief does not name one. What can be said is that
+"tired paste" does not survive contact with the second row of that table, and
+that the pattern points at something that commits <em>as</em> the captain rather
+than something the captain did.</p>
+
+<div class="ship red">
+  <div class="k">Unresolved · to be verified</div>
+  <div class="v">Whatever produced <code>0a4b396</code> and the Harbor's
+  replacement is still able to do it, to any file, in any repository. The commit
+  history, the Actions log and any agent session records for 17 and 20 August
+  should be read before this brief is treated as closed.</div>
+</div>
+
+<h3>Recovery</h3>
+
+<p>Recovered from <code>053d816</code> (14 July) — via the <b>blob</b> view. Not
+the diff view, which cannot produce a usable file and cost two failed pastes
+before the fault in the instruction was found. Restored at 644 lines, 28 KB,
+banner intact.</p>
+
+<div class="law blue">A DIFF VIEW CANNOT PRODUCE A USABLE FILE.<br>
+RECOVER FROM THE BLOB, OR YOU RECOVER NOTHING.</div>
+
+<h2>III · What the engine turned out to say</h2>
+
+<p>Reading <code>amenti-voice.js</code> corrected a finding that had already been
+issued against Page2.</p>
+
+<pre>var PROFILES = { recital: 320, gabriel: 700, counsel: 320 };</pre>
+
+<p>Page2's 700 is <b>not drift</b>. It is a declared, priced decision: a
+surface's chunk boundaries are part of its cache key, so changing them orphans
+that surface's audio. Each surface keeps its own profile until somebody decides
+to pay for a re-render.</p>
+
+<p>The probe had been about to report a documented ruling as a fault — and a
+register that cries fault on a decision already made teaches its reader to skip
+the findings, after which the one real fault goes past unread. Chunk sizes are
+now measured against the declared table, harvested from source. A matching size
+reports <b>accepted</b>, named. Only an undeclared size is drift. Verified by
+setting <code>TARGET_CHARS</code> to 640 in a fixture, where it goes straight to
+fault and names the three values it is not.</p>
+
+<p>The same reading separated two jobs the fleet had been treating as one:</p>
+
+<div class="law">CONSOLIDATING THE CODE IS FREE.<br>
+CONSOLIDATING THE CACHE KEY IS NOT.<br>
+A SURFACE MAY DEFER THE SECOND AND STILL OWE THE FIRST.</div>
+
+<p>Page2 has deferred the priced half deliberately. It has not done the free
+half, and that is now reported as its own finding rather than folded into the
+other.</p>
+
+<h2>IV · The gap, measured shut</h2>
+
+<p>The fault the pane exists for, from the previous brief: an IIFE at line 5989
+asking for <code>window.Amenti.chat</code>, registered 936 lines too late, guard
+false, every call site silently taking the inline fallback.</p>
+
+<p>The register now reads:</p>
+
+<pre>[confirmed] load-order-clear · Page1.html · Amenti.chat
+    read at PARSE TIME on line 6096; available from line 893
+    (amenti-core.bundle.js, blocking). 5203 lines of margin.</pre>
+
+<p>What binds is not the registration line — that comparison is meaningless
+across two files. It is the point on <em>that surface</em> at which the global
+becomes available: the line of a blocking <code>&lt;script src&gt;</code>, the
+line itself when inline, and <b>never</b>, at parse time, for a
+<code>defer</code> or <code>async</code> tag.</p>
+
+<p>That branch was tested rather than assumed. One word changed in a fixture —
+<code>blocking</code> to <code>defer</code> — and the same line swings to:</p>
+
+<pre>[fault] load-order · Amenti.chat
+    read at PARSE TIME on line 6096; registered by amenti-core.bundle.js,
+    which is loaded defer and has therefore not run. The guard evaluates
+    false and the call site takes whatever fallback exists, without a word.</pre>
+
+<div class="law">BEING LOADED IS NOT BEING USED.</div>
+
+<h2>V · Unreachable is not absent</h2>
+
+<p><em>The mirror matches the ship</em> is one of the eight lies, and it was said
+on a run where every fetch had failed. Nothing was compared; the absence of a
+difference was reported as a match.</p>
+
+<p><code>probes/probe-gate.mjs</code> compares every register the Glass Gate
+carries — ship against mirror, by <b>sha256</b>, never by size or date. If the
+clone fails, the job fails there and reports nothing about any register. It does
+not continue into a comparison against an empty directory and find no
+differences.</p>
+
+<p>Its first run earned itself: <code>fleet-manifest.js</code> at <b>46,813 bytes
+on both sides with different content hashes</b> — precisely the case a size check
+calls a match.</p>
+
+<div class="ship amber">
+  <div class="k">Open · the drift that healed before it was named</div>
+  <div class="v">Before the probe could be extended to name the differing line, a
+  push brought both sides into step. The drift was transient; <b>what caused it
+  is not known</b>, and it will recur. The probe now names the first differing
+  line and both sides of it, so the next occurrence answers the question.</div>
+</div>
+
+<div class="law blue">UNREACHABLE IS NOT ABSENT,<br>AND ABSENT IS NOT EQUAL.</div>
+
+<h2>VI · The author shipped the fault he had just read</h2>
+
+<p><code>voice.yml</code>, as first written, did a bare <code>git push</code> —
+<b>fault #1 in <code>scan.yml</code>'s own header</b>, verbatim, onto a branch
+where two other workflows write. It also ran <code>git diff --quiet</code> on an
+<em>untracked</em> file, which reports no difference, announces "nothing to
+commit", and exits green with no register in the repository: the fault
+<code>scan.yml</code> records catching in itself on 16 August.</p>
+
+<p>Both were written minutes after reading the paragraphs describing them.</p>
+
+<p>A register of known faults is not a vaccine. It is a list, and a list must be
+checked against the thing being written, not merely read beforehand.</p>
+
+<h2>VII · The guard</h2>
+
+<p>A banner would not have saved the engine; the engine's banner was overwritten
+with it. So the guard checks <b>shape, not content</b> — only whether each file
+is still itself:</p>
+
+<table>
+  <thead><tr><th>Check</th><th>Why it matters</th></tr></thead>
+  <tbody>
+    <tr><td class="g">is javascript</td><td>on 20 Aug the file began with <code>{</code></td></tr>
+    <tr><td class="g">PROFILES</td><td>the chunk profiles are the cache namespace</td></tr>
+    <tr><td class="g">stopReading</td><td>the brake; all three facades hang off it</td></tr>
+    <tr><td class="g">composeStyle</td><td>STYLE is an input to the cache key</td></tr>
+    <tr><td class="g">speak()</td><td>the one entry point every facade calls</td></tr>
+    <tr><td class="g">the facades</td><td>Page1 has call sites on both</td></tr>
+    <tr><td class="g">400 lines</td><td>a real edit does not halve a file; a replacement does</td></tr>
+  </tbody>
+</table>
+
+<p>Not "did anything change". These files are edited legitimately and often, and
+a guard that fires on honest work is ignored — the same disease as a register
+that cries fault on a documented ruling. <b>Page1 and Page2 are deliberately not
+watched</b>, because they are under active edit.</p>
+
+<p>Tested against the actual damage: fed last night's exact overwrite, it names
+six missing pieces, says why each matters, exits 1, and prints the recovery
+route including <em>use the blob view</em>. And it caught a case nobody had
+thought of — <b>engine repaired, bundle never rebuilt</b>. Page1 loads
+<code>amenti-core.bundle.js</code>, not the source, so a correct repair to one
+alone would leave the surface broken and look fixed.</p>
+
+<h2>VIII · What shipped</h2>
+
+<table>
+  <thead><tr><th>Instrument</th><th>Rung</th><th>What it reads · writes</th></tr></thead>
+  <tbody>
+    <tr><td class="g">probes/probe-voice.mjs</td><td class="m">—</td><td>both surfaces + 22 loaded files → <code>VOICE.json</code></td></tr>
+    <tr><td class="g">probes/probe-gate.mjs</td><td class="m">—</td><td>mirror against ship, by sha256 → <code>GATE.json</code></td></tr>
+    <tr><td class="g">probes/probe-engine.mjs</td><td class="m">—</td><td>the platform is still the platform → <code>ENGINE.json</code></td></tr>
+    <tr><td class="g">voice.yml</td><td class="n">:52</td><td>runs the voice probe, commits the register</td></tr>
+    <tr><td class="g">guard.yml</td><td class="n">:12</td><td>runs the engine guard, fails red</td></tr>
+    <tr><td class="g">gate.yml</td><td class="n">:02</td><td>runs the gate probe, writes nothing</td></tr>
+    <tr><td class="g">scan.yml</td><td class="n">:27</td><td>amended — carries <code>VOICE.json</code> through the gate</td></tr>
+  </tbody>
+</table>
+
+<h3>Surfaces</h3>
+
+<table>
+  <tbody>
+    <tr><td class="g">voice.html</td><td>the fifteenth pane. Which path is live, and where the mouth opens. One diagram on it is authored and says so.</td></tr>
+    <tr><td class="g">fleet-nav.js</td><td>one line. The whole fleet follows.</td></tr>
+    <tr><td class="g">amenti-voice.js</td><td>a watched-file notice above its own header, naming the guard and the recovery route.</td></tr>
+  </tbody>
+</table>
+
+<h3>And the Glass Gate's staging line was repaired</h3>
+
+<p>It read <code>git add -f fleet-manifest.js PLATES.json 2&gt;/dev/null || git
+add -f fleet-manifest.js</code> — a fallback that silently dropped the plate
+register whenever the add failed for <em>any</em> reason, not only absence. With
+a third register the same shape would have hidden two. The staged list is now
+built from the files actually copied.</p>
+
+<h2>IX · The readings, at the close</h2>
+
+<pre>voice     2 surfaces · 22 files read · 0 unread · 0 faults · 0 blocking
+          3 confirmed · 2 accepted · 4 findings
+gate      3 registers · 3 match · 0 differ · 0 not carried
+engine    2 watched · 2 intact · 0 faults
+          amenti-voice.js      690 lines   31,914 bytes
+          amenti-core.bundle   3,481 lines  186,701 bytes
+register  VOICE.json · 44,064 bytes · byte-identical ship and mirror</pre>
+
+<h3>Findings outstanding</h3>
+
+<table>
+  <thead><tr><th>Finding</th><th>Surface</th><th>State</th></tr></thead>
+  <tbody>
+    <tr><td><code>Sovereign.Voice</code> defines <code>speak()</code> and no <code>stop()</code></td><td class="m">Page2</td><td>deferred — see below</td></tr>
+    <tr><td><code>VOICE_WORKER</code> declared, no synthesis site</td><td class="m">Page1</td><td>tackle on the deck</td></tr>
+    <tr><td>two engines inline</td><td class="m">Page2</td><td>the free half of the consolidation</td></tr>
+    <tr><td>chunk boundaries at 700</td><td class="m">Page2</td><td><b>accepted</b> — profile <code>gabriel</code></td></tr>
+  </tbody>
+</table>
+
+<h3>On the missing brake, stated precisely</h3>
+
+<p><code>Sovereign.Voice.speak</code> on the short path posts <b>one</b> reply,
+plays it <b>once</b>, and stops. No loop, no queue. The ceiling is one clip of
+one reply under 700 characters.</p>
+
+<p>What is missing is the ability to <b>interrupt that clip</b>. The function is
+<code>async</code>, never re-checks <code>AMENTI_VOICE_ON</code> after its
+<code>await</code>, and carries no <code>AbortController</code>. Toggle voice off
+during the render — roughly twenty seconds for a 700-character reply, by the
+measured <code>7510 + 18.25 × chars</code> — and the clip still arrives and still
+plays.</p>
+
+<p>The repair is the code consolidation, not a patch:
+<code>Amenti.voice.speak(text, {figure, register:'conversational',
+profile:'gabriel'})</code> inherits the brake, the abort and the fast opener, and
+keys identically — <code>gabriel: 700</code> exists in <code>PROFILES</code> for
+exactly that call.</p>
+
+<p>Recorded as a <b>finding</b>, not a fault, and deferred. <b>Page2's speech has
+resisted two prior rebuilds.</b> A surface that has defeated two attempts is
+telling you the estimate is wrong.</p>
+
+<h2>X · What is open</h2>
+
+<div class="ship">
+  <div class="k">Open</div>
+  <div class="v">
+  <b>The two replacements.</b> Verify what produced <code>0a4b396</code> and the
+  Harbor's replacement on 17 August. Until that is known, the guard is a smoke
+  alarm on two files and the same actor can reach any other.<br><br>
+  <b>The manifest drift.</b> Transient, cause unknown, will recur. The probe will
+  name the line next time.<br><br>
+  <b>Fifteen panes or sixteen.</b> The handover says sixteen; the registry holds
+  fifteen. One is wrong, and it is the kind of small number that propagates.<br><br>
+  <b>The <code>no-brake</code> ruling.</b> Belongs in
+  <code>spec/voice-accepted.json</code> with its reason and date, so it is read
+  as a decision rather than rediscovered as a problem.
+  </div>
+</div>
+
+<h2>XI · What this cost, and what it is worth</h2>
+
+<p>The previous brief closed on a finding: every fault it found lived in the
+water between two registers. This session found something adjacent and less
+comfortable.</p>
+
+<p>The ship was almost entirely sound. Page2's 700 was a documented ruling.
+Page1's engine had already been consolidated correctly. The load order was
+right, with 5,203 lines of margin. Of the faults recorded here, <b>five were in
+the instrument built to find faults</b>, one was in the workflows written to run
+it, and one was an external replacement that no instrument was watching for.</p>
+
+<p>The transferable version, for whoever inherits this:</p>
+
+<blockquote>An instrument is a claim about the world, and it is the one claim
+nobody checks — because checking it is indistinguishable, from the outside, from
+the work it was built to do. A probe with a defect does not go quiet. It goes
+green, and confident, and specific, and it hands you line numbers.</blockquote>
+
+<p>Every defect in this session's probe was found the same way: by taking its
+output and testing it against something that did not come from the probe. A
+grep. A fixture. A planted orphan. A second reading of the file it claimed to
+have read.</p>
+
+<div class="law">THE SHIP IS AUDITED BY ITS INSTRUMENTS.<br>
+THE INSTRUMENTS ARE AUDITED BY NOTHING —<br>
+UNLESS SOMEBODY POINTS SOMETHING ELSE AT THEM.</div>
+
+<p class="foot">
+  Amenti · Ingram Manor LLC<br>
+  A shop-floor account · 19–20 August 2026<br>
+  Correct about the days it describes · no claim about today
+</p>
+
+</main>
+</body>
+</html>
