@@ -215,38 +215,58 @@ it costs. Every line of it was overwritten too.</p>
 
 <div class="law">A WARNING ONLY WORKS ON SOMEBODY WHO IS READING.</div>
 
-<h3>And it has happened before</h3>
+<h3>Why the engine was open at all</h3>
 
-<p>This was first written up as a mistaken paste at two in the morning. That
-account is <b>withdrawn</b>. Set the two incidents side by side:</p>
+<p>The whole session was <b>read-only against the engine</b>. The probe reads
+the surfaces; the workflow runs the probe; the gate compares registers; the pane
+renders one. <code>amenti-voice.js</code> was never a target of this work. It was
+its <em>subject</em>.</p>
 
-<table>
-  <thead><tr><th>When</th><th>What was replaced</th><th>With</th><th>Commit message</th><th>Unnoticed</th></tr></thead>
-  <tbody>
-    <tr><td class="m">17 Aug</td><td class="g">index.html</td><td>a Go hello-world</td>
-        <td class="m">"Update fmt.Println message from 'Hello' to 'Goodbye'"</td><td class="n">12 h</td></tr>
-    <tr><td class="m">20 Aug</td><td class="g">amenti-voice.js</td><td>the contents of VOICE.json</td>
-        <td class="m">"Update print statement from 'Hello' to 'Goodbye'"</td><td class="n">40 m</td></tr>
-  </tbody>
-</table>
+<p>Nobody said so. And because the work was <em>about</em> audio, touching an
+audio file felt in scope — so the engine sat open in a write-capable editor
+through hours of work that never needed it edited.</p>
 
-<p>Both signed. Both Verified. Both authored as the captain. Three days apart,
-in two different repositories, replacing two unrelated live files — and carrying
-<b>the same commit message template with the same substitution</b>.</p>
+<div class="law red">A FILE THAT IS THE SUBJECT OF THE WORK<br>
+RATHER THAN A TARGET OF IT<br>
+MUST BE NAMED AS SUCH BEFORE THE WORK STARTS.</div>
 
-<p>Two incidents sharing a message template is a <b>reading</b>. The cause is
-<b>not read</b>, and this brief does not name one. What can be said is that
-"tired paste" does not survive contact with the second row of that table, and
-that the pattern points at something that commits <em>as</em> the captain rather
-than something the captain did.</p>
+<p>Four files in this session carried the same word:
+<code>amenti-voice.js</code>, <code>probes/probe-voice.mjs</code>,
+<code>voice.yml</code>, <code>voice.html</code>. Three were new instruments
+delivered as whole files, each with the same instruction — <em>open, select all,
+paste, commit</em> — repeated six times across several hours. The fourth was the
+engine, and it was never distinguished from the other three.</p>
 
-<div class="ship red">
-  <div class="k">Unresolved · to be verified</div>
-  <div class="v">Whatever produced <code>0a4b396</code> and the Harbor's
-  replacement is still able to do it, to any file, in any repository. The commit
-  history, the Actions log and any agent session records for 17 and 20 August
-  should be read before this brief is treated as closed.</div>
-</div>
+<p>A shared clipboard, four similarly-named targets, and one keystroke pattern
+drilled by repetition. That is the fault. It is a fault in how the work was
+sequenced and described, not in the hand that executed it.</p>
+
+<h3>What the commit message was, and was not</h3>
+
+<p>The message read like evidence of a foreign hand: <code>print statement</code>
+and <code>Hello</code>/<code>Goodbye</code> appear nowhere in the engine, and the
+Harbor's replacement on 17 August carried the same template. An earlier draft of
+this brief treated that as a pattern pointing at something committing <em>as</em>
+the captain.</p>
+
+<p><b>That inference is withdrawn.</b> GitHub's web editor pre-fills the commit
+message box, with a Copilot-generated suggestion where it has one. The field is
+presented as optional and is in fact pre-answered: leaving it alone <em>is</em>
+choosing it. The suggestion described the content that had just landed — a Go
+hello-world in one case, a JSON register in the other — accurately, and
+therefore described neither file's purpose at all.</p>
+
+<p>Nothing in that box touches a file. It is a label stored beside a change,
+never executed. It did not cause the erase; it captioned it.</p>
+
+<div class="law">THE COMMIT MESSAGE IS GENERATED FROM WHAT LANDED.<br>
+SO IT CAN NEVER WARN YOU THAT THE WRONG THING LANDED.<br>
+NO MESSAGE WILL EVER SAY: THIS REPLACED YOUR ENGINE.</div>
+
+<p>Two hours went into reading that caption as testimony, across two wrong
+theories — a mistaken paste, then an agent. The forensics were a detour. The
+guard was the answer, because the guard reads the file and asks whether it is
+still the voice platform, and that question cannot be fooled by a label.</p>
 
 <h3>Recovery</h3>
 
@@ -470,9 +490,10 @@ telling you the estimate is wrong.</p>
 <div class="ship">
   <div class="k">Open</div>
   <div class="v">
-  <b>The two replacements.</b> Verify what produced <code>0a4b396</code> and the
-  Harbor's replacement on 17 August. Until that is known, the guard is a smoke
-  alarm on two files and the same actor can reach any other.<br><br>
+  <b>The guard covers two files.</b> The same mis-paste can reach any other. The
+  Harbor was caught by <code>probe-panes.mjs</code> only after twelve hours;
+  every file that is the subject of work rather than a target of it wants the
+  same kind of watch.<br><br>
   <b>The manifest drift.</b> Transient, cause unknown, will recur. The probe will
   name the line next time.<br><br>
   <b>Fifteen panes or sixteen.</b> The handover says sixteen; the registry holds
@@ -493,7 +514,8 @@ comfortable.</p>
 Page1's engine had already been consolidated correctly. The load order was
 right, with 5,203 lines of margin. Of the faults recorded here, <b>five were in
 the instrument built to find faults</b>, one was in the workflows written to run
-it, and one was an external replacement that no instrument was watching for.</p>
+it, and one was in how the work itself was sequenced — a read-only session that
+left a write-capable editor open on its own subject and never said so.</p>
 
 <p>The transferable version, for whoever inherits this:</p>
 
