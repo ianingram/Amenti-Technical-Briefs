@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE ARK · Amenti Technical Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&family=Rajdhani:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<!--
+  ============================================================================
+   THE ARK  ·  19 August 2026
+   ----------------------------------------------------------------------------
+   Why the repositories are bundled, how the job works, and what it refuses to
+   claim. A shop-floor account written the day it was built.
+
+   NOT A MANUAL. Correct about the day it describes. If the mechanism has moved
+   since, this brief has not moved with it — read ark.yml.
+  ============================================================================
+-->
+<style>
+:root{
+  --gold:#d4a017;--gold-b:#f5c542;--gold-d:#a87c14;
+  --neon:#00ffe0;--term:#57c98a;--violet:#c4a5ff;--tblue:#57b6ff;
+  --amber:#fbbf24;--red:#f87171;
+  --ink:#08090e;--granite:#11131c;--slate:#232838;--wire:#343b52;
+  --text:#c8ccdc;--dim:#8f95ab;
+  --mono:'Share Tech Mono',monospace;--body:'Rajdhani',sans-serif;
+  --disp:'Amenti Display','Special Elite',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-weight:300;
+  font-size:18px;line-height:1.68;padding:0 0 100px;
+  background-image:radial-gradient(ellipse at 50% -8%,rgba(87,201,138,.08),transparent 60%)}
+main{max-width:940px;margin:0 auto;padding:30px 30px 0}
+
+.stamp{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 18px;
+  padding:0 2px 12px;border-bottom:1px solid var(--slate);
+  font-family:var(--disp);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.stamp .doc{color:var(--gold)}
+.stamp .live{color:var(--term)}
+
+header{padding:38px 0 6px}
+.eyebrow{font-family:var(--disp);font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:var(--term);margin:0 0 14px}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(36px,7vw,66px);color:var(--gold-b);line-height:1;margin:0;
+  text-shadow:0 0 34px rgba(245,197,66,.22)}
+h1 .the{display:block;font-size:.24em;letter-spacing:.34em;color:var(--gold);opacity:.85;text-shadow:none;margin-bottom:.06em}
+.tag{font-family:var(--disp);font-weight:500;font-size:clamp(16px,2.1vw,21px);color:#e6e9f2;letter-spacing:.16em;text-transform:uppercase;margin:14px 0 0}
+.rule{width:170px;height:1px;margin:22px 0 26px;background:linear-gradient(90deg,var(--term),transparent)}
+
+h2{font-family:var(--disp);font-weight:600;font-size:clamp(23px,3vw,32px);letter-spacing:.05em;color:var(--gold);
+  margin:52px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--slate)}
+h3{font-family:var(--disp);font-weight:500;font-size:clamp(18px,2.2vw,23px);color:#e6e9f2;letter-spacing:.04em;margin:32px 0 10px}
+p{max-width:82ch;margin:13px 0}
+em{color:var(--gold-b);font-style:italic}
+b,strong{color:#e6e9f2;font-weight:600}
+code{font-family:var(--mono);font-size:15px;color:var(--neon);background:rgba(0,255,224,.07);padding:1px 6px;border-radius:3px}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;border:1px solid var(--slate)}
+th{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:left;padding:11px 13px;background:#0d0f17;border-bottom:1px solid var(--slate)}
+td{padding:11px 13px;font-size:16.5px;border-bottom:1px solid #171d29;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.g{font-family:var(--mono);font-size:14px;color:var(--gold-b);white-space:nowrap}
+td.m{font-family:var(--mono);font-size:13.5px;color:var(--dim)}
+td.n{font-family:var(--mono);font-size:14px;color:var(--tblue);text-align:right;white-space:nowrap}
+td.ok{color:var(--term)}
+td.bad{color:var(--red)}
+
+.law{font-family:var(--disp);font-weight:500;font-size:clamp(16px,2.1vw,21px);letter-spacing:.05em;line-height:1.85;
+  text-align:center;color:var(--gold-b);border:1px solid rgba(245,197,66,.30);border-radius:6px;
+  background:rgba(245,197,66,.05);padding:20px 24px;margin:32px 0}
+.law.red{color:var(--red);border-color:rgba(248,113,113,.30);background:rgba(248,113,113,.05)}
+.law.green{color:var(--term);border-color:rgba(87,201,138,.30);background:rgba(87,201,138,.05)}
+
+blockquote{margin:20px 0;padding:4px 0 4px 20px;border-left:2px solid var(--gold-d);
+  font-size:19px;color:#d6d2c4}
+
+pre{background:#0a0c12;border:1px solid var(--slate);border-radius:8px;padding:16px 18px;
+  overflow-x:auto;font-family:var(--mono);font-size:14px;line-height:1.75;color:#b9c4dc}
+
+.ship{border:1px solid var(--wire);border-left:3px solid var(--term);border-radius:0 8px 8px 0;
+  background:#0c0e15;padding:16px 20px;margin:18px 0}
+.ship.warn{border-left-color:var(--amber)}
+.ship.bad{border-left-color:var(--red)}
+.ship .k{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--term)}
+.ship.warn .k{color:var(--amber)}
+.ship.bad .k{color:var(--red)}
+.ship .v{margin-top:7px}
+
+.foot{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:center;line-height:2;border-top:1px solid var(--slate);margin-top:56px;padding-top:24px}
+@media(max-width:640px){main{padding:22px 16px 0}body{font-size:17px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<main>
+
+<div class="stamp">
+  <div><span class="doc">Technical Brief</span> · Ingram Manor LLC</div>
+  <div><span class="live">19 August 2026</span></div>
+</div>
+
+<header>
+  <p class="eyebrow">What survives the ship</p>
+  <h1><span class="the">The</span>Ark</h1>
+  <p class="tag">Six repositories · full history · somewhere else</p>
+  <div class="rule"></div>
+
+  <p>Every register in this system answers a question about what is aboard. The
+  plate register knows the art, the keyring knows the names, the pane watch
+  knows the surfaces, the mirror knows the Workers.</p>
+
+  <p><b>None of them knows whether any of it will still be there next month.</b></p>
+
+  <p>This brief is about the job that answers that, why the obvious version of
+  it is not a backup, and the two places it reads its own work back before
+  claiming success.</p>
+</header>
+
+<h2>I · Why the zip button is not a backup</h2>
+
+<p>GitHub offers a download. It produces a zip of the working tree at one
+moment: every file as it stands, and nothing else.</p>
+
+<p>What a zip does not contain is <b>history</b>. No commits, no branches, no
+tags, no record of what a file used to be. Which sounds academic until it is
+not.</p>
+
+<div class="ship bad">
+  <div class="k">17 August · the Harbor</div>
+  <div class="v"><code>index.html</code> — the way into the fleet — was replaced
+  by a commit reading <em>"Update fmt.Println message from 'Hello' to
+  'Goodbye'"</em>. Go. A hello-world. It sat there for twelve hours and nothing
+  noticed, because nothing watched the panes.
+  <br><br>
+  It was recovered from git history. <b>A zip taken that afternoon would have
+  preserved the hello-world and lost the Harbor</b>, and the archive would have
+  looked perfectly healthy.</div>
+</div>
+
+<p>The whole argument for keeping this system in plain text under version
+control is that history is the safety net. A backup that discards the net keeps
+the least valuable copy of the thing.</p>
+
+<h2>II · Why backing GitHub up to GitHub is not a backup either</h2>
+
+<p>The second obvious version is a second repository. It preserves history and
+it is easy. It also fails to address a single one of the risks that matter.</p>
+
+<table>
+  <tr><th>The risk</th><th>Does a second GitHub repo help?</th></tr>
+  <tr><td>a bad force-push</td><td class="ok">yes</td></tr>
+  <tr><td>a file deleted by accident</td><td class="ok">yes — and so does git alone</td></tr>
+  <tr><td><b>a suspended account</b></td><td class="bad">no</td></tr>
+  <tr><td><b>a compromised credential</b></td><td class="bad">no</td></tr>
+  <tr><td><b>the platform itself</b></td><td class="bad">no</td></tr>
+</table>
+
+<p>Six repositories on one account share <b>one failure domain</b>. A copy inside
+that domain is a convenience, not an ark.</p>
+
+<div class="law green">THE ONLY THING THIS JOB DOES THAT THE PLATFORM DOES NOT<br>
+DO BETTER ALREADY IS PUT THE COPY SOMEWHERE ELSE.</div>
+
+<h2>III · What it actually does</h2>
+
+<h3>git bundle</h3>
+
+<p>One file per repository containing <b>the entire repository</b> — every
+branch, every tag, every commit, the whole history. Restore is one command:</p>
+
+<pre>git clone amenti-live.bundle</pre>
+
+<p>Nothing to unpack, no special tooling, no format that needs this project to
+still exist in order to be read. A bundle is a git object and git will read it
+in twenty years.</p>
+
+<p>The job clones each repository with <code>--mirror</code>, which takes every
+ref rather than just the default branch, then bundles with <code>--all</code>.</p>
+
+<h3>To R2, which is not GitHub</h3>
+
+<p>R2 speaks S3, so the upload is <code>aws s3 cp</code> against a Cloudflare
+endpoint. No SDK, no dependency — the ship carries no dependencies it did not
+write, and this is a shell command against a standard protocol.</p>
+
+<p>Objects land under a dated prefix, so each run is its own snapshot rather than
+an overwrite:</p>
+
+<pre>s3://amenti-ark/2026-08-19/Amenti.live.bundle
+s3://amenti-ark/2026-08-19/Fleet-Documents.bundle
+s3://amenti-ark/2026-08-19/MANIFEST.txt
+s3://amenti-ark/2026-08-19/SHA256SUMS.txt</pre>
+
+<h3>Weekly, and clear of everything else</h3>
+
+<pre>:07  the pane watch
+:17  the patrol
+:27  the scan
+:37  the mirror
+:47  the weighing
+
+SUN 03:11   the ark
+MON 00:00   the bell</pre>
+
+<p>Sunday at 03:11 — clear of the five strands that run every six hours, and
+clear of the bell. <b>Two must never occupy one rung</b>, and the ark is heavy
+enough that it should not be racing anything.</p>
+
+<h2>IV · The two places it reads its own work back</h2>
+
+<p>This is the part that matters, and it is the reason the job exists in this
+form rather than a simpler one.</p>
+
+<div class="law red">A BACKUP THAT WAS NEVER READ BACK IS NOT A BACKUP.<br>
+IT IS A FILE WITH A HOPEFUL NAME.</div>
+
+<h3>Every bundle is opened</h3>
+
+<p><code>git bundle verify</code> reads the file back and confirms it is a
+complete, self-contained repository. The job does not proceed on a bundle that
+does not verify — it names it and fails.</p>
+
+<p>Without this the job would report success on a truncated file, and the
+discovery would happen on the one day it mattered. That is the Silent Signature
+with the stakes at their highest.</p>
+
+<div class="ship warn">
+  <div class="k">The verifier could not verify</div>
+  <div class="v"><code>git bundle verify</code> requires a repository to verify
+  <em>against</em>, and exits <code>need a repository to verify a bundle</code>
+  when run from a bare directory. The first cut called it from the runner's
+  working directory. <b>It would have failed on all six.</b>
+  <br><br>
+  Found by testing the round trip on a synthetic repository before shipping —
+  three commits and two branches in, and <code>git clone</code> brought all of
+  it back. The test that proved the mechanism also caught the bug.</div>
+</div>
+
+<h3>And the far end is counted</h3>
+
+<p>An upload returning 200 is not a file that arrived. After the copy the job
+lists the destination and counts the bundles actually present. If the number
+sent and the number landed disagree, <b>the run fails and says the ark is not
+off-provider.</b></p>
+
+<p>A checksum per bundle is written alongside, so a silent corruption in transit
+is visible rather than inferred.</p>
+
+<h2>V · What it refuses</h2>
+
+<h3>A partial ark does not pass</h3>
+
+<p>One repository that fails to clone or fails to verify fails the whole run.
+There is no partial success.</p>
+
+<blockquote>
+  A partial backup that passes is how you discover, on the worst day, that the
+  repository you needed was the one that quietly stopped being included.
+</blockquote>
+
+<h3>The islands are named, not discovered</h3>
+
+<p>The six repositories are listed by name in the job. That is a deliberate
+trade: discovery would be automatic and would also silently stop covering a
+repository nobody removed. A hand-kept list can go stale, but it goes stale
+loudly — a name that is missing is a name a person can see is missing.</p>
+
+<div class="ship bad">
+  <div class="k">And it happened before the first run</div>
+  <div class="v"><b>Gameroom0.0.</b> A sixth repository — 205 commits, a
+  chess-referee Durable Object live in Cloudflare — <b>on no list until somebody
+  happened to look.</b> The comment in the job warning about exactly this
+  failure was written before the failure was discovered to have already
+  occurred.
+  <br><br>
+  The first run bundled five and reported cleanly. The list was corrected and
+  the run repeated. <b>Six for six.</b></div>
+</div>
+
+<h3>Without R2 it says so</h3>
+
+<p>If the R2 credentials are absent the job still bundles and still verifies,
+and keeps the result as a workflow artifact. That is a <b>worse</b> backup —
+same platform, expires in ninety days — and the summary states it plainly rather
+than letting a green run imply more than it earned.</p>
+
+<h2>VI · The reading, and the lamp</h2>
+
+<p>The job writes <code>ARK.json</code> and pushes it through the Glass Gate to
+Fleet-Documents. Four facts:</p>
+
+<pre>{
+  "at":          "2026-08-19T21:14:26Z",
+  "repos":       6,
+  "failed":      0,
+  "offProvider": true,
+  "staleAfterDays": 8
+}</pre>
+
+<p>The Watch reads it and shows one line. <b>The field that matters is
+<code>offProvider</code></b> — a run that bundled six repositories and kept them
+as a GitHub artifact is not a backup against losing the account, and the
+difference has to be legible from outside. Otherwise the pane shows green over a
+copy sitting on the same platform as the thing it is copying.</p>
+
+<table>
+  <tr><th>Lamp</th><th>Means</th></tr>
+  <tr><td class="g" style="color:var(--term)">GREEN</td><td>verified, and held somewhere other than GitHub</td></tr>
+  <tr><td class="g" style="color:var(--amber)">AMBER</td><td>bundled and verified — and on the same platform</td></tr>
+  <tr><td class="g" style="color:var(--red)">RED</td><td>stale beyond eight days, or a repository did not bundle</td></tr>
+</table>
+
+<h3>Why stale is red and not amber</h3>
+
+<p>Every other amber on the Watch means <em>nothing is watching</em> — bad, and
+static. <b>A backup that has silently stopped is bad and getting worse.</b> Every
+day that passes widens the gap between what exists and what survives, so it gets
+the louder colour.</p>
+
+<p>The strip is drawn independently of <code>fleet-manifest.js</code>, and
+deliberately so: whether the repositories survive is a fact that does not depend
+on whether a patrol made the rounds.</p>
+
+<h2>VII · The credentials, stated plainly</h2>
+
+<p>This job needs <b>read access to every repository</b>, including the two
+private ones. That makes <code>ARK_TOKEN</code> the broadest credential in the
+system, sitting in one repository's secrets.</p>
+
+<table>
+  <tr><th>Secret</th><th>What it is · and how it is narrowed</th></tr>
+  <tr><td class="g">ARK_TOKEN</td><td>fine-grained PAT. <b>Contents: read-only</b>, scoped to exactly six repositories. A backup job has no business being able to push.</td></tr>
+  <tr><td class="g">R2_ACCOUNT_ID</td><td>the account. Not a credential.</td></tr>
+  <tr><td class="g">R2_ACCESS_KEY</td><td rowspan="2">an R2 <b>Account</b> API token, Object Read &amp; Write, <b>scoped to the ark bucket alone</b>. It cannot reach AUDIO or SCENES.</td></tr>
+  <tr><td class="g">R2_SECRET_KEY</td></tr>
+  <tr><td class="g">R2_BUCKET</td><td><code>amenti-ark</code></td></tr>
+  <tr><td class="g">FLEET_TOKEN</td><td>Contents: write on Fleet-Documents, so the reading can cross the gate. Already in use by four other workflows.</td></tr>
+</table>
+
+<h3>On expiry</h3>
+
+<p>The conventional advice is that a token should expire. It was rejected here,
+and the reason is the same one that runs through this whole brief.</p>
+
+<p>This job runs weekly and unattended. <b>On the day the token expires the job
+fails, and if nobody is watching Actions that week the ark simply stops.</b> A
+credential that expires converts a security risk into a silent-failure risk, and
+this system has a long catalogue of what silent failure costs.</p>
+
+<p>So: no expiry, read-only, six repositories, revocable in one click — and
+<code>staleAfterDays</code> in the reading so the Watch turns red on its own if
+the job ever does stop.</p>
+
+<div class="ship warn">
+  <div class="k">And one credential was found and removed</div>
+  <div class="v">An R2 token named <em>chess-referee build token</em> had been
+  active since May with <b>Admin Read &amp; Write on all buckets</b> — able to
+  delete AUDIO, SCENES, and the ark itself. It was created for a single deploy.
+  Nothing automated used it: the repository has no workflows and the machine
+  cannot run Node.
+  <br><br>
+  Deleted, with an inactive agent token beside it. <b>One R2 credential now
+  exists</b>, scoped to one bucket.</div>
+</div>
+
+<h2>VIII · The first run</h2>
+
+<pre>Amenti.live               refs=2   52M    verified
+Fleet-Documents           refs=2   600K   verified
+Amenti-Technical-Briefs   refs=2   7.7M   verified
+Amenti-Workers            refs=2   208K   verified
+Admin                     refs=2   60K    verified
+Gameroom0.0               refs=2   1.6M   verified
+
+6 bundles at s3://amenti-ark/2026-08-19
+the ark is off-provider</pre>
+
+<p>Sixty seconds. Six repositories, roughly 62 MB, full history, verified, and
+held on a provider that is not the one the work lives on.</p>
+
+<h2>IX · What it does not cover</h2>
+
+<p>Stated because a backup that quietly excludes something is the failure this
+job is built to prevent.</p>
+
+<table>
+  <tr><th>Not in the ark</th><th>Why · and where it lives instead</th></tr>
+  <tr><td class="g">Supabase</td><td>the docket, the verdicts, the ledger, the readings. <b>Not backed up by this job.</b> A real gap.</td></tr>
+  <tr><td class="g">R2 · AUDIO</td><td>the rendered voice archive. Re-derivable at cost, which is not the same as safe.</td></tr>
+  <tr><td class="g">R2 · SCENES</td><td>78 scenes no register walks. Unbacked and uncatalogued.</td></tr>
+  <tr><td class="g">Worker secrets</td><td>values live only in Cloudflare. <code>WORKERS.json</code> records the <b>names</b> so a restore knows what it needs.</td></tr>
+  <tr><td class="g">Routes and triggers</td><td>partially in <code>CONFIG.json</code> via the mirror.</td></tr>
+</table>
+
+<p><b>The ark restores the ship. It does not restore the voyage.</b> Everything
+written in plain text under version control comes back exactly; the running
+state does not.</p>
+
+<h2>X · What it is worth</h2>
+
+<p>Nothing about this was urgent. No repository was at risk, no credential was
+known to be leaked, and git is already an excellent backup for the failures that
+actually happen day to day.</p>
+
+<p>What changed is narrower and worth naming precisely. <b>Until this job ran,
+the entire system depended on one platform continuing to hold it</b> — six
+repositories, one account, one set of credentials. That dependency was invisible
+because nothing had ever asked the question.</p>
+
+<blockquote>
+  The Amenti Key says a thing that exists in one place, in plain text, under
+  version control, is a thing that survives. It had always been read per file.
+  <b>The ark is the first time it was read per system.</b>
+</blockquote>
+
+<p class="foot">
+  Amenti · Ingram Manor LLC<br>
+  A shop-floor account · 19 August 2026<br>
+  Correct about the day it describes · read <code>ark.yml</code> for today
+</p>
+
+</main>
+</body>
+</html>
