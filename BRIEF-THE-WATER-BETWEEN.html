@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE WATER BETWEEN · Amenti Technical Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&family=Rajdhani:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<!--
+  ============================================================================
+   THE WATER BETWEEN  ·  17–20 August 2026
+   ----------------------------------------------------------------------------
+   A shop-floor account of one long session. Written at the end of it, while it
+   was still legible.
+
+   IT IS NOT A MANUAL. It is correct about the days it describes and makes no
+   claim about today. Every brief in this repository works that way, and the
+   date at the top is the reader's only way to know which days they are
+   standing in.
+  ============================================================================
+-->
+<style>
+:root{
+  --gold:#d4a017;--gold-b:#f5c542;--gold-d:#a87c14;
+  --neon:#00ffe0;--term:#57c98a;--violet:#c4a5ff;--tblue:#57b6ff;
+  --amber:#fbbf24;--red:#f87171;
+  --ink:#08090e;--granite:#11131c;--slate:#232838;--wire:#343b52;
+  --text:#c8ccdc;--dim:#8f95ab;
+  --mono:'Share Tech Mono',monospace;--body:'Rajdhani',sans-serif;
+  --disp:'Amenti Display','Special Elite',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-weight:300;
+  font-size:18px;line-height:1.68;padding:0 0 100px;
+  background-image:radial-gradient(ellipse at 50% -8%,rgba(212,160,23,.09),transparent 60%)}
+main{max-width:940px;margin:0 auto;padding:30px 30px 0}
+
+.stamp{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 18px;
+  padding:0 2px 12px;border-bottom:1px solid var(--slate);
+  font-family:var(--disp);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.stamp .doc{color:var(--gold)}
+.stamp .live{color:var(--term)}
+
+header{padding:38px 0 6px}
+.eyebrow{font-family:var(--disp);font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:var(--neon);margin:0 0 14px}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,6vw,60px);color:var(--gold-b);line-height:1;margin:0;
+  text-shadow:0 0 34px rgba(245,197,66,.22)}
+h1 .the{display:block;font-size:.26em;letter-spacing:.34em;color:var(--gold);opacity:.85;text-shadow:none;margin-bottom:.05em}
+.tag{font-family:var(--disp);font-weight:500;font-size:clamp(16px,2.1vw,21px);color:#e6e9f2;letter-spacing:.16em;text-transform:uppercase;margin:14px 0 0}
+.rule{width:170px;height:1px;margin:22px 0 26px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+h2{font-family:var(--disp);font-weight:600;font-size:clamp(23px,3vw,32px);letter-spacing:.05em;color:var(--gold);
+  margin:52px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--slate)}
+h3{font-family:var(--disp);font-weight:500;font-size:clamp(18px,2.2vw,23px);color:#e6e9f2;letter-spacing:.04em;margin:32px 0 10px}
+p{max-width:82ch;margin:13px 0}
+em{color:var(--gold-b);font-style:italic}
+b,strong{color:#e6e9f2;font-weight:600}
+code{font-family:var(--mono);font-size:15px;color:var(--neon);background:rgba(0,255,224,.07);padding:1px 6px;border-radius:3px}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;border:1px solid var(--slate)}
+th{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:left;padding:11px 13px;background:#0d0f17;border-bottom:1px solid var(--slate)}
+td{padding:11px 13px;font-size:16.5px;border-bottom:1px solid #171d29;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.g{font-family:var(--mono);font-size:14px;color:var(--gold-b);white-space:nowrap}
+td.m{font-family:var(--mono);font-size:13.5px;color:var(--dim)}
+td.n{font-family:var(--mono);font-size:14px;color:var(--tblue);text-align:right;white-space:nowrap}
+
+.law{font-family:var(--disp);font-weight:500;font-size:clamp(16px,2.1vw,21px);letter-spacing:.05em;line-height:1.85;
+  text-align:center;color:var(--gold-b);border:1px solid rgba(245,197,66,.30);border-radius:6px;
+  background:rgba(245,197,66,.05);padding:20px 24px;margin:32px 0}
+.law.red{color:var(--red);border-color:rgba(248,113,113,.30);background:rgba(248,113,113,.05)}
+.law.blue{color:var(--tblue);border-color:rgba(87,182,255,.30);background:rgba(87,182,255,.05)}
+
+blockquote{margin:20px 0;padding:4px 0 4px 20px;border-left:2px solid var(--gold-d);
+  font-size:19px;color:#d6d2c4}
+
+pre{background:#0a0c12;border:1px solid var(--slate);border-radius:8px;padding:16px 18px;
+  overflow-x:auto;font-family:var(--mono);font-size:14px;line-height:1.75;color:#b9c4dc}
+
+.ship{border:1px solid var(--wire);border-left:3px solid var(--term);border-radius:0 8px 8px 0;
+  background:#0c0e15;padding:16px 20px;margin:16px 0}
+.ship .k{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--term)}
+.ship .v{margin-top:6px}
+
+.foot{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:center;line-height:2;border-top:1px solid var(--slate);margin-top:56px;padding-top:24px}
+@media(max-width:640px){main{padding:22px 16px 0}body{font-size:17px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<main>
+
+<div class="stamp">
+  <div><span class="doc">Technical Brief</span> · Ingram Manor LLC</div>
+  <div><span class="live">17 – 20 August 2026</span></div>
+</div>
+
+<header>
+  <p class="eyebrow">A shop-floor account</p>
+  <h1><span class="the">The</span>Water Between</h1>
+  <p class="tag">Every fault we found lived between two registers</p>
+  <div class="rule"></div>
+
+  <p>This is an account of one long session. It is not a manual and it will not
+  be updated — it is correct about the days it describes and makes no claim
+  about today.</p>
+
+  <p>The session began with a font that would not load and ended with six
+  repositories bundled, verified and held on a different provider. In between it
+  laid two ghosts, built four instruments that had never existed, found a
+  repository nobody remembered, read seven briefs nothing had ever read, and
+  wrote the first two chapters of a book.</p>
+
+  <p><b>The thread running through all of it was not planned.</b> It emerged, and
+  it is the reason this brief has the title it does.</p>
+</header>
+
+<div class="law">EVERY FAULT WE FOUND LIVED IN THE WATER BETWEEN TWO REGISTERS.<br>
+NOT ONE WAS AN ERROR INSIDE A REGISTER.</div>
+
+<h2>I · The two ghosts</h2>
+
+<h3>A moment mistaken for a man</h3>
+
+<p><code>gw-winter</code> sat in the plate register holding a card and a thumb
+and missing its terminal. Counted. Reported. Incomplete. A figure named
+<em>gw</em> who had never been onboarded and whom no roster row could reach.</p>
+
+<p>He was George Washington at Valley Forge. Plates resolve by convention —
+<code>{key}-{variant}</code> — so a <b>scene</b> dropped into <code>img/</code>
+parses as a figure whose name is a place. The checker was not wrong. <b>The
+grammar had no room for the sentence.</b></p>
+
+<div class="law blue">A FIGURE KEY CAN BE WRONG — THE ROSTER SAYS WHAT RIGHT IS.<br>
+A SCENE TAG COULD NOT BE WRONG, BECAUSE NOTHING SAID WHAT RIGHT WAS.<br>
+AUTHORITY IS WHAT MAKES ERROR POSSIBLE.</div>
+
+<h3>A man split into two ghosts</h3>
+
+<p>Caesar was the other kind. <code>caesar</code> held the thumb, the terminal
+and the reading room — the Gallic War in eight books, the Civil War in three.
+<code>julius-caesar</code> held a card and nothing else. <b>One man, two keys,
+both halves reported incomplete for months</b>, and nothing in the fleet could
+see they were the same person.</p>
+
+<p>A rename begun and abandoned after a single file. And it carried a fuse
+nobody had noticed: <em>Augustus Caesar is also on the roster.</em> The key did
+not merely look untidy — two souls could claim it.</p>
+
+<p>Repairing it took the whole apparatus: a <code>rekey</code> workflow that
+carries the manifest records with the files, a <code>reroom</code> workflow that
+moves a catalog and its texts together, and a correction to both when each
+reintroduced the fault it was written to prevent. <b>Julius is whole. Augustus
+was then onboarded onto ground that had been deliberately cleared</b> — the
+first soul in the project's history to arrive that way.</p>
+
+<h2>II · The keyring</h2>
+
+<p>The ghosts were symptoms. The disease was that <b>plates, rooms, scenes and
+the proxy all point at each other by key, and nothing ever declared what a key
+is.</b></p>
+
+<p>Not one convention. Four:</p>
+
+<table>
+  <tr><th>Roster name</th><th>Key</th><th>Rule</th></tr>
+  <tr><td>Abraham Lincoln</td><td class="g">lincoln</td><td class="m">the forename dropped</td></tr>
+  <tr><td>Cleopatra VII</td><td class="g">cleopatra</td><td class="m">the epithet dropped</td></tr>
+  <tr><td>Albert Einstein</td><td class="g">einstein-albert</td><td class="m">word order · accepted 16 Aug</td></tr>
+  <tr><td>George Washington</td><td class="g">george-washington</td><td class="m">full — two Washingtons</td></tr>
+</table>
+
+<p>Every one was reasonable in the moment. Together they are a <em>habit</em>,
+and <b>a habit cannot be checked.</b> Which is why the same argument came round
+every few weeks: every checker anyone wrote was a guess at the habit, every
+guess was approximately right, and approximately right is how
+<code>wd-gann</code> hid behind one character.</p>
+
+<p><code>tools/keyring.js</code> walks the roster and the plates and names four
+states. The third had never existed anywhere:</p>
+
+<table>
+  <tr><td class="g">RESOLVED</td><td>exactly one soul answers</td></tr>
+  <tr><td class="g">LOADED</td><td><b>one soul today; another name on the roster would also answer</b></td></tr>
+  <tr><td class="g">AMBIGUOUS</td><td>more than one soul answers right now</td></tr>
+  <tr><td class="g">ORPHAN</td><td>no soul answers at all</td></tr>
+</table>
+
+<div class="law red">A KEY IS NOT WRONG UNTIL A SECOND SOUL ANSWERS TO IT.<br>
+BY THEN IT IS EXPENSIVE.</div>
+
+<p>First run: 51 resolved, 2 ambiguous, 1 orphan. <b>Final run: 53 resolved,
+zero loaded, zero ambiguous, zero orphan.</b></p>
+
+<h2>III · Nothing watched the panes</h2>
+
+<p>On 17 August <code>index.html</code> — the Harbor, the way in — was replaced
+by a commit reading <em>"Update fmt.Println message from 'Hello' to
+'Goodbye'"</em>. Go. A hello-world. The entrance to the fleet was an unrelated
+file for twelve hours.</p>
+
+<p>No instrument noticed, in a fleet built entirely out of instruments. It was
+found by clicking a link.</p>
+
+<p>Count what had a register: plates, keys, wiring, watches, Workers, the
+specification. <b>Nothing walked the panes.</b> The surface a reader arrives on
+first was the one surface with nothing pointed at it.</p>
+
+<p><code>probes/probe-panes.mjs</code> now reads every pane in
+<code>fleet-nav.js</code> — <b>on disk and in the world</b>, because those answer
+different questions. Correct on disk and 404 in the world is a deploy failure.
+Serving but structurally wrong is the Harbor case. Three different repairs.</p>
+
+<div class="ship">
+  <div class="k">Found by testing the probe before shipping it</div>
+  <div class="v">With no network, every pane came back UNREACHABLE and the disk
+  findings were masked behind it. <b>Fifteen simultaneous deploy failures is one
+  problem, not fifteen.</b> It now detects that nothing served, sets the fetch
+  half aside, and reports GOOD ON DISK — reachability unknown, which is a
+  different answer from bad.</div>
+</div>
+
+<p>Its first live run found a fault introduced during the Harbor's own recovery:
+the restored file mounted no nav. <b>A recovery restores what was there, not what
+should have been.</b></p>
+
+<h2>IV · The specification, audited by the ship</h2>
+
+<p>Twenty-one requirements extracted from the Book of the Dead and the briefs,
+stated so a machine can check them, walked against the running system every six
+hours.</p>
+
+<p>The order matters more than the count, and it is the reverse of what anyone
+would expect. <b>Before the specification was allowed to judge the ship, four
+probes were sent at the specification. Three of its entries were wrong.</b></p>
+
+<table>
+  <tr><th>The rule as drafted</th><th>What the ship said</th></tr>
+  <tr><td class="g">every KV key must carry a TTL</td><td>22 of 24 writes are durable storage. The rule would have failed correct code.</td></tr>
+  <tr><td class="g">a probe may not POST</td><td>15 POSTs in the proxy are the generator. A rule wide enough to condemn the engine teaches its reader to ignore it.</td></tr>
+  <tr><td class="g">the roster may not carry a rank</td><td><code>rank</code> is build order. An ordering, not a station.</td></tr>
+  <tr><td class="g">— missing entirely —</td><td>nothing declared what a key <em>is</em>. Three incidents traced to it.</td></tr>
+</table>
+
+<div class="law">THE SPECIFICATION WAS AUDITED BY THE SHIP<br>
+BEFORE THE SHIP WAS AUDITED BY THE SPECIFICATION.</div>
+
+<h3>Four answers, and two of them are the honest ones</h3>
+
+<p>CONFIRMED and CONTRADICTED are obvious. <b>UNPROVEN</b> means nothing
+measures this — not a gap in the ship, a limit of what a probe can know. <b>
+UNREACHABLE</b> means checkable in principle and out of reach from here.</p>
+
+<p>Nothing can measure whether a summons leaned. A probe that guessed would be
+inventing, which is the exact fault the specification exists to catch. <b>Four
+spells print UNPROVEN forever, with the reason, as loudly as a pass.</b></p>
+
+<h3>And the probe flagged itself</h3>
+
+<p>The spend check was clean. Then a comment was added explaining what the check
+catches — and the comment wrote its own examples out literally, so the detector
+matched them. <b>A comment added to make an instrument honest made it report a
+violation that did not exist.</b></p>
+
+<p>Comments are now stripped before any source scan. And where a check is weaker
+than the spell it enforces, <b>the reading says so in the CONFIRMED itself</b>:
+the spend check is a pattern over source text, so a method held in a variable
+would pass it. That limit is printed rather than assumed.</p>
+
+<div class="law red">A CONFIRMED THAT OVERSTATES ITSELF<br>IS A GREEN LAMP WITH NOTHING BEHIND IT.</div>
+
+<h2>V · The chart, and the sixth island</h2>
+
+<p>By this point the pattern was legible. <code>gw-winter</code> was a scene the
+plate register counted as a figure. Julius was one man across two keys no single
+register could see. The Harbor was replaced and nothing watched panes.</p>
+
+<p><b>Not one was an error inside a register.</b> Every one of them was reporting
+truthfully about its own island.</p>
+
+<p>Six registers existed, each perfect about its own territory, and nothing
+above them. Five repositories that did not know the others existed — and the
+shape of the system existed only in one person's head, which is the one place it
+was not written down.</p>
+
+<p><code>tools/chart.js</code> walks every repository and records existence and
+ownership: every file, and <b>which register speaks for it.</b> Not contents —
+six registers already do that better, and a second opinion is a second truth.</p>
+
+<p><b>UNCLAIMED is the finding.</b> A file aboard that no register names is not
+necessarily wrong, but nobody is watching it, and this week established what
+that costs.</p>
+
+<div class="ship">
+  <div class="k">Gameroom0.0 · found, not remembered</div>
+  <div class="v">A sixth repository. 205 commits, a chess-referee Durable Object
+  live in Cloudflare, and it was on no list until somebody happened to look. The
+  ark's own comment warns about exactly this failure — and it had already
+  happened before the first run.</div>
+</div>
+
+<h2>VI · The ark</h2>
+
+<p>Five repositories on one account share one failure domain. A suspended
+account, a compromised token, a mistaken deletion — none of those are helped by
+a second copy on the same platform.</p>
+
+<p>And a zip is the working tree at one moment. <b>On 17 August a zip taken that
+afternoon would have preserved the hello-world and lost the Harbor</b>, and
+nothing would have said so.</p>
+
+<p>So: <code>git bundle</code> — one file per repository holding every branch,
+every tag, the entire history. Restore is <code>git clone
+&lt;repo&gt;.bundle</code>. Shipped to R2, which is a different provider, weekly
+and unattended.</p>
+
+<div class="law red">A BACKUP THAT WAS NEVER READ BACK IS NOT A BACKUP.<br>
+IT IS A FILE WITH A HOPEFUL NAME.</div>
+
+<p>Every bundle is opened and verified before it is called good. The destination
+is listed afterwards and the count compared, because <b>an upload returning 200
+is not a file that arrived.</b> One missing repository fails the run: a partial
+ark that passes is how you discover, on the worst day, that the repository you
+needed was the one that quietly stopped being included.</p>
+
+<p><b>Verification found a bug in the verifier.</b> <code>git bundle verify</code>
+must run from inside a repository; the first cut called it from the runner's
+working directory and would have failed on all six.</p>
+
+<pre>Amenti.live               52M    verified
+Fleet-Documents          600K    verified
+Amenti-Technical-Briefs  7.7M    verified
+Amenti-Workers           208K    verified
+Admin                     60K    verified
+Gameroom0.0              1.6M    verified
+
+6 bundles at s3://amenti-ark/2026-08-19
+the ark is off-provider</pre>
+
+<h3>And the credential was narrowed</h3>
+
+<p>An R2 token named <em>chess-referee build token</em> had been sitting since
+May with <b>Admin Read &amp; Write on all buckets</b> — able to delete AUDIO,
+SCENES, and now the ark. It was made for one deploy. Nothing automated used it;
+the repository has no workflows and the machine cannot run Node.</p>
+
+<p>Deleted, along with an inactive agent token. <b>One R2 credential now exists:
+<code>ark</code>, Object Read &amp; Write, scoped to one bucket.</b></p>
+
+<h2>VII · The briefs nothing could read</h2>
+
+<p>The hub's Engineering tab lists eight briefs. <b>The repository holds
+forty-one</b> — and the tab does not say it is showing eight.</p>
+
+<p>The first source index was built from that tab and was therefore missing
+thirty-three documents, including the Speech Doctrine and the Sacred Frames:
+<b>the two capabilities the captain names as the ones that make the site what it
+is.</b></p>
+
+<p>Two instruments came out of it.</p>
+
+<p><code>SOURCES.json</code> — sixty-four sources with fetchable paths, grouped
+by subject, with the traps written down. <b>It is the first register of the
+things the machine does not read.</b> Every other file aboard has a consumer;
+the briefs had none, which is why a list showing eight of forty-one could sit
+there indefinitely.</p>
+
+<p><code>tools/bundle-briefs.js</code> — every brief concatenated into one plain
+text file, with a table of contents and the date each was first committed. <b>39
+briefs · 80,107 words · 479 KB.</b> Not one undated.</p>
+
+<p>The dates tell their own story. <b>Nineteen briefs were written on 18 July.</b>
+Something happened that Thursday.</p>
+
+<div class="ship">
+  <div class="k">The bundler bundled the wrong repository</div>
+  <div class="v">Uploaded to Amenti.live by mistake, it did exactly what it was
+  told: walked the repository it was in and bundled nine <b>surfaces</b> —
+  Page1, Page2, the reader, the court — as though they were accounts of the
+  building. It reported cleanly and went green. A tool cannot know which
+  repository it should be in; it can know which one it is in, and refuse. It
+  now does.</div>
+</div>
+
+<h2>VIII · What the briefs said about the voice</h2>
+
+<p>Seven audio briefs were read — the first time anything had read them. They
+line up into one architecture.</p>
+
+<blockquote>
+  <b>The engine rests on a single separation, and everything else follows from
+  it.</b> Cognition and articulation are different faculties and they are never
+  braided into one pipeline.
+</blockquote>
+
+<div class="law">A MIND. A VOICE. ONE NERVOUS SYSTEM.<br>DO NOT BRAID THEM.</div>
+
+<p><b>The flood.</b> A whole document handed to the synthesizer in one call dies
+at 524 every time. <em>No human orator speaks a thousand words without pausing
+for air.</em> The cure was metering, not a bigger cylinder.</p>
+
+<p><b>The cache key</b> is <code>sha256(TTS_MODEL + voice + STYLE + TEXT)</code>,
+and because TEXT is a single measure, <b>the chunk boundaries ARE the cache
+namespace.</b> Move one byte of the model string, the style or the chunker and
+every clip in the archive orphans — silently — and must be re-rendered at
+cost.</p>
+
+<p>The Worker lives in Cloudflare, outside version control. No diff, no history,
+no rollback. So it is not read:</p>
+
+<div class="law blue">THE WORKER CANNOT BE READ. SO IT IS ASKED.<br>
+SIX HITS = THE KEY HELD. ONE MISS = THE ARCHIVE FORKED.</div>
+
+<h3>And the finding that justifies the pane</h3>
+
+<p>Page1's Terminal is an IIFE. It executes at <b>parse time, line 5989</b>, and
+asks for <code>window.Amenti.chat</code>. The file that registers it loads at
+<b>line 6925 — 936 lines too late.</b> The guard evaluated false,
+<code>termChat</code> became null, and every call site silently took the inline
+fallback.</p>
+
+<p>The handover said the opposite, in capitals: <em>amenti-chat.js is the PRIMARY
+PATH — always, normally.</em> Session after session improved an engine sitting on
+the dock, beautifully maintained, connected to nothing. <b>Fourteen harnesses
+reported green across 316 assertions</b>, each one creating its own object and
+testing that.</p>
+
+<div class="law red">BEING LOADED IS NOT BEING USED.</div>
+
+<p>That is measurable from source — load order against use order — and it is what
+the voice pane is for. It is not built. It is outlined, with every dependency
+named, and it is blocked on nine files nobody has read.</p>
+
+<h2>IX · What shipped</h2>
+
+<table>
+  <tr><th>Instrument</th><th>Repository</th><th>What it reads · writes</th></tr>
+  <tr><td class="g">tools/keyring.js</td><td class="m">Amenti.live</td><td>roster + plates → <code>KEYS.json</code></td></tr>
+  <tr><td class="g">tools/chart.js</td><td class="m">Amenti.live</td><td>every repo → <code>CHART.json</code>. Existence and ownership.</td></tr>
+  <tr><td class="g">probes/probe-spells.mjs</td><td class="m">Amenti.live</td><td>the spec → <code>spell-conformance.json</code></td></tr>
+  <tr><td class="g">probes/probe-panes.mjs</td><td class="m">Fleet-Documents</td><td>every pane, disk and world → <code>PANES.json</code></td></tr>
+  <tr><td class="g">tools/bundle-briefs.js</td><td class="m">Briefs</td><td>39 briefs → <code>BRIEFS.txt</code></td></tr>
+  <tr><td class="g">ark.yml</td><td class="m">Amenti.live</td><td>6 repos → R2, and <code>ARK.json</code> through the gate</td></tr>
+  <tr><td class="g">rekey.yml · reroom.yml</td><td class="m">Amenti.live</td><td>a figure's key, and a room, moved whole</td></tr>
+  <tr><td class="g">spells.yml · panes.yml · bundle.yml</td><td class="m">both</td><td>the schedules that run the above</td></tr>
+</table>
+
+<h3>Surfaces</h3>
+
+<table>
+  <tr><td class="g">keyring.html</td><td>the 15th pane. Every key and what it reaches.</td></tr>
+  <tr><td class="g">watch.html</td><td>gained <b>THE ARK</b> — green only when the copy is off-provider, red when stale.</td></tr>
+  <tr><td class="g">workers.html</td><td>gained the topology: how flat files and stateless compute make a page.</td></tr>
+  <tr><td class="g">ocean.html</td><td>four faults fixed. UNPROVEN no longer renders as CONFIRMED.</td></tr>
+  <tr><td class="g">index.html</td><td>the Harbor, recovered from git, nav restored.</td></tr>
+  <tr><td class="g">read.html · BOOK.json</td><td>the book reader. Five bands, and THE UNWRITTEN PAGE.</td></tr>
+</table>
+
+<h3>The book</h3>
+
+<p><code>book/00-the-beach.md</code> — the prologue, in the captain's own prose.
+<code>book/02-the-specification.md</code> — the first chapter through the full
+apparatus. And <b>ASCENSION</b> was found: the volume that precedes Book Zero,
+covering June, when the system learned to think and speak.</p>
+
+<h2>X · The readings, at the close</h2>
+
+<pre>keys        53 resolved · 0 loaded · 0 ambiguous · 0 orphan
+plates      51 keys · 51 cards · 51 thumbs · 50 terminals
+spells      8 confirmed · 0 contradicted · 4 unproven · 8 unreachable
+panes       14 · none stranding · none missing · 8 unstyled
+ark         6 repositories · verified · off-provider
+briefs      39 · 80,107 words · all dated
+roster      1,011 souls</pre>
+
+<div class="law">THE SHIP IS WELL INVENTORIED.<br>
+UNTIL THIS WEEK, THE FLEET WAS NOT.</div>
+
+<h2>XI · What this cost, and what it is worth</h2>
+
+<p>Almost nothing found this week was broken. The plate register was correct. The
+key checkers were correct. The watches reported honestly. The Harbor's
+replacement was a clean commit.</p>
+
+<p><b>What was missing was the instrument aimed at the space between them</b> —
+and that space is where every fault had been living, undisturbed, for weeks.</p>
+
+<p>The transferable version, for whoever inherits this:</p>
+
+<blockquote>
+  A register that is perfect about its own territory will report truthfully and
+  completely while a fault sits one inch outside it. Six such registers are not
+  six times safer than one. <b>They are six islands, and the water between them
+  is unwatched by construction.</b>
+</blockquote>
+
+<p>The instruments built this week — the keyring, the chart, the pane watch, the
+source index — are all the same instrument pointed at different water. That was
+not the plan. It is what the week turned out to be about.</p>
+
+<p class="foot">
+  Amenti · Ingram Manor LLC<br>
+  A shop-floor account · 17–20 August 2026<br>
+  Correct about the days it describes · no claim about today
+</p>
+
+</main>
+</body>
+</html>
