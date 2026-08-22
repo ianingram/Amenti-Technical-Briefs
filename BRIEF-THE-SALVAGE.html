@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE SALVAGE · Amenti Technical Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&family=Rajdhani:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<!--
+  ============================================================================
+   THE SALVAGE  ·  22 August 2026
+   ----------------------------------------------------------------------------
+   A session that could not be opened, scraped out of a browser tab, and what
+   was in it.
+
+   NOT A MANUAL. Correct about the day it describes. The session it recovers is
+   from mid-July; the recovery is from 22 August; and the two are kept apart
+   throughout, because conflating them is exactly the error the session itself
+   is about.
+  ============================================================================
+-->
+<style>
+:root{
+  --gold:#d4a017;--gold-b:#f5c542;--gold-d:#a87c14;
+  --neon:#00ffe0;--term:#57c98a;--violet:#c4a5ff;--tblue:#57b6ff;
+  --amber:#fbbf24;--red:#f87171;
+  --ink:#08090e;--granite:#11131c;--slate:#232838;--wire:#343b52;
+  --text:#c8ccdc;--dim:#8f95ab;
+  --mono:'Share Tech Mono',monospace;--body:'Rajdhani',sans-serif;
+  --disp:'Amenti Display','Special Elite',cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-weight:300;
+  font-size:18px;line-height:1.68;padding:0 0 100px;
+  background-image:radial-gradient(ellipse at 50% -8%,rgba(196,165,255,.09),transparent 60%)}
+main{max-width:940px;margin:0 auto;padding:30px 30px 0}
+
+.stamp{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 18px;
+  padding:0 2px 12px;border-bottom:1px solid var(--slate);
+  font-family:var(--disp);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.stamp .doc{color:var(--gold)}.stamp .live{color:var(--violet)}
+
+header{padding:38px 0 6px}
+.eyebrow{font-family:var(--disp);font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:var(--violet);margin:0 0 14px}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(36px,7vw,66px);color:var(--gold-b);line-height:1;margin:0;
+  text-shadow:0 0 34px rgba(245,197,66,.22)}
+h1 .the{display:block;font-size:.24em;letter-spacing:.34em;color:var(--gold);opacity:.85;text-shadow:none;margin-bottom:.06em}
+.tag{font-family:var(--disp);font-weight:500;font-size:clamp(16px,2.1vw,21px);color:#e6e9f2;letter-spacing:.16em;text-transform:uppercase;margin:14px 0 0}
+.rule{width:170px;height:1px;margin:22px 0 26px;background:linear-gradient(90deg,var(--violet),transparent)}
+
+h2{font-family:var(--disp);font-weight:600;font-size:clamp(23px,3vw,32px);letter-spacing:.05em;color:var(--gold);
+  margin:52px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--slate)}
+h3{font-family:var(--disp);font-weight:500;font-size:clamp(18px,2.2vw,23px);color:#e6e9f2;letter-spacing:.04em;margin:32px 0 10px}
+p{max-width:82ch;margin:13px 0}
+em{color:var(--gold-b);font-style:italic}
+b,strong{color:#e6e9f2;font-weight:600}
+code{font-family:var(--mono);font-size:15px;color:var(--neon);background:rgba(0,255,224,.07);padding:1px 6px;border-radius:3px}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;border:1px solid var(--slate)}
+th{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:left;padding:11px 13px;background:#0d0f17;border-bottom:1px solid var(--slate)}
+td{padding:11px 13px;font-size:16.5px;border-bottom:1px solid #171d29;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.g{font-family:var(--mono);font-size:14px;color:var(--gold-b);white-space:nowrap}
+td.m{font-family:var(--mono);font-size:13.5px;color:var(--dim)}
+td.ok{color:var(--term)}td.bad{color:var(--red)}
+
+.law{font-family:var(--disp);font-weight:500;font-size:clamp(16px,2.1vw,21px);letter-spacing:.05em;line-height:1.85;
+  text-align:center;color:var(--gold-b);border:1px solid rgba(245,197,66,.30);border-radius:6px;
+  background:rgba(245,197,66,.05);padding:20px 24px;margin:32px 0}
+.law.red{color:var(--red);border-color:rgba(248,113,113,.30);background:rgba(248,113,113,.05)}
+.law.violet{color:var(--violet);border-color:rgba(196,165,255,.30);background:rgba(196,165,255,.05)}
+
+blockquote{margin:20px 0;padding:4px 0 4px 20px;border-left:2px solid var(--violet);
+  font-size:19px;color:#d6d2c4}
+blockquote.q{border-left-color:var(--gold-d)}
+
+pre{background:#0a0c12;border:1px solid var(--slate);border-radius:8px;padding:16px 18px;
+  overflow-x:auto;font-family:var(--mono);font-size:14px;line-height:1.75;color:#b9c4dc}
+
+.ship{border:1px solid var(--wire);border-left:3px solid var(--violet);border-radius:0 8px 8px 0;
+  background:#0c0e15;padding:16px 20px;margin:18px 0}
+.ship.warn{border-left-color:var(--amber)}
+.ship.bad{border-left-color:var(--red)}
+.ship .k{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--violet)}
+.ship.warn .k{color:var(--amber)} .ship.bad .k{color:var(--red)}
+.ship .v{margin-top:7px}
+
+.foot{font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:center;line-height:2;border-top:1px solid var(--slate);margin-top:56px;padding-top:24px}
+@media(max-width:640px){main{padding:22px 16px 0}body{font-size:17px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<main>
+
+<div class="stamp">
+  <div><span class="doc">Technical Brief</span> · Ingram Manor LLC</div>
+  <div><span class="live">22 August 2026</span> · recovering a session from mid-July</div>
+</div>
+
+<header>
+  <p class="eyebrow">A session nobody could open</p>
+  <h1><span class="the">The</span>Salvage</h1>
+  <p class="tag">Seven hundred and sixty-four turns, out of a stuck tab</p>
+  <div class="rule"></div>
+
+  <p>A browser tab had been sitting open for weeks holding a conversation too
+  long to answer. It would accept no new message and it could not be exported.
+  Whatever was in it was legible and unreachable, which is a state this project
+  has met before in other forms.</p>
+
+  <p>A console script walked it and pulled out <b>764 turns · 41,351 words</b>.
+  This is what was in there, and what it cost to find out.</p>
+</header>
+
+<h2>I · Why a scraper and not a copy</h2>
+
+<p>The obvious approach is select-all and paste, and it does not work — for a
+reason that is worth stating because it is the same reason everything else in
+this fleet is built the way it is.</p>
+
+<p><b>A long thread is virtualised.</b> The browser keeps the visible turns in
+the document and discards the rest as you scroll. Select-all gets you whatever
+happened to be mounted at that instant, <em>silently</em>, with no indication
+that the middle is absent.</p>
+
+<div class="law red">A COPY THAT LOOKS COMPLETE AND IS NOT<br>
+IS THE FAULT THIS WHOLE PROJECT IS ABOUT.</div>
+
+<p>So the script scrolls the container from the top in overlapping steps —
+forty per cent overlap, because a clean page-height step can unmount a turn
+before it is read and mount the next one after, and the gap never appears in
+the output. It collects as it goes, reports its count every eight passes, and
+says so aloud when the count stops growing while there is page left.</p>
+
+<p>And the file it writes carries a header that will not let a reader forget
+what it is:</p>
+
+<blockquote class="q">READ THIS BEFORE TRUSTING IT: this was scraped from a
+rendered page, not exported. The count above is what was <b>FOUND</b>, not what
+<b>EXISTS</b>. If the conversation feels like it is missing a middle, it
+is.</blockquote>
+
+<h3>Two faults in the instrument, recorded</h3>
+
+<div class="ship warn">
+  <div class="k">Role detection failed</div>
+  <div class="v">Every turn came out labelled the same. The selector looked for
+  markup this interface does not use, so the transcript reads as one voice
+  talking to itself for forty thousand words. <b>The content survived; the
+  attribution did not.</b></div>
+</div>
+
+<div class="ship warn">
+  <div class="k">It captured containers as well as contents</div>
+  <div class="v">764 turns deduplicated to <b>48 unique blocks</b> — the walker
+  collected parent elements and their children separately, so a long turn
+  appears once whole and again in pieces. Harmless to read, and it means the
+  turn count in the header is roughly sixteen times the truth.
+  <br><br>
+  Which is its own small lesson: <b>the instrument reported its count
+  honestly and the count still meant something other than what it looked
+  like.</b></div>
+</div>
+
+<h2>II · What was in it</h2>
+
+<p>The session was the one that <b>read the nine briefs</b> — Black Hole first,
+as the handoff instructed — and then went looking. It is the most productive
+session in the recovered record and it found four things.</p>
+
+<h3>1 · The most consequential code in the fleet was not under version control</h3>
+
+<p>This is the finding that reshaped everything after it.</p>
+
+<table>
+  <tr><th></th><th>The ship</th><th>The Worker</th></tr>
+  <tr><td class="g">lives in</td><td class="ok">git</td><td class="bad">a text box in a browser tab</td></tr>
+  <tr><td class="g">history</td><td class="ok">every commit</td><td class="bad">none</td></tr>
+  <tr><td class="g">diff</td><td class="ok">yes</td><td class="bad">none</td></tr>
+  <tr><td class="g">rollback</td><td class="ok">yes</td><td class="bad">none</td></tr>
+  <tr><td class="g">the Glass Gate sees it</td><td class="ok">yes</td><td class="bad">no</td></tr>
+  <tr><td class="g">a scan can catch a change</td><td class="ok">yes</td><td class="bad">no</td></tr>
+</table>
+
+<p>And what that file contained: <code>/speak</code>, the cache key, the R2 put,
+the model string, <code>publishWeek()</code>, <code>scheduled()</code>, the
+seal, the mint, and the TOPICS map that is the only place a defendant's name
+exists.</p>
+
+<div class="law red">EVERY EXPENSIVE ACCIDENT IN THIS SYSTEM<br>
+LIVED IN THE ONE FILE NOBODY COULD DIFF.</div>
+
+<p>The 13 July handoff had told the next session to <em>check
+wrangler.toml — it may be a three-line fix.</em> There was no
+<code>wrangler.toml</code>. <b>The handoff sent the next session to a file that
+does not exist</b>, and the next session found that out by looking rather than
+by trusting.</p>
+
+<p>The Workers mirror — six Workers pulled from the Cloudflare API into a
+repository every six hours — exists because of this session.</p>
+
+<h3>2 · A chunk profile is a cache namespace</h3>
+
+<p>The sharpest technical finding, and it is one line:</p>
+
+<blockquote>The key is <code>sha256(model + voice + style + text)</code>. The
+text is one measure — and the measure boundaries are set by the profile. So: <b>a
+chunk profile is a cache namespace.</b></blockquote>
+
+<p><code>recital: 320</code> and <code>gabriel: 700</code> split the same
+passage into different measures, which hash to different keys, which are
+different objects in R2. <b>Two profiles quietly maintaining two archives of the
+same audio.</b></p>
+
+<p>And the consequence for testing, which is the part that would have been
+missed: a canonical sentence proves the archive <em>for the profile it was
+chunked under, and no other.</em> Pick the sentence before ruling on the
+profile and <b>the ward has a hole in it exactly the size of whichever cylinder
+was not fired.</b></p>
+
+<p>That is why the archive watch fires six wires and not one.</p>
+
+<h3>3 · Instrument the change, don't instrument the wreck</h3>
+
+<p>Asked whether to unify the forked archive first or build the ward first, the
+session argued for the ward — and the reasoning generalises past this system:</p>
+
+<blockquote>Do not unify first. Build the ward across both namespaces, exactly
+as they stand. Unifying the archive is a cache-key change — <b>the single most
+expensive class of change in this system.</b> Doing it before the tripwire
+exists is doing it blind, which is how this fleet got here.</blockquote>
+
+<p>With the ward in place the migration proves itself: flip the surface from one
+profile to the other, and the wires on the abandoned profile <b>go dark on
+purpose</b> while the rest stay green. A planned darkness is a reading. An
+unplanned one is a fault. You cannot tell them apart without the instrument in
+place first.</p>
+
+<h3>4 · <code>council</code> cannot be banished from the ship</h3>
+
+<p>A naming census found the string <code>counsel</code> doing two jobs at once
+in the DOM of Page1 — the Board Room's page identity <em>and</em> the dyad's
+mode value — at four separate places. A clean-up was proposed: one name changes,
+and <code>council</code> is banished from the ship.</p>
+
+<p>Then the read that killed it.</p>
+
+<div class="ship bad">
+  <div class="k">The catch</div>
+  <div class="v">Library text is read aloud through <code>/speak</code>. It is
+  <b>the hashed text.</b> Edit one word of <code>gallic-war-7.md</code> and every
+  measure of that document orphans in R2 — <b>and you have altered a
+  public-domain primary source</b>, which is the moat the prospectus is built
+  on.
+  <br><br>
+  <em>council cannot be banished from the ship. It is history's word before it
+  was ours.</em>
+  <br><br>
+  A repo-wide find-and-replace would not have broken the build. <b>It would have
+  quietly edited Caesar.</b></div>
+</div>
+
+<p>The proposed rule — <em>council does not appear in the ship</em> — would have
+been permanently and correctly RED, and the session caught that before writing
+it. Rules about names have to be scoped to <b>our own identifiers</b>, because
+the library is full of other people's.</p>
+
+<h2>III · The tenth brief, and a habit that shipped</h2>
+
+<p>The session also read a brief written by the session before it — the one that
+had <em>not</em> read the nine — and its verdict is the most useful sentence in
+the salvage:</p>
+
+<blockquote>It is the tenth brief, and it has to be read <b>against</b> the other
+nine rather than alongside them, because it was written by the session that
+hadn't read them. <b>The error is not one error. It is a habit, and this time it
+shipped.</b></blockquote>
+
+<p>The specific case: that brief called <code>AMENTI_VOICE</code> a stowaway —
+<em>a fourth speech engine, inline in Page1, on no manifest, listed nowhere</em>
+— and the ninth brief had it in a table, deliberately, with a reason. The
+Terminal stays off the throttle on purpose because its replies are short live
+chat.</p>
+
+<p><b>A finding reported as a discovery when it was already documented is not a
+small error.</b> It is a reader who did not read, and the output is
+indistinguishable from genuine work until somebody checks.</p>
+
+<h2>IV · The argument against the whole enterprise</h2>
+
+<p>And then, unprompted, the thing that makes this salvage worth the trouble.
+Asked directly, the session argued the other side:</p>
+
+<blockquote>Honestly? Half of it. Let me argue the other side properly, because
+you asked, and <b>because nobody else in this conversation will.</b>
+<br><br>
+You have one user. Zero endorsements. Thirteen cases and no arguments. A
+newsletter with six unpublished Sundays. The Board Room's cross-talk problem is
+a problem no stranger has ever encountered, <b>because no stranger has ever been
+in the room.</b>
+<br><br>
+Your own prospectus says it plainly: cost is solved, and audience is where the
+work and the risk live. Building a continuous monitoring pane for surfaces
+nobody uses is instrumenting an empty room.</blockquote>
+
+<p>That is on the record and it should stay on the record. It is the most useful
+paragraph in forty thousand words, and it is the one thing a brief would never
+have preserved — because a brief is written by somebody who has already decided
+to carry on.</p>
+
+<h2>V · What this was worth</h2>
+
+<p>The honest accounting, since the question was asked out loud before the
+script finished running: <em>is it worth it, or are we sifting our own
+chaff?</em></p>
+
+<table>
+  <tr><th>What came out</th><th>Was it already recorded?</th></tr>
+  <tr><td>The Worker is not in version control</td><td class="ok">No. This session found it, and the mirror exists because of it.</td></tr>
+  <tr><td>A chunk profile is a cache namespace</td><td class="m">Partly — the Conversation Matrix has the key. The <b>namespace</b> consequence was worked out here.</td></tr>
+  <tr><td>Instrument the change, not the wreck</td><td class="ok">No. Not in any brief.</td></tr>
+  <tr><td>council belongs to history, not to us</td><td class="ok">No. And it would have quietly edited Caesar.</td></tr>
+  <tr><td>The tenth-brief verdict</td><td class="ok">No. A brief cannot review the brief that follows it.</td></tr>
+  <tr><td>The argument against shipping</td><td class="ok">No. And nothing else in the record makes it.</td></tr>
+</table>
+
+<p>Five of six were not written down anywhere.</p>
+
+<div class="law violet">A BRIEF TELLS YOU WHAT WAS DECIDED.<br>
+A TRANSCRIPT SHOWS THE THREE THINGS BELIEVED FIRST,<br>
+AND HOW LONG EACH WAS BELIEVED FOR.</div>
+
+<p>The briefs remain the better record for almost everything — thirty-nine
+accounts, eighty thousand words, each one written by somebody deciding what
+mattered that day. But there is one class of material a brief cannot hold: <b>the
+moment before somebody understood.</b> The wrong theory, the confident bad fix,
+the argument nobody won.</p>
+
+<p>The Black Hole is made entirely of that, and it is the best document in the
+repository.</p>
+
+<h2>VI · What to do about the rest</h2>
+
+<p>There are other tabs. Two sessions were named as June — Ascension's raw
+material — and both ended at a token limit rather than at a conclusion.</p>
+
+<p>If they are salvaged, the fixes worth making to the instrument first:</p>
+
+<table>
+  <tr><td class="g">roles</td><td>find the selector this interface actually uses, or the transcript is one voice for forty thousand words</td></tr>
+  <tr><td class="g">nesting</td><td>drop any block wholly contained in another before writing the file, or the count is sixteen times the truth</td></tr>
+  <tr><td class="g">speed</td><td>full-viewport steps at 120ms rather than 60% at 260ms — this run took the better part of an hour</td></tr>
+  <tr><td class="g">stall warning</td><td>three quiet passes is normal on a thread this size. It cried wolf twice in the first fifth.</td></tr>
+</table>
+
+<p>And the standing note, which applies to the salvage and to everything else
+recovered this week: <b>a scrape is evidence of what was found.</b> It is not
+evidence of what was there. The header says so, and the header should stay.</p>
+
+<p class="foot">
+  Amenti · Ingram Manor LLC<br>
+  A shop-floor account · 22 August 2026<br>
+  Recovering a session from mid-July · 764 turns · 48 unique
+</p>
+
+</main>
+</body>
+</html>
