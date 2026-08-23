@@ -1,13 +1,13 @@
 # AMENTI — BRIEF: THE UNVERSIONED STORE
 **Ingram Manor LLC · 2026-08-23 · found while sorting the recovered documents**
+**CLOSED the same night. Phase A shipped 2026-08-23 06:23Z — see section 10.**
 
 ## HOW TO USE THIS
 
-This brief names a defect and specifies the fix. It is written from documents,
-not from a reading of Supabase — **no probe has looked, and I could not look.**
-Section 1 is what is known. Section 2 is what is unknown and must be read before
-anything in section 6 is trusted. Nothing here requires the captain to run
-anything until section 7.
+This brief names a defect, specifies the fix, and records the fix being applied.
+**Sections 1–9 were written before any probe had looked at Supabase**, and are
+left as written — the guesses in them are part of the record. Section 10 is the
+reading, and where the two disagree, section 10 wins.
 
 ---
 
@@ -276,8 +276,94 @@ document exists.
 
 ## 9. ONE LINE FOR THE OPEN FAULTS TABLE
 
-Until this is done:
+**Superseded — Phase A is done.** The line below was written while the defect
+was open and is kept as written. What replaces it in the handover:
+
+| # | What | Cost of leaving it |
+|---|---|---|
+| 6 | **The third tier's scheduled dump uses a writable credential.** `db/schema.sql` is now in git and watched every six hours, but `SUPABASE_DB_URL` holds a connection string that can write. A read-only role is the last piece | a repo secret stronger than it needs to be. Also unverified: whether Sunday's ark actually carries `db/schema.sql` |
+
+The original, for the record:
 
 | # | What | Cost of leaving it |
 |---|---|---|
 | 6 | **The third tier is unversioned and unwatched.** Cloudflare and GitHub are held as text and bundled weekly; **Supabase is not.** No schema in any repo, no probe reads it, not in the ark. The economy's laws are policies and functions that exist behind one login. Extent unknown | **the ark is a backup of two tiers of three and does not say so.** Schema contracts cannot be diffed against the Workers that query them. Same class as the Worker found off version control in the salvage |
+
+---
+
+## 10. THE READING, AND WHAT IT SETTLED
+
+**2026-08-23 06:23Z.** `tools/db-dump.sh` ran on a GitHub Actions runner and
+returned. The third tier is under version control.
+
+```
+tables      25        views      5
+functions   16        triggers   4
+policies    10        rls on     25 / 25
+schema      54,282 bytes         secret scan  clean
+rig_views   present              tables without rls  none
+```
+
+### What it settles
+
+**It was never a footnote.** Section 2 said the fix's shape depended on whether
+Supabase held one stale table or the whole economy. It holds the whole economy —
+25 tables, 16 functions, 54 KB of definitions that existed in exactly one place
+until this run.
+
+**The first law holds, and is now provable.** RLS is enabled on 25 of 25 tables
+and none is unprotected. *The browser never mints* was previously an assertion
+about policies nobody could read. It is now a line in a file.
+
+**`rig_views` is present.** The absence that started this brief was an absence
+from the repo, not from the provider — exactly as section 1 predicted, for
+exactly the reason it gave. The worker's hardcoded `&pose=eq.standing` at line
+479 is therefore live against a real table, serving a retired pipeline. **That
+is a real open item and it belongs to the pose brief, not to this one.**
+
+### What the runs cost, and what that is worth recording
+
+Five failed runs before the green one. In order:
+
+| | What failed | What it actually was |
+|---|---|---|
+| 1 | `tenant/user not found` | pooler host guessed as `aws-0`; it is `aws-1` |
+| 2 | `Network is unreachable` | direct connection is IPv6-only; runners have no IPv6. **The pooler is the IPv4 route** |
+| 3 | server version mismatch | `pg_dump` 16 against a 17.6 server |
+| 4 | still 16 after installing 17 | diagnosed as Ubuntu's archive winning. **Wrong** — the log said `pgdg`, so it was never Ubuntu's package. The pin fixed nothing |
+| 5 | still 16 | cause never established |
+
+Runs 1, 2 and 4 were assertions made without reading. Three probes then
+established, from the `.deb` and from `pg_wrapper`'s source, that
+`postgresql-client-N` installs `pg_dump` only to `/usr/lib/postgresql/N/bin`,
+that `/usr/bin/pg_dump` is a symlink to `pg_wrapper`, and that the wrapper picks
+the newest installed version — **which means the wrapper never ran, and the
+cause of the PATH precedence remains unknown.**
+
+The fix does not depend on knowing it. `db-dump.sh` resolves the newest
+`/usr/lib/postgresql/*/bin/pg_dump` from disk rather than trusting `PATH`.
+
+> **A source that cannot be reached is not a source.**
+> Neither is one that answers with something other than what it was asked for.
+
+### What is still open
+
+1. **A read-only role.** The secret currently holds a connection string that can
+   write. Phase B's scheduled run should not. This is the last piece of the fix
+   and it is not done.
+2. **Verify the ark carries it.** `db/schema.sql` is a file in `Amenti.live`, so
+   Sunday's bundle should pick it up with no new machinery. **Should is not
+   does.** Check the first Sunday.
+3. **10 policies against 25 tables.** Fewer policies than tables means some
+   tables have RLS enabled with no policy attached. That denies everything
+   rather than allowing anything, so it is safe — but it may not be what was
+   intended. Read `db/schema.sql` and rule on it.
+
+### The instruments this produced
+
+| File | What it is |
+|---|---|
+| `tools/db-dump.sh` | dumps, scans for credentials, counts, writes the register |
+| `.github/workflows/db.yml` | runs it at `:52`, every six hours, commits only on drift |
+| `db/schema.sql` | the schema, in git |
+| `db/SCHEMA.json` | the register. `state: FAILED` and `counts: null` when a run does not read |

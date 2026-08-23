@@ -6,10 +6,23 @@
 
   WHAT BECAME OF IT. Nothing yet, and that is the finding. It specifies
   skinning.py's PRESETS dict and audit.pose(); neither appears in any register.
-  Its Phase B is unbuilt: scenes still has no pose column and the worker still
-  carries the hardcoded &pose=eq.standing at line 479 with the three-quarter
-  fallback at 483. Section 1 was verified against the deployed worker, not
-  memory — the brief says so itself, which is why it is safe to read now.
+  Section 1 was verified against the deployed worker, not memory — the brief
+  says so itself, which is why it is safe to read now.
+
+  AND THE METHOD IS RETIRED. Figures are now generated from an outside source
+  via prompts. Sections 2–8 — MakeHuman, painted weights, the fifteen presets,
+  audit.pose(), the poses table — describe work nobody will do. Read them as a
+  record of a method, not as an order list. What does NOT retire with it is
+  section 1's register gap, and the Art Director's armature (head cy=116, legs
+  y=396–512, shared to the decimal by 20 of 33 drawings) is the same problem in
+  the new medium: a figure spec with no home, held only in a handoff.
+
+  VERIFIED 23 AUGUST. rig_views is PRESENT in Supabase — confirmed by the first
+  run of tools/db-dump.sh, which put the schema under version control. So the
+  lookup path is live: the worker's hardcoded &pose=eq.standing at line 479,
+  with the three-quarter fallback at 483, queries a real table on behalf of a
+  pipeline that no longer exists. Phase B remains unbuilt; scenes has no pose
+  column. THIS IS AN OPEN ITEM, not a closed one.
 
   WHAT IT HAD EARLY. Its section 1 is a register gap of exactly the familiar
   shape: rig_views holds the products of a pose and no definition of it, scenes
