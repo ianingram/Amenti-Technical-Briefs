@@ -115,6 +115,18 @@ building over higher-value work.** Promote to its own slipway if it earns it.
 
 ---
 
+### 10 · Decide the direct-push workflow (PROPOSED — see its own brief)
+The download-edit-upload loop is a tax on every session, and hand-editing is off
+the table. A full proposal exists: `BRIEF-THE-DIRECT-PUSH-QUESTION.md` — the
+assistant commits to the repo directly via a fine-grained GitHub token, with
+safety rails (branch-not-main, diff-then-approve, revert, start-small). NOT
+adopted. The captain flagged the real risk: a faster workflow carries faster
+mistakes, and the manual slowness has been an unplanned checkpoint the whole
+history of the project. Rejected along the way: breaking up Page1 (the monolith
+is a VIRTUE in an already-fragmented system — do not fragment the one coherent
+artifact). Move: read the brief, decide adopt-or-keep-manual, and if adopt, pick
+the rail and the Phase-1 file. The manual road stays open until then.
+
 ## THE CRITICAL PATH — what gates what
 
 | # | Move | Unblocks |
@@ -137,6 +149,10 @@ Items 5, 8, 9 are independent — do them when they surface, not in sequence.
   structurally load-bearing. Surface-only, always.
 - **Which deck cards are wrong** — the captain walks the deck; the eye is the
   instrument here.
+- **Adopting direct push / creating a write-token** — it changes how the whole
+  ship is built and can reach the live flagship in one motion. The captain
+  decides if and when, and it stages in (see the brief). Never push to `main` on
+  `Page1.html` unattended.
 
 ---
 
