@@ -89,19 +89,54 @@
      in front of it. A fixed element rather than background-attachment:fixed,
      which iOS Safari collapses.
 
-     Two layers of darkening, doing different jobs: a brightness filter on
-     the image itself so the marble and the lit pyramid stop competing with
-     letterforms, and a flat veil above it so every line of body text has the
-     same contrast wherever it happens to sit as the page moves. A gradient
-     would look better and would leave some paragraphs sitting on glare.
+     Darkening is three multiplied layers and they compound — brightness on
+     the image, a flat veil above it, and the content's own scrim. Set at
+     .62 / .72 / .80 they left about 3.5% of the scene showing behind the
+     text: effectively black. Each looked reasonable alone.
+
+     Now .82 / .24 / .56, which leaves roughly 62% of the scene visible at the
+     cover and 27% behind the body. The BLUR does the legibility work instead
+     of opacity — 6px, so the marble reads as texture rather than as detail
+     competing with letterforms, and the scene stays a scene.
+
+     The veil is flat rather than a gradient on purpose: the backdrop is
+     fixed, so text keeps travelling across it, and a gradient would leave
+     some paragraphs on glare and others in shadow.
 
      If the image 404s the ground colour shows and nothing else changes. */
   .backdrop{position:fixed;inset:0;z-index:-2;background:var(--ground)
     url('https://ianingram.github.io/Amenti.live/img/thoth-terminal.jpg')
     center 32% / cover no-repeat;
-    filter:brightness(.62) saturate(.9)}
-  .backdrop::after{content:'';position:absolute;inset:0;background:rgba(13,18,32,.72)}
+    filter:brightness(.82) saturate(.95)}
+  .backdrop::after{content:'';position:absolute;inset:0;background:rgba(13,18,32,.24)}
   body>*{position:relative;z-index:1}
+
+  /* ── REVEAL ────────────────────────────────────────────────────────────
+     Click the scene — the cover, or the margin either side of the column —
+     and everything laid over it stands aside. Click again, or press Escape,
+     and the document returns.
+
+     The clickable region and the visible region are the same thing by
+     construction: the cover and the page margins are the only places the
+     backdrop is not covered by .wrap, which is exactly where a reader would
+     think to click. No hit area had to be invented.
+
+     Nothing is destroyed and nothing navigates — this only changes opacity
+     and two filters, so a mis-click costs one more click. */
+  .backdrop, .backdrop::after, .wrap, .cover .inner{
+    transition:opacity .45s ease, filter .45s ease, background-color .45s ease}
+  body.revealed .wrap, body.revealed .cover .inner{opacity:0;pointer-events:none}
+  body.revealed .backdrop{filter:none}
+  body.revealed .backdrop::after{background:rgba(13,18,32,0)}
+
+  .reveal-hint{position:fixed;left:0;right:0;bottom:1.6rem;z-index:2;text-align:center;
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--body);opacity:0;pointer-events:none;transition:opacity .45s ease;
+    text-shadow:0 2px 14px rgba(0,0,0,.9)}
+  body.revealed .reveal-hint{opacity:.55}
+  @media (prefers-reduced-motion:reduce){
+    .backdrop,.backdrop::after,.wrap,.cover .inner,.reveal-hint{transition:none}
+  }
 
   /* ── THE COVER ─────────────────────────────────────────────────────────
      Not a banner with an image in it — just open space, so the scene behind
@@ -118,8 +153,8 @@
               text-shadow:0 2px 18px rgba(0,0,0,.9)}
 
   .sheet{padding:4rem 0 2.25rem;border-bottom:1px solid var(--rule)}
-  .wrap{background:rgba(13,18,32,.80);backdrop-filter:blur(2px);
-        -webkit-backdrop-filter:blur(2px)}
+  .wrap{background:rgba(13,18,32,.56);backdrop-filter:blur(6px);
+        -webkit-backdrop-filter:blur(6px)}
   .sheet:last-of-type{border-bottom:0;padding-bottom:3rem}
   .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;
            color:var(--eyebrow);margin:0 0 .8rem}
@@ -213,6 +248,7 @@
 </head>
 <body>
 <div class="backdrop" aria-hidden="true"></div>
+<p class="reveal-hint" aria-hidden="true">click anywhere to return</p>
 
 <header class="cover">
   <div class="inner">
@@ -447,6 +483,38 @@
   set('links', FACTS.links.map(function (l) {
     return '<li><a href="' + esc(l[1]) + '">' + esc(l[0]) + '</a></li>';
   }).join(''));
+
+  /* ── the reveal ────────────────────────────────────────────────────────
+     A click on the scene shows it whole. A click on anything a reader might
+     actually be trying to USE — a link, a button, selected text they are
+     dragging — is left alone, because a page that swallows clicks is worse
+     than one that never offered this. */
+  (function () {
+    var body = document.body;
+
+    function revealed() { return body.classList.contains('revealed'); }
+    function show() { body.classList.add('revealed'); }
+    function hide() { body.classList.remove('revealed'); }
+
+    document.addEventListener('click', function (e) {
+      /* while revealed, any click returns */
+      if (revealed()) { hide(); return; }
+
+      var t = e.target;
+      if (t.closest && t.closest('a, button, [role="button"]')) return;
+      /* inside the reading column is reading, not the scene */
+      if (t.closest && t.closest('.wrap') && !t.closest('.cover')) return;
+      /* a drag that selected text is not a click on the picture */
+      var sel = window.getSelection && window.getSelection();
+      if (sel && String(sel).length) return;
+
+      show();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && revealed()) hide();
+    });
+  })();
 })();
 </script>
 </body>
