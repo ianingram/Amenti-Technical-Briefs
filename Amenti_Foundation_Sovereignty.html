@@ -130,6 +130,10 @@
      color:var(--title);padding-bottom:.7rem;border-bottom:1px solid var(--rule)}
   h3{font-size:1.05rem;font-weight:600;margin:1.8rem 0 .4rem}
   .sub{margin:0 0 2rem;color:var(--dim);max-width:45rem;font-size:1.05rem}
+  /* the paragraph that introduces the drawing is centred with it, and carries
+     the drawing's name at its end — one centred block, then the figure */
+  #lede{max-width:46rem;margin-left:auto;margin-right:auto;text-align:center;
+        margin-bottom:.4rem}
   p{max-width:45rem}
   .foot{display:flex;justify-content:space-between;gap:1rem;margin:2.75rem 0 0;
         font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
@@ -329,9 +333,10 @@
     stated:   '2026-08-26',
     statedBy: 'Ingram Manor LLC',
 
-    lede: 'Amenti is not one thing with parts. It is a separation \u2014 authority divided ' +
-          'among powers that are each incomplete, so that no one of them can command the ' +
-          'hall alone. The division happens twice, at two scales. This is the upper one.',
+    lede: 'It is the separation of powers that opens the gates of Amenti. It is not one ' +
+          'thing with parts. It is a separation \u2014 authority divided among powers that are ' +
+          'each incomplete, so that no one of them can command alone. A living library, that ' +
+          'thinks, speaks and is self aware.',
 
     figname: 'The Amenti Cube \u00b7 Diagram 1',
 
@@ -355,33 +360,34 @@
 
     creedAbove: 'None is whole. All three, or nothing \u2014 and no captured corner can command the hall.',
 
-    belowLede: 'Beneath the gates is the ground: the companies whose machines the whole ' +
-               'arrangement runs on. Three of them are not vendors the application uses. ' +
-               'Together they ARE the application.',
+    belowLede: 'The gates look independent. Beneath them are the companies whose ' +
+               'machines they actually run on \u2014 and those do not line up one to one. ' +
+               'Five names above the ground; three floors below it.',
 
     tiers: [
-      { name:'Cloudflare', hue:'c-mem', kind:'runs it',
-        is:'The nervous system. The edge answers every request; the Workers broker every exchange; the memory of the voice lives here.',
-        parts:'DNS \u00b7 Workers (proxy + mint) \u00b7 KV \u00b7 R2 \u00b7 CDN' },
-      { name:'GitHub', hue:'c-truth', kind:'defines it',
-        is:'The substance in plain text, the surfaces that serve it, and every instrument that reads them.',
-        parts:'the repositories \u00b7 Pages \u00b7 Actions \u00b7 the probes' },
-      { name:'Supabase', hue:'c-vault', kind:'remembers it',
-        is:'Who the people are, and the laws the court enforces. Its structure is plain text in the repo since 23 August.',
-        parts:'Postgres \u00b7 subscribers \u00b7 auth \u00b7 the economy\u2019s rules' },
-      { name:'Google', hue:'c-gen', kind:'voices it',
-        is:'The generator gate. Reached only on a miss, never by the browser \u2014 the Worker holds the key and hands back only audio.',
-        parts:'Gemini \u00b7 text-to-speech' },
-      { name:'Resend', hue:'c-relay', kind:'carries it out',
-        is:'The relay. Send-only, and the newsletter is all it touches.',
-        parts:'send-only \u00b7 rides Amazon SES' }
+      { name:'Cloudflare', hue:'c-mem', kind:'stands on its own metal',
+        is:'Its own edge network, end to end. The only one of the five that answers to nobody beneath it.',
+        parts:'the memory gate \u00b7 the broker \u00b7 DNS \u00b7 the CDN' },
+      { name:'GitHub', hue:'c-truth', kind:'stands on Microsoft',
+        is:'The truth gate, and the workshop that serves and reads it. A second company sits under it, and the ark exists so that leaving does not mean losing.',
+        parts:'the truth gate \u00b7 Pages \u00b7 Actions \u00b7 the instruments' },
+      { name:'Google', hue:'c-gen', kind:'stands on Google',
+        is:'The generator gate. Reached only on a miss and never by the browser, so what it can be denied is a cache away rather than an outage.',
+        parts:'the generator gate' },
+      { name:'Supabase', hue:'c-vault', kind:'stands on Amazon',
+        is:'The vault \u2014 who the people are, and the laws the court enforces. Not a gate; the gates never touch it directly.',
+        parts:'Postgres \u00b7 subscribers \u00b7 auth' },
+      { name:'Resend', hue:'c-relay', kind:'stands on Amazon',
+        is:'The relay, and it shares its floor with the vault. Two names that look independent bottom out on the same ground.',
+        parts:'send-only \u00b7 rides SES' }
     ],
 
-    creedBelow: 'Cloudflare runs it. GitHub defines it. Supabase remembers it. ' +
-                'Remove any one and there is no degraded application. There is no application.',
+    creedBelow: 'Separation you can see is not always separation you have. The real question ' +
+                'is never which brand, but which physical ground \u2014 and whether the pieces ' +
+                'that must not fail together are quietly resting on the same one.',
 
     c1: 'The 2026 edition named three companies \u2014 Cloudflare, Supabase, Resend \u2014 and called ' +
-        'them the whole off-fleet surface. GitHub was missing from it, while holding the substance, ' +
+        'them the whole off-fleet surface. GitHub was missing from it, while holding the truth gate, ' +
         'serving the surfaces and running every instrument.',
     c2: 'Google was missing too. The generator is one of the three gates and a live dependency on ' +
         'a fourth company, and the old edition never named it.',
