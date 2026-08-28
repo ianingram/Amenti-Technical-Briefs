@@ -4,28 +4,39 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>What an Hour Costs · Amenti</title>
-<meta name="description" content="A reading, not an estimate. The prompt was built and measured: what a conversation with a figure actually costs, and where the money goes.">
+<meta name="description" content="A reading, not an estimate. Both halves of the bill — text inference and voice render — measured, charted, and wired to the live counters.">
 <style>
   /* ═══════════════════════════════════════════════════════════════════════
-     WHAT AN HOUR COSTS — the charted edition.
+     WHAT AN HOUR COSTS — the complete edition.
 
-     A cost sheet is a table of numbers and a table of numbers hides its own
-     argument. Every chart here exists to make ONE claim visible at a glance,
-     and the claims are the point:
+     The first version priced ONE HALF of an hour. It was called "what an hour
+     costs", it measured Anthropic tokens, and it put "voice is unmeasured" in
+     a footnote in section seven — for a product whose premise is TALKING to
+     the dead. The captain caught it. This is the whole bill.
 
-       1  the system prompt is over half of every turn, and it is re-sent
-       2  the anchored window is what makes any of this priceable
-       3  the daily breaker is modest, and how modest depends entirely on
-          how long a visit is — a fact that was stated two different wrong
-          ways in conversation before it was drawn
+     ── TWO THINGS THIS EDITION ADDS ──────────────────────────────────────
+     1  VOICE, PRICED. Google bills Gemini TTS at 25 audio tokens per SECOND
+        of audio, so the driver is DURATION, not characters. The conversion is
+        not a guess: probe20 measured it on live hardware and amenti-voice.js
+        records it — "an opener of C chars plays for roughly C/15 seconds".
 
-     EVERY FIGURE IS MEASURED. The prompts were BUILT by calling
-     defaultBuildSystem and leanBuildSystem against a real figure and counting
-     the result. Nothing here was estimated by eye.
+     2  TWO VOICE ECONOMIES, NOT ONE. The recital hits the R2 archive and a
+        line anyone has heard is free forever. CONVERSATION NEVER HITS IT —
+        amenti-voice.js is explicit that the counsel's text is unique every
+        turn. An earlier draft claimed a 95% hit rate made voice nearly free.
+        True of the recital. False of the thing people actually do.
 
-     EDIT ONE PLACE. All of it lives in FACTS at the top of the script; the
-     charts draw themselves from it. Change a price or a measurement there and
-     every bar, label and total follows.
+     ── AND IT IS WIRED FOR REAL NUMBERS ──────────────────────────────────
+     Everything here is MODELLED from measured rates. GET /spend returns what
+     was ACTUALLY spent. This page fetches it and shows both, apart, because a
+     model and a reading are different claims and collapsing them is how a
+     document starts lying in the most convincing way available to it.
+
+     If the fetch fails — or the counters are empty, which they will be for a
+     while — the modelled figures stand alone and the page says so. It never
+     silently substitutes one for the other.
+
+     EDIT ONE PLACE: FACTS, at the top of the script.
      ═══════════════════════════════════════════════════════════════════════ */
 
   @font-face { font-family:'Amenti Display'; font-weight:400; font-display:swap;
@@ -40,9 +51,8 @@
     --title:#b8d4f0; --eyebrow:#5ee9a8; --blue:#57b6ff;
     --panel:rgba(255,255,255,.022); --rule:rgba(232,228,216,.13);
     --mono:ui-monospace,'SF Mono',Menlo,monospace;
-    /* one colour per component of a turn, held across every chart so the eye
-       learns it once */
-    --c-sys:#c8613f; --c-hist:#e0a83c; --c-out:#5ee9a8; --c-save:#a78bfa;
+    --c-sys:#c8613f; --c-hist:#e0a83c; --c-out:#5ee9a8;
+    --c-voice:#a78bfa; --c-live:#57b6ff;
     color-scheme:dark;
   }
   *{box-sizing:border-box}
@@ -51,8 +61,7 @@
        -webkit-font-smoothing:antialiased}
   .wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
 
-  header.cover{min-height:52vh;display:flex;align-items:center;text-align:left;
-    border-bottom:1px solid var(--rule)}
+  header.cover{min-height:50vh;display:flex;align-items:center;border-bottom:1px solid var(--rule)}
   .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.26em;
            text-transform:uppercase;color:var(--eyebrow);margin:0 0 .9rem}
   h1{font-size:clamp(2.1rem,6vw,3.6rem);font-weight:700;letter-spacing:.01em;
@@ -61,12 +70,12 @@
   .headline{margin:1.6rem 0 0;font-size:1.35rem;line-height:1.45;max-width:42rem;
             padding-left:1.1rem;border-left:2px solid var(--eyebrow)}
 
-  section{padding:3.5rem 0;border-bottom:1px solid var(--rule)}
+  section{padding:3.4rem 0;border-bottom:1px solid var(--rule)}
   section:last-of-type{border-bottom:0;padding-bottom:2rem}
   h2{font-size:clamp(1.4rem,3.2vw,2rem);font-weight:700;margin:0 0 .7rem;
      color:var(--title);padding-bottom:.6rem;border-bottom:1px solid var(--rule)}
   h3{font-size:1.05rem;font-weight:600;margin:2rem 0 .4rem}
-  .sub{margin:0 0 2rem;color:var(--dim);max-width:45rem}
+  .sub{margin:0 0 1.8rem;color:var(--dim);max-width:45rem}
   p{max-width:45rem}
   .foot{display:flex;justify-content:space-between;gap:1rem;margin:2.6rem 0 0;
         font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;
@@ -85,8 +94,8 @@
   .finding .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;
               text-transform:uppercase;color:var(--c-sys);display:block;margin-bottom:.4rem}
   .finding p{margin:0}
-  .correction{border-left-color:var(--blue)}
-  .correction .k{color:var(--blue)}
+  .finding.blue{border-left-color:var(--blue)} .finding.blue .k{color:var(--blue)}
+  .finding.violet{border-left-color:var(--c-voice)} .finding.violet .k{color:var(--c-voice)}
 
   table{border-collapse:collapse;width:100%;max-width:45rem;margin:1.4rem 0 0;font-size:.95rem}
   th,td{text-align:left;padding:.5rem .8rem .5rem 0;border-bottom:1px solid var(--rule)}
@@ -96,12 +105,21 @@
   tr.now td{color:var(--body)} tr.now td:first-child{font-weight:600}
   tr.dim td{color:var(--dim)}
 
+  .live{border:1px solid rgba(87,182,255,.28);background:rgba(87,182,255,.05);
+        border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0 0;max-width:45rem}
+  .live .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;
+           text-transform:uppercase;color:var(--c-live);display:block;margin-bottom:.7rem}
+  .live .grid{display:flex;flex-wrap:wrap;gap:1.8rem;margin:0 0 .8rem}
+  .live .n{font-family:var(--mono);font-size:1.5rem;color:var(--c-live);display:block}
+  .live .l{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
+           text-transform:uppercase;color:var(--dim);opacity:.75}
+  .live p{margin:.4rem 0 0;font-size:.88rem;color:var(--dim)}
+
   .close{margin:0;padding:2.2rem 0 0;font-size:1.15rem;line-height:1.5;
          max-width:41rem;border-top:1px solid var(--rule)}
   footer{padding:2.5rem 0 4rem;font-size:.77rem;color:var(--dim);max-width:45rem}
-  a{color:var(--blue)}
-  @media (prefers-reduced-motion:reduce){ .grow{transition:none !important} }
-  .grow{transition:width 1s cubic-bezier(.2,.7,.2,1), height 1s cubic-bezier(.2,.7,.2,1)}
+  a{color:var(--blue)} code{font-family:var(--mono);font-size:.9em}
+  ul{max-width:45rem}
 </style>
 </head>
 <body>
@@ -109,17 +127,32 @@
 <header class="cover"><div class="wrap">
   <p class="eyebrow">Amenti · Ingram Manor LLC · a reading, not an estimate</p>
   <h1>What an Hour Costs</h1>
-  <p class="standfirst">Every cost figure in this project has been a guess. This one is not: the prompts were <em>built</em> and counted, not estimated by eye.</p>
+  <p class="standfirst">Both halves of the bill. The prompts were <em>built</em> and counted; the voice rate is Google's own, converted by a figure this fleet measured on live hardware.</p>
   <p class="headline" id="headline"></p>
 </div></header>
 
 <div class="wrap">
 
   <section>
+    <h2>The whole hour</h2>
+    <p class="sub">Text inference is the floor — every conversation pays it. Voice is paid on top, for every word actually spoken aloud.</p>
+    <figure>
+      <svg id="c0" viewBox="0 0 900 250" role="img" aria-label="An hour of talking, split into text and voice"></svg>
+      <div class="legend">
+        <span><i style="background:var(--c-sys)"></i>text inference</span>
+        <span><i style="background:var(--c-voice)"></i>voice render</span>
+      </div>
+      <figcaption id="cap0"></figcaption>
+    </figure>
+    <div class="finding violet"><span class="k">The correction that produced this edition</span><p id="correction0"></p></div>
+    <div class="live" id="live"></div>
+  </section>
+
+  <section>
     <h2>The anatomy of a turn</h2>
     <p class="sub">What is actually sent, every time a figure answers.</p>
     <figure>
-      <svg id="c1" viewBox="0 0 900 210" role="img" aria-label="A turn broken into system prompt, history and output"></svg>
+      <svg id="c1" viewBox="0 0 900 200" role="img" aria-label="A turn broken into system prompt, history and output"></svg>
       <div class="legend">
         <span><i style="background:var(--c-sys)"></i>system prompt</span>
         <span><i style="background:var(--c-hist)"></i>bounded history</span>
@@ -127,107 +160,114 @@
       </div>
       <figcaption id="cap1"></figcaption>
     </figure>
-
-    <div class="finding">
-      <span class="k">The finding</span>
-      <p id="finding1"></p>
-    </div>
-
+    <div class="finding"><span class="k">The finding</span><p id="finding1"></p></div>
     <h3>And the window is why any of this is priceable</h3>
     <p id="window"></p>
+    <div class="foot"><span>Amenti.live · what an hour costs</span><span>01 / 04</span></div>
   </section>
 
   <section>
-    <h2>The hour</h2>
-    <p class="sub">Ninety turns is an hour of typing. A hundred and eighty is an hour of talking.</p>
+    <h2>Voice, and the two economies</h2>
+    <p class="sub">Google bills by seconds of audio, not by characters — so the cost depends on how long the figure speaks.</p>
     <figure>
-      <svg id="c2" viewBox="0 0 900 330" role="img" aria-label="Cost of an hour under seven configurations"></svg>
+      <svg id="c2" viewBox="0 0 900 250" role="img" aria-label="The recital hits the archive; conversation never does"></svg>
       <figcaption id="cap2"></figcaption>
     </figure>
-    <div class="foot"><span>Amenti.live · what an hour costs</span><span>01 / 03</span></div>
+    <div class="finding violet"><span class="k">The archive serves one of them and not the other</span><p id="archive"></p></div>
+    <h3>And the first word costs time, not money</h3>
+    <p id="latency"></p>
+    <div class="foot"><span>the captain is not expendable</span><span>02 / 04</span></div>
   </section>
 
   <section>
-    <h2>The breaker, and how modest it is</h2>
-    <p class="sub">The proxy stops at two million tokens a day, across everything. What that allows depends entirely on how long a visit is — and that is where a number becomes alarming or reassuring depending on which visit you picture.</p>
+    <h2>The breaker</h2>
+    <p class="sub">Two ceilings, one for each half. What they allow depends entirely on how long a visit is.</p>
     <figure>
-      <svg id="c3" viewBox="0 0 900 330" role="img" aria-label="Visits per day allowed by the daily breaker, by visit length"></svg>
+      <svg id="c3" viewBox="0 0 900 330" role="img" aria-label="Visits per day allowed by the daily breaker"></svg>
       <figcaption id="cap3"></figcaption>
     </figure>
-
-    <div class="finding correction">
-      <span class="k">A correction, recorded rather than quietly fixed</span>
-      <p id="correction"></p>
-    </div>
-
+    <div class="finding blue"><span class="k">A correction, recorded rather than quietly fixed</span><p id="correction"></p></div>
     <table>
-      <thead><tr><th>a visit of</th><th class="n">tokens</th><th class="n">visits/day</th><th class="n">each</th></tr></thead>
+      <thead><tr><th>a visit of</th><th class="n">tokens</th><th class="n">visits/day</th><th class="n">text</th><th class="n">with voice</th></tr></thead>
       <tbody id="breakerRows"></tbody>
     </table>
+    <div class="foot"><span>chunk the surface; do not raise the wall</span><span>03 / 04</span></div>
   </section>
 
   <section>
     <h2>The levers</h2>
-    <p class="sub">In order of return. The first takes nothing away; the others buy money with character.</p>
+    <p class="sub">In order of return. The first takes nothing away; the last buys money with character.</p>
     <figure>
       <svg id="c4" viewBox="0 0 900 260" role="img" aria-label="What each lever saves per hour"></svg>
       <figcaption id="cap4"></figcaption>
     </figure>
     <div id="levers"></div>
-    <div class="foot"><span>the captain is not expendable</span><span>02 / 03</span></div>
   </section>
 
   <section>
     <h2>What is still unmeasured</h2>
     <ul id="unmeasured"></ul>
     <p class="close" id="closer"></p>
-    <div class="foot"><span>Amenti.live · Ingram Manor LLC</span><span>03 / 03</span></div>
+    <div class="foot"><span>Amenti.live · Ingram Manor LLC</span><span>04 / 04</span></div>
   </section>
 
-  <footer>
-    <p id="method"></p>
-  </footer>
+  <footer><p id="method"></p></footer>
 </div>
 
 <script>
 (function () {
   'use strict';
 
-  /* ══ FACTS — THE ONLY PLACE TO EDIT ═════════════════════════════════════
-     Every number below was MEASURED on 27 Aug 2026 by building the prompt and
-     counting it, except where marked modelled. The charts draw from here; the
-     prose names no number of its own. */
+  /* ══ FACTS — THE ONLY PLACE TO EDIT ═════════════════════════════════════ */
   var FACTS = {
     measured: '2026-08-27',
 
-    /* tokens, from prompts built against a real figure */
-    sys: 2291, hist: 1750, out: 111,
-    sysLean: 1129,
+    /* TEXT — tokens, from prompts BUILT against a real figure */
+    sys: 2291, hist: 1750, out: 111, sysLean: 1129,
     promptChars: { full: 8246, lean: 4064 },
-
     price: { inPerM: 3, outPerM: 15, model: 'Sonnet 4.6 list' },
     haiku: { inPerM: 0.80, outPerM: 4, model: 'Haiku 4.5 list' },
-
     window: { anchor: 4, window: 10 },
-    breakerTokens: 2000000,
 
-    /* modelled, and said so: a message is ~450 chars, a reply ~400 */
+    /* VOICE — Google's published Gemini 2.5 Flash TTS rate. It bills
+       25 AUDIO TOKENS PER SECOND OF AUDIO, so duration is the driver and
+       characters must be converted. charsPerSecond is NOT assumed: probe20
+       measured it on live hardware and amenti-voice.js records it. */
+    tts: { audioPerM: 10.0, textPerM: 0.50, tokensPerSec: 25, charsPerSecond: 15 },
+    replyChars: 400,
+
+    /* probe20, live hardware: render_ms = 7510 + 18.25 x chars (R2 miss) */
+    render: { floorMs: 7510, perChar: 18.25 },
+    convFirstMax: 110,
+
+    breakerTokens: 2000000,
+    breakerSpeakChars: 3000000,
+
+    /* modelled, and said so */
     turnsTyping: 90, turnsTalking: 180,
 
     writer: { inTok: 3889, outTok: 33 },
     memoryBlock: 234,
+
+    spendUrl: 'https://amenti-proxy.ingram-ian.workers.dev/spend?days=30'
   };
   /* ══ end of the editable region ═════════════════════════════════════════ */
 
-  var P = FACTS.price, H = FACTS.haiku;
-  var cost   = function (i, o, p) { p = p || P; return i * p.inPerM / 1e6 + o * p.outPerM / 1e6; };
+  var P = FACTS.price, H = FACTS.haiku, T = FACTS.tts;
+  var cost = function (i, o, p) { p = p || P; return i * p.inPerM / 1e6 + o * p.outPerM / 1e6; };
   var turnIn = FACTS.sys + FACTS.hist;
   var perTurn = cost(turnIn, FACTS.out);
-  var money  = function (n) { return '$' + (n < 1 ? n.toFixed(n < 0.01 ? 4 : 2) : n.toFixed(2)); };
-  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); };
+
+  /* the one conversion in the document, and it is measured, not assumed */
+  var voicePerChar = (T.tokensPerSec / T.charsPerSecond) * T.audioPerM / 1e6
+                   + (1 / 4) * T.textPerM / 1e6;
+  var voicePerTurn = FACTS.replyChars * voicePerChar;
+
+  /* PER-TURN FIGURES NEED FOUR PLACES. Two rounds $0.0138 to "$0.01", which
+     is not a rounding but a different number — and the per-turn split is the
+     one place the two halves can be compared directly. Below a dime, four. */
+  var money = function (n) { return '$' + (n < 0.1 ? n.toFixed(4) : n.toFixed(2)); };
   var set = function (id, h) { var e = document.getElementById(id); if (e) e.innerHTML = h; };
-  var svg = function (id) { return document.getElementById(id); };
   var el = function (n, a, t) {
     var e = document.createElementNS('http://www.w3.org/2000/svg', n);
     for (var k in a) e.setAttribute(k, a[k]);
@@ -235,26 +275,95 @@
     return e;
   };
 
-  set('headline',
-    '<strong>' + money(perTurn * FACTS.turnsTyping) + ' an hour of typing. ' +
-    money(perTurn * FACTS.turnsTalking) + ' an hour of talking.</strong> ' +
-    'Text only, one person \u2014 and almost nobody talks for an hour.');
+  var hourText = perTurn * FACTS.turnsTalking;
+  var hourVoice = voicePerTurn * FACTS.turnsTalking;
 
-  /* ── CHART 1 · one stacked bar. The claim it makes: the prompt is the
-        larger half, and it is re-sent every single turn. ──────────────── */
+  set('headline',
+    '<strong>' + money((perTurn + voicePerTurn) * FACTS.turnsTyping) + ' an hour of typing. ' +
+    money(hourText + hourVoice) + ' an hour of talking.</strong> ' +
+    'Voice is about a third of it \u2014 and almost nobody talks for an hour.');
+
+  /* ── CHART 0 · the whole hour ────────────────────────────────────────── */
   (function () {
-    var s = svg('c1'), W = 860, X = 20, Y = 46, Hh = 54;
+    var s = document.getElementById('c0'), X = 20, W = 860, Y = 60, Hh = 58;
+    var total = hourText + hourVoice, x = X;
+    s.appendChild(el('text', { x: X, y: 32, fill: 'var(--dim)',
+      'font-family': 'var(--mono)', 'font-size': 13 },
+      'AN HOUR OF TALKING \u00b7 ' + FACTS.turnsTalking + ' spoken turns \u00b7 ' + money(total)));
+    [['text inference', hourText, 'var(--c-sys)'], ['voice render', hourVoice, 'var(--c-voice)']]
+      .forEach(function (p) {
+        var w = W * p[1] / total;
+        s.appendChild(el('rect', { x: x, y: Y, width: w, height: Hh, fill: p[2], rx: 2 }));
+        s.appendChild(el('text', { x: x + 14, y: Y + 25, fill: '#0d1220',
+          'font-family': 'var(--mono)', 'font-size': 13, 'font-weight': 700 }, money(p[1])));
+        s.appendChild(el('text', { x: x + 14, y: Y + 44, fill: '#0d1220',
+          'font-family': 'var(--mono)', 'font-size': 11, opacity: .75 },
+          Math.round(100 * p[1] / total) + '% \u00b7 ' + p[0]));
+        x += w;
+      });
+    s.appendChild(el('text', { x: X, y: Y + Hh + 34, fill: 'var(--dim)',
+      'font-family': 'var(--mono)', 'font-size': 12 },
+      'per spoken turn \u00b7 text ' + money(perTurn) + ' + voice ' + money(voicePerTurn) +
+      ' = ' + money(perTurn + voicePerTurn)));
+    s.appendChild(el('text', { x: X, y: Y + Hh + 56, fill: 'var(--dim)',
+      'font-family': 'var(--mono)', 'font-size': 12, opacity: .7 },
+      'a ' + FACTS.replyChars + '-char reply is ' + (FACTS.replyChars / T.charsPerSecond).toFixed(1) +
+      's of audio at ' + T.tokensPerSec + ' audio tokens a second'));
+  })();
+
+  set('cap0', 'Text is the floor and every conversation pays it. Voice is paid on top, per word ' +
+    'actually spoken \u2014 and billed by DURATION, not by characters.');
+
+  set('correction0',
+    'The first edition of this document was called <em>What an Hour Costs</em>, priced Anthropic ' +
+    'tokens, and put \u201cvoice is unmeasured\u201d in a footnote \u2014 for a product whose premise ' +
+    'is <em>talking</em> to the dead. <strong>It measured one half of the hour in its own title.</strong> ' +
+    'The rate here is Google\u2019s published ' + money(T.audioPerM) + ' per million audio tokens at ' +
+    T.tokensPerSec + ' tokens per second of audio, converted by this fleet\u2019s own measurement: ' +
+    'probe20, on live hardware, found that C characters play for roughly C/' + T.charsPerSecond + ' seconds.');
+
+  /* ── THE LIVE READING ─────────────────────────────────────────────────
+     A MODEL AND A READING ARE DIFFERENT CLAIMS. Everything above is modelled
+     from measured rates; this is what was actually spent. Shown apart, never
+     merged: a document that quietly substituted one for the other would be
+     lying in the most convincing way available to it. */
+  (function () {
+    var box = document.getElementById('live');
+    var stand = function (msg) {
+      box.innerHTML = '<span class="k">The live reading</span><p>' + msg +
+        ' <strong>The modelled figures above stand on their own</strong> \u2014 they are not ' +
+        'replaced by an absent reading.</p>';
+    };
+    stand('Reading the counters\u2026');
+    fetch(FACTS.spendUrl, { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        var sp = d.spend || {}, ar = d.archive || {};
+        if (!d.daysWithData) return stand('The counters hold nothing yet. <em>' + (d._history || '') + '</em>');
+        box.innerHTML = '<span class="k">The live reading \u00b7 what was actually spent</span>' +
+          '<div class="grid">' +
+          '<div><span class="n">' + money(sp.totalUSD || 0) + '</span><span class="l">total, ' +
+            d.daysWithData + ' day' + (d.daysWithData === 1 ? '' : 's') + '</span></div>' +
+          '<div><span class="n">' + money(sp.chatUSD || 0) + '</span><span class="l">text</span></div>' +
+          '<div><span class="n">' + money(sp.voiceUSD || 0) + '</span><span class="l">voice</span></div>' +
+          '<div><span class="n">' + (ar.hitRate == null ? '\u2014' : Math.round(ar.hitRate * 100) + '%') +
+            '</span><span class="l">archive hit rate</span></div>' +
+          '<div><span class="n">' + money(ar.savedUSD || 0) + '</span><span class="l">saved by the archive</span></div>' +
+          '</div><p>' + (d._ || '') + ' The figures above this panel are MODELLED; these are what ' +
+          'the counters recorded. Where the two disagree, <strong>this one is right</strong>.</p>';
+      })
+      .catch(function (e) { stand('The counters could not be read \u2014 ' + (e && e.message) + '.'); });
+  })();
+
+  /* ── CHART 1 · the anatomy of a turn ─────────────────────────────────── */
+  (function () {
+    var s = document.getElementById('c1'), W = 860, X = 20, Y = 46, Hh = 54, x = X;
     var total = turnIn + FACTS.out;
-    var parts = [
-      { k: 'system prompt', v: FACTS.sys,  c: 'var(--c-sys)' },
-      { k: 'history',       v: FACTS.hist, c: 'var(--c-hist)' },
-      { k: 'reply',         v: FACTS.out,  c: 'var(--c-out)' }
-    ];
     s.appendChild(el('text', { x: X, y: 26, fill: 'var(--dim)',
       'font-family': 'var(--mono)', 'font-size': 13 },
       'ONE TURN \u00b7 ' + total.toLocaleString() + ' tokens \u00b7 ' + money(perTurn)));
-    var x = X;
-    parts.forEach(function (p) {
+    [{ v: FACTS.sys, c: 'var(--c-sys)' }, { v: FACTS.hist, c: 'var(--c-hist)' },
+     { v: FACTS.out, c: 'var(--c-out)' }].forEach(function (p) {
       var w = Math.max(2, W * p.v / total);
       s.appendChild(el('rect', { x: x, y: Y, width: w, height: Hh, fill: p.c, rx: 2 }));
       if (w > 90) {
@@ -262,215 +371,194 @@
           'font-family': 'var(--mono)', 'font-size': 12, 'font-weight': 700 },
           Math.round(100 * p.v / total) + '%'));
         s.appendChild(el('text', { x: x + 12, y: Y + 41, fill: '#0d1220',
-          'font-family': 'var(--mono)', 'font-size': 11, opacity: .75 },
-          p.v.toLocaleString()));
+          'font-family': 'var(--mono)', 'font-size': 11, opacity: .75 }, p.v.toLocaleString()));
       }
       x += w;
     });
-    /* the brace that carries the argument: everything left of the reply is
-       INPUT, and input is what a long conversation multiplies */
-    s.appendChild(el('path', { d: 'M' + X + ' ' + (Y + Hh + 14) + ' v8 H' +
-      (X + W * turnIn / total) + ' v-8', fill: 'none', stroke: 'var(--rule)' }));
-    s.appendChild(el('text', { x: X, y: Y + Hh + 42, fill: 'var(--dim)',
+    s.appendChild(el('text', { x: X, y: Y + Hh + 32, fill: 'var(--dim)',
       'font-family': 'var(--mono)', 'font-size': 12 },
       'INPUT \u2014 ' + turnIn.toLocaleString() + ' tokens, sent again on every turn'));
-    s.appendChild(el('text', { x: X, y: Y + Hh + 66, fill: 'var(--dim)',
-      'font-family': 'var(--mono)', 'font-size': 12, opacity: .7 },
-      'the figure\u2019s reply is ' + Math.round(100 * FACTS.out / total) + '% of the traffic'));
   })();
 
   set('cap1', 'The prompt is ' + FACTS.promptChars.full.toLocaleString() +
-    ' characters and does not vary within a conversation. It is sent in full with every question asked.');
+    ' characters and does not vary within a conversation. It is sent in full with every question.');
+  set('finding1', '<strong>' + Math.round(100 * FACTS.sys / (turnIn + FACTS.out)) +
+    '% of a turn is the system prompt, and it is re-sent every time.</strong> The conversation is ' +
+    'the cheaper half of the conversation \u2014 which is why the largest saving available is not ' +
+    'shortening anything, but not sending the same thing twice.');
+  set('window', 'The payload is bounded at <strong>' + (FACTS.window.anchor + FACTS.window.window) +
+    ' messages</strong>, however long the talk runs. <strong>A three-hour conversation costs the ' +
+    'same per turn as the first one.</strong> It is the most important cost decision already in the ' +
+    'code, and it was made before anybody was counting.');
 
-  set('finding1',
-    '<strong>' + Math.round(100 * FACTS.sys / (turnIn + FACTS.out)) +
-    '% of a turn is the system prompt, and it is re-sent every time.</strong> ' +
-    'The conversation is the cheaper half of the conversation \u2014 which is why the largest ' +
-    'saving available is not shortening anything, but not sending the same thing twice.');
-
-  set('window',
-    'The payload is bounded at <strong>' + (FACTS.window.anchor + FACTS.window.window) +
-    ' messages</strong> \u2014 ' + FACTS.window.anchor + ' anchored at the opening, ' +
-    FACTS.window.window + ' recent \u2014 however long the talk runs. <strong>A three-hour ' +
-    'conversation costs the same per turn as the first one.</strong> Without that bound the ' +
-    'payload grows with every exchange and an hour cannot be priced at all. It is the most ' +
-    'important cost decision already in the code, and it was made before anybody was counting.');
-
-  /* ── CHART 2 · the hour, seven ways ─────────────────────────────────── */
-  var rows = [
-    { label: 'full prompt \u00b7 window 14',      sys: FACTS.sys,     n: 14, p: P, now: true },
-    { label: 'full prompt \u00b7 window 10',      sys: FACTS.sys,     n: 10, p: P },
-    { label: 'full prompt \u00b7 window 6',       sys: FACTS.sys,     n: 6,  p: P },
-    { label: 'lean prompt \u00b7 window 14',      sys: FACTS.sysLean, n: 14, p: P },
-    { label: 'lean prompt \u00b7 window 6',       sys: FACTS.sysLean, n: 6,  p: P },
-    { label: 'full prompt \u00b7 window 14 \u00b7 Haiku', sys: FACTS.sys, n: 14, p: H },
-    { label: 'lean prompt \u00b7 window 6 \u00b7 Haiku',  sys: FACTS.sysLean, n: 6, p: H }
-  ].map(function (r) {
-    var histTok = FACTS.hist * r.n / 14;
-    r.perTurn = cost(r.sys + histTok, FACTS.out, r.p);
-    r.hour = r.perTurn * FACTS.turnsTyping;
-    return r;
-  });
-
+  /* ── CHART 2 · the two voice economies ───────────────────────────────── */
   (function () {
-    var s = svg('c2'), X = 250, W = 600, top = 34, bh = 26, gap = 14;
-    var max = Math.max.apply(null, rows.map(function (r) { return r.hour; }));
-    s.appendChild(el('text', { x: 20, y: 20, fill: 'var(--dim)',
-      'font-family': 'var(--mono)', 'font-size': 12 },
-      'AN HOUR OF TYPING \u00b7 ' + FACTS.turnsTyping + ' turns'));
-    rows.forEach(function (r, i) {
-      var y = top + i * (bh + gap);
-      s.appendChild(el('text', { x: X - 14, y: y + 18, 'text-anchor': 'end',
-        fill: r.now ? 'var(--body)' : 'var(--dim)', 'font-size': 13,
-        'font-weight': r.now ? 600 : 400 }, r.label));
-      var w = Math.max(3, W * r.hour / max);
-      s.appendChild(el('rect', { x: X, y: y, width: w, height: bh, rx: 2,
-        fill: r.now ? 'var(--c-sys)' : (r.p === H ? 'var(--c-out)' : 'var(--c-hist)'),
-        opacity: r.now ? 1 : .62 }));
-      s.appendChild(el('text', { x: X + w + 10, y: y + 18,
-        fill: r.now ? 'var(--body)' : 'var(--dim)',
-        'font-family': 'var(--mono)', 'font-size': 12 },
-        money(r.hour) + (r.now ? '   \u2190 today' : '')));
+    var s = document.getElementById('c2'), X = 20, W = 860;
+    s.appendChild(el('text', { x: X, y: 26, fill: 'var(--dim)',
+      'font-family': 'var(--mono)', 'font-size': 13 },
+      'AN HOUR OF SPOKEN AUDIO \u00b7 what the R2 archive covers'));
+    [{ k: 'RECITAL \u2014 reading rooms, dispatches, the podcast',
+       sub: 'fixed text, fixed chunk boundaries \u00b7 the boundaries ARE the cache key',
+       hit: 0.9, c: 'var(--c-out)' },
+     { k: 'CONVERSATION \u2014 the terminal, the counsel',
+       sub: 'unique every turn \u00b7 NEVER hits the archive',
+       hit: 0, c: 'var(--c-voice)' }].forEach(function (r, i) {
+      var y = 60 + i * 92, paid = hourVoice * (1 - r.hit);
+      s.appendChild(el('text', { x: X, y: y, fill: 'var(--body)', 'font-size': 13 }, r.k));
+      s.appendChild(el('text', { x: X, y: y + 18, fill: 'var(--dim)', 'font-size': 11.5, opacity: .8 }, r.sub));
+      s.appendChild(el('rect', { x: X, y: y + 28, width: W, height: 22, rx: 2, fill: 'var(--rule)' }));
+      s.appendChild(el('rect', { x: X, y: y + 28, width: Math.max(3, W * (1 - r.hit)), height: 22, rx: 2, fill: r.c }));
+      s.appendChild(el('text', { x: X + 10, y: y + 44, fill: r.hit ? 'var(--body)' : '#0d1220',
+        'font-family': 'var(--mono)', 'font-size': 12, 'font-weight': 700 },
+        money(paid) + (r.hit ? '   at a ' + Math.round(r.hit * 100) + '% hit rate' : '   full price, every turn')));
     });
   })();
 
-  set('cap2', 'Today is the top bar. Everything below it buys money by removing something \u2014 ' +
-    'except the two in green, which change the model and remove nothing.');
+  set('cap2', 'Same audio, same rate, two completely different bills \u2014 and the difference is ' +
+    'whether the text has ever been spoken before.');
 
-  /* ── CHART 3 · the breaker. This chart exists because the same number was
-        stated two different WRONG ways in conversation before it was drawn:
-        once as five conversations a day (an hour-long outlier read as normal)
-        and once as five hundred (an overcorrection). Drawn, it argues with
-        neither. ─────────────────────────────────────────────────────────── */
+  set('archive',
+    '<code>amenti-voice.js</code> is explicit: <em>the counsel\u2019s text is unique every turn and ' +
+    'NEVER hits the archive; the recital\u2019s boundaries ARE the cache key.</em> <strong>So a spoken ' +
+    'conversation pays full price on every turn and there is no hit rate to hope for on that ' +
+    'path.</strong> An earlier draft of this document claimed a 95% hit rate would make voice nearly ' +
+    'free. True of the recital \u2014 and false of the thing people actually do.');
+
+  set('latency',
+    'probe20 measured the engine on live hardware: <code>render_ms = ' + FACTS.render.floorMs +
+    ' + ' + FACTS.render.perChar + ' \u00d7 chars</code>. So the ' + FACTS.convFirstMax +
+    '-character opening measure takes <strong>' +
+    ((FACTS.render.floorMs + FACTS.render.perChar * FACTS.convFirstMax) / 1000).toFixed(1) +
+    ' seconds</strong> to come back \u2014 the longest silence in the product, and the reason ' +
+    '<code>CONV_FIRST_MAX</code> exists at all. <strong>It is also exactly what the dial sequence ' +
+    'covers</strong>: the announcement, the tone and the ring fill a measured gap, and the ring ends ' +
+    'on the figure\u2019s first word rather than after a fixed count.');
+
+  /* ── CHART 3 · the breaker ───────────────────────────────────────────── */
   var breaker = [2, 5, 10, 20, 60, 90, 180].map(function (t) {
     var tok = t * (turnIn + FACTS.out);
-    return { turns: t, tok: tok, visits: Math.floor(FACTS.breakerTokens / tok), each: t * perTurn };
+    return { turns: t, tok: tok, visits: Math.floor(FACTS.breakerTokens / tok),
+             text: t * perTurn, voice: t * voicePerTurn };
   });
 
   (function () {
-    var s = svg('c3'), X = 70, Y = 250, W = 800, Hh = 200;
+    var s = document.getElementById('c3'), X = 70, Y = 240, W = 800, Hh = 190;
     var max = Math.max.apply(null, breaker.map(function (b) { return b.visits; }));
     var bw = W / breaker.length;
     s.appendChild(el('text', { x: 20, y: 20, fill: 'var(--dim)',
       'font-family': 'var(--mono)', 'font-size': 12 },
-      'VISITS PER DAY THE BREAKER ALLOWS \u00b7 ' + (FACTS.breakerTokens / 1e6) + 'M tokens'));
+      'VISITS PER DAY THE TEXT BREAKER ALLOWS \u00b7 ' + (FACTS.breakerTokens / 1e6) + 'M tokens'));
     s.appendChild(el('line', { x1: X - 14, y1: Y, x2: X + W, y2: Y, stroke: 'var(--rule)' }));
     breaker.forEach(function (b, i) {
-      var h = Math.max(3, Hh * Math.sqrt(b.visits / max));   /* sqrt: 240 vs 2 is unreadable linear */
-      var x = X + i * bw + bw * 0.18, w = bw * 0.64;
-      var hot = b.turns >= 90;
+      var h = Math.max(3, Hh * Math.sqrt(b.visits / max));
+      var x = X + i * bw + bw * 0.18, w = bw * 0.64, hot = b.turns >= 90;
       s.appendChild(el('rect', { x: x, y: Y - h, width: w, height: h, rx: 2,
         fill: hot ? 'var(--c-sys)' : 'var(--c-hist)', opacity: hot ? 1 : .7 }));
       s.appendChild(el('text', { x: x + w / 2, y: Y - h - 10, 'text-anchor': 'middle',
-        fill: 'var(--body)', 'font-family': 'var(--mono)', 'font-size': 13, 'font-weight': 600 },
-        b.visits));
+        fill: 'var(--body)', 'font-family': 'var(--mono)', 'font-size': 13, 'font-weight': 600 }, b.visits));
       s.appendChild(el('text', { x: x + w / 2, y: Y + 22, 'text-anchor': 'middle',
-        fill: 'var(--dim)', 'font-family': 'var(--mono)', 'font-size': 12 },
-        b.turns + ' turns'));
-      s.appendChild(el('text', { x: x + w / 2, y: Y + 40, 'text-anchor': 'middle',
-        fill: 'var(--dim)', 'font-size': 11, opacity: .7 }, money(b.each)));
+        fill: 'var(--dim)', 'font-family': 'var(--mono)', 'font-size': 12 }, b.turns + ' turns'));
     });
-    s.appendChild(el('text', { x: X, y: Y + 74, fill: 'var(--dim)',
+    s.appendChild(el('text', { x: X, y: Y + 54, fill: 'var(--dim)',
       'font-family': 'var(--mono)', 'font-size': 11, opacity: .7 },
       'bar heights are square-rooted \u2014 240 against 2 is unreadable drawn straight'));
+    s.appendChild(el('text', { x: X, y: Y + 76, fill: 'var(--c-voice)',
+      'font-family': 'var(--mono)', 'font-size': 11 },
+      'the SPEAK breaker is separate: ' + (FACTS.breakerSpeakChars / 1e6) + 'M chars/day = ' +
+      money(FACTS.breakerSpeakChars * voicePerChar) + ' of audio, about ' +
+      Math.round(FACTS.breakerSpeakChars / T.charsPerSecond / 3600) + ' hours'));
   })();
 
-  set('cap3', 'A two-minute visit and an hour-long one are the same product and differ ' +
-    'a hundredfold in what the ceiling allows. Which one is pictured decides whether ' +
-    'two million tokens sounds generous or alarming.');
+  set('cap3', 'A two-minute visit and an hour-long one are the same product and differ a ' +
+    'hundredfold in what the ceiling allows.');
 
-  var tenTurn = breaker.filter(function (b) { return b.turns === 10; })[0];
-  var ninety  = breaker.filter(function (b) { return b.turns === 90; })[0];
+  var ten = breaker.filter(function (b) { return b.turns === 10; })[0];
+  var ninety = breaker.filter(function (b) { return b.turns === 90; })[0];
   set('correction',
-    'This was stated twice in conversation, wrongly in both directions, before it was drawn. ' +
-    'First as <strong>' + ninety.visits + ' conversations a day</strong> \u2014 true only of a ' +
-    ninety.turns + '-turn hour, an outlier presented as the normal case, and alarming for that reason. ' +
-    'Then as five hundred, an overcorrection with no arithmetic behind it. ' +
-    '<strong>The measured answer at a realistic ten-turn visit is ' + tenTurn.visits +
-    ' a day.</strong> Modest, and worth knowing before it fires rather than after.');
+    'This was stated twice in conversation, wrongly in both directions, before it was drawn. First ' +
+    'as <strong>' + ninety.visits + ' conversations a day</strong> \u2014 true only of a ' + ninety.turns +
+    '-turn hour, an outlier presented as the normal case. Then as five hundred, an overcorrection ' +
+    'with no arithmetic behind it. <strong>The measured answer at a realistic ten-turn visit is ' +
+    ten.visits + ' a day.</strong>');
 
   set('breakerRows', breaker.map(function (b) {
     return '<tr class="' + (b.turns === 10 ? 'now' : 'dim') + '"><td>' + b.turns +
-      ' turns</td><td class="n">' + b.tok.toLocaleString() + '</td><td class="n">' +
-      b.visits + '</td><td class="n">' + money(b.each) + '</td></tr>';
+      ' turns</td><td class="n">' + b.tok.toLocaleString() + '</td><td class="n">' + b.visits +
+      '</td><td class="n">' + money(b.text) + '</td><td class="n">' + money(b.text + b.voice) + '</td></tr>';
   }).join(''));
 
-  /* ── CHART 4 · the levers, and what each costs in something other than
-        money. The caching bar assumes cached input at a tenth of list, which
-        is the one number here that is an ASSUMPTION and is labelled. ────── */
-  var base = perTurn * FACTS.turnsTyping;
+  /* ── CHART 4 · the levers ────────────────────────────────────────────── */
+  var base = (perTurn + voicePerTurn) * FACTS.turnsTyping;
   var levers = [
-    { k: 'prompt caching', hour: cost(FACTS.sys * 0.1 + FACTS.hist, FACTS.out) * FACTS.turnsTyping,
+    { k: 'prompt caching',
+      hour: (cost(FACTS.sys * 0.1 + FACTS.hist, FACTS.out) + voicePerTurn) * FACTS.turnsTyping,
       cost: 'nothing \u2014 same prompt, same character, same window', good: true, assumed: true },
-    { k: 'Haiku', hour: rows[5].hour, cost: 'unknown \u2014 whether a Haiku Lincoln is worth talking to', good: true },
-    { k: 'window 14 \u2192 6', hour: rows[2].hour, cost: 'the figure holds less of the conversation' },
-    { k: 'the lean prompt', hour: rows[3].hour, cost: 'the doctrine \u2014 drift, turn-taking, distress' }
+    { k: 'Haiku',
+      hour: (cost(turnIn, FACTS.out, H) + voicePerTurn) * FACTS.turnsTyping,
+      cost: 'unknown \u2014 whether a Haiku Lincoln is worth talking to', good: true },
+    { k: 'shorter replies',
+      hour: (perTurn + voicePerTurn * 0.6) * FACTS.turnsTyping,
+      cost: 'the figure says less \u2014 the ONLY lever that touches voice', good: true },
+    { k: 'the lean prompt',
+      hour: (cost(FACTS.sysLean + FACTS.hist, FACTS.out) + voicePerTurn) * FACTS.turnsTyping,
+      cost: 'the doctrine \u2014 drift, turn-taking, distress' }
   ];
 
   (function () {
-    var s = svg('c4'), X = 190, W = 560, top = 40, bh = 24, gap = 30;
+    var s = document.getElementById('c4'), X = 190, W = 560, top = 40, bh = 24, gap = 30;
     s.appendChild(el('text', { x: 20, y: 20, fill: 'var(--dim)',
       'font-family': 'var(--mono)', 'font-size': 12 },
-      'AN HOUR \u00b7 today ' + money(base) + ', and what each lever leaves'));
+      'AN HOUR OF TYPING, BOTH HALVES \u00b7 today ' + money(base)));
     levers.forEach(function (l, i) {
       var y = top + i * (bh + gap);
       s.appendChild(el('text', { x: X - 14, y: y + 17, 'text-anchor': 'end',
         fill: 'var(--body)', 'font-size': 13 }, l.k + (l.assumed ? ' *' : '')));
-      s.appendChild(el('rect', { x: X, y: y, width: W, height: bh, rx: 2,
-        fill: 'var(--rule)' }));
+      s.appendChild(el('rect', { x: X, y: y, width: W, height: bh, rx: 2, fill: 'var(--rule)' }));
       s.appendChild(el('rect', { x: X, y: y, width: W * l.hour / base, height: bh, rx: 2,
         fill: l.good ? 'var(--c-out)' : 'var(--c-hist)' }));
       s.appendChild(el('text', { x: X + W + 10, y: y + 17, fill: 'var(--body)',
         'font-family': 'var(--mono)', 'font-size': 12 }, money(l.hour)));
-      s.appendChild(el('text', { x: X, y: y + bh + 18, fill: 'var(--dim)',
-        'font-size': 12 }, 'costs: ' + l.cost));
+      s.appendChild(el('text', { x: X, y: y + bh + 18, fill: 'var(--dim)', 'font-size': 12 },
+        'costs: ' + l.cost));
     });
   })();
 
-  set('cap4', 'Green takes nothing away. Amber buys money with character. ' +
-    '* the caching bar assumes cached input at a tenth of list price \u2014 the one ' +
-    'assumed figure in this document, and it has not been tested.');
+  set('cap4', 'Green takes little or nothing away. * the caching bar assumes cached input at a ' +
+    'tenth of list price \u2014 the one assumed figure in this document.');
 
   set('levers',
-    '<h3>Why caching is first</h3>' +
-    '<p>The system prompt is <strong>' + FACTS.sys.toLocaleString() + ' tokens, identical on every ' +
-    'turn of a conversation</strong>, and re-sent every time. It is the same text, to the same model, ' +
-    'minutes apart. Nothing about the figure changes when it is cached \u2014 same prompt, same window, ' +
-    'same doctrine \u2014 which makes it the only lever here that is not a trade. <strong>It has not been ' +
-    'investigated.</strong></p>' +
-    '<h3>Why the lean prompt is last</h3>' +
-    '<p>It halves the prompt (' + FACTS.promptChars.full.toLocaleString() + ' \u2192 ' +
-    FACTS.promptChars.lean.toLocaleString() + ' characters) and cuts the bill by only ' +
-    Math.round(100 * (1 - rows[3].perTurn / rows[0].perTurn)) + '% \u2014 because the prompt is a little ' +
-    'over half the input, not all of it. And what it drops is exactly the material that makes a figure ' +
-    'a companion rather than a kiosk: go with them when they wander, take your turn, read the person ' +
-    'and not the words, treat distress as the human. <strong>It is cheaper because it is a thinner ' +
-    'character.</strong> That is a product decision, not an optimisation.</p>');
+    '<h3>Why caching is first</h3><p>The system prompt is <strong>' + FACTS.sys.toLocaleString() +
+    ' tokens, identical on every turn</strong>, and re-sent every time. Nothing about the figure ' +
+    'changes when it is cached, which makes it the only lever that is not a trade.</p>' +
+    '<h3>And why voice has almost no levers at all</h3><p>Voice is billed on DURATION. The only way ' +
+    'to spend less is for the figure to <em>say less</em> \u2014 there is no cheaper way to speak the ' +
+    'same sentence, and the archive already covers everything it can. That makes reply length the ' +
+    'one dial that moves both halves of the bill at once.</p>');
 
   set('unmeasured',
-    '<li><strong>Voice.</strong> Gemini TTS and STT are billed separately and are the other half of a ' +
-    'spoken hour. Not modelled here because <code>/speak</code> is content-hash cached \u2014 a line ' +
-    'anyone has heard is free forever \u2014 so the real cost depends on how much of a conversation is ' +
-    'novel prose, which nothing measures. <em>The only unpriced surface left.</em></li>' +
-    '<li><strong>Prompt caching.</strong> Possibly the largest saving in the system. Nobody has looked.</li>' +
-    '<li><strong>A real conversation.</strong> Every figure here is modelled: 450 characters a message, ' +
-    '400 a reply, 90 or 180 turns an hour. <code>window.AmentiCost</code> has recorded the truth turn by ' +
-    'turn ever since the usage field stopped being discarded, and <code>/visit</code> now catches it ' +
-    'before the tab closes. <strong>One week of real readings beats this entire document</strong>, and it ' +
-    'costs nothing to obtain.</li>');
+    '<li><strong>The real hit rate.</strong> Metered from 28 Aug on both sides \u2014 renders and ' +
+    'archive hits \u2014 and shown in the live panel above once there is traffic behind it.</li>' +
+    '<li><strong>Speech-to-text.</strong> <code>/listen</code> is metered in bytes from 28 Aug and ' +
+    'not yet priced. A voice conversation is billed on both legs.</li>' +
+    '<li><strong>Every surface but one.</strong> These figures price the TERMINAL. SURFACES.json ' +
+    'records that of four conversation surfaces, one is counted.</li>' +
+    '<li><strong>A real conversation.</strong> 450 characters a message, 400 a reply, 90 or 180 turns ' +
+    'an hour \u2014 all modelled. <strong>One week of real readings beats this document.</strong></li>');
 
   set('closer',
-    'The memory writer costs <strong>' +
-    ('$' + cost(FACTS.writer.inTok, FACTS.writer.outTok).toFixed(4)) + '</strong>' +
-    ' once per conversation, and a figure remembering you costs ' + FACTS.memoryBlock +
+    'The memory writer costs <strong>$' + cost(FACTS.writer.inTok, FACTS.writer.outTok).toFixed(4) +
+    '</strong> once per conversation, and a figure remembering you costs ' + FACTS.memoryBlock +
     ' tokens a turn \u2014 ' + money(FACTS.turnsTalking * FACTS.memoryBlock * P.inPerM / 1e6) +
     ' across a long hour. <strong>The thing that brings a reader back is the cheapest thing in the loop.</strong>');
 
   set('method',
-    'Measured ' + FACTS.measured + ' by building the prompts and counting them. Prices are ' +
-    FACTS.price.model + ' and ' + FACTS.haiku.model + ' at the date of writing and will drift. ' +
-    'Turn counts and message lengths are modelled and marked as such; token counts are not. ' +
-    'The method is written down so it can be re-run rather than believed. \u00a9 2026 Ingram Manor LLC.');
+    'Text figures measured ' + FACTS.measured + ' by building the prompts and counting them. Voice ' +
+    'priced from Google\u2019s published Gemini 2.5 Flash TTS rate \u2014 ' + money(T.audioPerM) +
+    ' per million audio tokens at ' + T.tokensPerSec + ' tokens per second of audio \u2014 converted at ' +
+    'C/' + T.charsPerSecond + ' seconds per character, which probe20 measured on live hardware. Prices ' +
+    'are ' + P.model + ' and ' + H.model + ' at the date of writing and will drift. Turn counts and ' +
+    'message lengths are modelled and marked as such; token counts and the render equation are not. ' +
+    'The live panel reads GET /spend. \u00a9 2026 Ingram Manor LLC.');
 })();
 </script>
 </body>
