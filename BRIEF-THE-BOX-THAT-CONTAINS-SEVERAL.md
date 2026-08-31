@@ -194,6 +194,37 @@ a fault: **52 manifests, 52 unlocked, 550 works present, 0 empty, 0 error,
 30.9 MB.** Two rooms lack a card and two lack a terminal. The corpus this box is
 being built to search is in good order. The engine in front of it is not.
 
+### WHAT THE BOX ALREADY DOES — read 31 Aug, and it changes move B
+
+`amenti-hall-box.js`, finally read. Three of its rulings are load-bearing here.
+
+**SEARCH FIRST is already the free pass.** Names and fragments never reach the
+model; only a genuine question spends, and only on Enter. `find()` runs on every
+keystroke at no cost. **Finding ① below is not a proposal — half of it ships
+today.** What is missing is only the semantic half.
+
+**THE COVERAGE STATEMENT HAS A HOME.** The box already renders a `note` line
+beneath the answer from two fields the engine returns: `drawn from: …` out of
+`r.cited`, and `could not be read this turn: …` out of `r.degraded`. **Move D
+needs no new surface** — it needs `searched / opened / not opened` added to what
+the engine returns, and the note prints it. Considerably cheaper than assumed.
+
+**AND THE ONE THAT COSTS SOMETHING — `linkMap` IS BUILT FROM THE CATALOGUE.**
+The box turns cited ids into openable anchors, and *a citation the reader cannot
+open is half a citation*. `linkMap()` walks the same flattened catalogue and maps
+each id to a URL, skipping anything without a hyphen, underscore or dot.
+
+> **THE DOOR LIST CHANGES WHAT THE MODEL CITES. IF `linkMap` STILL HOLDS ONLY
+> DOCUMENT IDS, EVERY CITATION OF A ROOM OR A SECTION GOES DEAD ON THE PAGE —
+> SILENTLY, BECAUSE AN UNMATCHED ID IS SIMPLY NOT LINKED.**
+
+So move B is not one change. It is two that must land together: emit the doors,
+and extend `linkMap` to cover rooms (`library/{key}.json` or the room's own
+door) and sections. **Room keys pass `linkable()`?** `brutus` and `apollo` have
+no hyphen and would be skipped; `augustus-caesar` and `bram-stoker` pass. That
+rule was written to stop the word "hall" being linked in ordinary prose, and it
+will now silently drop half the rooms. It needs revisiting in the same pass.
+
 ### The three findings that shape the build
 
 **① THE ROUTING IS ALREADY BUILT AND UNUSED.** `AmentiHall.find()` searches
@@ -344,13 +375,18 @@ deferred. Taking the trim first means editing the same line twice and degrading
 - *Test:* open the hall, ask a question, get an answer — and
   `node probes/probe-hall-wall.mjs` exits 0.
 
-**B · Build the door list.** 8 sections from `SOURCES.json`, 52 rooms from
-`LIBRARY.json` in the rich form, a note that the roster is name-searchable.
+**B · Build the door list — AND `linkMap` WITH IT.** 8 sections from
+`SOURCES.json`, 52 rooms from `LIBRARY.json` in the rich form, a note that the
+roster is name-searchable. `linkMap` must gain rooms and sections in the same
+change, and `linkable()` must stop rejecting single-word room keys, or citations
+die quietly on the page.
 **Measured at 5,875 chars.** Build this INSTEAD of the trim in A, not after it —
 it drops the prompt under the wall on its own, so the hall answers again and no
 gloss is ever degraded. One change, nothing thrown away.
-- *Test:* `probe-hall-wall` exits 0, the door list is under 6,000 chars, and
-  every section and every one of the 52 rooms appears in it.
+- *Test:* `probe-hall-wall` exits 0; the door list is under 6,000 chars; every
+  section and all 52 rooms appear in it; and **ask a question that cites a
+  single-word room — `brutus`, `apollo` — and confirm the citation is a working
+  link, not plain text.**
 - *Known cost:* for one release the hall knows the SHAPE of the corpus but not
   the individual documents — it can say what the briefs section covers, not
   which brief. That is why B and C belong in one push if the session allows.
@@ -360,7 +396,9 @@ anything named.
 - *Test:* a question naming a figure opens that room and no other. A question
   naming nothing still opens something, or says nothing aboard covers it.
 
-**D · The coverage statement.** Built in from the first line.
+**D · The coverage statement.** Built in from the first line. The surface exists
+already — the box's `note` line prints `r.cited` and `r.degraded`. Add
+`searched / opened / not opened` to what `ask()` returns.
 - *Test:* every answer names how many entries were searched and how many opened.
   Ask something the corpus does not cover; the answer says so plainly.
 
@@ -384,12 +422,24 @@ reconstructed by a model, and move E cannot be written correctly.
 
 Stated so the next session does not mistake absence for absence of a problem.
 
-- **`amenti-hall-box.js` has never been read** by the assistant. It is the box —
-  the interactive surface — and every measurement here is of the engine beneath
-  it.
-- **Whether the box appears on Page1 as well as `hall.html`** is unconfirmed.
-  The engine's own prompt tells the model the visitor is *on the arena page*,
-  while the box is loaded by `hall.html`. One of those is wrong.
+- **`amenti-hall-box.js` HAS now been read** (31 Aug), and it resolved the
+  mount question. Its own comment: *hall.html is the home; the others are
+  contingencies, not plans.* It mounts to `#hall-main`, falls back to `#roster`,
+  then to the top of `<body>` with a console warning. **So the engine's prompt
+  is wrong** — it tells the model the visitor *has typed a question into ASK
+  AMENTI on the arena page*, and the visitor is in the hall. One line, and the
+  hall's whole ethic is not saying what it cannot stand behind.
+- **The box has no case for `system_too_long`.** It special-cases 429 with a
+  written sentence and prints everything else as *The hall could not answer just
+  now: …*. So today's 413 reaches the visitor as a vague error rather than a
+  hall saying something true. Worth a case of its own once #12 is understood.
+- **The question log is an open item nobody has recorded.** The box keeps a
+  local tally at `localStorage['amenti.hall.log']` and its header says a
+  fleet-wide question register needs a Worker tube and is *deliberately NOT
+  built here — recorded as an open item*. It is not on THE STANDING SLIP.
+- **The box is STATELESS by ruling** — each ask stands alone, no conversation
+  memory, *a visitor who wants a conversation has the souls for that*. Any
+  follow-up behaviour in the new box reopens that ruling deliberately.
 - **The proxy is private.** `SYSTEM_CHARS`, the cache key composition, and
   whether tools are supported are all unread. The wall is DECLARED at 20,000 in
   the hall's comments and measured against, never observed.
