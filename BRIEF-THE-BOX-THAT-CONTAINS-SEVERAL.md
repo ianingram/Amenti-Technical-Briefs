@@ -354,6 +354,46 @@ and it is the sharpest instance of the principle in §4. Three moves fall out:
 
 ---
 
+## 4b · SETTLED 31 AUG — three where the analysis left one answer
+
+Settled by the assistant with the captain's leave, and written down so they are
+not reopened by a session that has not read the reasoning. **None of these is a
+judgement call; each is a conclusion.** The judgement calls are in §5.
+
+### `linkable()` — test membership, not shape
+
+`amenti-hall.js` decides what may be linked by requiring a hyphen, underscore or
+dot, written to stop the word "hall" being linked inside ordinary prose. Under
+the door list that rule silently drops every single-word room — `brutus`,
+`apollo`, `moses` — while `augustus-caesar` passes. Roughly half the library
+would cite as plain text.
+
+**Do not relax the regex.** Relaxing it brings back the fault it was written for.
+**Test membership instead:** the door list already holds all 52 room keys and
+all 8 section names, so link an id if and only if it is in that set. A known key
+is linkable because it is known, not because of the shape of its characters.
+This is strictly safer than the current rule *and* fixes the rooms.
+
+### The wall stays at 20,000
+
+`SYSTEM_CHARS` was set by Worker policy — *if a surface 413s here, CHUNK THE
+SURFACE* — after a real overrun. Raising it does not survive §2: at 1,751
+entries the declare-everything design overruns any wall worth setting, so a
+raise buys a few weeks and spends a policy that was paid for. **The road out is
+smaller prompts, not a bigger wall.** Revisit only if a measurement, not a
+deadline, demands it.
+
+### The engine's prompt names the wrong room
+
+`buildSystem` tells the model the visitor *has typed a question into ASK AMENTI
+on the arena page*. The box's own ruling is *hall.html is the home; the others
+are contingencies, not plans.* The visitor is in the hall. One line, fixed
+whenever that file is next open — and it matters more than its size, because a
+hall whose whole ethic is not saying what it cannot stand behind should not open
+by telling the model where the visitor is and be wrong.
+
+---
+
 ## 5 · WHAT IS NOT DECIDED HERE
 
 This brief lays out one road and prices it. The captain picks. The alternatives,
@@ -419,6 +459,12 @@ already — the box's `note` line prints `r.cited` and `r.degraded`. Add
 **F · Scope the meaning to the lane.** The largest single saving — 3,251 chars.
 - *Test:* a question about a figure does not carry the fleet's architecture
   doctrine in its prompt, and `probe-hall-wall` shows the drop.
+
+**H · The three settled in §4b.** `linkable()` by membership, the wall
+unchanged, the prompt's room corrected. H is not a separate push — each lands in
+the file it belongs to, and `linkable()` lands with B.
+- *Test:* a citation of `brutus` is a working link; `probe-hall-wall` still
+  measures against 20,000; the prompt says the hall, not the arena.
 
 **G · Carry `mode` into `LIBRARY.json`.** One field in `probe-library.mjs`.
 Without it no instrument can tell a stored primary source from a passage
