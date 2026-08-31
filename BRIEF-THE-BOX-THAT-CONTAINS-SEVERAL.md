@@ -120,8 +120,8 @@ that better engineering could win. The design is finished.
 ### The insight the corpus hands us for free
 
 The library is not 550 loose works — it is **52 rooms**, one per figure. The
-documents are not 190 loose files — they are **8 sections**, and they are already
-declared in `SOURCES.json`:
+documents are not 190 loose files — they are **8 sections**, already declared in
+`SOURCES.json`:
 
 ```
 the briefs                71        the surfaces          10
@@ -130,30 +130,69 @@ the book itself           29        the slipway            3
 the registers             24        the gameroom           4
 ```
 
-So what goes up front is not a list of leaves. **It is a list of doors.** About
-sixty lines, and it barely grows — adding a work to Caesar's room adds no door,
-and adding a brief adds no section.
+So what goes up front is not a list of leaves. **It is a list of doors.** And it
+barely grows — adding a work to Caesar's room adds no door, adding a brief adds
+no section.
 
-### What the engine sends, per question
+### The rooms, priced from `LIBRARY.json` — 31 Aug
+
+Not estimated. Built from the register and measured. Two forms:
+
+```
+52 rooms, name + work count            1,951 chars     37.5 per room
+52 rooms + up to 3 section titles      5,395 chars    103.8 per room
+```
+
+**Pay for the rich form.** The section titles are the searchable substance:
+
+```
+· brutus — Brutus, 5 works: The disguise; The overthrow; The price
+· bram-stoker — Bram Stoker, 7 works: Dracula (1897); Dracula's Guest (1914)
+· akhenaten — Akhenaten, 6 works: The Great Hymn to the Aton; Boundary Stela
+```
+
+A question about betrayal reaches Brutus through *The overthrow* — not through
+the word "Brutus". **That is exactly the semantic reach `find()` cannot do, and
+the only reason the door list exists.** The bare form is a lookup; the rich form
+is a search. The 3,444-char difference buys the whole point of the design.
+
+### What the engine sends, per question — measured, not estimated
 
 ```
 the meaning         scoped to the lane, not all of HALL.md      ~2,500
 the counts          unchanged                                      599
 the rules           unchanged                                    1,698
-the doors           8 sections + 52 rooms + a note on the roster ~2,940
+the doors           8 sections                                     480
+                    52 rooms, rich form                          5,395
+                    a note that 1,011 souls are name-searchable    120
 what was retrieved  40 results at FULL 85-char gloss             3,400
                                                                ───────
-                                                                11,137
+                                                                14,192
 wall                                                            20,000
-LEFT FOR ACTUAL PASSAGES FROM THE WORKS                          8,863
+LEFT FOR ACTUAL PASSAGES FROM THE WORKS                          5,808
 ```
 
-**Eight thousand characters — roughly 1,477 words of primary source, in every
-answer.** Slip #5 wanted 2,000 and could not afford it. Under this design it is
-not a feature to schedule; it is change from the budget.
+**Roughly 968 words of primary source in every answer, worst case.** Slip #5
+wanted 2,000 characters and could not afford them. Here it is change from the
+budget.
 
-That is the worst case — a question touching every door. Most questions touch
-one or two and cost far less.
+Four combinations, all fitting, so the choice is about quality not survival:
+
+```
+bare rooms + full HALL.md      13,999    under by 6,001    ~1,000 words
+bare rooms + scoped meaning    10,748    under by 9,252    ~1,542 words
+RICH rooms + full HALL.md      17,443    under by 2,557    ~426 words
+RICH rooms + scoped meaning    14,192    under by 5,808    ~968 words   <- take this
+```
+
+That is the worst case, a question touching every door. Most touch one or two.
+
+### The library is the healthiest thing on the ship
+
+From `LIBRARY.json`, and worth stating because everything else in this brief is
+a fault: **52 manifests, 52 unlocked, 550 works present, 0 empty, 0 error,
+30.9 MB.** Two rooms lack a card and two lack a terminal. The corpus this box is
+being built to search is in good order. The engine in front of it is not.
 
 ### The three findings that shape the build
 
@@ -238,6 +277,40 @@ edition in the library. **A remembered quote under a real citation makes the
 edition a lie**, which is precisely what the citation campaign was fought to
 prevent, arriving through the front door.
 
+### AND A GAP IN THE GUARD, FOUND 31 AUG — THE REGISTER CANNOT SEE `recall`
+
+`library.js` declares four work modes, and one of them breaks the rule above:
+
+```
+stored     fetch the .md body and render it        -- a real file
+recall     RECONSTRUCT a public-domain passage
+           VIA THE AI BRIDGE                       -- NO FILE. A MODEL.
+link       external source, a button opens it
+designed   an in-repo designed document
+```
+
+**A `recall` work has no text on disk.** Nothing is fetched, so the substring
+guard has nothing to test against, and a passage arrives from a model wearing a
+citation. That is the pre-Amenti framework already inside the library.
+
+**Worse, the register cannot tell you which works those are.** `probe-library`
+keeps only `title`, `section` and `source` — all 550 works, no exceptions. It
+drops `mode`, `year`, `type` and `url`. So from `LIBRARY.json` a reconstructed
+passage and a stored primary source are indistinguishable.
+
+This is not a reason to stop; it is a thing to know before the guard is written,
+and it is the sharpest instance of the principle in §4. Three moves fall out:
+
+- **Count them.** How many of 550 are `recall`? Unknown, and unknowable from the
+  aggregate. It may be zero, in which case this is a latent trap rather than a
+  live one.
+- **Carry `mode` into `LIBRARY.json`.** One field in `probe-library.mjs`, and the
+  distinction becomes visible to every instrument.
+- **Decide what the box does with a `recall` work.** Cite it and say plainly
+  that the passage is reconstructed, or do not reach it at all. **That is a
+  captain's decision, not the assistant's** — it is the boundary between what
+  Amenti claims and what it does.
+
 ---
 
 ## 5 · WHAT IS NOT DECIDED HERE
@@ -264,14 +337,23 @@ make alone.)
 
 ## 6 · THE MOVES, WITH TESTS THE CAPTAIN CAN PERFORM BY OPENING SOMETHING
 
-**A · Make the hall answer at all.** The trim, or whatever stopgap is chosen.
+**A · Make the hall answer at all.** Slip #12. **Prefer B over the trim** — the
+door list clears the wall on its own, so the trim is only needed if B is
+deferred. Taking the trim first means editing the same line twice and degrading
+190 glosses in between for no lasting gain.
 - *Test:* open the hall, ask a question, get an answer — and
-  `node probes/probe-hall-wall.mjs` exits 0. Slip #12.
+  `node probes/probe-hall-wall.mjs` exits 0.
 
-**B · Build the door list.** Sections from `SOURCES.json`, rooms from
-`LIBRARY.json`, a note that the roster is searchable by name.
-- *Test:* the door list is under ~3,000 chars and every section and room in the
-  registers appears in it.
+**B · Build the door list.** 8 sections from `SOURCES.json`, 52 rooms from
+`LIBRARY.json` in the rich form, a note that the roster is name-searchable.
+**Measured at 5,875 chars.** Build this INSTEAD of the trim in A, not after it —
+it drops the prompt under the wall on its own, so the hall answers again and no
+gloss is ever degraded. One change, nothing thrown away.
+- *Test:* `probe-hall-wall` exits 0, the door list is under 6,000 chars, and
+  every section and every one of the 52 rooms appears in it.
+- *Known cost:* for one release the hall knows the SHAPE of the corpus but not
+  the individual documents — it can say what the briefs section covers, not
+  which brief. That is why B and C belong in one push if the session allows.
 
 **C · Two calls: choose the doors, then open them.** `find()` first, free, for
 anything named.
@@ -286,9 +368,15 @@ anything named.
 - *Test:* plant a plausible but non-existent quotation in a test question; the
   answer does not reproduce it as a quote from the library.
 
-**F · Scope the meaning to the lane.** The largest single saving.
+**F · Scope the meaning to the lane.** The largest single saving — 3,251 chars.
 - *Test:* a question about a figure does not carry the fleet's architecture
   doctrine in its prompt, and `probe-hall-wall` shows the drop.
+
+**G · Carry `mode` into `LIBRARY.json`.** One field in `probe-library.mjs`.
+Without it no instrument can tell a stored primary source from a passage
+reconstructed by a model, and move E cannot be written correctly.
+- *Test:* the register reports a mode for every work, and the count of `recall`
+  works is a number rather than an unknown.
 
 ---
 
@@ -313,6 +401,11 @@ Stated so the next session does not mistake absence for absence of a problem.
   could name every model call and its provider.
 
 ---
+
+*Revised 31 Aug, same session: §3 repriced from `LIBRARY.json` rather than
+estimated, the `recall` gap added to §4, and moves B and G rewritten. The door
+list turned out cheaper and better than the estimate — build it instead of the
+trim.*
 
 *Opened 31 Aug 2026 for THE STANDING SLIP #13. Every number here was measured
 against the live registers by an instrument that lifts the hall's own functions
