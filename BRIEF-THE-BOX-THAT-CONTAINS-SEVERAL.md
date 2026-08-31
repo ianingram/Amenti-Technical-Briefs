@@ -39,8 +39,18 @@ The hall as a place is unaffected by anything below. Only the answering fails.
 ### A NAMING CAUTION, PAID FOR IN THIS SESSION
 `modes` is taken — the terminal's five ways a figure speaks, with a control on
 the page and `setMode` behind it. `throttle` is taken — `amenti-throttle.js`,
-retired, guarded by probe17. `registers` is taken. The lane-selector below needs
-a free word and this brief deliberately does not spend one.
+retired, guarded by probe17. `registers` is taken.
+
+**THE WORD IS `hallway`.** Named by the captain, 31 Aug. The hall is the place;
+a hallway is what runs between places and takes you to the right one — which is
+precisely what the thing does. A question arrives and the hallway decides
+whether it leads to the architecture, the library, or a soul. It collides with
+nothing: `hall`, `hall.html`, `HALL.md`, `amenti-hall.js` and
+`amenti-hall-box.js` are all distinct, and it reads as kin rather than as a new
+vocabulary.
+
+*One caution, worth knowing before it is in forty files: a grep for `hall` now
+catches `hallway` too. On a ship that is read by grepping, that matters.*
 
 ---
 
