@@ -273,10 +273,13 @@ Three things that shape the decision:
 
 - **Unblocks:** Ask Amenti can grow past ~250 entries at all; the library
   becomes searchable rather than only cited.
-- **Acceptance test:** none yet — this is a decision, not a build. It graduates
-  to its own slipway once the road is chosen. The move is: choose between
-  retrieval-with-declared-coverage, purpose-built short glosses, cutting the
-  fixed 40%, and a deliberate wall change — and write the choice down.
+- **IT HAS ITS OWN BRIEF**, written 31 Aug from measurements taken against the
+  live registers: `BRIEF-THE-BOX-THAT-CONTAINS-SEVERAL.md`. It carries the
+  arithmetic, the doors-and-retrieval road priced against the wall, the
+  primary-sources-only rule with a checkable guard, six moves with tests, and
+  what it does not know. **Read the brief; do not plan this from this entry.**
+- **Acceptance test:** none yet — this is a decision, not a build. The move is:
+  read the brief, pick the road, and write the choice down.
 - **A NAMING CAUTION.** `modes` is taken: the terminal's five ways a figure
   speaks, with a control on the page and `setMode` behind it. `throttle` is
   taken: `amenti-throttle.js`, retired, guarded by probe17. `registers` is
