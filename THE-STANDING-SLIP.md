@@ -193,142 +193,103 @@ recorded here rather than quietly corrected. A ninth — the decision to make As
 Amenti *one box containing several* — was made in an earlier session and exists
 nowhere at all; it survived only because the captain remembered it and said so.
 
-### 12 · THE HALL'S ENGINE IS OVER THE WALL — Ask Amenti does not answer
-**Live, and the only fault here that a visitor could hit.** The engine
-(`amenti-hall.js`) assembles a system prompt of **24,208 characters against the
-proxy's `SYSTEM_CHARS` of 20,000.** The Worker refuses it with
-`system_too_long` — a 413 with a named reason in the body. It does not truncate.
-So this is not a degraded hall giving worse answers; it is a silent one.
+### 12 · CLOSED 31 Aug — Ask Amenti answers again
+The engine assembled 24,138 chars against a `SYSTEM_CHARS` of 20,000 and the
+Worker refused every question with `system_too_long`. **The trim was never
+taken.** #13's door list cleared the wall on its own, so no gloss was degraded
+and the same line was not edited twice.
+- **Test passed:** `the hall` workflow green at 22:32; the box answers.
+- **The stopgap this entry proposed is now moot.** Recorded so nobody trims
+  glosses later believing it is still owed.
 
-Measured 31 Aug by `probes/probe-hall-wall.mjs`, which lifts and runs the hall's
-own `catalogueText` and `buildSystem` rather than a copy of them:
+### 13 · BUILT 31 Aug – 1 Sep — the road was taken, and here is what shipped
+The decision was made and the build followed in one night. Read
+`BRIEF-THE-BOX-THAT-CONTAINS-SEVERAL.md` for the arithmetic; this is the state.
 
-```
-HALL.md          5,751
-the counts         599
-the catalogue   16,160    190 entries, 85.1 chars each
-the rest         1,698    preamble and the nine rules
-SYSTEM PROMPT   24,208    wall 20,000 — over by 4,208
-```
+**THE DOORS.** The catalogue of 191 documents is gone. The hall declares 8
+sections and 52 rooms, ~6,390 chars, and a new document inside an existing
+section now costs the prompt NOTHING. Room doors carry up to three of their
+section titles — that is what lets "betrayal" reach Brutus through "The
+overthrow", and it is the whole reason the rich form is paid for.
 
-The hall as a *place* is fine — the page loads, the image shows, the box takes
-typing. Only the answering fails.
+**TWO CALLS.** `pickRooms` sees only the doors and answers which to open, in
+JSON. `buildAnswer` sees what was opened and answers the visitor — and does NOT
+carry the door list, which is what pays for the passages.
 
-- **The stopgap:** the gloss trim at `amenti-hall.js` line 115 is 90 chars.
-  At 40 the prompt fits with ~2,000 to spare. **It buys about three weeks** at
-  the observed growth of ~14 documents a week, and costs gloss quality. It is
-  triage, not a fix, and it should not be mistaken for one.
-- **Unblocks:** Ask Amenti answers at all. #5 becomes affordable again.
-- **Acceptance test:** open the hall, ask a question, get an answer — and
-  `node probes/probe-hall-wall.mjs` exits 0.
-- **Do not raise the wall to fix this.** The Worker's own policy is *if a
-  surface 413s here, CHUNK THE SURFACE*, written after a real overrun. Raising
-  it is a decision for #13, taken deliberately, not a patch taken tonight.
+**THREE KINDS OF DOOR, and they behave differently.**
+- A LIBRARY ROOM opens: fetch the room catalogue, fetch up to `MAX_WORKS`
+  passages of `WORK_SLICE` each, quote them.
+- A SHIP SECTION does not open — **it is already open.** The ship's primary
+  source IS the gloss, already in `SOURCES.json`, already loaded. No fetch.
+  Trimmed, under `SECTION_BUDGET`, and when the cap bites the hall is told how
+  many it did not see.
+- NOTHING FOUND sends the bare door list so the hall can name the nearest
+  rooms without inventing one.
 
-### 13 · DECIDE WHAT REPLACES DECLARE-EVERYTHING (DECISION PENDING)
-**The structural version of #12, and the one that matters.** The hall sends the
-whole catalogue on every question by design, because a retrieval pass can miss
-and never say it missed. That principle is right and this move does not argue
-with it. But it costs one line per document, forever, and the corpus grows.
+**THE AUTHORED NOTES ARE CARRIED.** Room and work notes, under one shared
+`NOTE_BUDGET`, room notes first. This is not decoration: the room `brutus` is
+LUCIUS, not the man who killed Caesar, and the note says so. Without it the hall
+opens Lucius's room for a Marcus question and its training supplies the
+assassination under a Livy citation.
 
-The captain's decision, recorded: **Ask Amenti becomes one box containing
-several** — a single surface that answers about the architecture, about history,
-and about a person, so a visitor need not already know which chat surface
-answers which kind of question. Mostly inward-facing, because the primary-source
-library is the point. The works are called and cited; next they must be
-searched and worked with.
+**THE COVERAGE STATEMENT IS BUILT FROM WHAT HAPPENED**, not from what was asked
+for, and the model is required to pass it on. That is the promise that let
+retrieval replace declaring everything.
 
-**Declaring everything cannot survive that. Not tightly — at all:**
+**AND THE HALL KNOWS THE NAV.** Eleven labels and their addresses, read out of
+Page1.html. Asked where a thing is, it names a label the visitor can see and
+click. `linkable()` now admits `page2`, so the citation is the door.
 
-```
-the architecture     190 documents
-the library          550 works
-the roster         1,011 souls
-                   ─────
-                   1,751 entries
+- **Still open, and it is where the budget grows back:** move F. `HALL.md` is
+  5,751 chars — 29% of the wall — carrying the fleet's architecture into a
+  question about Livy. Scope the meaning to the lane and thousands come back.
+- **Also still open:** move E, the substring guard as a PROBE rather than a
+  rule. The hall is now told to quote and told to quote only from the text; the
+  second half is a promise, not a test.
+- **Acceptance test for what shipped:** ask the hall a historical question; it
+  quotes a passage with its edition beneath. Ask it where the timeline is; it
+  names INTERFACE. `probe-hall-wall` exits 0.
 
-at today's gloss   148,835 chars    7.4x the whole wall
-at a hard trim      87,550          4.4x
-at bare ids          36,771         1.8x the wall, 3.1x the space actually free
-```
+### 14 · CLOSED 31 Aug — the probe is on a rung
+Added to `hall.yml` after `probe-hall`, with `continue-on-error` and a gate
+reading `outcome`. **It has now fired both ways in production** — red at 12:24
+when the hall did not fit, green at 22:32 when it did. A gate that can only fire
+is not a gate.
+- Also corrected: `hall.yml` pushed straight at main and lost a race on its
+  second real day. It now rebases and retries five times, `patrol.yml`'s
+  correction arriving at a second file for the same reason.
 
-Every description deleted still overruns three times. There is no trim that
-reaches it.
+### 15 · CLOSED 31 Aug — it reconciled itself
+`probe-hall` reads `srcs.counts.reachable`, and the 187-vs-190 gap healed at the
+next scheduled run. **The ordering was already right**: `sources.yml` at :22,
+`hall.yml` at :42. This entry over-called a transient as a fault. The probe
+reports the two counts and says when they diverge.
 
-**Retrieval is not tight — it is roomy.** Forty results at full 85-char gloss
-cost 3,400 chars and leave ~8,552 of the wall for meaning and passages.
-
-Three things that shape the decision:
-- **The routing is already built.** `AmentiHall.find()` searches `SOURCES.json`
-  and `ROSTER-INDEX.json` with **no model call and no cost.** It ships today and
-  nothing uses it for this. Read it before building anything (`SERVES`).
-- **The honesty property must be built in from the first line.** The objection
-  to retrieval is *silent* missing, not retrieval. A pass that states its own
-  coverage — searched 1,751, read 12, and here is what it did not open — keeps
-  the ethic. Added later, it will not be added.
-- **The fixed cost is the wrong content for most questions.** `HALL.md` is 5,751
-  chars, 29% of the wall, and it is the ship's meaning. Exactly right for *ask
-  the architecture*; largely wasted on *what did Caesar write*. A box with lanes
-  should choose **what meaning to carry**, not only what to retrieve.
-
-- **Unblocks:** Ask Amenti can grow past ~250 entries at all; the library
-  becomes searchable rather than only cited.
-- **IT HAS ITS OWN BRIEF**, written 31 Aug from measurements taken against the
-  live registers: `BRIEF-THE-BOX-THAT-CONTAINS-SEVERAL.md`. It carries the
-  arithmetic, the doors-and-retrieval road priced against the wall, the
-  primary-sources-only rule with a checkable guard, six moves with tests, and
-  what it does not know. **Read the brief; do not plan this from this entry.**
-- **Acceptance test:** none yet — this is a decision, not a build. The move is:
-  read the brief, pick the road, and write the choice down.
-- **A NAMING CAUTION.** `modes` is taken: the terminal's five ways a figure
-  speaks, with a control on the page and `setMode` behind it. `throttle` is
-  taken: `amenti-throttle.js`, retired, guarded by probe17. `registers` is
-  taken. Whatever the lane-selector is called, it needs a free word.
-
-### 14 · Put `probe-hall-wall` on a rung
-`probes/probe-hall-wall.mjs` landed on `main` 31 Aug and **nothing invokes it.**
-A probe that has never run is a prayer. `patrol.yml` fires only
-`probe-watches` and `probe-ordnance`, so the rung is whatever workflow fires
-`probe-hall` — which has never been identified.
-- **Unblocks:** the wall is watched instead of discovered; #12 cannot recur
-  silently.
-- **Acceptance test:** the workflow runs, and a deliberate overrun fails the
-  build with the probe's FAIL in the log.
-- **Order matters:** the walk, then `probe-hall`, then `probe-hall-wall`. See
-  #15 — that ordering closes a second fault as a side effect.
-
-### 15 · `probe-hall` has no freshness check on what it reads
-It takes `documents_indexed` straight from `srcs.counts.reachable`, so its
-counts are only as fresh as the walk that ran before it. On 30 Aug it ran at
-18:44 against a register the walk did not update until 01:08, and the hall is
-now permitted to state **187 documents while the register holds 190.**
-
-Its own header says *a count that is silently stale is the fault this place was
-built to refuse* — but the guard it implements only nulls a register it cannot
-**read**. A register that reads fine and is six hours behind passes straight
-through.
-- **Unblocks:** the hall states no number that is quietly out of date.
-- **Acceptance test:** `HALL-STATE.json` carries the `generated` stamp of the
-  `SOURCES.json` it read, and the probe says so when they diverge.
-
-### 16 · The Probe Corps roster is six weeks stale, and `probe3` carries a false green
-`Amenti_Probe_Corps.html` is Rev B, 19 July. It says *when you ask "where are the
-probes?", the answer is here*, and for roughly sixteen of them it is not —
-`probe-hall`, `probe-citations`, `probe-engine`, `probe-gate`, `probe-library`,
-`probe-serves`, `probe-surfaces`, `probe-voice`, `probe-works`, `probe-post`,
+### 16 · The roster is stale, and `probe3` CANNOT RUN AT ALL
+`Amenti_Probe_Corps.html` is Rev B, 19 July, and roughly sixteen probes are
+absent from it — `probe-hall`, `probe-citations`, `probe-engine`, `probe-gate`,
+`probe-library`, `probe-serves`, `probe-surfaces`, `probe-voice`, `probe-post`,
 `probe-production`, `probe-spells`, `probe21`, `probe-page1`, `probe-roster`,
-`probe-panes` are all absent, and `probe-hall-wall` is new.
+`probe-panes`, and now `probe-hall-wall`.
 
-**Worse, the doctrine and the register disagree about `probe3`.** The roster
-calls it THE PHANTOM, guarding script injection. `SOURCES.json` says it is Page1
-integrity and that it **carries a false green** — a section reading one file into
-two variables and asserting they are equal, an assertion that cannot fail. The
-register wins. So a probe that cannot fail is patrolling, and the doctrine points
-at a different probe entirely.
-- **Unblocks:** the corps' own doctrine stops being a source of false comfort.
-- **Acceptance test:** the roster lists every probe in `SOURCES.json`, `probe3`
-  is described as the register describes it, and its false-green section either
-  asserts something that can fail or is removed and its absence recorded.
+**AND `probe3` IS WORSE THAN A FALSE GREEN — read 1 Sep.** Its section 3 reads
+one file into two variables and asserts they are equal, which cannot fail. But
+the path it reads is `/mnt/user-data/uploads/` — **an assistant session
+sandbox** that exists on no machine and in no runner. A later section reads
+`window.AMENTI_VOICE` inside a Node script. And what it guards is
+`amenti-throttle.js`, the RETIRED TTS engine that probe17 exists to keep
+surfaces away from.
+
+Nothing invokes it. So it never fires, and if it did it would crash before
+reaching the assertion that cannot fail. **It is a probe written inside a
+session, against files that existed only in that session, and committed.**
+
+- **Recommended: RETIRE IT.** There is no working probe inside to rescue —
+  delete the file, remove its entry, and record why, as `probe-works` was on
+  31 Aug.
+- **Acceptance test:** the roster lists every probe in `SOURCES.json`; `probe3`
+  is gone or genuinely runnable; and no probe in `probes/` references
+  `/mnt/user-data/`.
 
 ### 17 · Caesar may be speaking in the wrong voice
 The terminal displays **GAIUS JULIUS CAESAR**; `names.csv` holds **Julius
@@ -383,27 +344,188 @@ cannot see is a brief the hall cannot cite.
 
 ---
 
+## ADDED 1 SEPTEMBER 2026 — what the build surfaced
+
+Nine of these were found by the captain asking a question the assistant could
+not answer, or by attacking a probe until it admitted a fault. None was found by
+reading a register and believing it.
+
+### 23 · The budgets now trade against each other, and only the probe holds them
+Call two has FOUR shapes — library passages, the ship's register, nothing-found,
+and a mixed pick — against six constants that compete for one 20,000-char wall:
+`WORK_SLICE`, `MAX_WORKS`, `SECTION_BUDGET`, `SECTION_GLOSS`, `NOTE_BUDGET`,
+`SECTION_IDS`, plus `NAV` and `HALL.md` as fixed cost. Every attempt on 1 Sep to
+change one without running `probe-hall-wall` produced a warning or a breach.
+- **This is the entry that keeps the rest affordable.** The complexity is only
+  safe because an instrument measures it. Do not tune a constant by reasoning.
+- **Acceptance test:** none — a standing condition, not a move. Run the probe.
+
+### 24 · `probe-hall-wall` under-reported three times, each for the same reason
+It measured a MODEL of the prompt instead of the prompt. Invented filler source
+lines (out by 160), a synthetic section block (477), and three shapes counted
+where four existed (285, and the missing one was the largest). Each was found by
+running the live flow beside it and comparing.
+- **Fixed:** it now builds every worst case from the real functions on the real
+  registers, and probe and live agree to the character.
+- **The lesson generalises:** a probe that constructs its own worst case is
+  measuring its author's imagination. Any probe that does this is suspect.
+- **Acceptance test:** the reported worst case equals the largest prompt a live
+  run produces. Re-check whenever a shape is added.
+
+### 25 · A lifted function closes over things the lift does not take
+Five times on 31 Aug–1 Sep a new private constant broke `probe-hall-wall` the
+moment it was added — `ROOM_SECTIONS`, `NOTE_BUDGET`, `SECTION_IDS`, `NAV` and
+others. Each time it reported UNREAD rather than crashing or passing, which is
+the guard working, but the seeded list must be extended by hand every time.
+- **Unblocks:** the probe stops needing an edit each time the hall gains a
+  constant.
+- **Acceptance test:** add a new `var` inside the IIFE that a lifted function
+  uses; the probe still measures, without being told the name.
+
+### 26 · CORRECTED 1 Sep — the cache is GitHub's, not the query string
+This entry said `?v=1` was the cause: a version string that never changes, so a
+browser holds the old file forever. **That was wrong, and it was asserted
+without reading the headers.** GitHub Pages sends:
+
+```
+cache-control: max-age=600
+etag: "6a964d91-5ed5"
+```
+
+The browser will not re-ask for **ten minutes**, query string or none. Removing
+`?v=1` changes nothing; the header is GitHub's and cannot be overridden on
+Pages. What costs an hour is reloading inside that window and reading the result
+as a code fault — which happened on 1 Sep with the box.
+
+- **What actually works:** hard-reload forces revalidation. Or bump the number —
+  `?v=1` to `?v=2` is a different URL with no cache entry, which does work and
+  is useless left at 1 forever.
+- **The move, if it is worth one:** a probe reading each
+  `<script src="...?v=N">` against the file's git hash, failing when the bytes
+  moved and the number did not. Nothing else ends it permanently.
+- **Acceptance test:** change a script, leave its `?v=` alone, and the probe
+  fails.
+
+### 27 · `data-page="timeline"` on Page1 is not a timeline
+It is BROWSE — *THE CODEX · BROWSE BY ORDER*, a roster browser indexed
+AMENTI/BRW/v1.0. The name outlived the pane. Anyone grepping Page1 for
+"timeline" finds a tab and concludes the flagship has one; the assistant did, on
+1 Sep. The hall's NAV entry now warns about it, which is a plaster over a name
+that lies.
+- **Acceptance test:** the section, the button's `data-target`, the CSS selector
+  and the router all say `browse`, and nothing on the flagship claims a timeline.
+
+### 28 · The nav is authored in `amenti-hall.js` and will go stale
+Eleven labels and their addresses, read out of Page1.html by hand. This is the
+same fault as Page2's gloss saying "microphone" for months — a description that
+must be updated when the thing changes, and will not be.
+- **Unblocks:** the hall stops being able to send a visitor to a door that moved.
+- **Acceptance test:** a probe reads the `<a class="mn-*">` tags and the
+  `<section data-page>` targets straight out of Page1 and fails when `NAV`
+  disagrees with them.
+
+### 29 · A gloss can fall behind its file, and nothing watches for it
+`Page2.html` is 1.5 MB holding nine views, a double helix and an events register
+from a published sheet. Its gloss said *microphone, chunker, daily generation
+path* — accurate when written, and months stale. `SOURCES.json` tracks whether a
+file is REACHABLE and whether it is DESCRIBED. It cannot tell that a description
+has stopped being true.
+- **Why it matters now:** the hall answers from these lines. A stale gloss is
+  the same fault as a citation pointing at the wrong edition.
+- **Acceptance test:** a reading that flags files whose size or commit history
+  has moved far since their gloss was last touched. Related to #9's churn idea,
+  pointed at a different question.
+
+### 30 · The BETA strand's events live in a Google Sheet no register knows
+Page2's events come from a published Google Sheet fetched at runtime. It is in
+no index, walked by no probe, and outside every repo. If it moves or its share
+setting changes, the strand empties and nothing on the ship would notice.
+- **Acceptance test:** the sheet is named in `SOURCES.semantics.json`, and an
+  instrument reads it and reports a row count.
+
+### 31 · The timeline the hall can name but cannot place you on
+The roster carries `Birth-Date` AND `Death-Date` for all 1,011 souls — zero
+missing, -10000 to 2003 — plus a `Region` column. So "who else was alive in this
+year, and where" is exact and needs no new register: at 509 BC, while Brutus
+expels the Tarquins, the Buddha, Confucius and Sun Tzu are alive.
+- **The captain's intent:** a reader should see where they stand in time and
+  what stood beside them. Page2 already does this as a spiral; what is missing
+  is the hall being able to POSITION a reader on it after an answer.
+- **Known blockers:** 7 of 52 rooms do not join to a roster name
+  (`julius-caesar` vs `Gaius Julius Caesar`) — the same mismatch as #17, so one
+  fix serves both. Duplicate souls exist (`Buddha` and `Gautama Buddha`;
+  `Augustine of Hippo` and `Saint Augustine`) and a timeline shows them twice.
+  `Region` holds a misspelling (`North Ameirca`, one soul) and one value that is
+  not a region (`Judaea & Rome`).
+- **Not a build yet.** A shared script in the shape of `library.js`, surfacing
+  first in the hall. Its own slipway when it earns one.
+
+### 32 · An events timeline is downstream of the library, not parallel to it
+Cited events need witnesses aboard, and 52 rooms of 1,011 souls is 5%. Three of
+four test events had a witness with a room — Herodotus, Josephus, Gibbon — and
+that is the good case. **Recorded as held, not planned.** The move that unblocks
+it is more rooms.
+- **Acceptance test:** n/a until adopted.
+
+### 34 · CLOSED 1 Sep — move E, the quotation guard
+The hall was told to quote only from the text it was handed and **nothing
+checked that it did** — the largest gap in the citation policy, and the one
+rule aboard with a sentence instead of an instrument. The box now matches every
+quoted span, character for character, against the passage the engine actually
+fetched. Three states: verified in the text, verbatim in a librarian's NOTE
+instead (a real distinction — on 31 Aug the hall said "as the text puts it"
+about a line that was in the note and not in the slice), or unmatched and
+therefore uncoloured. **The colour is earned, never claimed**; a false
+quotation painted as verified would be worse than no colour at all. Eleven
+attacks: hard line-wraps collapse and still match, elision and a one-word
+substitution both fail, HTML injection stays escaped, and a verified quotation
+keeps a working link inside it.
+- **Test passed:** all three states render, and the tally prints under every
+  answer even when everything passed — a guard that speaks only on failure
+  leaves a reader unable to tell it ran.
+- **Costs no prompt budget.** `opened` is returned to the page and never sent
+  to the model.
+
+### 35 · The engine was invisible to its own register — CLOSED 1 Sep
+`amenti-hall.js`, `amenti-hall-box.js` and `library.js` were in no index, so the
+hall could not describe the thing answering the question. Described 1 Sep. Two
+root `.js` files were indexed before this; the rest of SLIP #21's "the index
+does not walk root .js" stands.
+
+### 33 · My prefixed filename is in `probes/` again
+`probes/Amenti.live__probes__probe-hall-wall.mjs` — a delivery-naming scheme the
+assistant invented, abandoned, and reintroduced. It is junk beside the real file
+and it shows in the drift report. Delete it.
+- **Acceptance test:** the walk reports it gone; `unindexed` drops by one.
+
+---
+
 ## THE CRITICAL PATH — what gates what
 
-Reordered 31 Aug. A live fault on a visitor-facing surface outranks the fleet
-work, and the fleet work is unchanged beneath it.
+Reordered 1 Sep. #12, #14 and #15 are closed and #13 is built; the head of the
+path is no longer a live fault but the two things that keep the built thing
+honest.
 
 | # | Move | Unblocks |
 |---|---|---|
-| 1 | Make Ask Amenti answer at all (#12) | the surface stops being silent |
-| 2 | Decide what replaces declare-everything (#13) | the box can grow past ~250 entries |
-| 3 | Put `probe-hall-wall` on a rung (#14) | the wall is watched, not rediscovered |
-| 4 | Wire `probe-ordnance` to `fleet.json` (#1) | the autonomy loop closes |
-| 5 | Wire THE WEEK's cron (#2) | resumption begins; a press fires |
-| 6 | Fix the Dispatch sensor (#3) | the fleet status can be trusted |
-| 7 | Walk the Docket + Studios (#6, #7) | the last two tubes become readings |
+| 1 | Move E: the substring guard as a PROBE (#13) | a quotation is tested, not promised |
+| 2 | Move F: scope the meaning to the lane (#13) | ~3,000 chars back for passages |
+| 3 | Wire `probe-ordnance` to `fleet.json` (#1) | the autonomy loop closes |
+| 4 | Wire THE WEEK's cron (#2) | resumption begins; a press fires |
+| 5 | Fix the Dispatch sensor (#3) | the fleet status can be trusted |
+| 6 | Walk the Docket + Studios (#6, #7) | the last two tubes become readings |
 
-**#12 and #13 are one problem at two timescales.** #12 is triage that buys about
-three weeks; #13 is the road. Doing #12 alone and calling it closed is the
-failure this entry exists to prevent — the reason it stands above #13 is only
-that a silent surface should not wait on a design decision.
+**#1 and #2 above are the unfinished halves of #13, not new work.** The hall now
+tells the model to quote only from the text it was given; nothing checks that it
+did. And 29% of the wall carries the fleet's architecture into questions about
+Livy.
 
-Items 8, 9, 15–22 are independent — do them when they surface, not in sequence.
+**And read #23 before touching any constant in `amenti-hall.js`.** Six budgets
+trade against one wall across four prompt shapes. Every attempt to tune one by
+reasoning on 1 Sep produced a warning or a breach.
+
+Items 8, 9, 16–22 and 24–33 are independent — do them when they surface, not in
+sequence.
 
 ---
 
@@ -429,6 +551,13 @@ Items 8, 9, 15–22 are independent — do them when they surface, not in sequen
   `Page1.html` unattended.
 
 ---
+
+*Updated 1 Sep 2026: #12, #14 and #15 CLOSED by their own tests, #13 BUILT and
+rewritten to say what shipped, moves 23-33 added, the critical path reordered
+around the two unfinished halves of #13. The hall went from silent on every
+question to opening rooms and quoting Livy with its edition in one night; nine
+of the eleven new moves were found by the captain asking a question the
+assistant could not answer, or by attacking a probe until it admitted a fault.*
 
 *Updated 31 Aug 2026: moves 12-22 added, #4 closed by supersession, #5 blocked,
 the critical path reordered. Eight of those moves had been sitting in a log and a
