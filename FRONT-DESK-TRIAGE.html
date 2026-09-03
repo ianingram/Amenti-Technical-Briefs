@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Front Desk Triage · Amenti Technical Brief</title>
+<style>
+:root{
+  --ink:#07080c; --ink-2:#0d0f16; --bone:#e9e5da; --slate:#8c93a4;
+  --gold:#c9a227; --gold-2:#e8c65a; --gold-dim:#7d6618; --oxide:#b0413e;
+  --verdigris:#4a8f9e; --blue:#7fb4f0; --rule:#1d212c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--bone);
+  font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;padding:0 24px 120px}
+.page{max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(38px,6.5vw,70px);line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0 0 6px}
+h3{font-size:18px;letter-spacing:0;margin:0 0 8px}
+p{margin:0 0 18px;max-width:68ch}
+strong{font-weight:500;color:#fff}
+em{font-style:italic;color:var(--slate)}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:500}
+a{color:var(--gold)}
+header{padding:78px 0 0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.16em;margin:0 0 26px}
+.sub{font-size:20px;color:var(--slate);max-width:64ch;margin:22px 0 0;line-height:1.5}
+section{margin:64px 0 0;border-top:1px solid var(--rule);padding-top:42px}
+section.nolead{border-top:none;padding-top:0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold-dim);letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+blockquote{margin:34px 0;padding:0 0 0 22px;border-left:2px solid var(--gold);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:22px;line-height:1.4;color:var(--bone);max-width:60ch}
+blockquote em{color:var(--slate)}
+figure{margin:34px 0;border:1px solid var(--rule);border-radius:10px;background:var(--ink-2);padding:26px 22px 16px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--slate);letter-spacing:.05em;margin-top:14px;text-align:center}
+.lanes{margin:26px 0;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.lane{display:grid;grid-template-columns:150px 1fr;border-top:1px solid var(--rule)}
+.lane:first-child{border-top:none}
+.lane .h{padding:16px 18px;background:var(--ink-2);font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.04em}
+.lane .b{padding:16px 20px}
+.lane .b b{color:#fff;font-weight:500}
+.lane .b .rule{display:block;margin-top:6px;font-size:13px;color:var(--slate)}
+.lane.rooms .h{color:var(--gold)} .lane.register .h{color:var(--verdigris)}
+.lane.scaffold .h{color:var(--slate)} .lane.graph .h{color:var(--blue)}
+.lane.fail .h{color:var(--oxide)}
+@media(max-width:640px){.lane{grid-template-columns:1fr}.lane .h{border-bottom:1px solid var(--rule)}}
+ul{margin:0 0 18px;padding:0 0 0 22px;max-width:68ch}
+li{margin:0 0 10px}
+li::marker{color:var(--gold-dim)}
+.k{font-family:"IBM Plex Mono",monospace;font-size:.9em;color:var(--verdigris)}
+footer{margin:82px 0 0;border-top:1px solid var(--gold-dim);padding-top:22px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate);letter-spacing:.05em;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="kicker">AMENTI · TECHNICAL BRIEF · 3 SEPTEMBER 2026</p>
+  <h1>Front Desk Triage</h1>
+  <p class="sub">A visitor asks one question. Behind the desk, several faculties
+  can answer &mdash; and each is bound by a different rule for what it may say.
+  How the Ask&nbsp;Amenti box decides, and shows its work.</p>
+</header>
+
+<section class="nolead" style="margin-top:56px;border-top:none">
+  <blockquote>
+    The desk does not just answer. It says <em>where the answer came from</em>,
+    and refuses to let one faculty borrow another&rsquo;s authority.<br>
+    <em>&mdash; the discipline of the desk</em>
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">The problem</p>
+  <h2>One box, many faculties.</h2>
+  <p>A visitor types a question into one box. But the ship can answer it from
+  several places, and they are not equal. A primary-source room quotes verbatim,
+  cited. The ship&rsquo;s own files describe the architecture. General knowledge
+  supplies the connective tissue no source aboard yet covers. And the mention
+  graph, newest of all, knows whom a figure named. <strong>Each of these may say
+  some things and must never say others</strong> &mdash; and the danger is that
+  one faculty borrows the authority of another: general knowledge wearing the
+  colours of a citation, a guess dressed as a quote.</p>
+  <p>Triage is how the desk keeps them honest &mdash; routing the question,
+  answering from what fits, and <em>showing which faculty spoke</em> so the
+  visitor always knows the ground beneath each sentence.</p>
+</section>
+
+<figure>
+<svg viewBox="0 0 900 380" role="img" aria-label="A question routed across the desk's faculties">
+  <!-- the question -->
+  <rect x="360" y="20" width="180" height="44" rx="8" fill="none" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="450" y="47" text-anchor="middle" fill="#c9a227" font-family="IBM Plex Mono,monospace" font-size="13">a question</text>
+  <!-- the desk -->
+  <rect x="330" y="96" width="240" height="40" rx="6" fill="#0d0f16" stroke="#8c93a4" stroke-width="1"/>
+  <text x="450" y="121" text-anchor="middle" fill="#e9e5da" font-family="IBM Plex Mono,monospace" font-size="12" letter-spacing="2">THE FRONT DESK</text>
+  <line x1="450" y1="64" x2="450" y2="96" stroke="#8c93a4" stroke-width="1.2"/>
+
+  <!-- four lanes down -->
+  <g font-family="IBM Plex Mono,monospace" font-size="11">
+    <!-- rooms -->
+    <line x1="450" y1="136" x2="130" y2="190" stroke="#c9a227" stroke-width="1.2"/>
+    <rect x="30" y="196" width="200" height="70" rx="6" fill="none" stroke="#c9a227" stroke-width="1.3"/>
+    <text x="130" y="222" text-anchor="middle" fill="#c9a227">ROOMS</text>
+    <text x="130" y="240" text-anchor="middle" fill="#8c93a4" font-size="10">verbatim, cited</text>
+    <text x="130" y="254" text-anchor="middle" fill="#8c93a4" font-size="10">the quote guard rules here</text>
+
+    <!-- register -->
+    <line x1="450" y1="136" x2="360" y2="190" stroke="#4a8f9e" stroke-width="1.2"/>
+    <rect x="260" y="196" width="200" height="70" rx="6" fill="none" stroke="#4a8f9e" stroke-width="1.3"/>
+    <text x="360" y="222" text-anchor="middle" fill="#4a8f9e">REGISTER</text>
+    <text x="360" y="240" text-anchor="middle" fill="#8c93a4" font-size="10">the ship&#8217;s own files</text>
+    <text x="360" y="254" text-anchor="middle" fill="#8c93a4" font-size="10">what a source describes</text>
+
+    <!-- scaffolding -->
+    <line x1="450" y1="136" x2="560" y2="190" stroke="#8c93a4" stroke-width="1.2"/>
+    <rect x="490" y="196" width="200" height="70" rx="6" fill="none" stroke="#8c93a4" stroke-width="1.3"/>
+    <text x="590" y="222" text-anchor="middle" fill="#8c93a4">SCAFFOLDING</text>
+    <text x="590" y="240" text-anchor="middle" fill="#8c93a4" font-size="10">general knowledge</text>
+    <text x="590" y="254" text-anchor="middle" fill="#8c93a4" font-size="10">context, never citation colours</text>
+
+    <!-- graph -->
+    <line x1="450" y1="136" x2="790" y2="190" stroke="#7fb4f0" stroke-width="1.2"/>
+    <rect x="700" y="196" width="180" height="70" rx="6" fill="none" stroke="#7fb4f0" stroke-width="1.3"/>
+    <text x="790" y="222" text-anchor="middle" fill="#7fb4f0">THE GRAPH</text>
+    <text x="790" y="240" text-anchor="middle" fill="#8c93a4" font-size="10">whom a figure named</text>
+    <text x="790" y="254" text-anchor="middle" fill="#8c93a4" font-size="10">shown only where sourced</text>
+  </g>
+
+  <!-- the answer, reassembled -->
+  <path d="M130 266 Q130 320 440 320 M360 266 Q360 316 445 320 M590 266 Q590 316 455 320 M790 266 Q790 320 460 320" fill="none" stroke="#1d212c" stroke-width="1"/>
+  <rect x="330" y="320" width="240" height="44" rx="8" fill="none" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="450" y="342" text-anchor="middle" fill="#e9e5da" font-family="IBM Plex Mono,monospace" font-size="12">one answer</text>
+  <text x="450" y="357" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="9.5">each sentence labelled by its ground</text>
+</svg>
+<figcaption>One question, routed across four faculties, reassembled into one answer &mdash; with each faculty&rsquo;s contribution shown for what it is.</figcaption>
+</figure>
+
+<section>
+  <p class="eyebrow">The lanes</p>
+  <h2>Four faculties, four rules.</h2>
+  <p>The engine hands the desk a response, and the desk reads which faculties
+  spoke &mdash; <span class="k">opened</span> (rooms), <span class="k">register</span>
+  (ship files), the prose itself (scaffolding), and now the graph. Each renders
+  in its own panel, under its own rule.</p>
+
+  <div class="lanes">
+    <div class="lane rooms"><div class="h">ROOMS</div><div class="b">
+      <b>Primary sources, quoted verbatim.</b>
+      <span class="rule">Rule: every quotation is checked against the fetched text
+      (the quote guard). A verified quote earns gold; a substituted word fails
+      and is not shown as a quote. The <em>read&nbsp;from</em> panel lists every
+      work opened &mdash; including those read but not quoted, so coverage is
+      never overstated.</span>
+    </div></div>
+    <div class="lane register"><div class="h">REGISTER</div><div class="b">
+      <b>The ship&rsquo;s own files.</b>
+      <span class="rule">Rule: a question about the architecture is answered from
+      the documents that describe it, and those documents are named as what was
+      opened. The ship&rsquo;s files are a thing that can be cited too.</span>
+    </div></div>
+    <div class="lane scaffold"><div class="h">SCAFFOLDING</div><div class="b">
+      <b>General knowledge &mdash; the connective tissue.</b>
+      <span class="rule">Rule: context (dates, places, background) is allowed in
+      the prose, but <em>never wears the citation colours</em> and never claims a
+      source it lacks. It is scaffolding: provisional, retreating as sources
+      rise to replace it. (The ratchet, Slip #55.)</span>
+    </div></div>
+    <div class="lane graph"><div class="h">THE GRAPH</div><div class="b">
+      <b>Whom a figure named &mdash; the newest lane.</b>
+      <span class="rule">Rule: when a room is opened, its harvested edges appear
+      as <em>the connections</em>: whom the figure named, in their own text, and
+      &mdash; where the named figure also has a room &mdash; a door the reader
+      can walk through. A connection is shown only because a source bears it.</span>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The failure lane</p>
+  <h2>The honest &ldquo;no.&rdquo;</h2>
+  <p>Triage includes the case where no faculty can answer well. The desk does not
+  paper over it. If the router misses, if no room opens and no register file
+  fits, the desk says so &mdash; <span class="k">degraded</span> carries the
+  reason, and the answer is not dressed up as more than it is. <strong>A silent
+  fallback that quietly downgrades a sourced answer to a remembered one is the
+  failure the whole ship is built to prevent</strong>; the desk names the
+  downgrade instead of hiding it.</p>
+  <blockquote>
+    Better a visible &ldquo;I could not source that&rdquo; than an invisible
+    guess in a citation&rsquo;s clothing.
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">Why it holds together</p>
+  <h2>The desk borrows no authority it has not earned.</h2>
+  <ul>
+    <li><strong>Each lane renders separately.</strong> Rooms in the answer and
+    the <em>read&nbsp;from</em> panel; the graph in <em>the connections</em>;
+    scaffolding in plain prose. A reader can always tell which faculty is
+    speaking, because each has its own place and its own colour.</li>
+    <li><strong>The quote guard is sovereign and untouched.</strong> Every lane
+    added &mdash; colouring, connections &mdash; is built to leave the
+    verification byte-for-byte intact. New faculties may be added; none may
+    weaken the one that proves the quotes.</li>
+    <li><strong>The newest lane changed nothing beneath it.</strong> The
+    connections panel reads harvested edges the desk already had the key for and
+    renders them in their own panel &mdash; additive, separate, sourced. The
+    proof that this was done safely: the guard did not move.</li>
+    <li><strong>Gold is reserved.</strong> Across every lane, the earned colour
+    of a verified quotation is never spent on anything else &mdash; not a date,
+    not a connection, not a name. The one thing that means &ldquo;checked against
+    the text&rdquo; is never faked.</li>
+  </ul>
+  <blockquote>
+    The front desk is where the whole ship meets the visitor. Its triage is the
+    promise that every sentence carries the weight of its own source &mdash; no
+    more, and no less.
+  </blockquote>
+</section>
+
+<footer>
+  AMENTI &middot; INGRAM MANOR LLC &middot; ONE BUILDER, IN THE OPEN, IN PLAIN TEXT<br>
+  Surfaces: amenti-hall-box.js (the desk) &middot; amenti-hall.js (the prompt) &middot; the mention graph<br>
+  Companion: THE-CONSTELLATION &middot; A-SYSTEM-NOT-A-BURDEN &middot; FRAUD-OR-FICTION &middot; Slip #53 #55 #59<br>
+  One question in. One answer out. Every sentence standing on its own ground.
+</footer>
+
+</div>
+</body>
+</html>
