@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Constellation · Amenti Technical Brief</title>
+<style>
+:root{
+  --ink:#07080c; --ink-2:#0d0f16; --bone:#e9e5da; --slate:#8c93a4;
+  --gold:#c9a227; --gold-dim:#7d6618; --oxide:#b0413e;
+  --verdigris:#4a8f9e; --blue:#7fb4f0; --rule:#1d212c;
+  --sat-n:#8b9bff; --sat-u:#7fdce8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--bone);
+  font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;padding:0 24px 120px}
+.page{max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(38px,6.5vw,70px);line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0 0 6px}
+h3{font-size:18px;letter-spacing:0;margin:0 0 8px}
+p{margin:0 0 18px;max-width:68ch}
+strong{font-weight:500;color:#fff}
+em{font-style:italic;color:var(--slate)}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:500}
+a{color:var(--gold)}
+header{padding:78px 0 0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.16em;margin:0 0 26px}
+.sub{font-size:20px;color:var(--slate);max-width:64ch;margin:22px 0 0;line-height:1.5}
+section{margin:64px 0 0;border-top:1px solid var(--rule);padding-top:42px}
+section.nolead{border-top:none;padding-top:0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold-dim);letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+blockquote{margin:34px 0;padding:0 0 0 22px;border-left:2px solid var(--gold);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:22px;line-height:1.4;color:var(--bone);max-width:60ch}
+blockquote em{color:var(--slate)}
+figure{margin:34px 0;border:1px solid var(--rule);border-radius:10px;background:var(--ink-2);padding:26px 20px 16px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--slate);letter-spacing:.05em;margin-top:14px;text-align:center}
+.stat{display:flex;flex-wrap:wrap;margin:28px 0;border:1px solid var(--rule);border-radius:8px}
+.stat div{flex:1 1 130px;padding:18px 20px;border-left:1px solid var(--rule)}
+.stat div:first-child{border-left:none}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-size:26px;color:var(--gold)}
+.stat .l{font-size:13px;color:var(--slate);margin-top:4px;line-height:1.35}
+ul{margin:0 0 18px;padding:0 0 0 22px;max-width:68ch}
+li{margin:0 0 10px}
+li::marker{color:var(--gold-dim)}
+.k{font-family:"IBM Plex Mono",monospace;font-size:.9em;color:var(--verdigris)}
+.legend{display:flex;gap:22px;flex-wrap:wrap;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--slate);justify-content:center;margin-top:6px}
+.legend span{display:flex;align-items:center;gap:7px}
+.dot{width:10px;height:10px;border-radius:50%}
+footer{margin:82px 0 0;border-top:1px solid var(--gold-dim);padding-top:22px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate);letter-spacing:.05em;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="kicker">AMENTI · TECHNICAL BRIEF · 3 SEPTEMBER 2026</p>
+  <h1>The Constellation</h1>
+  <p class="sub">The roster is not a list. It is the fixed grid the whole library
+  is triangulated against &mdash; and it compounds.</p>
+</header>
+
+<section class="nolead" style="margin-top:56px;border-top:none">
+  <blockquote>
+    A name that resolves to nothing falls through, unforced &mdash; the way a
+    signal that hits no satellite is lost, not faked.<br>
+    <em>&mdash; the rule that keeps the bounce honest</em>
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">The reframe</p>
+  <h2>A resolver, not a register.</h2>
+  <p>A historian&rsquo;s text is unstructured &mdash; a stream of words. Among
+  them are names: Tiberius, Ptolemy, Vespasian, hundreds more. On their own they
+  are just strings. <strong>Bounced against the roster, each name either resolves
+  to a known, dated point &mdash; or it does not.</strong> The ones that resolve
+  become citable edges. The ones that do not fall through. The roster is the
+  fixed constellation the corpus is triangulated against; the mention graph is
+  the set of successful bounces.</p>
+</section>
+
+<figure>
+<svg viewBox="0 0 1200 360" role="img" aria-label="Names from a text resolving upward against the roster constellation">
+  <text x="600" y="22" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="12" letter-spacing="3">THE ROSTER &#8212; 1,501 DATED POINTS</text>
+  <!-- the constellation, spread across the top -->
+  <g><circle cx="402.7" cy="57.2" r="3.5" fill="#c9a227" opacity="0.88"/><circle cx="94.1" cy="177.8" r="1.5" fill="#c9a227" opacity="0.55"/><circle cx="449.6" cy="40.4" r="3" fill="#c9a227" opacity="0.8"/><circle cx="280.5" cy="45.5" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="118.2" cy="46.3" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="106.2" cy="131.8" r="2" fill="#c9a227" opacity="0.63"/><circle cx="746.3" cy="134.9" r="1.5" fill="#c9a227" opacity="0.55"/><circle cx="686.4" cy="101.4" r="2" fill="#c9a227" opacity="0.63"/><circle cx="509.4" cy="127.3" r="3" fill="#c9a227" opacity="0.8"/><circle cx="385.5" cy="176.9" r="2" fill="#c9a227" opacity="0.63"/><circle cx="155.4" cy="132.8" r="2" fill="#c9a227" opacity="0.63"/><circle cx="672.1" cy="141.4" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="802.0" cy="107.0" r="2" fill="#c9a227" opacity="0.63"/><circle cx="561.5" cy="196.2" r="2" fill="#c9a227" opacity="0.63"/><circle cx="913.4" cy="44.7" r="2" fill="#c9a227" opacity="0.63"/><circle cx="628.2" cy="187.5" r="3.5" fill="#c9a227" opacity="0.88"/><circle cx="172.2" cy="105.3" r="2" fill="#c9a227" opacity="0.63"/><circle cx="210.2" cy="118.0" r="1.5" fill="#c9a227" opacity="0.55"/><circle cx="1117.5" cy="44.0" r="3" fill="#c9a227" opacity="0.8"/><circle cx="420.9" cy="93.0" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="1098.0" cy="115.3" r="3.5" fill="#c9a227" opacity="0.88"/><circle cx="112.8" cy="161.6" r="2" fill="#c9a227" opacity="0.63"/><circle cx="764.8" cy="208.8" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="358.7" cy="99.4" r="3.5" fill="#c9a227" opacity="0.88"/><circle cx="228.2" cy="51.1" r="1.5" fill="#c9a227" opacity="0.55"/><circle cx="284.4" cy="81.7" r="3.5" fill="#c9a227" opacity="0.88"/><circle cx="317.3" cy="100.4" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="130.3" cy="110.9" r="3" fill="#c9a227" opacity="0.8"/><circle cx="1007.7" cy="80.1" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="1144.8" cy="152.9" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="1112.7" cy="57.2" r="2" fill="#c9a227" opacity="0.63"/><circle cx="209.5" cy="148.5" r="1.5" fill="#c9a227" opacity="0.55"/><circle cx="583.2" cy="136.0" r="2" fill="#c9a227" opacity="0.63"/><circle cx="813.4" cy="122.8" r="3" fill="#c9a227" opacity="0.8"/><circle cx="773.6" cy="163.2" r="2.5" fill="#c9a227" opacity="0.72"/><circle cx="1047.5" cy="170.4" r="3.5" fill="#c9a227" opacity="0.88"/><circle cx="1007.0" cy="180.0" r="2" fill="#c9a227" opacity="0.6"/><circle cx="60.0" cy="90.0" r="2" fill="#c9a227" opacity="0.6"/><circle cx="300" cy="90" r="4.5" fill="#c9a227"/><circle cx="300" cy="90" r="9" fill="none" stroke="#7fb4f0" stroke-width="1.3" opacity=".7"/><text x="300" y="75" text-anchor="middle" fill="#7fb4f0" font-family="IBM Plex Mono,monospace" font-size="11">Tiberius</text><circle cx="520" cy="60" r="4.5" fill="#c9a227"/><circle cx="520" cy="60" r="9" fill="none" stroke="#7fb4f0" stroke-width="1.3" opacity=".7"/><text x="520" y="45" text-anchor="middle" fill="#7fb4f0" font-family="IBM Plex Mono,monospace" font-size="11">Augustus</text><circle cx="720" cy="120" r="4.5" fill="#c9a227"/><circle cx="720" cy="120" r="9" fill="none" stroke="#7fb4f0" stroke-width="1.3" opacity=".7"/><text x="720" y="105" text-anchor="middle" fill="#7fb4f0" font-family="IBM Plex Mono,monospace" font-size="11">Vespasian</text><circle cx="900" cy="80" r="4.5" fill="#c9a227"/><circle cx="900" cy="80" r="9" fill="none" stroke="#7fb4f0" stroke-width="1.3" opacity=".7"/><text x="900" y="65" text-anchor="middle" fill="#7fb4f0" font-family="IBM Plex Mono,monospace" font-size="11">Titus</text><circle cx="430" cy="150" r="4.5" fill="#c9a227"/><circle cx="430" cy="150" r="9" fill="none" stroke="#7fb4f0" stroke-width="1.3" opacity=".7"/><text x="430" y="135" text-anchor="middle" fill="#7fb4f0" font-family="IBM Plex Mono,monospace" font-size="11">Claudius</text><circle cx="640" cy="180" r="4.5" fill="#c9a227"/><circle cx="640" cy="180" r="9" fill="none" stroke="#7fb4f0" stroke-width="1.3" opacity=".7"/><text x="640" y="165" text-anchor="middle" fill="#7fb4f0" font-family="IBM Plex Mono,monospace" font-size="11">Nero</text></g>
+  <!-- the beams rising from the text -->
+  <line x1="300" y1="300" x2="300" y2="99" stroke="#7fb4f0" stroke-width="1.4" opacity=".8"/><line x1="300" y1="300" x2="430" y2="159" stroke="#7fb4f0" stroke-width="1.2" opacity=".55"/><line x1="300" y1="300" x2="640" y2="189" stroke="#7fb4f0" stroke-width="1.2" opacity=".45"/><line x1="300" y1="300" x2="720" y2="129" stroke="#7fb4f0" stroke-width="1.2" opacity=".4"/><line x1="300" y1="300" x2="1000" y2="250" stroke="#8c93a4" stroke-width="1" stroke-dasharray="3 5" opacity=".6"/><text x="1010" y="255" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10">un-rostered &#8594; falls through</text><line x1="300" y1="300" x2="118" y2="52" stroke="#b0413e" stroke-width="1.1" stroke-dasharray="2 3" opacity=".7"/><text x="120" y="40" fill="#b0413e" font-family="IBM Plex Mono,monospace" font-size="10">&#8220;Ptolemy&#8221; &#8594; wrong star, caught</text>
+  <!-- the text source, centred at the bottom -->
+  <rect x="210" y="300" width="180" height="50" rx="8" fill="none" stroke="#4a8f9e" stroke-width="1.5"/>
+  <text x="300" y="322" text-anchor="middle" fill="#4a8f9e" font-family="IBM Plex Mono,monospace" font-size="12">JOSEPHUS</text>
+  <text x="300" y="339" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10">a stream of names &#8593;</text>
+</svg>
+<figcaption>Names rise from the text and resolve against the constellation. A beam that reaches a star is a citable edge; one into empty sky falls through; one to the wrong star is caught by disambiguation.</figcaption>
+<div class="legend">
+  <span><span class="dot" style="background:#c9a227"></span> roster point (dated soul)</span>
+  <span><span class="dot" style="background:#7fb4f0"></span> resolved edge</span>
+  <span><span class="dot" style="background:#b0413e"></span> false resolution, caught</span>
+</div>
+</figure>
+
+<section>
+  <p class="eyebrow">The proof</p>
+  <h2>Sixteen edges, and the six that were caught.</h2>
+  <p>The first harvest &mdash; Josephus&rsquo;s <em>Antiquities</em>, Books
+  14&ndash;19 &mdash; bounced against the roster and resolved
+  <span class="num">16</span> confirmed edges: Tiberius, Claudius, Augustus,
+  Titus, Vespasian, Nero and their contemporaries, each citable to a book. And
+  it produced <span class="num">6</span> false bounces, every one caught:</p>
+  <div class="stat">
+    <div><div class="n">16</div><div class="l">resolved edges, verified</div></div>
+    <div><div class="n">6</div><div class="l">false bounces, caught</div></div>
+    <div><div class="n">3</div><div class="l">filters: apparatus, name, note</div></div>
+    <div><div class="n">1,501</div><div class="l">points in the constellation</div></div>
+  </div>
+  <ul>
+    <li><strong>Ptolemy</strong> &mdash; bounced off the wrong point: the text
+    means Ptolemy <em>Menneus</em>, a local ruler, not the astronomer.</li>
+    <li><strong>Suetonius, Livy</strong> &mdash; found only in the
+    <em>translator&rsquo;s footnotes</em>, not Josephus&rsquo;s own words.</li>
+    <li><strong>Brutus</strong> &mdash; the room-note excluded it: &ldquo;this is
+    LUCIUS&hellip; not Marcus.&rdquo; The wrong Brutus.</li>
+    <li><strong>Josephus</strong> &mdash; self-reference; an author is not an
+    edge to himself.</li>
+  </ul>
+  <p><strong>A substring match is a candidate, never a link.</strong> The scan
+  cannot decide; it can only present every signal a human needs to decide in
+  seconds &mdash; count, date-fit, compound-name warning, room-note exclusion,
+  first context. A whole book&rsquo;s edges confirmed in about a minute.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The loop</p>
+  <h2>It compounds. Most corpora decay.</h2>
+  <p>This is the part that matters. The roster and the mention graph feed each
+  other: a bigger constellation resolves more of the corpus, and the names that
+  <em>fail</em> to resolve name exactly who is missing. The want-list writes
+  itself.</p>
+</section>
+
+<figure>
+<svg viewBox="0 0 820 300" role="img" aria-label="The compounding loop between roster and mention graph">
+  <!-- four nodes of the cycle -->
+  <g font-family="IBM Plex Mono, monospace" font-size="12">
+    <rect x="60"  y="40"  width="220" height="70" rx="8" fill="none" stroke="#c9a227" stroke-width="1.4"/>
+    <text x="170" y="70"  text-anchor="middle" fill="#c9a227">THE CONSTELLATION</text>
+    <text x="170" y="90"  text-anchor="middle" fill="#8c93a4" font-size="11">1,501 dated points</text>
+
+    <rect x="540" y="40"  width="220" height="70" rx="8" fill="none" stroke="#7fb4f0" stroke-width="1.4"/>
+    <text x="650" y="70"  text-anchor="middle" fill="#7fb4f0">RESOLVED EDGES</text>
+    <text x="650" y="90"  text-anchor="middle" fill="#8c93a4" font-size="11">the mention graph</text>
+
+    <rect x="540" y="190" width="220" height="70" rx="8" fill="none" stroke="#4a8f9e" stroke-width="1.4"/>
+    <text x="650" y="220" text-anchor="middle" fill="#4a8f9e">THE MISSES</text>
+    <text x="650" y="240" text-anchor="middle" fill="#8c93a4" font-size="11">who is not yet aboard</text>
+
+    <rect x="60"  y="190" width="220" height="70" rx="8" fill="none" stroke="#e9e5da" stroke-width="1.4"/>
+    <text x="170" y="220" text-anchor="middle" fill="#e9e5da">ADD FROM SOURCES</text>
+    <text x="170" y="240" text-anchor="middle" fill="#8c93a4" font-size="11">dated, verified</text>
+  </g>
+  <!-- arrows clockwise -->
+  <defs><marker id="a" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L6,3 L0,6 Z" fill="#8c93a4"/></marker></defs>
+  <g stroke="#8c93a4" stroke-width="1.4" fill="none" marker-end="url(#a)">
+    <line x1="280" y1="66"  x2="536" y2="70"/>
+    <line x1="650" y1="110" x2="650" y2="186"/>
+    <line x1="540" y1="225" x2="284" y2="225"/>
+    <line x1="170" y1="186" x2="170" y2="114"/>
+  </g>
+  <text x="410" y="55"  text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono, monospace" font-size="10">bounce the corpus</text>
+  <text x="410" y="245" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono, monospace" font-size="10">the corpus names the next cohort</text>
+</svg>
+<figcaption>The corpus bounces off the roster &#8594; edges resolve, and the misses reveal who to add &#8594; add them from sources &#8594; the constellation grows &#8594; more resolves. The wheel turns one way, toward more.</figcaption>
+</figure>
+
+<section>
+  <p class="eyebrow">The consequence</p>
+  <h2>The corpus chooses the next cohort, not fame.</h2>
+  <p>This inverts how roster growth is prioritised. The highest-value souls to
+  add next are <strong>not the most famous &mdash; they are the ones the aboard
+  texts keep naming but cannot resolve.</strong> Log the near-misses &mdash; a
+  capitalised name, date-plausible, matching no point &mdash; and they are the
+  next cohort, chosen by the library itself. The mention-graph harvest is also a
+  want-list generator.</p>
+  <p>And it stays honest for the same reason everything here does: a bounce
+  counts only if it resolves to a real dated point. No name is forced to land. A
+  false resolution &mdash; the wrong Ptolemy &mdash; is a satellite locking the
+  wrong beacon, and it is exactly the error the disambiguation exists to catch.</p>
+  <blockquote>
+    Build the constellation. Bounce the corpus off it. Let the two compound.
+  </blockquote>
+</section>
+
+<footer>
+  AMENTI &middot; INGRAM MANOR LLC &middot; ONE BUILDER, IN THE OPEN, IN PLAIN TEXT<br>
+  Proof: MENTIONS-josephus.json &middot; 16 edges, 6 caught &middot; harvester: mgraph.mjs<br>
+  Companion: FRAUD-OR-FICTION &middot; HIGH-PRIORITY-ACQUISITION &middot; THE-SKY-AS-A-SOURCE &middot; SLIP #47 #52 #54 #58 #59<br>
+  The list became an instrument. History resolves against it.
+</footer>
+
+</div>
+</body>
+</html>
