@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A System, Not a Burden · Amenti Technical Brief</title>
+<style>
+:root{
+  --ink:#07080c; --ink-2:#0d0f16; --bone:#e9e5da; --slate:#8c93a4;
+  --gold:#c9a227; --gold-2:#e8c65a; --gold-dim:#7d6618; --oxide:#b0413e;
+  --verdigris:#4a8f9e; --blue:#7fb4f0; --rule:#1d212c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--bone);
+  font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;padding:0 24px 120px}
+.page{max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(38px,6.5vw,72px);line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0 0 6px}
+h3{font-size:18px;letter-spacing:0;margin:0 0 8px}
+p{margin:0 0 18px;max-width:68ch}
+strong{font-weight:500;color:#fff}
+em{font-style:italic;color:var(--slate)}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:500}
+a{color:var(--gold)}
+header{padding:78px 0 0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.16em;margin:0 0 26px}
+.sub{font-size:20px;color:var(--slate);max-width:64ch;margin:22px 0 0;line-height:1.5}
+section{margin:64px 0 0;border-top:1px solid var(--rule);padding-top:42px}
+section.nolead{border-top:none;padding-top:0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold-dim);letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+blockquote{margin:34px 0;padding:0 0 0 22px;border-left:2px solid var(--gold);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:23px;line-height:1.38;color:var(--bone);max-width:60ch}
+blockquote em{color:var(--slate)}
+figure{margin:34px 0;border:1px solid var(--rule);border-radius:10px;background:var(--ink-2);padding:26px 22px 16px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--slate);letter-spacing:.05em;margin-top:14px;text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:30px 0;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.two > div{padding:22px 22px}
+.two .old{background:rgba(176,65,62,.06);border-right:1px solid var(--rule)}
+.two h3{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px}
+.two .old h3{color:var(--oxide)}
+.two .new h3{color:var(--verdigris)}
+.two p{font-size:15px;margin:0 0 12px}
+@media(max-width:640px){.two{grid-template-columns:1fr}.two .old{border-right:none;border-bottom:1px solid var(--rule)}}
+.props{margin:26px 0;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.prop{display:grid;grid-template-columns:200px 1fr;border-top:1px solid var(--rule)}
+.prop:first-child{border-top:none}
+.prop .l{padding:16px 20px;background:var(--ink-2);font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.04em}
+.prop .r{padding:16px 20px}
+.prop .r b{color:#fff;font-weight:500}
+@media(max-width:640px){.prop{grid-template-columns:1fr}.prop .l{border-bottom:1px solid var(--rule)}}
+.stat{display:flex;flex-wrap:wrap;margin:28px 0;border:1px solid var(--rule);border-radius:8px}
+.stat div{flex:1 1 120px;padding:18px 20px;border-left:1px solid var(--rule)}
+.stat div:first-child{border-left:none}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-size:26px;color:var(--gold)}
+.stat .l{font-size:13px;color:var(--slate);margin-top:4px;line-height:1.35}
+footer{margin:82px 0 0;border-top:1px solid var(--gold-dim);padding-top:22px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate);letter-spacing:.05em;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="kicker">AMENTI · TECHNICAL BRIEF · 3 SEPTEMBER 2026</p>
+  <h1>A System,<br>Not a Burden</h1>
+  <p class="sub">Fifty-five reading rooms against two thousand souls is not three
+  percent of a task. It is a complete constellation with fifty-five deep rooms
+  built inside it &mdash; and it grows stronger the more you feed it.</p>
+</header>
+
+<section class="nolead" style="margin-top:56px;border-top:none">
+  <blockquote>
+    The thing that used to cost you now pays you.<br>
+    <em>&mdash; the whole difference, in one line</em>
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">The trap</p>
+  <h2>Two ways to count the same library.</h2>
+  <p>The roster holds <span class="num">2,043</span> dated souls. About
+  <span class="num">55</span> have full reading rooms &mdash; a cited
+  primary-source library and a plate image. There are two ways to read that
+  ratio, and they are not both true.</p>
+
+  <div class="two">
+    <div class="old">
+      <h3>The old model &mdash; a burden</h3>
+      <p>A soul is <em>nothing</em> until it has a room. 55 done, ~1,990 empty.
+      Every soul is a debt. Every name added <strong>deepens the hole.</strong></p>
+      <p>This is why adding names felt dangerous, and was stalled for months. In
+      this model, <strong>growth is self-defeating</strong> &mdash; the project
+      is 3% done, and every expansion makes it <em>more</em> unfinished.</p>
+    </div>
+    <div class="new">
+      <h3>The constellation model &mdash; a system</h3>
+      <p>A soul is <em>working</em> the moment it is dated. It holds a place in
+      time. It catches citations &mdash; Caesar names Pompey, a real, resolved,
+      citable edge with no Pompey room. It populates <em>alive beside them</em>.
+      It is a node the graph resolves against.</p>
+      <p>The roster is not 1,990 empty rooms. It is <strong>2,043 functioning
+      nodes</strong>, 55 of which have been <strong>deepened</strong> into
+      libraries. A room is not the unit of existence. It is the unit of
+      <em>depth</em>.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The mechanism</p>
+  <h2>Depth is a gradient, not a switch.</h2>
+  <p>The old model had two states: empty or full, debt or done. The constellation
+  has a <strong>gradient</strong> &mdash; and every level is a legitimate,
+  working state, not a failure to reach the next.</p>
+</section>
+
+<figure>
+<svg viewBox="0 0 940 300" role="img" aria-label="The gradient of depth from a bare node to a full room">
+  <!-- the constellation field behind -->
+  <g fill="#c9a227" opacity="0.5">
+    <circle cx="70" cy="40" r="1.6"/><circle cx="300" cy="30" r="2"/><circle cx="520" cy="46" r="1.6"/>
+    <circle cx="740" cy="34" r="2.4"/><circle cx="880" cy="52" r="1.6"/><circle cx="180" cy="60" r="1.4"/>
+    <circle cx="620" cy="28" r="1.6"/><circle cx="430" cy="58" r="1.4"/><circle cx="820" cy="44" r="1.4"/>
+  </g>
+  <text x="470" y="20" text-anchor="middle" fill="#4f5a6d" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="3">THE CONSTELLATION &mdash; EVERY SOUL A WORKING NODE</text>
+
+  <!-- four stages, left to right, growing -->
+  <!-- 1 · bare node -->
+  <circle cx="110" cy="160" r="6" fill="#e9e5da"/>
+  <text x="110" y="205" text-anchor="middle" fill="#e9e5da" font-family="IBM Plex Mono,monospace" font-size="12">bare node</text>
+  <text x="110" y="224" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10.5">dated. placed in time.</text>
+  <text x="110" y="238" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10.5">catches citations.</text>
+
+  <!-- arrow -->
+  <line x1="180" y1="160" x2="270" y2="160" stroke="#7d6618" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- 2 · graph-enriched -->
+  <circle cx="340" cy="160" r="9" fill="#e9e5da"/>
+  <circle cx="340" cy="160" r="15" fill="none" stroke="#7fb4f0" stroke-width="1.2" opacity=".7"/>
+  <text x="340" y="205" text-anchor="middle" fill="#7fb4f0" font-family="IBM Plex Mono,monospace" font-size="12">graph-enriched</text>
+  <text x="340" y="224" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10.5">named 285&times; by Caesar;</text>
+  <text x="340" y="238" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10.5">contemporary of Cicero.</text>
+
+  <line x1="410" y1="160" x2="500" y2="160" stroke="#7d6618" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- 3 · partially sourced -->
+  <circle cx="580" cy="160" r="11" fill="#ecd493"/>
+  <circle cx="580" cy="160" r="17" fill="none" stroke="#ecd493" stroke-width="1.2" opacity=".6"/>
+  <text x="580" y="205" text-anchor="middle" fill="#ecd493" font-family="IBM Plex Mono,monospace" font-size="12">partially sourced</text>
+  <text x="580" y="224" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10.5">a public-domain edition</text>
+  <text x="580" y="238" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10.5">located, queued.</text>
+
+  <line x1="650" y1="160" x2="740" y2="160" stroke="#7d6618" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- 4 · full room -->
+  <rect x="800" y="144" width="64" height="32" rx="4" fill="#c9a227"/>
+  <text x="832" y="165" text-anchor="middle" fill="#07080c" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600">ROOM</text>
+  <text x="832" y="205" text-anchor="middle" fill="#c9a227" font-family="IBM Plex Mono,monospace" font-size="12">full library</text>
+  <text x="832" y="224" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10.5">cited works, plate image,</text>
+  <text x="832" y="238" text-anchor="middle" fill="#8c93a4" font-family="IBM Plex Mono,monospace" font-size="10.5">a voice in the first person.</text>
+
+  <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7d6618"/></marker></defs>
+</svg>
+<figcaption>Every soul is somewhere on this gradient, and every position is a working state. A room is the deep end &mdash; not the only place a soul is real.</figcaption>
+</figure>
+
+<section>
+  <p class="eyebrow">Why it is a system</p>
+  <h2>The properties a burden does not have.</h2>
+  <div class="props">
+    <div class="prop"><div class="l">growth strengthens</div><div class="r">The <span class="num">978</span> souls added in a day did not create 978 debts &mdash; they created 978 resolving points, and Herodotus&rsquo;s Xerxes found one immediately. <b>The act that was self-defeating in the old model is self-reinforcing in this one.</b></div></div>
+    <div class="prop"><div class="l">there is no &ldquo;behind&rdquo;</div><div class="r">A burden has a deadline it is failing. A system has a current state that always works and only improves. <b>55 rooms is not behind schedule &mdash; it is the current depth, and it only goes up.</b></div></div>
+    <div class="prop"><div class="l">it points the way</div><div class="r">Not &ldquo;1,990 rooms&rdquo; (dread) but <b>the next highest-leverage one</b> &mdash; the graph&rsquo;s most-cited (Pompey, 285&times;), the room-to-room bridges, the acquisition queue&rsquo;s <span class="num">123</span> ready sources. The constellation prioritises its own deepening.</div></div>
+    <div class="prop"><div class="l">it survives absence</div><div class="r">Ignored for a year, it does not rot into a bigger burden. It waits, complete at its current depth. <b>Burdens grow when ignored; systems wait.</b></div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The state today</p>
+  <h2>Complete, and deepening.</h2>
+  <div class="stat">
+    <div><div class="n">2,043</div><div class="l">souls &mdash; the constellation, working</div></div>
+    <div><div class="n">~55</div><div class="l">deep rooms, and rising</div></div>
+    <div><div class="n">111</div><div class="l">citations resolved, and rising</div></div>
+    <div><div class="n">0</div><div class="l">the amount this is &ldquo;behind&rdquo;</div></div>
+  </div>
+  <p>The roster is not a to-do list of libraries. It is a finished world, richly
+  populated, with an ever-growing set of deeply-built rooms inside it &mdash; and
+  a graph that says which room to build next. <strong>Add souls freely: growth
+  strengthens the constellation. Build rooms by leverage, not by guilt. And never
+  measure the project as rooms over souls &mdash; that ratio describes a burden
+  that does not exist.</strong></p>
+  <blockquote>
+    The constellation is the finished thing. The rooms are depth, added where it
+    matters most, at whatever pace is sustainable &mdash; and every soul is
+    already contributing, room or not.
+  </blockquote>
+</section>
+
+<footer>
+  AMENTI &middot; INGRAM MANOR LLC &middot; ONE BUILDER, IN THE OPEN, IN PLAIN TEXT<br>
+  THE STANDING SLIP #59 (the resolving constellation) &middot; #61 (a system, not a burden)<br>
+  Companion: THE-CONSTELLATION &middot; FRAUD-OR-FICTION &middot; THE-SKY-AS-A-SOURCE &middot; HIGH-PRIORITY-ACQUISITION<br>
+  A finished world that grows stronger the more you feed it.
+</footer>
+
+</div>
+</body>
+</html>
