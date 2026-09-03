@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fraud or Fiction · Amenti Technical Brief</title>
+<style>
+:root{
+  --ink:#07080c; --ink-2:#0d0f16; --bone:#e9e5da; --slate:#8c93a4;
+  --gold:#c9a227; --gold-dim:#7d6618; --oxide:#b0413e;
+  --verdigris:#4a8f9e; --blue:#7fb4f0; --rule:#1d212c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--bone);
+  font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;padding:0 24px 120px}
+.page{max-width:960px;margin:0 auto}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(38px,6.5vw,68px);line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(24px,3.4vw,33px);line-height:1.15;margin:0 0 6px}
+h3{font-size:19px;letter-spacing:0;margin:0 0 10px}
+p{margin:0 0 18px;max-width:68ch}
+strong{font-weight:500;color:#fff}
+em{font-style:italic;color:var(--slate)}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:500}
+a{color:var(--gold)}
+
+header{padding:78px 0 0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);
+  letter-spacing:.16em;margin:0 0 26px}
+.sub{font-size:20px;color:var(--slate);max-width:62ch;margin:22px 0 0;line-height:1.5}
+
+section{margin:60px 0 0;border-top:1px solid var(--rule);padding-top:40px}
+section.nolead{border-top:none;padding-top:0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold-dim);
+  letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+
+blockquote{margin:34px 0;padding:0 0 0 22px;border-left:2px solid var(--gold);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:22px;line-height:1.4;
+  color:var(--bone);max-width:60ch}
+blockquote em{color:var(--slate)}
+
+.roll{margin:26px 0;border:1px solid var(--oxide);border-radius:8px;overflow:hidden}
+.roll .h{background:rgba(176,65,62,.12);padding:12px 18px;font-family:"IBM Plex Mono",monospace;
+  font-size:12px;color:var(--oxide);letter-spacing:.12em;text-transform:uppercase}
+.roll .body{padding:8px 18px 14px;font-family:"IBM Plex Mono",monospace;font-size:13.5px;
+  color:var(--bone);columns:2;column-gap:32px;line-height:1.9}
+.roll .body span{display:block;break-inside:avoid}
+.roll .body span::before{content:"\2717  ";color:var(--oxide)}
+
+.steps{margin:28px 0;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.step{display:grid;grid-template-columns:44px 1fr;border-top:1px solid var(--rule)}
+.step:first-child{border-top:none}
+.step .n{background:var(--ink-2);padding:16px 0;text-align:center;
+  font-family:"IBM Plex Mono",monospace;color:var(--gold);font-size:15px}
+.step .b{padding:16px 20px}
+.step .b b{color:#fff;font-weight:500}
+.step .b .c{color:var(--verdigris);font-family:"IBM Plex Mono",monospace;font-size:.9em}
+
+.stat{display:flex;flex-wrap:wrap;margin:28px 0;border:1px solid var(--rule);border-radius:8px}
+.stat div{flex:1 1 120px;padding:18px 20px;border-left:1px solid var(--rule)}
+.stat div:first-child{border-left:none}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-size:26px;color:var(--gold)}
+.stat .l{font-size:13px;color:var(--slate);margin-top:4px;line-height:1.35}
+
+ul{margin:0 0 18px;padding:0 0 0 22px;max-width:68ch}
+li{margin:0 0 10px}
+li::marker{color:var(--gold-dim)}
+.k{font-family:"IBM Plex Mono",monospace;font-size:.9em;color:var(--verdigris)}
+
+footer{margin:80px 0 0;border-top:1px solid var(--gold-dim);padding-top:22px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate);
+  letter-spacing:.05em;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="kicker">AMENTI · TECHNICAL BRIEF · 2 SEPTEMBER 2026</p>
+  <h1>Fraud or Fiction</h1>
+  <p class="sub">The first honest cohort added to the roster from an external
+  source &mdash; and the seventeen fictional presidents the source tried to
+  smuggle in.</p>
+</header>
+
+<section class="nolead" style="margin-top:56px;border-top:none">
+  <blockquote>
+    The source is a draft too.<br>
+    <em>&mdash; the lesson, learned in the first thirty seconds</em>
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">The occasion</p>
+  <h2>Expanding the roster without becoming the source.</h2>
+  <p>The roster is a closed list &mdash; the hall knows only the souls in
+  <span class="k">names.csv</span>, and its wall is hard. To grow it (THE
+  STANDING SLIP <span class="num">#52</span>) the honest way is to draw from an
+  external, checkable source, never from the model's memory
+  (<span class="num">#54</span>): <strong>the interface is the tool, not the
+  source</strong>. This brief records the first cohort done that way &mdash; the
+  US presidents &mdash; as the worked proof of the pattern.</p>
+  <p>It was chosen because it is small, modern, and unambiguous: a set where a
+  wrong entry is obvious. Which turned out to matter, because the source handed
+  us wrong entries immediately.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The first fetch</p>
+  <h2>Sixty-three &ldquo;presidents,&rdquo; and a mechanical bastard.</h2>
+  <p>The naive query &mdash; <em>everyone Wikidata records as holding the office
+  of President of the United States</em> &mdash; returned <span class="num">63</span>
+  names. The property is polluted with fictional office-holders from film,
+  television and comics, undated and indistinguishable, at the top of the list.
+  A fetch-and-commit would have put every one of these on the roster:</p>
+
+  <div class="roll">
+    <div class="h">flagged out &mdash; 17 fictional office-holders</div>
+    <div class="body">
+      <span>Mr. Garrison</span>
+      <span>Gonzo the Mechanical Bastard</span>
+      <span>Thor</span>
+      <span>Doom 2099</span>
+      <span>Zartan</span>
+      <span>Prez</span>
+      <span>General Joseph Colton</span>
+      <span>Glen Allen Walken</span>
+      <span>President Winthrop</span>
+      <span>Robert L. Booth</span>
+      <span>Olivia Marsdin</span>
+      <span>Quentin Trembley</span>
+      <span>Thomas Kirkman</span>
+      <span>Ed Kealty</span>
+      <span>Phil Baker</span>
+      <span>Roger Durling</span>
+      <span>The President</span>
+    </div>
+  </div>
+
+  <p>This is the whole argument for the architecture, delivered in one screen.
+  <strong>The source is not the truth; it is a draft that must itself be
+  verified.</strong> An external reference is safer than the model's memory
+  &mdash; but only because it can be checked, not because it is clean. Trusting
+  it blind is the same failure as trusting the model blind, wearing a more
+  respectable coat.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The pattern</p>
+  <h2>Six steps, none skippable.</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><div class="b"><b>Fetch from a real source.</b>
+      A SPARQL query to Wikidata, not a recitation from memory. The model
+      <em>navigates</em> to the source; it does not <em>become</em> it.</div></div>
+    <div class="step"><div class="n">2</div><div class="b"><b>Filter the fiction.</b>
+      Constrain to actual humans <span class="c">?p wdt:P31 wd:Q5</span> with a real
+      birth date. The <span class="num">17</span> fictional holders fall away;
+      <span class="num">45</span> real ones remain.</div></div>
+    <div class="step"><div class="n">3</div><div class="b"><b>Complete the record.</b>
+      Pull both dates. Deaths were missing on the first pass; a second query
+      recovered them &mdash; and caught a fresh fact memory might have missed:
+      Carter, died <span class="num">2024</span>.</div></div>
+    <div class="step"><div class="n">4</div><div class="b"><b>Cross-check the roster.</b>
+      Seven presidents were already aboard. <strong>Zero date conflicts</strong>
+      with the existing roster &mdash; source and ship agree on every overlap,
+      which is its own signal both are sound.</div></div>
+    <div class="step"><div class="n">5</div><div class="b"><b>Let the guard fire.</b>
+      <span class="k">probe-roster</span> over the expanded list: <span class="num">1,049</span>
+      souls, all placeable, <strong>zero bad dates</strong>, the long-life count
+      unchanged. The sign-error guard <span class="num">(#46)</span> passed the
+      whole batch.</div></div>
+    <div class="step"><div class="n">6</div><div class="b"><b>Record provenance.</b>
+      Every new row carries its Wikidata entity in the Links column. The row does
+      not say <em>Lincoln, 1809&ndash;1865</em>; it says that <em>per a citable
+      source</em>. The model pointed; the source confirmed; the row records both.</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">What landed</p>
+  <h2>Thirty-eight, dated and sourced.</h2>
+  <div class="stat">
+    <div><div class="n">63</div><div class="l">returned by the naive fetch</div></div>
+    <div><div class="n">17</div><div class="l">fictional, filtered out</div></div>
+    <div><div class="n">7</div><div class="l">already on the roster</div></div>
+    <div><div class="n">38</div><div class="l">new, added with provenance</div></div>
+    <div><div class="n">0</div><div class="l">bad dates &middot; 0 conflicts</div></div>
+  </div>
+  <p>The presidents now take their place in time: <span style="color:var(--blue)">Lincoln</span>
+  already aboard, now with the Roosevelts, the Adamses, Kennedy and Washington's
+  whole line beside him on the timeline &mdash; each a dated bar, a name in
+  <em>alive beside them</em>, an anchor the mention graph can reach. None with a
+  room; none needed one. <strong>A soul needs no shelf to have a place in
+  time.</strong></p>
+</section>
+
+<section>
+  <p class="eyebrow">The principle it proves</p>
+  <h2>Fraud, fiction, and the wall between them.</h2>
+  <p>Two ways a false entry reaches a roster. <strong>Fraud</strong> is the
+  model inventing a date from memory and presenting it as fact &mdash; the
+  s&eacute;ance. <strong>Fiction</strong> is an external source carrying
+  something that was never real &mdash; Gonzo the Mechanical Bastard, sitting in
+  a reputable database beside George Washington. The ship guards against both by
+  the same discipline, applied at the same stage: <strong>verification at the
+  workbench, before anything lands.</strong></p>
+  <p>The model's general knowledge is not banned &mdash; it is
+  <em>quarantined to the authoring stage</em>, where every draft is checked. It
+  navigated to the source, read the fiction for what it was, and filtered it.
+  That is the honest use of a fallible intelligence: not as the record, but as
+  the draftsman who finds the record and is never trusted to be it.</p>
+  <blockquote>
+    Fraud is what the mouth invents. Fiction is what the source repeats.
+    The wall stops both, and it stands at the workbench, not the front desk.
+  </blockquote>
+</section>
+
+<footer>
+  AMENTI &middot; INGRAM MANOR LLC &middot; ONE BUILDER, IN THE OPEN, IN PLAIN TEXT<br>
+  Source: Wikidata SPARQL, 2 Sep 2026 &middot; 38 rows staged to names.csv with provenance<br>
+  Companion: THE-SKY-AS-A-SOURCE &middot; BRIEF-ASK-AMENTI &middot;
+  THE-STANDING-SLIP #52, #54<br>
+  The source was verified, not trusted. The fiction was read for what it was.
+</footer>
+
+</div>
+</body>
+</html>
