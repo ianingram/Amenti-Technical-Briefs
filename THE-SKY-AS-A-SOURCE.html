@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Sky as a Source · Amenti Technical Brief</title>
+<style>
+:root{
+  --ink:#07080c;          /* the night the ship sails in */
+  --ink-2:#0d0f16;
+  --bone:#e9e5da;         /* limestone, not white */
+  --slate:#8c93a4;
+  --gold:#c9a227;         /* the ship's own colour */
+  --gold-dim:#7d6618;
+  --oxide:#b0413e;        /* the alarm, used sparingly */
+  --verdigris:#4a8f9e;    /* primary source: cool, because it is not ours */
+  --ice:#8b9bff;          /* Neptune */
+  --ice2:#7fdce8;         /* Uranus */
+  --sat:#ecd493;          /* Saturn */
+  --jup:#cf9b63;          /* Jupiter */
+  --comet:#bfe4ff;        /* Halley */
+  --rule:#1d212c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--bone);
+  font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;
+  padding:0 24px 120px;
+}
+.page{max-width:960px;margin:0 auto}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(38px,6.5vw,68px);line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(24px,3.4vw,33px);line-height:1.15;margin:0 0 6px}
+h3{font-size:19px;letter-spacing:0;margin:0 0 10px}
+p{margin:0 0 18px;max-width:68ch}
+strong{font-weight:500;color:#fff}
+em{font-style:italic;color:var(--slate)}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:500}
+a{color:var(--gold)}
+
+header{padding:78px 0 0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);
+  letter-spacing:.16em;margin:0 0 26px}
+.sub{font-size:20px;color:var(--slate);max-width:62ch;margin:22px 0 0;line-height:1.5}
+
+section{margin:60px 0 0;border-top:1px solid var(--rule);padding-top:40px}
+section.nolead{border-top:none;padding-top:0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold-dim);
+  letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+
+blockquote{margin:34px 0;padding:0 0 0 22px;border-left:2px solid var(--gold);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:22px;line-height:1.4;
+  color:var(--bone);max-width:60ch}
+blockquote em{color:var(--slate)}
+
+.tiers{margin:30px 0;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.tier{display:grid;grid-template-columns:130px 1fr;gap:0;border-top:1px solid var(--rule)}
+.tier:first-child{border-top:none}
+.tier .mk{padding:18px 20px;font-family:"IBM Plex Mono",monospace;font-size:13px;
+  display:flex;align-items:center;gap:10px;background:var(--ink-2);color:var(--slate)}
+.tier .bd{padding:18px 22px}
+.tier .bd b{color:#fff;font-weight:500}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+.ring{width:12px;height:12px;border-radius:50%;border:1.6px solid var(--gold);flex:none}
+.di9{width:0;height:0;border:5px solid transparent;border-bottom-color:var(--gold);
+  position:relative;flex:none}
+
+.stat{display:flex;flex-wrap:wrap;gap:0;margin:28px 0;border:1px solid var(--rule);border-radius:8px}
+.stat div{flex:1 1 130px;padding:18px 20px;border-left:1px solid var(--rule)}
+.stat div:first-child{border-left:none}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-size:26px;color:var(--gold);
+  font-variant-numeric:tabular-nums}
+.stat .l{font-size:13px;color:var(--slate);margin-top:4px;line-height:1.35}
+
+ul{margin:0 0 18px;padding:0 0 0 22px;max-width:68ch}
+li{margin:0 0 10px}
+li::marker{color:var(--gold-dim)}
+.k{font-family:"IBM Plex Mono",monospace;font-size:.9em;color:var(--verdigris)}
+
+.ledger{margin:26px 0;font-family:"IBM Plex Mono",monospace;font-size:13.5px;
+  border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.ledger .row{display:grid;grid-template-columns:1fr auto;gap:16px;padding:11px 18px;
+  border-top:1px solid var(--rule)}
+.ledger .row:first-child{border-top:none}
+.ledger .row .f{color:var(--bone)}
+.ledger .row .s{color:var(--slate);text-align:right}
+.ledger .row.head{background:var(--ink-2);color:var(--gold);letter-spacing:.08em}
+
+.warn{border-left:2px solid var(--oxide);padding:2px 0 2px 20px;margin:26px 0;
+  color:var(--bone)}
+.warn .t{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--oxide);
+  letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px}
+
+footer{margin:80px 0 0;border-top:1px solid var(--gold-dim);padding-top:22px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate);
+  letter-spacing:.05em;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="kicker">AMENTI · TECHNICAL BRIEF · 2 SEPTEMBER 2026</p>
+  <h1>The Sky as a Source</h1>
+  <p class="sub">A night's work on the timeline, and the claim underneath it:
+  the planets are a primary source in the fullest sense &mdash; the only witness
+  that is still testifying.</p>
+</header>
+
+<section class="nolead" style="margin-top:56px;border-top:none">
+  <blockquote>
+    Livy reaches you through a translator. Saturn reaches you through arithmetic
+    anyone can redo and no one can slant.<br>
+    <em>&mdash; the argument this brief is built on</em>
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">The claim</p>
+  <h2>The planets are the record; the ephemeris is only its edition.</h2>
+  <p>A figure's room holds what they <em>wrote</em>. A planet's room holds what
+  it <em>did</em> &mdash; its own path, still legible. That makes the sky the
+  most primary source on the ship. Every human account &mdash; Livy, Josephus,
+  Newton &mdash; is filtered through a person, a language, an era. The planets
+  are unmediated: Caesar's own words reach you through Whiston or Motte; Saturn's
+  rising reaches you through a calculation that anyone can repeat and no one can
+  slant.</p>
+  <p>It answers the citation policy's own test &mdash; <strong>can a reader reach
+  the identical thing again?</strong> For Livy, they reach the edition. For the
+  planets, they reach the sky itself: recompute it, or wait and watch it happen.
+  It is the one source that can never go out of print.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The organizing principle</p>
+  <h2>Not &ldquo;how rare&rdquo; &mdash; &ldquo;who could see it.&rdquo;</h2>
+  <p>The sky sorts by a single honest axis: <strong>how much of the Earth
+  witnessed the event.</strong> Each mark then claims exactly what it can defend,
+  no more.</p>
+
+  <div class="tiers">
+    <div class="tier">
+      <div class="mk"><span class="ring"></span> worldwide</div>
+      <div class="bd"><b>Conjunctions, gatherings, Halley.</b> Seen across the
+      whole night hemisphere at once &mdash; China, Cairo and Cahokia the same
+      night. No location claim needed: <em>it happened</em> is <em>it was
+      seen</em>. These are the events that genuinely connected all of humanity
+      at a moment.</div>
+    </div>
+    <div class="tier">
+      <div class="mk"><span class="dot" style="background:var(--sat)"></span> latitude-local</div>
+      <div class="bd"><b>Due-east risings over Giza.</b> &ldquo;Rises due
+      east&rdquo; is a statement about one horizon; from another latitude the
+      same planet rises at another bearing. Honestly labelled <em>over
+      Giza</em>, because the Great Pyramid is aligned to true north within
+      arcminutes &mdash; the monument itself defines the line.</div>
+    </div>
+    <div class="tier">
+      <div class="mk"><span class="dot" style="background:var(--oxide)"></span> track-local</div>
+      <div class="bd"><b>Eclipses &mdash; deliberately NOT on the ship.</b>
+      Visible only along a narrow shadow-path, and the path <em>is</em> the
+      meaning. &Delta;T &mdash; the drift between clock time and the Earth's
+      rotation &mdash; is hours before <span class="num">1500</span>, so the date
+      is computable but the place is not. An eclipse with an unreliable location
+      is worse than useless, because location is its entire content. They belong
+      in the events register as <em>recorded</em> sightings, where the chronicler
+      who watched the sky go dark is the source.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">What the ship carries</p>
+  <h2>The star chart, in three computed tiers.</h2>
+  <p>All computed from JPL's <span class="k">DE422</span> ephemeris at the Great
+  Pyramid, <span class="num">2894 BC</span> to <span class="num">AD 2026</span>.
+  Verified against orbital theory &mdash; the conjunction count matches
+  <span class="num">248</span> to the theory's <span class="num">248</span>,
+  which is how a computed source proves itself.</p>
+
+  <div class="stat">
+    <div><div class="n">1,342</div><div class="l">due-east risings<br>Jupiter, Saturn, Uranus, Neptune</div></div>
+    <div><div class="n">248</div><div class="l">great conjunctions<br>Jupiter meets Saturn, ~20 yr</div></div>
+    <div><div class="n">14</div><div class="l">gatherings<br>all four outer planets in one arc</div></div>
+    <div><div class="n">48</div><div class="l">Halley returns<br>1404 BC to AD 2061</div></div>
+  </div>
+
+  <p>The <span class="k">SKY.csv</span> register is the timeline's precomputed
+  cargo &mdash; fast to draw <span class="num">1,600</span> marks at once. It is
+  primary <em>and recomputable</em>: recompute and get <span class="num">962</span>
+  Jupiters instead of <span class="num">830</span> and you have hit the aberration
+  bug the first run hit &mdash; the number itself is the proof.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The rhythm</p>
+  <h2>The conjunction is the ship's clock &mdash; not its meaning.</h2>
+  <p>The great conjunction returns every <span class="num">~20</span> years like
+  a metronome, but unlike a drawn grid line it is a real event people watched and
+  marked. Five rings to a century; count <span class="num">2, 4, 6, 8, 10</span>
+  and you have walked <span class="num">200</span> years. The century is the
+  <strong>downbeat</strong> &mdash; a brighter full-height rule the eye lands on,
+  and the conjunction nearest it drawn filled, so the count arrives visibly.</p>
+  <p>But the rhythm is a clock, not an oracle. Tested against the roster, the
+  great conjunctions land on exactly as many souls as randomly chosen years
+  &mdash; <span class="num">33</span> of <span class="num">143</span> against
+  <span class="num">32</span> expected. <strong>Show a cycle as an anchor; never
+  let a surface imply it means anything.</strong> The rings time the journey;
+  they do not explain the passengers.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The marks</p>
+  <h2>Each body drawn as itself.</h2>
+  <ul>
+    <li><strong>Planet risings</strong> &mdash; the astronomical glyph in the
+    planet's own colour: <span style="color:var(--ice)">&#9798; Neptune</span>,
+    <span style="color:var(--ice2)">&#9797; Uranus</span>,
+    <span style="color:var(--sat)">&#9796; Saturn</span>,
+    <span style="color:var(--jup)">&#9795; Jupiter</span>. The colours anyone
+    knows from a photograph, so the row reads before it is explained.</li>
+    <li><strong>Conjunctions</strong> &mdash; a gold ring where the two planets
+    touch. Not a glyph: the event is a <em>meeting</em>, and the ring says so.</li>
+    <li><strong>Gatherings</strong> &mdash; the rarest mark on the ship, four
+    coloured orbs stacked, on a full-height beam with the year beside it. You
+    cannot pass one without seeing it, which is right for something that happens
+    <span class="num">14</span> times in five thousand years.</li>
+    <li><strong>Halley's Comet</strong> &mdash; an ice-blue comet with a short
+    tail on the sky row, drawn from Page2's own curated perihelion list. It
+    <em>sparkles only at close zoom</em> &mdash; a reward for arriving on a
+    return, not a permanent twinkle. The mark says <em>returns</em>, not
+    <em>visible from Giza</em>: astronomically true, modest claim.</li>
+  </ul>
+</section>
+
+<section>
+  <p class="eyebrow">The instrument</p>
+  <h2>From a chart you read to an instrument you interrogate.</h2>
+  <p>The timeline places a figure in a <strong>fixed 200-year window centred on
+  their midpoint</strong>, ordered by death year to agree with Page2's helix.
+  Both axes scroll &mdash; time across, population down &mdash; and the vertical
+  now <em>follows the window</em>, gliding to the band of souls alive in view so
+  the names populate as you travel through the centuries.</p>
+  <p>A side panel gives the figure's world: the events of their life, the sky
+  over Giza in their years, and who was alive beside them &mdash; ordered rooms
+  first, then by overlap, so the most relevant contemporaries rise. Proper names
+  in terminal blue, so a reader scans for <em>who</em> and <em>where</em> without
+  reading every line.</p>
+
+  <blockquote>
+    Anything clicked broadcasts its span, and everything sharing it lights up.
+    <em>&mdash; the connection gesture</em>
+  </blockquote>
+
+  <p>Click a life and everyone who overlapped it glows; click an event and the
+  people alive when it happened; click a conjunction ring and the generation that
+  lived under it. <strong>Nothing broadcasts a bare year</strong> &mdash; an
+  instant broadens to a window, a life stays a span &mdash; so a click never
+  lights nothing. The connection is always overlap, never coincidence of a single
+  year.</p>
+</section>
+
+<section>
+  <p class="eyebrow">Two holes, avoided</p>
+  <h2>The tempting build that betrays the premise.</h2>
+  <p>Twice in the night the easy path would have hollowed the ship out, and both
+  times the shortcut was refused.</p>
+
+  <div class="warn">
+    <p class="t">The fabricated frame</p>
+    <p>The hall named a work of Josephus that does not exist. The quote guard
+    proves the <em>words</em>; nothing yet checks the <em>title, book, chapter or
+    verse</em> that frames them. Recorded as a <strong>watch item</strong>, not a
+    build &mdash; a naive title-guard would flag a real chapter as a fabrication,
+    crying wolf on the hall reading closely. It promotes to a build on a second
+    instance caught on screen.</p>
+  </div>
+
+  <div class="warn">
+    <p class="t">The planet that spoke</p>
+    <p>The temptation was to let Jupiter talk &mdash; and prose in a planet's
+    mouth is the <em>model's</em> prose dressed as the planet's: a s&eacute;ance
+    with better production values. <strong>A planet does not speak in prose.</strong>
+    Worse, the first plan baked a static record from <span class="k">SKY.csv</span>
+    when the ship already runs the ephemeris <em>live</em> &mdash; Page2 loads
+    <span class="k">astronomy-engine</span> as <span class="k">Sovereign.Ephemeris</span>
+    and computes any classical planet's position for any year in the browser,
+    agreeing with DE422 to better than <span class="num">99%</span> across the
+    whole historical roster. The planet room is that engine <em>queried live</em>,
+    not a dead copy of it. The law is the feature, not the obstacle.</p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The night's ledger</p>
+  <h2>What was built, and where it stands.</h2>
+  <div class="ledger">
+    <div class="row head"><span class="f">artifact</span><span class="s">state</span></div>
+    <div class="row"><span class="f">amenti-timeline.js &mdash; the instrument</span><span class="s">live</span></div>
+    <div class="row"><span class="f">SKY.csv &mdash; three tiers, 1,604 marks</span><span class="s">live</span></div>
+    <div class="row"><span class="f">EVENTS.csv &mdash; +48 Halley returns</span><span class="s">live</span></div>
+    <div class="row"><span class="f">HALL.md &mdash; the s&eacute;ance line as epigraph</span><span class="s">live</span></div>
+    <div class="row"><span class="f">the connection gesture &mdash; click to reveal</span><span class="s">live</span></div>
+    <div class="row"><span class="f">the century downbeat &mdash; the count lands</span><span class="s">live</span></div>
+    <div class="row"><span class="f">planet rooms &mdash; live ephemeris queries</span><span class="s">designed &middot; #51</span></div>
+    <div class="row"><span class="f">the frame guard &mdash; title / chapter / verse</span><span class="s">watch &middot; #50</span></div>
+    <div class="row"><span class="f">the science cohort &mdash; 30 dated, 4 shelved</span><span class="s">designed &middot; #49</span></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The principle to keep</p>
+  <h2>The oldest primary documents in the library.</h2>
+  <p>The conjunctions, the gatherings, the risings, the returns &mdash; these are
+  not decoration on the timeline. They are read straight from the objects that
+  wrote them, the one witness that has never stopped testifying. A source so
+  primary it needs no voice, because its testimony is its path.</p>
+  <blockquote>
+    Ask me where I was and I will tell you exactly, from my path. Ask me what it
+    meant and I have no opinion &mdash; that is for the ones who watched me.<br>
+    <em>&mdash; the planet's own boundary; no terminal, no voice, a reading room only</em>
+  </blockquote>
+</section>
+
+<footer>
+  AMENTI &middot; INGRAM MANOR LLC &middot; ONE BUILDER, IN THE OPEN, IN PLAIN TEXT<br>
+  Companion briefs: BRIEF-ASK-AMENTI &middot; BRIEF-WHAT-A-SOURCE-MUST-BE &middot;
+  BUILD-THE-TIMELINE &middot; THE-STANDING-SLIP (51 moves)<br>
+  Written 2 Sep 2026, at the end of a long night. Every number was computed and
+  checked; the sky was read, not remembered.
+</footer>
+
+</div>
+</body>
+</html>
