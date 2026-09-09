@@ -188,9 +188,31 @@ together instead of trading against each other.
 2. **The model string is a generation behind.** `hall.html` defaults to
    `claude-sonnet-4-6`; Sonnet 5 replaced it in June. Confirm the proxy still
    resolves it before assuming today's price.
-3. **Prompt caching.** The fixed 8,600 characters are identical on every ask
-   and are re-billed every time. Caching them would cut input cost sharply. NOT
-   IMPLEMENTED, and the largest single saving available.
+3. **Prompt caching — CONDITIONAL, AND THE CONDITION IS NOT MEASURED.** The
+   fixed 8,600 characters are identical on every ask and are re-billed every
+   time. Marking them as a cached prefix bills a later call at roughly a tenth
+   of input price. The prefix must be byte-identical, must come first, must
+   clear a minimum of about a thousand tokens (8,600 chars is ~2,400, so it
+   does) — **AND IT EXPIRES IN ABOUT FIVE MINUTES.**
+
+   ```
+   no caching     $0.0254 per ask
+   cache write    $0.0271   the first ask, and any after the window lapses
+   cache read     $0.0189   an ask inside the window
+   break-even     22% of asks must land within five minutes of another
+   ```
+
+   **BELOW THAT IT COSTS MORE THAN IT SAVES.** On a quiet site where asks
+   arrive an hour apart, every one is a cache write at +7%. On a site where a
+   visitor asks four questions in a sitting, three read cheap and the saving is
+   around 20%.
+
+   Whether asks cluster is a fact about traffic that ONLY THE PROXY CAN SEE.
+   **COUNTING COMES BEFORE CACHING**, not after — turning this on without the
+   hit rate is guessing with the bill.
+
+   *An earlier draft of this brief called caching `the largest single saving
+   available`. That priced the discount and not the hit rate.*
 4. **The wall itself.** `HALL.md` spends 29% of the budget carrying the ship's
    architecture into questions about Livy. Scoping it per lane is SLIP #13 move
    F and returns thousands of characters at once.
