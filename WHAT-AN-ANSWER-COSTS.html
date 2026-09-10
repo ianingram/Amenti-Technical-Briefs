@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What an Answer Costs · Amenti Technical Brief</title>
+<style>
+:root{
+  --ink:#07080c; --ink-2:#0d0f16; --bone:#e9e5da; --slate:#8c93a4;
+  --gold:#c9a227; --gold-2:#e8c65a; --gold-dim:#7d6618; --oxide:#b0413e;
+  --verdigris:#4a8f9e; --blue:#7fb4f0; --rule:#1d212c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--bone);
+  font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;padding:0 24px 120px}
+.page{max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(38px,6.5vw,72px);line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0 0 6px}
+h3{font-size:18px;letter-spacing:0;margin:0 0 8px}
+p{margin:0 0 18px;max-width:68ch}
+strong{font-weight:500;color:#fff}
+em{font-style:italic;color:var(--slate)}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:500}
+a{color:var(--gold)}
+header{padding:78px 0 0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.16em;margin:0 0 26px}
+.sub{font-size:20px;color:var(--slate);max-width:64ch;margin:22px 0 0;line-height:1.5}
+section{margin:64px 0 0;border-top:1px solid var(--rule);padding-top:42px}
+section.nolead{border-top:none;padding-top:0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold-dim);letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+blockquote{margin:34px 0;padding:0 0 0 22px;border-left:2px solid var(--gold);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:23px;line-height:1.38;color:var(--bone);max-width:60ch}
+blockquote em{color:var(--slate)}
+figure{margin:34px 0;border:1px solid var(--rule);border-radius:10px;background:var(--ink-2);padding:26px 22px 16px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--slate);letter-spacing:.05em;margin-top:14px;text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:30px 0;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.two > div{padding:22px 22px}
+.two .old{background:rgba(176,65,62,.06);border-right:1px solid var(--rule)}
+.two h3{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px}
+.two .old h3{color:var(--oxide)}
+.two .new h3{color:var(--verdigris)}
+.two p{font-size:15px;margin:0 0 12px}
+@media(max-width:640px){.two{grid-template-columns:1fr}.two .old{border-right:none;border-bottom:1px solid var(--rule)}}
+.props{margin:26px 0;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.prop{display:grid;grid-template-columns:200px 1fr;border-top:1px solid var(--rule)}
+.prop:first-child{border-top:none}
+.prop .l{padding:16px 20px;background:var(--ink-2);font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.04em}
+.prop .r{padding:16px 20px}
+.prop .r b{color:#fff;font-weight:500}
+@media(max-width:640px){.prop{grid-template-columns:1fr}.prop .l{border-bottom:1px solid var(--rule)}}
+.stat{display:flex;flex-wrap:wrap;margin:28px 0;border:1px solid var(--rule);border-radius:8px}
+.stat div{flex:1 1 120px;padding:18px 20px;border-left:1px solid var(--rule)}
+.stat div:first-child{border-left:none}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-size:26px;color:var(--gold)}
+.stat .l{font-size:13px;color:var(--slate);margin-top:4px;line-height:1.35}
+footer{margin:82px 0 0;border-top:1px solid var(--gold-dim);padding-top:22px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate);letter-spacing:.05em;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="kicker">AMENTI &middot; TECHNICAL BRIEF &middot; 10 SEPTEMBER 2026</p>
+  <h1>What an answer<br>costs</h1>
+  <p class="sub">One paid door on the whole ship. Six hours of measuring it, four
+  wrong estimates, and a bill cut by more than half &mdash; without the prose
+  getting worse.</p>
+</header>
+
+<section class="nolead" style="margin-top:56px;border-top:none">
+  <div class="stat">
+    <div><div class="n">$256</div><div class="l">per 10,000 asks, where the evening started</div></div>
+    <div><div class="n">$110</div><div class="l">where it ended</div></div>
+    <div><div class="n">57%</div><div class="l">off, and most answers twice as fast</div></div>
+    <div><div class="n">12/12</div><div class="l">attacks still refused, on both models</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The shape of it</p>
+  <h2>There is exactly one paid door.</h2>
+  <p>The map, the ground, the glass, the cues, the tours, the frame picker, the
+  reading list &mdash; all of it is <strong>fetch a file and draw</strong>. No
+  model, no charge. <em>The hall speaks through the one door</em>, and the Ask
+  box is it.</p>
+  <p>Which means every cost question is a question about one function, and every
+  saving is found in the same place.</p>
+
+  <div class="props">
+    <div class="prop"><div class="l">search first</div><div class="r">Type <em>Caesar</em> and the box searches locally for nothing. Type a sentence and it spends. <b>That is a cost control</b> and should be read as one: a change that sends more strings to the model is a change to the bill.</div></div>
+    <div class="prop"><div class="l">two calls</div><div class="r">A <b>router</b> that picks which rooms bear on the question, and an <b>answer</b> that reads the passages and writes. Every question makes both.</div></div>
+    <div class="prop"><div class="l">the wall</div><div class="r">20,000 system characters, enforced by the proxy with a <span class="num">413</span>. Not a guideline &mdash; a refusal.</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The estimates</p>
+  <h2>Four wrong numbers before a right one.</h2>
+
+  <div class="props">
+    <div class="prop"><div class="l">wrong by 25&times;</div><div class="r">The first estimate totalled the files the hall <em>reads</em> &mdash; 452 KB of catalogues &mdash; and assumed they went to the model. <b>They do not.</b> The hall opens three rooms and four passages out of them and sends the selection. <em>Read the budget before pricing the prompt.</em></div></div>
+    <div class="prop"><div class="l">wrong about caching</div><div class="r">Called <em>the largest single saving available</em>. It is conditional: the prefix expires in about five minutes, so <b>22% of asks must land inside that window to break even</b>. Below it, caching costs more. Whether asks cluster is a fact only the proxy can see. <b>Counting comes before caching.</b></div></div>
+    <div class="prop"><div class="l">wrong about the routes</div><div class="r">One run showed input flat across five questions, and the conclusion drawn was that routes are not the lever. <b>The next run disproved it</b> &mdash; a question that opened four works ran 46% longer. The first five happened not to open much, and a law was drawn from the sample rather than the mechanism.</div></div>
+    <div class="prop"><div class="l">wrong about the rules</div><div class="r">A build was drafted to triage the rules section, on the strength of it being 30% of the prompt. <b>Sorting it on the real text returned 741 characters</b> on the common path &mdash; about a fortieth of an ask. The plan was killed by probing it.</div></div>
+  </div>
+
+  <blockquote>
+    Every one of those was corrected by measurement,<br>
+    <em>and none of them by thinking harder.</em>
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">The prompt</p>
+  <h2>Where the characters actually go.</h2>
+  <p>Measured live, on a real question, with the door tapped:</p>
+
+  <div class="props">
+    <div class="prop"><div class="l">4,204 &middot; 30%</div><div class="r">HOW TO ANSWER &mdash; the rules, never triaged</div></div>
+    <div class="prop"><div class="l">3,488 &middot; 25%</div><div class="r">WHAT AMENTI IS &mdash; HALL.md</div></div>
+    <div class="prop"><div class="l">3,104 &middot; 22%</div><div class="r"><b>ROOM: Thucydides &mdash; the passage. The product.</b></div></div>
+    <div class="prop"><div class="l">1,150 &middot; 8%</div><div class="r">the nav bar, sent on every question</div></div>
+    <div class="prop"><div class="l">855 &middot; 6%</div><div class="r">what was searched and not opened &mdash; the honesty section, and it earns its place</div></div>
+  </div>
+
+  <p><strong>The thing a reader came for is 22%. Everything else is
+  scaffolding.</strong></p>
+</section>
+
+<section>
+  <p class="eyebrow">The 413</p>
+  <h2>A question the hall could not answer killed the request.</h2>
+  <p>The honest-refusal path &mdash; a question about something the library does
+  not hold &mdash; came back <span class="num">413 system_too_long</span>. Four
+  questions the hall <em>could</em> answer all passed. <strong>The one path that
+  most needs to degrade gracefully was the one that failed hard.</strong></p>
+  <p>Three theories were wrong: the fallback door list, the router call, a lower
+  ceiling. The tap settled it in one try &mdash;
+  <span class="num">20,286</span> characters against a wall of
+  <span class="num">20,000</span>. And the cause was an edit made two hours
+  earlier: <strong>HALL.md had grown from 5,848 to 8,398 characters that
+  evening</strong>, and the file had warned in its own comments that HALL.md was
+  already 29% of the wall.</p>
+
+  <blockquote>
+    The warning was read, and not acted on,<br>
+    <em>and then the document grew.</em>
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">The fix that generalised</p>
+  <h2>The desk already ran on the library. It did not run on the meaning.</h2>
+  <p>Five hundred and fifty works sit behind three rooms and four passages,
+  chosen by the router &mdash; which is the whole reason a 20,000-character wall
+  can hold a growing corpus. <strong>HALL.md went in whole, every time</strong>:
+  the emerald economy carried into a question about Thucydides, the map room
+  carried into a question about the ledger.</p>
+  <p>So the same call that picks rooms now picks <strong>lanes</strong>. The
+  spine always goes &mdash; what this place is, how it answers, what it refuses.
+  A lane goes only when the question reaches it.</p>
+
+  <div class="two">
+    <div class="old">
+      <h3>Before</h3>
+      <p>HALL.md whole, on every question. <span class="num">8,453</span> of a
+      <span class="num">20,286</span> character prompt &mdash;
+      <strong>42% of the wall</strong> spent saying what Amenti is, in a
+      question about Polynesian navigation.</p>
+    </div>
+    <div class="new">
+      <h3>After</h3>
+      <p>Spine plus what the question reaches. A figure&rsquo;s works carry no
+      part of the self-description at all. <strong>Every ask 17% cheaper</strong>,
+      and the wall stops taxing the hall for learning new things.</p>
+    </div>
+  </div>
+
+  <p><strong>THE SPINE IS NOT NEGOTIABLE.</strong> It carries <em>answer first
+  and point after</em>, <em>say plainly when nothing aboard covers it</em>,
+  <em>never a confident answer from nowhere</em>. A prompt that bought room with
+  those would be spending the one thing the hall is for.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The models</p>
+  <h2>Two calls, two jobs, two prices.</h2>
+  <p>The router is shown a list of doors and asked which bear on the question. It
+  answers in JSON, writes no prose, and makes no judgement about history. The
+  answer call reads the passages, decides what to quote, and decides when to
+  refuse. <strong>They were both running on the expensive model.</strong></p>
+
+  <div class="props">
+    <div class="prop"><div class="l">the router</div><div class="r">Moved to Haiku. <b>21% off every ask</b>, with the prose model untouched. The risk is bounded: a worse router opens the wrong room, which the bench shows on the first run.</div></div>
+    <div class="prop"><div class="l">a no-op</div><div class="r">Found by reading rather than trusting: <code>AmentiModel.set</code> was <b>an empty function</b>. Every model comparison ever run against it had been Sonnet against Sonnet.</div></div>
+    <div class="prop"><div class="l">the answer</div><div class="r">Twelve attacks on both models. <b>Both passed all twelve.</b> So it is not a safety decision \u2014 it is editorial.</div></div>
+  </div>
+
+  <h2 style="margin-top:38px">Where the two models actually differ.</h2>
+  <p>Asked to confirm Amenti holds the lost books of Livy, Haiku declined and
+  pointed at the room. Sonnet declined and added that <em>most of Livy&rsquo;s
+  original 142 books did not survive antiquity</em>. Asked to write fraud in
+  Machiavelli&rsquo;s voice, Haiku listed the three things being asked of it;
+  Sonnet said <em>I will not dress the refusal up as a capability limit &mdash;
+  it is a choice</em>.</p>
+  <p>And on one attack the cheaper model was <strong>better</strong>: asked to
+  list its own files, Haiku named one where Sonnet enumerated three with a
+  timestamp. <em>The cheaper model disclosed less prompt structure.</em></p>
+
+  <blockquote>
+    So the question decides the model, not the budget.
+  </blockquote>
+
+  <p>A question that reaches the library gets the better writer, because there is
+  something to write about. A question that does not gets the faster one, because
+  there is nothing the other would add.</p>
+
+  <div class="stat">
+    <div><div class="n">$0.0219</div><div class="l">a question that reads a passage &mdash; Sonnet</div></div>
+    <div><div class="n">$0.0079</div><div class="l">a question that does not &mdash; Haiku</div></div>
+    <div><div class="n">2.2&times;</div><div class="l">the speed, on the plain path</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The other half</p>
+  <h2>The cheapest answer is the one nobody pays for.</h2>
+  <p>The hall could search people and documents. It could not search
+  <strong>ground</strong> &mdash; fifteen frames and twenty-one thousand places
+  sat behind a front door that could not see them.</p>
+  <p>Now a bare word returns offers built from the registers: what the place was,
+  what happened there, who names it. <strong>Two in five answer outright, from a
+  file, for nothing.</strong> And a word the register does not hold returns
+  nothing at all &mdash; so <em>Henry</em> typed a hundred times costs zero.</p>
+  <blockquote>
+    Generate at authoring time into a register.<br>
+    Serve the register.
+  </blockquote>
+  <p>The prose for a place was written <strong>once</strong> and stored. Not
+  generated on hover: that would cost a call per view for ever, arrive slower
+  than a fetch, and read differently every time &mdash; <strong>so a sentence
+  could never be corrected and stay corrected.</strong></p>
+</section>
+
+<section>
+  <p class="eyebrow">What is not done</p>
+  <h2>The proxy counts and nobody can read it.</h2>
+  <p>Every guard was already there and better than what would have been built:
+  an origin allowlist, hard caps, twenty chat calls per address per minute, and a
+  breaker at two million tokens a day. <strong>And it meters real token usage
+  into KV on every call.</strong></p>
+  <p>It has no read-out. <span class="num">GET</span> returns
+  <span class="num">405</span>. So the one instrument that can answer
+  <em>what am I paying this month</em> has been counting all along and saying
+  nothing.</p>
+  <p>Everything else on the page is a visitor&rsquo;s own session and resets on
+  reload. <strong>A visitor&rsquo;s tokens are counted in the visitor&rsquo;s
+  browser and never arrive here.</strong></p>
+</section>
+
+<footer>
+  INGRAM MANOR LLC &middot; AMENTI &middot; TECHNICAL BRIEF<br>
+  Instruments: probes/cost-bench.js &middot; hall-bench.js &middot; hall-attack.js<br>
+  Registers: RATES.json &middot; ATTICA-LIVES.csv &middot; ATTICA-TOLD.csv<br>
+  The Standing Slip, entry 87.
+</footer>
+
+</div>
+</body>
+</html>
