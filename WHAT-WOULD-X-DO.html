@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Would X Do · Amenti Technical Brief</title>
+<style>
+:root{
+  --ink:#07080c; --ink-2:#0d0f16; --bone:#e9e5da; --slate:#8c93a4;
+  --gold:#c9a227; --gold-2:#e8c65a; --gold-dim:#7d6618; --oxide:#b0413e;
+  --verdigris:#4a8f9e; --blue:#7fb4f0; --rule:#1d212c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--bone);
+  font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;padding:0 24px 120px}
+.page{max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(38px,6.5vw,72px);line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0 0 6px}
+h3{font-size:18px;letter-spacing:0;margin:0 0 8px}
+p{margin:0 0 18px;max-width:68ch}
+strong{font-weight:500;color:#fff}
+em{font-style:italic;color:var(--slate)}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:500}
+a{color:var(--gold)}
+header{padding:78px 0 0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.16em;margin:0 0 26px}
+.sub{font-size:20px;color:var(--slate);max-width:64ch;margin:22px 0 0;line-height:1.5}
+section{margin:64px 0 0;border-top:1px solid var(--rule);padding-top:42px}
+section.nolead{border-top:none;padding-top:0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold-dim);letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+blockquote{margin:34px 0;padding:0 0 0 22px;border-left:2px solid var(--gold);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:23px;line-height:1.38;color:var(--bone);max-width:60ch}
+blockquote em{color:var(--slate)}
+figure{margin:34px 0;border:1px solid var(--rule);border-radius:10px;background:var(--ink-2);padding:26px 22px 16px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--slate);letter-spacing:.05em;margin-top:14px;text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:30px 0;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.two > div{padding:22px 22px}
+.two .old{background:rgba(176,65,62,.06);border-right:1px solid var(--rule)}
+.two h3{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px}
+.two .old h3{color:var(--oxide)}
+.two .new h3{color:var(--verdigris)}
+.two p{font-size:15px;margin:0 0 12px}
+@media(max-width:640px){.two{grid-template-columns:1fr}.two .old{border-right:none;border-bottom:1px solid var(--rule)}}
+.props{margin:26px 0;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.prop{display:grid;grid-template-columns:200px 1fr;border-top:1px solid var(--rule)}
+.prop:first-child{border-top:none}
+.prop .l{padding:16px 20px;background:var(--ink-2);font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.04em}
+.prop .r{padding:16px 20px}
+.prop .r b{color:#fff;font-weight:500}
+@media(max-width:640px){.prop{grid-template-columns:1fr}.prop .l{border-bottom:1px solid var(--rule)}}
+.stat{display:flex;flex-wrap:wrap;margin:28px 0;border:1px solid var(--rule);border-radius:8px}
+.stat div{flex:1 1 120px;padding:18px 20px;border-left:1px solid var(--rule)}
+.stat div:first-child{border-left:none}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-size:26px;color:var(--gold)}
+.stat .l{font-size:13px;color:var(--slate);margin-top:4px;line-height:1.35}
+footer{margin:82px 0 0;border-top:1px solid var(--gold-dim);padding-top:22px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--slate);letter-spacing:.05em;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="kicker">AMENTI &middot; TECHNICAL BRIEF &middot; 10 SEPTEMBER 2026</p>
+  <h1>What would<br>X do</h1>
+  <p class="sub">A library of the dead exists to answer one question, and the
+  ship has been answering it the expensive way. About half of Herodotus is
+  people talking, and nothing here treats recorded speech as the thing it
+  is.</p>
+</header>
+
+<section class="nolead" style="margin-top:56px;border-top:none">
+  <blockquote>
+    Every other register holds a claim <em>about</em> something.<br>
+    A speech <em>is</em> the thing.
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">The measurement</p>
+  <h2>Half the corpus is people talking.</h2>
+  <p>Counted on the files as they sit in the library, on 10 September:</p>
+
+  <div class="props">
+    <div class="prop"><div class="l">Marathon</div><div class="r"><b>2,259</b> words of quoted speech of 4,724 &mdash; 48%</div></div>
+    <div class="prop"><div class="l">Thermopylai</div><div class="r"><b>2,783</b> of 5,108 &mdash; 54%</div></div>
+    <div class="prop"><div class="l">Plataia</div><div class="r"><b>2,852</b> of 5,567 &mdash; 51%</div></div>
+  </div>
+
+  <p>That material is <strong>inside prose files and reachable only by a model
+  that happens to window onto it.</strong> The library is already a corpus of
+  recorded speech and nothing on the ship knows it.</p>
+</section>
+
+<section>
+  <p class="eyebrow">Why it is different in kind</p>
+  <h2>There is no authoring judgement in a quotation.</h2>
+  <p>Every register on this ship is somebody&rsquo;s sentence about something
+  else. <code>ATTICA-WHY.csv</code> says why a place mattered and admits in its
+  own header that every line is an unverified draft. <code>ATTICA-TOLD.csv</code>
+  is prose written once from dated claims. <code>ATTICA-MOVES.csv</code> records
+  a departure and an arrival and marks three rows as derived because the
+  passage gives a shape and no coordinates.</p>
+
+  <div class="two">
+    <div class="old">
+      <h3>A claim about</h3>
+      <p>Can drift from its source. Can be written well or badly. Needs a
+      <em>standing</em> column to say what it rests on, and a reader has to take
+      the author&rsquo;s word for the reading.</p>
+    </div>
+    <div class="new">
+      <h3>The thing itself</h3>
+      <p>Copied, not composed. <strong>A probe can diff it against the file
+      character by character</strong> &mdash; a stronger guarantee than
+      <em>corpus</em> standing gives anything else on this ship.</p>
+    </div>
+  </div>
+
+  <p>Which makes it the cheapest register to build and the hardest to get
+  wrong. <strong>The author adds nothing and loses nothing.</strong></p>
+</section>
+
+<section>
+  <p class="eyebrow">What it would serve</p>
+  <h2>The question the Ask box actually gets.</h2>
+  <p><em>What did X say</em> is what a library of the dead is for. Today it
+  costs about two and a half cents, opens a room, and depends on the window
+  landing in the right 780 characters of a 26,000-character file. <strong>With a
+  register it is a lookup</strong> &mdash; free, exact, and verbatim.</p>
+
+  <p>It is the third instance of one pattern, and the strongest:</p>
+
+  <div class="props">
+    <div class="prop"><div class="l">ATTICA-TOLD.csv</div><div class="r">what a place was &rarr; the hover pane, free. Prose <b>written once</b> from dated claims.</div></div>
+    <div class="prop"><div class="l">the ground search</div><div class="r">what the ground holds &rarr; the Ask box offers, free. <b>Two in five answer outright.</b></div></div>
+    <div class="prop"><div class="l">speech</div><div class="r">what someone said &rarr; free, exact, and <b>nobody had to write it</b>.</div></div>
+  </div>
+
+  <blockquote>
+    Generate at authoring time into a register. Serve the register.<br>
+    <em>&mdash; except here there is nothing to generate</em>
+  </blockquote>
+
+  <p>What the door is still for: <strong><em>what did X say about Y</em></strong>
+  &mdash; matching a topic across many speeches. That is a join nobody can
+  pre-write. But <em>what did Miltiades say</em> is a row.</p>
+</section>
+
+<section>
+  <p class="eyebrow">What is already there</p>
+  <h2>Five rows, and a name collision.</h2>
+  <p><code>ATTICA-SPEECHES.csv</code> exists as a first cut &mdash; the five
+  speeches in the Marathon campaign, each with speaker, audience, place, and the
+  passage&rsquo;s own wording copied rather than paraphrased.</p>
+
+  <div class="props">
+    <div class="prop"><div class="l">6.97</div><div class="r"><b>Datis</b> to the Delians &mdash; a herald sent across the channel to an island he had come to conquer</div></div>
+    <div class="prop"><div class="l">6.106</div><div class="r"><b>Pheidippides</b> to the magistrates of Sparta &mdash; and the answer that they would not march before the moon was full</div></div>
+    <div class="prop"><div class="l">6.107</div><div class="r"><b>Hippias</b> on the beach, having lost a tooth in the sand</div></div>
+    <div class="prop"><div class="l">6.108</div><div class="r"><b>The Lacedemonians</b> to the Plataians &mdash; the refusal that sent Plataia to Athens</div></div>
+    <div class="prop"><div class="l">6.109</div><div class="r"><b>Miltiades</b> to Callimachos &mdash; 299 words, and <b>the battle decided by an argument before a sword is drawn</b></div></div>
+  </div>
+
+  <p><strong>AND THE WORD IS ALREADY TAKEN.</strong> <code>SPEECH.md</code>,
+  <code>VOICE.json</code>, <code>amenti-voice.js</code> and
+  <code>probe-voice.mjs</code> are the text-to-speech system &mdash; voice out
+  and voice in. A register of recorded speech is a different thing with the same
+  name, and whatever it is finally called should not be <em>speech</em>.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The absence that is worth keeping</p>
+  <h2>There is no speech at the launching.</h2>
+  <p>Herodotus 6.94 to 6.96 is Darius appointing his commanders, the muster on
+  the Ale&iuml;an plain, six hundred triremes sailing, and Naxos burning.
+  <strong>Nobody in it says anything.</strong> The first spoken words in the
+  entire campaign are Datis&rsquo;s herald at Delos, one chapter after the fleet
+  leaves.</p>
+
+  <p>A surface that wanted a rousing send-off could have one in a minute, and it
+  would be the first thing on this ship to assert something no passage carries.
+  The register records the absence instead.</p>
+
+  <blockquote>
+    A blank is not a zero.<br>
+    <em>It is the witness not saying.</em>
+  </blockquote>
+</section>
+
+<section>
+  <p class="eyebrow">What it costs to build</p>
+  <h2>The extraction proposes and a person confirms.</h2>
+  <p>A double quote in these files marks recorded speech <em>and</em> a quoted
+  title, a phrase, a proverb. A naive sweep produces a register full of things
+  nobody said.</p>
+
+  <div class="props">
+    <div class="prop"><div class="l">mechanical</div><div class="r">Find the quotations, their chapter, and the sentence that introduces them. Propose speaker and audience from that sentence.</div></div>
+    <div class="prop"><div class="l">human</div><div class="r">Confirm or correct. <b>The bottleneck, and the same one the passage cutting had</b> &mdash; a tool automates the fast part and leaves the slow part exactly where it is.</div></div>
+    <div class="prop"><div class="l">checkable</div><div class="r">A probe diffs every <code>words</code> field against its file. <b>A quotation either matches or it does not</b>, which no other register can say.</div></div>
+  </div>
+
+  <p>And it costs nothing per ask. The catalogue is declared as doors rather
+  than leaves &mdash; the fix made on 31 August when the prompt hit the wall
+  &mdash; so <strong>a register of a thousand speeches prompts the same as a
+  register of five.</strong></p>
+</section>
+
+<footer>
+  INGRAM MANOR LLC &middot; AMENTI &middot; TECHNICAL BRIEF<br>
+  Registers: ATTICA-SPEECHES.csv &middot; ATTICA-TOLD.csv &middot; ATTICA-MOVES.csv<br>
+  Measured on library/herodotus/05-marathon.md, 03-thermopylai.md,
+  09-plataia-battle.md &middot; 10 September 2026<br>
+  Prior art: the ground search, amenti-hall-ground.js &middot; The Standing Slip, entry 85.
+</footer>
+
+</div>
+</body>
+</html>
