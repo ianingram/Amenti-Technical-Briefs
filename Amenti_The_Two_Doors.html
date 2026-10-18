@@ -75,7 +75,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
 
 <div class="stamp">
   <div><span class="doc">Engineering Brief</span><span class="sep">·</span>Delivery<span class="sep">·</span>Ingram Manor LLC</div>
-  <div><span class="date">18 October 2026</span><span class="sep">·</span>2026-10-18<span class="sep">·</span><span class="rev">Rev. A</span></div>
+  <div><span class="date">18 October 2026</span><span class="sep">·</span>2026-10-18<span class="sep">·</span><span class="rev">Rev. B</span></div>
 </div>
 
 <section class="hero">
@@ -95,7 +95,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
   <rect x="20" y="95" width="150" height="70" rx="8" fill="#11131c" stroke="#343b52"/><text x="95" y="125" text-anchor="middle" fill="#f5c542">CLAUDE</text><text x="95" y="145" text-anchor="middle" fill="#8f95ab">the sandbox</text>
   <rect x="245" y="95" width="150" height="70" rx="8" fill="#11131c" stroke="#343b52"/><text x="320" y="125" text-anchor="middle" fill="#f5c542">IAN</text><text x="320" y="145" text-anchor="middle" fill="#8f95ab">Safari · iMac</text>
   <rect x="480" y="22" width="190" height="78" rx="8" fill="#0d1018" stroke="#57c98a"/><text x="575" y="50" text-anchor="middle" fill="#80ffc0">THE INBOX</text><text x="575" y="70" text-anchor="middle" fill="#8f95ab">repo/inbox/ · a zip</text><text x="575" y="88" text-anchor="middle" fill="#8f95ab">Action unpacks it</text>
-  <rect x="480" y="160" width="190" height="78" rx="8" fill="#0d1018" stroke="#c4a5ff"/><text x="575" y="188" text-anchor="middle" fill="#c4a5ff">THE MEDIA DOOR</text><text x="575" y="208" text-anchor="middle" fill="#8f95ab">upload.html → R2</text><text x="575" y="226" text-anchor="middle" fill="#8f95ab">loose files · 100 MB each</text>
+  <rect x="480" y="160" width="190" height="78" rx="8" fill="#0d1018" stroke="#c4a5ff"/><text x="575" y="188" text-anchor="middle" fill="#c4a5ff">THE MEDIA DOOR</text><text x="575" y="208" text-anchor="middle" fill="#8f95ab">Amenti-Media → R2</text><text x="575" y="226" text-anchor="middle" fill="#8f95ab">loose files · 100 MB each</text>
   <rect x="745" y="22" width="140" height="78" rx="8" fill="#11131c" stroke="#343b52"/><text x="815" y="52" text-anchor="middle">GitHub Pages</text><text x="815" y="72" text-anchor="middle" fill="#8f95ab">pages · js · json</text>
   <rect x="745" y="160" width="140" height="78" rx="8" fill="#11131c" stroke="#343b52"/><text x="815" y="190" text-anchor="middle">amenti-media</text><text x="815" y="210" text-anchor="middle" fill="#8f95ab">/m/&lt;path&gt;</text>
   <path d="M170 130 L240 130" stroke="#d4a017" stroke-width="1.6" marker-end="url(#ar)"/>
@@ -119,7 +119,7 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
 </ul></div></div>
 
 <div class="phase"><div class="ph"><span class="pn">Door II</span><span class="pt">The Media Door</span><span class="pw now">for media</span></div><div class="pb">
-<p><code>Amenti-Studios/upload.html</code> sends files straight to the <code>amenti-media</code> Cloudflare Worker and its R2 bucket — no GitHub, no 25 MB limit. Each file comes back with a link the pages can use.</p>
+<p><strong><code>ianingram.github.io/Amenti-Media/</code></strong> — the door in its own repo, <code>Amenti-Media</code>, since 18 October (it began as <code>Amenti-Studios/upload.html</code>, which now forwards there) — sends files straight to the <code>amenti-media</code> Cloudflare Worker and its R2 bucket — no GitHub, no 25 MB limit. Each file comes back with a link the pages can use.</p>
 <ul>
 <li><strong>What goes in:</strong> video (mp4), audio (mp3), pictures (jpg, png) — anything heavy. Midjourney sessions come to Claude this way too.</li>
 <li><strong>Shape:</strong> <strong>loose files</strong>, chosen by production (<code>dracula/</code>, <code>quo-vadis/</code> …), up to 100 MB each. The door does not unpack zips.</li>
@@ -163,5 +163,13 @@ inbox:       git pull; git log -1          → "inbox: unpack &lt;zip&gt;"
              raw.githubusercontent.com/…?x=$RANDOM | md5sum
              ianingram.github.io/…?v=$RANDOM | md5sum</pre>
 
-<div class="foot">Ingram Manor LLC · Amenti · The Two Doors · Rev. A · 18 October 2026</div>
+<h2>Rev. B — the door gets its own repo</h2>
+<p>The Media Door serves every production and Amenti.live, so it no longer lives inside Amenti-Studios. It is now the repo <strong>Amenti-Media</strong>, served at <code>https://ianingram.github.io/Amenti-Media/</code>, with a README of the Worker's calls and the rules above. Its folder list gained <code>amenti-live/</code>.</p>
+<ul>
+<li><strong>Nothing stored moved.</strong> The Worker, the R2 bucket and every <code>/m/…</code> link are unchanged; only the page's address changed.</li>
+<li><strong>The upload key carried over.</strong> It lives in Safari's storage for <code>ianingram.github.io</code>, which every repo shares.</li>
+<li><strong>The old address forwards.</strong> <code>Amenti-Studios/upload.html</code> is now a one-line redirect to the new door, so bookmarks keep working.</li>
+<li><strong>No inbox in Amenti-Media.</strong> The door rarely changes; a change is a direct upload of <code>index.html</code>. An inbox can be added if that stops being true.</li>
+</ul>
+<div class="foot">Ingram Manor LLC · Amenti · The Two Doors · Rev. B · 18 October 2026</div>
 </main></body></html>
