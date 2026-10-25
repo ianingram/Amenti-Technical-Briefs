@@ -69,11 +69,14 @@ function prose(html) {
 
 /* WHEN was it written. The value of a shop-floor account is the Tuesday it
    describes, so the date is not decoration — it is the reader's only way to
-   know which Tuesday they are standing in. Taken from git, not from the file. */
+   know which Tuesday they are standing in. Taken from git, not from the file.
+   No --follow (25 Oct 2026): briefs share one template — the same embedded
+   fonts and styles — so git took new briefs for copies of a July file and
+   dated eighteen of them 2026-07-18. Each file is dated from its own name. */
 function firstCommit(rel) {
   try {
     const d = cp.execSync(
-      'git log --diff-filter=A --follow --format=%ad --date=short -1 -- ' + JSON.stringify(rel),
+      'git log --diff-filter=A --format=%ad --date=short -1 -- ' + JSON.stringify(rel),
       { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }
     ).toString().trim();
     return d || null;
