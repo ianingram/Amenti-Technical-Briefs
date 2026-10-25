@@ -38,7 +38,7 @@
   10. The Voice That Carries — Amenti Field Journal II
       Amenti_Field_Journal_II.html   2026-06-29   2,464 words
   11. FIELD JOURNAL III · Amenti
-      Amenti_Field_Journal_III.html   2026-07-18   1,314 words
+      Amenti_Field_Journal_III.html   2026-09-14   1,314 words
   12. Amenti.live — Fire Insurance &amp; the Building of Amenti Studios · Engineering Brief
       Amenti_Fire_Insurance.html   2026-07-18   2,440 words
   13. Foundation &amp; Sovereignty · The Three Gates · Amenti
@@ -46,53 +46,53 @@
   14. Amenti · Latency Rundown
       Amenti_Latency_Rundown.html   2026-07-18   1,496 words
   15. The Probe Corps — Amenti
-      Amenti_Probe_Corps.html   2026-07-18   1,270 words
+      Amenti_Probe_Corps.html   2026-07-19   1,270 words
   16. Amenti · Reading-Room Chat Voice Path
       Amenti_ReadingRoom_Chat_VoicePath.html   2026-07-18   1,612 words
   17. Amenti.live — The Separation of Power · Engineering Brief XII
       Amenti_Separation_of_Power.html   2026-07-18   5,239 words
   18. SKIN JOB · Amenti
-      Amenti_Skin_Job.html   2026-07-18   1,114 words
+      Amenti_Skin_Job.html   2026-09-14   1,114 words
   19. Amenti Studios — Audio Archiving &amp; Multimedia Distribution
       Amenti_Studios.html   2026-06-29   2,539 words
   20. STYLE · Amenti
-      Amenti_Style.html   2026-07-18   2,067 words
+      Amenti_Style.html   2026-07-21   2,067 words
   21. Amenti · Taking Time
       Amenti_Taking_Time.html   2026-07-18   755 words
   22. THE CARD · Amenti
-      Amenti_The_Card.html   2026-07-18   866 words
+      Amenti_The_Card.html   2026-07-19   866 words
   23. THE CARD BAY · Amenti
-      Amenti_The_Card_Bay.html   2026-07-18   786 words
+      Amenti_The_Card_Bay.html   2026-07-21   786 words
   24. THE DEMETER · Amenti
-      Amenti_The_Demeter.html   2026-07-18   1,530 words
+      Amenti_The_Demeter.html   2026-10-19   1,530 words
   25. THE EQUILIBRIUM · Amenti
-      Amenti_The_Equilibrium.html   2026-07-18   935 words
+      Amenti_The_Equilibrium.html   2026-07-21   935 words
   26. THE GATES · Amenti
-      Amenti_The_Gates.html   2026-07-18   1,660 words
+      Amenti_The_Gates.html   2026-07-19   1,660 words
   27. THE GROUND STANDARD · Amenti
-      Amenti_The_Ground_Standard.html   2026-07-18   1,190 words
+      Amenti_The_Ground_Standard.html   2026-09-14   1,190 words
   28. THE LEIF BRIEF · Amenti
-      Amenti_The_Leif_Brief.html   2026-07-18   1,615 words
+      Amenti_The_Leif_Brief.html   2026-07-19   1,615 words
   29. THE LIKENESS · Amenti
       Amenti_The_Likeness.html   2026-07-23   1,958 words
   30. THE QUIZ SURFACE · Amenti Engineering Brief
       Amenti_The_Quiz_Surface.html   2026-07-19   2,255 words
   31. THE QUIZZARD · Amenti
-      Amenti_The_Quizzard.html   2026-07-18   1,521 words
+      Amenti_The_Quizzard.html   2026-07-19   1,521 words
   32. THE SACRED FRAMES · Amenti
-      Amenti_The_Sacred_Frames.html   2026-07-18   1,415 words
+      Amenti_The_Sacred_Frames.html   2026-07-19   1,415 words
   33. THE STACK · Amenti
-      Amenti_The_Stack.html   2026-07-18   1,329 words
+      Amenti_The_Stack.html   2026-07-19   1,329 words
   34. Amenti.live — The Triangle: How the Voice Is Made
       Amenti_The_Triangle.html   2026-07-18   602 words
   35. THE TWO DOORS · Amenti
-      Amenti_The_Two_Doors.html   2026-07-18   1,140 words
+      Amenti_The_Two_Doors.html   2026-10-18   1,140 words
   36. Amenti.live — The Voice That Carries
       Amenti_The_Voice_That_Carries.html   2026-06-29   3,350 words
   37. VOYAGE OF DEMETER · OCT 25 · Amenti
-      Amenti_The_Voyage_of_the_Demeter.html   2026-07-18   1,495 words
+      Amenti_The_Voyage_of_the_Demeter.html   2026-10-24   1,495 words
   38. THE WEIGHING · Amenti Roadmap
-      Amenti_The_Weighing.html   2026-07-18   1,247 words
+      Amenti_The_Weighing.html   2026-07-19   1,247 words
   39. VELVET RESOLVER · The Migration of Souls · Amenti
       Amenti_Velvet_Resolver.html   2026-07-23   1,682 words
   40. What an Hour Costs · Amenti
@@ -118,7 +118,7 @@
   50. The Constellation · Amenti Technical Brief
       THE-CONSTELLATION.html   2026-09-03   635 words
   51. THE PROMPT BOOK · Technical Brief · Amenti Studios
-      THE-PROMPT-BOOK.html   2026-07-18   1,563 words
+      THE-PROMPT-BOOK.html   2026-10-05   1,563 words
   52. The Sky as a Source · Amenti Technical Brief
       THE-SKY-AS-A-SOURCE.html   2026-09-02   1,497 words
   53. The Wall and the Prompt · Amenti
@@ -2789,8 +2789,7 @@ Ingram Manor LLC · &copy;2026 All rights reserved
   BRIEF 11 OF 62  ·  FIELD JOURNAL III · AMENTI
 ==============================================================================
   file     Amenti_Field_Journal_III.html
-  written  2026-07-18
-  touched  2026-09-14
+  written  2026-09-14
   words    1,314
 ==============================================================================
 
@@ -3230,8 +3229,7 @@ Amenti.live · Ingram Manor LLC · Latency Rundown · traced & measured 2026-07-
   BRIEF 15 OF 62  ·  THE PROBE CORPS — AMENTI
 ==============================================================================
   file     Amenti_Probe_Corps.html
-  written  2026-07-18
-  touched  2026-07-19
+  written  2026-07-19
   words    1,270
 ==============================================================================
 
@@ -3797,8 +3795,7 @@ do not consolidate what was deliberately divided
   BRIEF 18 OF 62  ·  SKIN JOB · AMENTI
 ==============================================================================
   file     Amenti_Skin_Job.html
-  written  2026-07-18
-  touched  2026-09-14
+  written  2026-09-14
   words    1,114
 ==============================================================================
 
@@ -4282,8 +4279,7 @@ Amenti.live · Amenti.AI · The Amenti Interface · The Neural Interface · The 
   BRIEF 20 OF 62  ·  STYLE · AMENTI
 ==============================================================================
   file     Amenti_Style.html
-  written  2026-07-18
-  touched  2026-07-21
+  written  2026-07-21
   words    2,067
 ==============================================================================
 
@@ -4576,8 +4572,7 @@ Amenti.live · Ingram Manor LLC · Taking Time · 2026-07-17
   BRIEF 22 OF 62  ·  THE CARD · AMENTI
 ==============================================================================
   file     Amenti_The_Card.html
-  written  2026-07-18
-  touched  2026-07-19
+  written  2026-07-19
   words    866
 ==============================================================================
 
@@ -4752,8 +4747,7 @@ Amenti.live · Ingram Manor LLC · THE CARD · working doctrine · 2026-07-18 ·
   BRIEF 23 OF 62  ·  THE CARD BAY · AMENTI
 ==============================================================================
   file     Amenti_The_Card_Bay.html
-  written  2026-07-18
-  touched  2026-07-21
+  written  2026-07-21
   words    786
 ==============================================================================
 
@@ -4845,8 +4839,7 @@ Amenti.live &#183; Ingram Manor LLC &#183; THE CARD BAY &#183; specification &#1
   BRIEF 24 OF 62  ·  THE DEMETER · AMENTI
 ==============================================================================
   file     Amenti_The_Demeter.html
-  written  2026-07-18
-  touched  2026-10-19
+  written  2026-10-19
   words    1,530
 ==============================================================================
 
@@ -5017,8 +5010,7 @@ AMENTI STUDIOS · INGRAM MANOR LLC · WRITTEN 19 OCTOBER 2026 · THE READING FIR
   BRIEF 25 OF 62  ·  THE EQUILIBRIUM · AMENTI
 ==============================================================================
   file     Amenti_The_Equilibrium.html
-  written  2026-07-18
-  touched  2026-07-21
+  written  2026-07-21
   words    935
 ==============================================================================
 
@@ -5148,8 +5140,7 @@ Amenti.live &#183; Ingram Manor LLC &#183; THE EQUILIBRIUM &#183; 2026-07-20 &#1
   BRIEF 26 OF 62  ·  THE GATES · AMENTI
 ==============================================================================
   file     Amenti_The_Gates.html
-  written  2026-07-18
-  touched  2026-07-19
+  written  2026-07-19
   words    1,660
 ==============================================================================
 
@@ -5329,8 +5320,7 @@ Amenti.live · Ingram Manor LLC · THE GATES · specification · 2026-07-19 · R
   BRIEF 27 OF 62  ·  THE GROUND STANDARD · AMENTI
 ==============================================================================
   file     Amenti_The_Ground_Standard.html
-  written  2026-07-18
-  touched  2026-09-14
+  written  2026-09-14
   words    1,190
 ==============================================================================
 
@@ -5453,8 +5443,7 @@ ARE STILL THE SAME THREE LINES.
   BRIEF 28 OF 62  ·  THE LEIF BRIEF · AMENTI
 ==============================================================================
   file     Amenti_The_Leif_Brief.html
-  written  2026-07-18
-  touched  2026-07-19
+  written  2026-07-19
   words    1,615
 ==============================================================================
 
@@ -6053,8 +6042,7 @@ Amenti.live · Ingram Manor LLC · THE QUIZ SURFACE · engineering brief · 2026
   BRIEF 31 OF 62  ·  THE QUIZZARD · AMENTI
 ==============================================================================
   file     Amenti_The_Quizzard.html
-  written  2026-07-18
-  touched  2026-07-19
+  written  2026-07-19
   words    1,521
 ==============================================================================
 
@@ -6227,8 +6215,7 @@ Amenti.live · Ingram Manor LLC · THE QUIZZARD · generator specification · 20
   BRIEF 32 OF 62  ·  THE SACRED FRAMES · AMENTI
 ==============================================================================
   file     Amenti_The_Sacred_Frames.html
-  written  2026-07-18
-  touched  2026-07-19
+  written  2026-07-19
   words    1,415
 ==============================================================================
 
@@ -6390,8 +6377,7 @@ Amenti.live · Ingram Manor LLC · THE SACRED FRAMES · ruled · 2026-07-19 · R
   BRIEF 33 OF 62  ·  THE STACK · AMENTI
 ==============================================================================
   file     Amenti_The_Stack.html
-  written  2026-07-18
-  touched  2026-07-19
+  written  2026-07-19
   words    1,329
 ==============================================================================
 
@@ -6614,8 +6600,7 @@ Amenti.live · Ingram Manor LLC · the powers are divided, so the hall endures
   BRIEF 35 OF 62  ·  THE TWO DOORS · AMENTI
 ==============================================================================
   file     Amenti_The_Two_Doors.html
-  written  2026-07-18
-  touched  2026-10-18
+  written  2026-10-18
   words    1,140
 ==============================================================================
 
@@ -7038,8 +7023,7 @@ Ingram Manor LLC · &copy;2026 All rights reserved
   BRIEF 37 OF 62  ·  VOYAGE OF DEMETER · OCT 25 · AMENTI
 ==============================================================================
   file     Amenti_The_Voyage_of_the_Demeter.html
-  written  2026-07-18
-  touched  2026-10-24
+  written  2026-10-24
   words    1,495
 ==============================================================================
 
@@ -7196,8 +7180,7 @@ AMENTI STUDIOS · INGRAM MANOR LLC · WRITTEN 25 OCTOBER 2026 · VOYAGE OF DEMET
   BRIEF 38 OF 62  ·  THE WEIGHING · AMENTI ROADMAP
 ==============================================================================
   file     Amenti_The_Weighing.html
-  written  2026-07-18
-  touched  2026-07-19
+  written  2026-07-19
   words    1,247
 ==============================================================================
 
@@ -10294,8 +10277,7 @@ The list became an instrument. History resolves against it.
   BRIEF 51 OF 62  ·  THE PROMPT BOOK · TECHNICAL BRIEF · AMENTI STUDIOS
 ==============================================================================
   file     THE-PROMPT-BOOK.html
-  written  2026-07-18
-  touched  2026-10-05
+  written  2026-10-05
   words    1,563
 ==============================================================================
 
