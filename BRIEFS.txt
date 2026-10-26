@@ -7024,7 +7024,7 @@ Ingram Manor LLC · &copy;2026 All rights reserved
 ==============================================================================
   file     Amenti_The_Voyage_of_the_Demeter.html
   written  2026-10-24
-  touched  2026-10-25
+  touched  2026-10-26
   words    3,338
 ==============================================================================
 
@@ -7037,7 +7037,7 @@ Engineering Brief·Amenti Studios·Ingram Manor LLC
 
 Amenti Studios
 
-Taking Castle DraculaOCT 25
+OCT 25Taking Castle Dracula
 
 One Cue Sheet · Three Books · The Ascent to the Castle
 
