@@ -152,6 +152,17 @@ signed 1994-01-06 · published 1994-01-07 · William J. Clinton · 59 FR 1261</p
 <tr><td>Index</td><td><code>data/index.json</code> (every proclamation) and <code>data/presidents.json</code> (each president's count and span)</td></tr>
 <tr><td>Keep current</td><td>Runs again every Monday and fetches only what is new</td></tr>
 </table>
+<p>The first pull finished at dawn on the thirteenth, in GitHub's machines, without error:</p>
+<table>
+<tr><th>President</th><th>Proclamations</th><th>Span in the API</th></tr>
+<tr><td>William J. Clinton</td><td class="m">760</td><td class="m">1994 → 2001</td></tr>
+<tr><td>George W. Bush</td><td class="m">940</td><td class="m">2001 → 2009</td></tr>
+<tr><td>Barack Obama</td><td class="m">1,229</td><td class="m">2009 → 2017</td></tr>
+<tr><td>Donald Trump</td><td class="m">767</td><td class="m">2017 → 2021, 2025 → today</td></tr>
+<tr><td>Joseph R. Biden Jr.</td><td class="m">745</td><td class="m">2021 → 2025</td></tr>
+<tr><td><strong>Total</strong></td><td class="m"><strong>4,441</strong></td><td class="m">of 4,447 listed</td></tr>
+</table>
+<p>The texts came out clean: heading, the president's words in paragraphs, and the closing "IN WITNESS WHEREOF", a median of thirteen paragraphs each. Two came back with no text (7280, <em>Save Your Vision Week, 2000</em>, and 10480, <em>50th Anniversary of the Clean Water Act</em>), and six listed documents were not written. Those eight are the first items to check by hand.</p>
 <div class="note">Every record starts as <code>verified: false</code>. A proclamation is marked verified only after it has been checked against its official page. A civic archive has to be trustworthy before it can be anything else.</div>
 
 <h2>VI · After the download</h2>

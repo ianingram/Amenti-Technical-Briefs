@@ -85,6 +85,14 @@ td.s{font-family:var(--mono);font-size:11px;color:var(--violet);white-space:nowr
 ul.lessons{padding-left:20px}ul.lessons li{padding:5px 0}
 @media (max-width:620px){body{font-size:17px}.bars{height:170px;gap:8px}.bl{gap:8px;font-size:9px}td.m,td.s{white-space:normal}table{font-size:12.5px}}
 </style></head><body><main>
+<style>
+svg.fig text{font-family:'Share Tech Mono',monospace;fill:#c8ccdc}
+svg.fig .h{font-family:'Rajdhani',sans-serif;font-weight:600;letter-spacing:.06em}
+svg.fig .d{fill:#8f95ab}
+div.figwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+div.figwrap svg.fig{min-width:540px}
+p.cap{font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8f95ab;margin:0 0 22px;text-align:center}
+</style>
 <div class="stamp">
   <div><span class="doc">Engineering Brief</span><span class="sep">·</span>Amenti Studios<span class="sep">·</span>Ingram Manor LLC</div>
   <div><span class="date">13 November 2026</span><span class="sep">·</span>2026-11-13<span class="sep">·</span><span class="rev">Rev. A</span></div>
@@ -113,27 +121,135 @@ ul.lessons{padding-left:20px}ul.lessons li{padding:5px 0}
 <p>Every finished chapter was kept, because each was backed up the moment it was done. What was lost was time, and time was the problem.</p>
 
 <h2>II · The workflow</h2>
-<pre>cue sheet  ·  cast  ·  sound sheet  ·  sound files          (Amenti-Readings)
-     │
-     ▼
-1  fetch_voice.js   the real player page asks the speech engine for
-                    every line, exactly as it would to speak it.
-                    Each line comes from the voice cache. Nothing plays.
-     │
-     ▼
-2  mix.py           the player's sound rules, replayed on a clock:
-                    voice · background · score · fills · sound effects
-     │
-     ▼
-3  encode           -16 LUFS, AAC 96 kbps, chapter and album tags
-     │
-     ▼
-4  deliver          private: the studios bucket or Amenti-Print-Masters</pre>
+<div class="figwrap"><svg class="fig" viewBox="0 0 600 640" role="img" aria-label="The MixMaster workflow">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4a017"/></marker></defs>
+<rect x="10" y="10" width="180" height="66" rx="8" fill="#0e121b" stroke="#d4a017" stroke-width="1.5"/>
+<text x="100" y="37" font-size="14" text-anchor="middle" class="h" style="fill:#d4a017">CUE SHEET · CAST</text>
+<text x="100" y="58" font-size="11.5" text-anchor="middle" class="d">every line, who speaks it</text>
+<rect x="210" y="10" width="180" height="66" rx="8" fill="#0e121b" stroke="#00ffe0" stroke-width="1.5"/>
+<text x="300" y="37" font-size="14" text-anchor="middle" class="h" style="fill:#00ffe0">SPEECH ENGINE</text>
+<text x="300" y="58" font-size="11.5" text-anchor="middle" class="d">and the voice cache (R2)</text>
+<rect x="410" y="10" width="180" height="66" rx="8" fill="#0e121b" stroke="#c4a5ff" stroke-width="1.5"/>
+<text x="500" y="37" font-size="14" text-anchor="middle" class="h" style="fill:#c4a5ff">SOUND SHEET · FILES</text>
+<text x="500" y="58" font-size="11.5" text-anchor="middle" class="d">beds, score, fills, effects</text>
+<line x1="100" y1="76" x2="100" y2="118" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="300" y1="76" x2="300" y2="118" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="500" y1="76" x2="500" y2="262" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="10" y="120" width="380" height="100" rx="8" fill="#0e121b" stroke="#00ffe0" stroke-width="1.5"/>
+<text x="26" y="148" font-size="16" text-anchor="start" class="h" style="fill:#00ffe0">1 · FETCH THE VOICE</text>
+<text x="374" y="148" font-size="12" text-anchor="end" class="d">fetch_voice.js</text>
+<text x="26" y="174" font-size="12.5" text-anchor="start">the real player asks the engine for every line</text>
+<text x="26" y="196" font-size="12.5" text-anchor="start" style="fill:#57c98a">from the cache · nothing re-voiced · nothing plays</text>
+<rect x="402" y="128" width="92" height="84" rx="8" fill="#140d10" stroke="#f87171" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="448" y="150" font-size="12" text-anchor="middle" class="h" style="fill:#f87171">BEFORE</text>
+<text x="448" y="170" font-size="11" text-anchor="middle" class="d">play it live</text>
+<text x="448" y="188" font-size="11" text-anchor="middle" class="d">40 min a</text>
+<text x="448" y="204" font-size="11" text-anchor="middle" class="d">chapter</text>
+<line x1="200" y1="220" x2="200" y2="262" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="10" y="264" width="580" height="150" rx="8" fill="#0e121b" stroke="#d4a017" stroke-width="1.5"/>
+<text x="26" y="292" font-size="16" text-anchor="start" class="h" style="fill:#d4a017">2 · MIX</text>
+<text x="574" y="292" font-size="12" text-anchor="end" class="d">mix.py</text>
+<text x="26" y="316" font-size="12.5" text-anchor="start">the player's own sound rules, on a clock of its own</text>
+<rect x="22" y="332" width="104" height="70" rx="8" fill="#0a0d13" stroke="#d4a017" stroke-width="1.5"/>
+<text x="74" y="352" font-size="12" text-anchor="middle" class="h" style="fill:#d4a017">VOICE</text>
+<text x="74" y="372" font-size="11" text-anchor="middle" class="d">measures</text>
+<text x="74" y="389" font-size="11" text-anchor="middle" class="d">+ pauses</text>
+<rect x="135" y="332" width="104" height="70" rx="8" fill="#0a0d13" stroke="#57c98a" stroke-width="1.5"/>
+<text x="187" y="352" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">BACKGROUND</text>
+<text x="187" y="372" font-size="11" text-anchor="middle" class="d">3 loops,</text>
+<text x="187" y="389" font-size="11" text-anchor="middle" class="d">ducked</text>
+<rect x="248" y="332" width="104" height="70" rx="8" fill="#0a0d13" stroke="#c4a5ff" stroke-width="1.5"/>
+<text x="300" y="352" font-size="12" text-anchor="middle" class="h" style="fill:#c4a5ff">SCORE</text>
+<text x="300" y="372" font-size="11" text-anchor="middle" class="d">crossfades,</text>
+<text x="300" y="389" font-size="11" text-anchor="middle" class="d">breathes</text>
+<rect x="361" y="332" width="104" height="70" rx="8" fill="#0a0d13" stroke="#00ffe0" stroke-width="1.5"/>
+<text x="413" y="352" font-size="12" text-anchor="middle" class="h" style="fill:#00ffe0">FILLS</text>
+<text x="413" y="372" font-size="11" text-anchor="middle" class="d">piano under</text>
+<text x="413" y="389" font-size="11" text-anchor="middle" class="d">a letter</text>
+<rect x="474" y="332" width="104" height="70" rx="8" fill="#0a0d13" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="526" y="352" font-size="12" text-anchor="middle" class="h" style="fill:#fbbf24">EFFECTS</text>
+<text x="526" y="372" font-size="11" text-anchor="middle" class="d">on their</text>
+<text x="526" y="389" font-size="11" text-anchor="middle" class="d">words</text>
+<line x1="300" y1="414" x2="300" y2="452" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="10" y="454" width="580" height="62" rx="8" fill="#0e121b" stroke="#57c98a" stroke-width="1.5"/>
+<text x="26" y="480" font-size="16" text-anchor="start" class="h" style="fill:#57c98a">3 · FINISH</text>
+<text x="26" y="503" font-size="12" text-anchor="start">−16 LUFS · AAC 96 kbps · title, chapter and album tags for the car screen</text>
+<line x1="160" y1="516" x2="160" y2="556" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="440" y1="516" x2="440" y2="556" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="10" y="558" width="290" height="72" rx="8" fill="#0e121b" stroke="#d4a017" stroke-width="1.5"/>
+<text x="26" y="584" font-size="14" text-anchor="start" class="h" style="fill:#d4a017">4 · DELIVER (PRIVATE)</text>
+<text x="26" y="608" font-size="12" text-anchor="start">amenti-studios-private bucket</text>
+<rect x="310" y="558" width="280" height="72" rx="8" fill="#0e121b" stroke="#343b52" stroke-width="1.5"/>
+<text x="326" y="584" font-size="14" text-anchor="start" class="h" style="fill:#c8ccdc">BACKUP</text>
+<text x="326" y="608" font-size="12" text-anchor="start">Amenti-Print-Masters (private)</text>
+</svg></div>
+<p class="cap">Fig. 1 · The workflow: three inputs, four steps, two private destinations</p>
 <div class="acc"><div class="ak">1 · The voice, from the cache</div><div class="av">The voice service charges for each new recording of a line, so the mixer must ask for each line in exactly the same words, voice and style the player uses. If one byte differs, the line is recorded and paid for again. So the mixer doesn't contain its own copy of the voice code. It opens the real player page and lets the real engine cut every line into its measures and request them, and it keeps what comes back. Every line already heard on the website comes straight from the cache.</div></div>
 <div class="acc"><div class="ak">2 · The mix, by the same rules</div><div class="av">The player's sound code (<code>sound.js</code>) is a set of rules: when the background fades in, how far it drops under a voice, how long a crossfade lasts, where on its words a sound effect lands. <code>mix.py</code> follows those rules on its own clock, measure by measure, with the same fades and the same curves. Even the small random variations are the same: each door or wolf howl gets the same pitch and speed it gets in the browser.</div></div>
 <div class="acc"><div class="ak">3 · The finish</div><div class="av">The same finishing settings as the recorded road tracks: start trimmed, loudness levelled to the standard for spoken audio, a short fade in, two seconds of quiet at the end, and the chapter's number, title and album written into the file, so a car's screen shows "Chapter 15 · Dracula · Amenti Studios".</div></div>
 
 <h2>III · What it mixes</h2>
+<div class="figwrap"><svg class="fig" viewBox="0 0 600 350" role="img" aria-label="The five layers over one minute">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4a017"/></marker></defs>
+<text x="300" y="20" font-size="12" text-anchor="middle" class="d">ONE MINUTE OF A CHAPTER · ILLUSTRATIVE</text>
+<text x="10" y="59" font-size="12.5" text-anchor="start" class="h" style="fill:#d4a017">VOICE</text>
+<line x1="112" y1="54" x2="588" y2="54" stroke="#232838" stroke-width="1"/>
+<text x="10" y="117" font-size="12.5" text-anchor="start" class="h" style="fill:#57c98a">BACKGROUND</text>
+<line x1="112" y1="112" x2="588" y2="112" stroke="#232838" stroke-width="1"/>
+<text x="10" y="181" font-size="12.5" text-anchor="start" class="h" style="fill:#c4a5ff">SCORE</text>
+<line x1="112" y1="176" x2="588" y2="176" stroke="#232838" stroke-width="1"/>
+<text x="10" y="241" font-size="12.5" text-anchor="start" class="h" style="fill:#00ffe0">FILL</text>
+<line x1="112" y1="236" x2="588" y2="236" stroke="#232838" stroke-width="1"/>
+<text x="10" y="293" font-size="12.5" text-anchor="start" class="h" style="fill:#fbbf24">EFFECTS</text>
+<line x1="112" y1="288" x2="588" y2="288" stroke="#232838" stroke-width="1"/>
+<rect x="127.9" y="42" width="47.6" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<rect x="178.6" y="42" width="36.5" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<rect x="219.9" y="42" width="44.4" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<rect x="267.5" y="42" width="47.6" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<rect x="318.3" y="42" width="39.7" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<rect x="362.7" y="42" width="50.8" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<rect x="417.4" y="42" width="43.6" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<rect x="468.2" y="42" width="44.4" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<rect x="517.4" y="42" width="50.8" height="24" rx="3" fill="#d4a017" fill-opacity=".85"/>
+<text x="306.3666666666667" y="36" font-size="10.5" text-anchor="middle" class="d">a letter read aloud</text>
+<text x="177.05333333333334" y="82" font-size="10" text-anchor="middle" class="d">pause after a sentence</text>
+<line x1="177.1" y1="68" x2="177.1" y2="73" stroke="#8f95ab"/>
+<polygon points="112,126 112.0,126.0 114.0,125.0 116.0,123.9 118.0,122.8 119.9,121.7 121.9,120.7 123.9,119.7 125.9,118.9 127.9,118.1 129.8,117.3 131.8,116.6 133.8,115.7 135.8,114.7 137.8,113.5 139.8,112.1 141.8,110.7 143.7,109.2 145.7,108.8 147.7,108.7 149.7,108.8 151.7,109.1 153.7,109.7 155.6,110.4 157.6,111.1 159.6,111.7 161.6,112.1 163.6,112.4 165.6,112.3 167.5,112.1 169.5,111.7 171.5,111.2 173.5,110.8 175.5,110.4 177.4,110.3 179.4,110.4 181.4,110.7 183.4,111.2 185.4,111.7 187.4,112.2 189.3,112.7 191.3,112.9 193.3,112.8 195.3,112.5 197.3,112.0 199.3,111.3 201.2,110.7 203.2,110.0 205.2,109.5 207.2,109.3 209.2,109.2 211.2,109.4 213.2,109.8 215.1,110.3 217.1,110.7 219.1,111.0 221.1,111.2 223.1,111.1 225.1,110.8 227.0,110.3 229.0,109.8 231.0,109.2 233.0,108.7 235.0,108.5 236.9,108.4 238.9,108.7 240.9,109.1 242.9,109.8 244.9,110.4 246.9,111.1 248.8,111.6 250.8,111.9 252.8,112.0 254.8,111.8 256.8,111.5 258.8,111.0 260.8,110.6 262.7,110.3 264.7,110.1 266.7,110.2 268.7,110.4 270.7,110.9 272.6,111.5 274.6,112.1 276.6,112.6 278.6,112.9 280.6,113.0 282.6,112.9 284.6,112.5 286.5,111.9 288.5,111.2 290.5,110.6 292.5,110.1 294.5,109.7 296.4,109.6 298.4,109.8 300.4,110.1 302.4,110.5 304.4,110.9 306.4,111.3 308.4,111.4 310.3,111.4 312.3,111.1 314.3,110.7 316.3,110.1 318.3,109.5 320.2,108.9 322.2,108.5 324.2,108.3 326.2,108.4 328.2,108.8 330.2,109.3 332.1,109.9 334.1,110.5 336.1,111.1 338.1,111.4 340.1,111.6 342.1,111.5 344.1,111.2 346.0,110.8 348.0,110.3 350.0,110.0 352.0,109.8 354.0,109.8 355.9,110.0 357.9,110.5 359.9,111.1 361.9,111.7 363.9,112.3 365.9,112.8 367.9,113.0 369.8,113.0 371.8,112.8 373.8,112.3 375.8,111.7 377.8,111.1 379.8,110.5 381.7,110.2 383.7,110.0 385.7,110.1 387.7,110.3 389.7,110.7 391.6,111.2 393.6,111.6 395.6,111.8 397.6,111.8 399.6,111.6 401.6,111.2 403.6,110.6 405.5,109.9 407.5,109.3 409.5,108.7 411.5,108.4 413.5,108.4 415.4,108.6 417.4,109.0 419.4,109.6 421.4,110.1 423.4,110.7 425.4,111.1 427.4,111.2 429.3,111.2 431.3,110.9 433.3,110.5 435.3,110.1 437.3,109.7 439.2,109.4 441.2,109.4 443.2,109.5 445.2,109.9 447.2,110.5 449.2,111.2 451.1,111.9 453.1,112.4 455.1,112.8 457.1,112.9 459.1,112.8 461.1,112.5 463.1,111.9 465.0,111.4 467.0,110.9 469.0,110.5 471.0,110.3 473.0,110.3 474.9,110.5 476.9,110.9 478.9,111.4 480.9,111.8 482.9,112.1 484.9,112.3 486.9,112.1 488.8,111.7 490.8,111.2 492.8,110.5 494.8,109.8 496.8,109.2 498.8,108.8 500.7,108.6 502.7,108.6 504.7,108.9 506.7,109.4 508.7,109.9 510.6,110.5 512.6,110.8 514.6,111.0 516.6,111.0 518.6,110.8 520.6,110.4 522.5,109.9 524.5,109.5 526.5,109.1 528.5,109.0 530.5,109.0 532.5,109.4 534.5,109.9 536.4,110.6 538.4,111.3 540.4,111.9 542.4,112.4 544.4,112.6 546.4,112.6 548.3,112.4 550.3,112.0 552.3,111.5 554.3,111.0 556.3,110.6 558.2,110.4 560.2,110.4 562.2,110.6 564.2,111.0 566.2,111.5 568.2,112.0 570.1,112.4 572.1,112.6 574.1,112.6 576.1,112.3 578.1,111.8 580.1,111.2 582.0,110.5 584.0,109.8 586.0,109.3 588.0,109.0 588,126" fill="#57c98a" fill-opacity=".22" stroke="#57c98a" stroke-width="1.4"/>
+<line x1="405.5" y1="92" x2="405.5" y2="128" stroke="#57c98a" stroke-dasharray="3 3"/>
+<text x="401.53333333333336" y="140" font-size="10" text-anchor="end" class="d">37 s loop</text>
+<line x1="532.5" y1="92" x2="532.5" y2="128" stroke="#57c98a" stroke-dasharray="3 3"/>
+<text x="528.4666666666667" y="140" font-size="10" text-anchor="end" class="d">53 s loop</text>
+<text x="119.93333333333334" y="140" font-size="10" text-anchor="start" class="d">in 4 s · ducked under the voice</text>
+<polygon points="112,194 112.0,194.0 113.6,193.0 115.2,191.9 116.8,190.8 118.3,189.7 119.9,188.6 121.5,187.4 123.1,186.1 124.7,184.9 126.3,183.6 127.9,182.3 129.5,180.9 131.0,179.6 132.6,178.2 134.2,176.8 135.8,175.3 137.4,173.9 139.0,172.5 140.6,171.0 142.1,169.5 143.7,168.1 145.3,166.6 146.9,165.2 148.5,163.7 150.1,162.3 151.7,160.8 153.3,159.4 154.8,158.0 156.4,156.7 158.0,155.3 159.6,154.0 161.2,154.1 162.8,154.2 164.4,154.3 165.9,154.4 167.5,154.6 169.1,154.8 170.7,155.0 172.3,155.3 173.9,155.5 175.5,155.8 177.1,156.2 178.6,156.5 180.2,156.9 181.8,157.3 183.4,157.7 185.0,158.1 186.6,158.6 188.2,159.0 189.7,159.5 191.3,160.0 192.9,160.5 194.5,161.0 196.1,161.6 197.7,162.1 199.3,162.6 200.9,163.2 202.4,163.7 204.0,164.3 205.6,164.8 207.2,165.4 208.8,165.9 210.4,166.4 212.0,167.0 213.5,167.5 215.1,168.0 216.7,168.5 218.3,169.0 219.9,169.4 221.5,169.9 223.1,170.3 224.7,170.7 226.2,171.1 227.8,171.5 229.4,171.8 231.0,172.2 232.6,172.5 234.2,172.7 235.8,173.0 237.3,173.2 238.9,173.4 240.5,173.6 242.1,173.7 243.7,173.8 245.3,173.9 246.9,174.0 248.5,174.0 250.0,174.0 251.6,174.0 253.2,173.9 254.8,173.8 256.4,173.7 258.0,173.5 259.6,173.3 261.1,173.1 262.7,172.9 264.3,172.6 265.9,172.3 267.5,172.0 269.1,175.7 270.7,178.5 272.3,180.5 273.8,182.0 275.4,183.1 277.0,183.9 278.6,184.4 280.2,184.8 281.8,185.1 283.4,185.2 284.9,185.3 286.5,185.3 288.1,185.3 289.7,185.2 291.3,185.1 292.9,185.0 294.5,184.9 296.1,184.7 297.6,184.6 299.2,184.5 300.8,184.3 302.4,184.2 304.0,184.0 305.6,183.9 307.2,183.7 308.7,183.6 310.3,183.4 311.9,183.3 313.5,183.2 315.1,183.0 316.7,182.9 318.3,182.8 319.9,182.7 321.4,182.6 323.0,182.5 324.6,182.4 326.2,182.3 327.8,182.3 329.4,182.2 331.0,182.1 332.5,182.1 334.1,182.1 335.7,182.0 337.3,182.0 338.9,182.0 340.5,182.0 342.1,182.0 343.7,182.0 345.2,182.0 346.8,182.1 348.4,182.1 350.0,182.2 351.6,182.2 353.2,182.3 354.8,182.4 356.3,182.5 357.9,182.5 359.5,182.6 361.1,182.8 362.7,182.9 364.3,181.8 365.9,180.8 367.5,179.8 369.0,178.9 370.6,177.9 372.2,177.1 373.8,176.2 375.4,175.4 377.0,174.7 378.6,173.9 380.1,173.3 381.7,172.6 383.3,172.0 384.9,171.4 386.5,170.9 388.1,170.4 389.7,169.9 391.3,169.5 392.8,169.1 394.4,168.7 396.0,168.3 397.6,168.0 399.2,168.5 400.8,169.0 402.4,169.4 403.9,169.9 405.5,170.3 407.1,170.7 408.7,171.1 410.3,171.5 411.9,171.8 413.5,172.2 415.1,172.5 416.6,172.7 418.2,173.0 419.8,173.2 421.4,173.4 423.0,173.6 424.6,173.7 426.2,173.8 427.7,173.9 429.3,174.0 430.9,174.0 432.5,174.0 434.1,174.0 435.7,174.0 437.3,174.0 438.9,174.0 440.4,174.0 442.0,174.0 443.6,173.9 445.2,173.9 446.8,173.9 448.4,173.8 450.0,173.8 451.5,173.8 453.1,173.8 454.7,173.8 456.3,173.8 457.9,173.8 459.5,173.9 461.1,173.9 462.7,174.0 464.2,174.1 465.8,174.3 467.4,174.5 469.0,174.7 470.6,174.9 472.2,175.2 473.8,175.6 475.3,175.9 476.9,176.4 478.5,176.8 480.1,177.3 481.7,177.9 483.3,178.5 484.9,179.2 486.5,179.9 488.0,180.6 489.6,181.4 491.2,182.2 492.8,183.1 494.4,184.1 496.0,185.0 497.6,186.0 499.1,187.1 500.7,188.2 502.3,189.3 503.9,190.4 505.5,191.6 507.1,192.8 508.7,194.0 510.3,194.0 511.8,194.0 513.4,194.0 515.0,194.0 516.6,194.0 518.2,194.0 519.8,194.0 521.4,194.0 522.9,194.0 524.5,194.0 526.1,194.0 527.7,194.0 529.3,194.0 530.9,194.0 532.5,194.0 534.1,194.0 535.6,194.0 537.2,194.0 538.8,194.0 540.4,194.0 542.0,194.0 543.6,194.0 545.2,194.0 546.7,194.0 548.3,194.0 549.9,194.0 551.5,194.0 553.1,194.0 554.7,194.0 556.3,194.0 557.9,194.0 559.4,194.0 561.0,194.0 562.6,194.0 564.2,194.0 565.8,194.0 567.4,194.0 569.0,194.0 570.5,194.0 572.1,194.0 573.7,194.0 575.3,194.0 576.9,194.0 578.5,194.0 580.1,194.0 581.7,194.0 583.2,194.0 584.8,194.0 586.4,194.0 588.0,194.0 588,194" fill="#c4a5ff" fill-opacity=".28" stroke="#c4a5ff" stroke-width="1.4"/>
+<polygon points="112,194 112.0,194.0 113.6,194.0 115.2,194.0 116.8,194.0 118.3,194.0 119.9,194.0 121.5,194.0 123.1,194.0 124.7,194.0 126.3,194.0 127.9,194.0 129.5,194.0 131.0,194.0 132.6,194.0 134.2,194.0 135.8,194.0 137.4,194.0 139.0,194.0 140.6,194.0 142.1,194.0 143.7,194.0 145.3,194.0 146.9,194.0 148.5,194.0 150.1,194.0 151.7,194.0 153.3,194.0 154.8,194.0 156.4,194.0 158.0,194.0 159.6,194.0 161.2,194.0 162.8,194.0 164.4,194.0 165.9,194.0 167.5,194.0 169.1,194.0 170.7,194.0 172.3,194.0 173.9,194.0 175.5,194.0 177.1,194.0 178.6,194.0 180.2,194.0 181.8,194.0 183.4,194.0 185.0,194.0 186.6,194.0 188.2,194.0 189.7,194.0 191.3,194.0 192.9,194.0 194.5,194.0 196.1,194.0 197.7,194.0 199.3,194.0 200.9,194.0 202.4,194.0 204.0,194.0 205.6,194.0 207.2,194.0 208.8,194.0 210.4,194.0 212.0,194.0 213.5,194.0 215.1,194.0 216.7,194.0 218.3,194.0 219.9,194.0 221.5,194.0 223.1,194.0 224.7,194.0 226.2,194.0 227.8,194.0 229.4,194.0 231.0,194.0 232.6,194.0 234.2,194.0 235.8,194.0 237.3,194.0 238.9,194.0 240.5,194.0 242.1,194.0 243.7,194.0 245.3,194.0 246.9,194.0 248.5,194.0 250.0,194.0 251.6,194.0 253.2,194.0 254.8,194.0 256.4,194.0 258.0,194.0 259.6,194.0 261.1,194.0 262.7,194.0 264.3,194.0 265.9,194.0 267.5,194.0 269.1,194.0 270.7,194.0 272.3,194.0 273.8,194.0 275.4,194.0 277.0,194.0 278.6,194.0 280.2,194.0 281.8,194.0 283.4,194.0 284.9,194.0 286.5,194.0 288.1,194.0 289.7,194.0 291.3,194.0 292.9,194.0 294.5,194.0 296.1,194.0 297.6,194.0 299.2,194.0 300.8,194.0 302.4,194.0 304.0,194.0 305.6,194.0 307.2,194.0 308.7,194.0 310.3,194.0 311.9,194.0 313.5,194.0 315.1,194.0 316.7,194.0 318.3,194.0 319.9,194.0 321.4,194.0 323.0,194.0 324.6,194.0 326.2,194.0 327.8,194.0 329.4,194.0 331.0,194.0 332.5,194.0 334.1,194.0 335.7,194.0 337.3,194.0 338.9,194.0 340.5,194.0 342.1,194.0 343.7,194.0 345.2,194.0 346.8,194.0 348.4,194.0 350.0,194.0 351.6,194.0 353.2,194.0 354.8,194.0 356.3,194.0 357.9,194.0 359.5,194.0 361.1,194.0 362.7,194.0 364.3,194.0 365.9,194.0 367.5,194.0 369.0,194.0 370.6,194.0 372.2,194.0 373.8,194.0 375.4,194.0 377.0,194.0 378.6,194.0 380.1,194.0 381.7,194.0 383.3,194.0 384.9,194.0 386.5,194.0 388.1,194.0 389.7,194.0 391.3,194.0 392.8,194.0 394.4,194.0 396.0,194.0 397.6,194.0 399.2,194.0 400.8,194.0 402.4,194.0 403.9,194.0 405.5,194.0 407.1,194.0 408.7,194.0 410.3,194.0 411.9,194.0 413.5,194.0 415.1,194.0 416.6,194.0 418.2,194.0 419.8,194.0 421.4,194.0 423.0,194.0 424.6,194.0 426.2,194.0 427.7,194.0 429.3,194.0 430.9,193.4 432.5,192.7 434.1,192.1 435.7,191.5 437.3,190.8 438.9,190.2 440.4,189.5 442.0,188.9 443.6,188.2 445.2,187.5 446.8,186.8 448.4,186.0 450.0,185.3 451.5,184.5 453.1,183.7 454.7,182.9 456.3,182.0 457.9,181.2 459.5,180.3 461.1,179.4 462.7,178.5 464.2,177.6 465.8,176.6 467.4,175.7 469.0,174.7 470.6,173.7 472.2,172.7 473.8,171.7 475.3,170.7 476.9,169.7 478.5,168.7 480.1,167.7 481.7,166.8 483.3,165.8 484.9,164.9 486.5,163.9 488.0,163.0 489.6,162.2 491.2,161.3 492.8,160.5 494.4,159.8 496.0,159.0 497.6,158.4 499.1,157.7 500.7,157.2 502.3,156.6 503.9,156.2 505.5,155.8 507.1,155.4 508.7,155.1 510.3,154.9 511.8,154.7 513.4,154.5 515.0,154.3 516.6,154.2 518.2,154.1 519.8,154.0 521.4,154.0 522.9,154.0 524.5,154.0 526.1,154.1 527.7,154.2 529.3,154.3 530.9,154.4 532.5,154.6 534.1,154.8 535.6,155.0 537.2,155.3 538.8,155.5 540.4,155.8 542.0,156.2 543.6,156.5 545.2,156.9 546.7,157.3 548.3,157.7 549.9,158.1 551.5,158.6 553.1,159.0 554.7,159.5 556.3,160.0 557.9,160.5 559.4,161.0 561.0,161.6 562.6,162.1 564.2,162.6 565.8,163.2 567.4,163.7 569.0,164.3 570.5,164.8 572.1,165.4 573.7,165.9 575.3,166.4 576.9,167.0 578.5,167.5 580.1,168.0 581.7,168.5 583.2,169.0 584.8,169.4 586.4,169.9 588.0,170.3 588,194" fill="#f0a6ff" fill-opacity=".22" stroke="#f0a6ff" stroke-width="1.4"/>
+<text x="508.6666666666667" y="206" font-size="10" text-anchor="middle" class="d">crossfade 10 s</text>
+<text x="315.09333333333336" y="206" font-size="10" text-anchor="middle" class="d">steps back under the letter</text>
+<text x="135.8" y="206" font-size="10" text-anchor="start" class="d">breathes</text>
+<polygon points="267.5,248 267.5,248.0 268.6,246.0 269.7,243.9 270.8,241.9 271.9,239.9 273.0,237.9 274.1,235.8 275.2,233.8 276.3,231.8 277.4,229.7 278.5,227.7 279.6,226.0 280.7,226.0 281.8,226.0 282.9,226.0 284.0,226.0 285.1,226.0 286.1,226.0 287.2,226.0 288.3,226.0 289.4,226.0 290.5,226.0 291.6,226.0 292.7,226.0 293.8,226.0 294.9,226.0 296.0,226.0 297.1,226.0 298.2,226.0 299.3,226.0 300.4,226.0 301.5,226.0 302.6,226.0 303.7,226.0 304.8,226.0 305.9,226.0 307.0,226.0 308.1,226.0 309.2,226.0 310.3,226.0 311.4,226.0 312.5,226.0 313.6,226.0 314.7,226.0 315.8,226.0 316.9,226.0 318.0,226.0 319.1,226.0 320.2,226.0 321.3,226.0 322.4,226.0 323.5,226.0 324.6,226.0 325.7,226.0 326.8,226.0 327.9,226.0 329.0,226.0 330.0,226.0 331.1,226.0 332.2,226.0 333.3,226.0 334.4,226.0 335.5,226.0 336.6,226.0 337.7,226.0 338.8,226.0 339.9,226.0 341.0,226.0 342.1,226.0 343.2,226.0 344.3,226.0 345.4,226.0 346.5,226.0 347.6,226.0 348.7,226.0 349.8,226.0 350.9,226.0 352.0,226.0 353.1,226.0 354.2,226.0 355.3,226.0 356.4,226.0 357.5,226.0 358.6,226.0 359.7,226.0 360.8,226.0 361.9,226.0 363.0,226.3 364.1,227.5 365.2,228.7 366.3,230.0 367.4,231.2 368.5,232.4 369.6,233.6 370.7,234.8 371.8,236.0 372.8,237.3 373.9,238.5 375.0,239.7 376.1,240.9 377.2,242.1 378.3,243.4 379.4,244.6 380.5,245.8 381.6,247.0 382.7,248.0 383.8,248.0 384.9,248.0 386.0,248.0 387.1,248.0 388.2,248.0 389.3,248.0 390.4,248.0 391.5,248.0 392.6,248.0 393.7,248.0 394.8,248.0 395.9,248.0 397.0,248.0 398.1,248.0 399.2,248.0 399.2,248" fill="#00ffe0" fill-opacity=".22" stroke="#00ffe0" stroke-width="1.4"/>
+<text x="334.1333333333333" y="262" font-size="10" text-anchor="middle" class="d">piano under the letter · in 1.5 s, out 2.5 s</text>
+<path d="M267.5,278 l8,10 l-8,10 l-8,-10 z" fill="#fbbf24"/>
+<text x="267.49333333333334" y="312" font-size="10" text-anchor="middle" class="d">whistle · line start</text>
+<path d="M153.3,278 l8,10 l-8,10 l-8,-10 z" fill="#fbbf24"/>
+<text x="153.25333333333333" y="312" font-size="10" text-anchor="middle" class="d">door · on its word</text>
+<path d="M486.5,278 l8,10 l-8,10 l-8,-10 z" fill="#fbbf24"/>
+<text x="486.4533333333333" y="312" font-size="10" text-anchor="middle" class="d">wolf · on its word</text>
+<line x1="112.0" y1="324" x2="112.0" y2="329" stroke="#8f95ab"/>
+<text x="112.0" y="343" font-size="10" text-anchor="middle" class="d">0 s</text>
+<line x1="191.3" y1="324" x2="191.3" y2="329" stroke="#8f95ab"/>
+<text x="191.33333333333331" y="343" font-size="10" text-anchor="middle" class="d">10 s</text>
+<line x1="270.7" y1="324" x2="270.7" y2="329" stroke="#8f95ab"/>
+<text x="270.66666666666663" y="343" font-size="10" text-anchor="middle" class="d">20 s</text>
+<line x1="350.0" y1="324" x2="350.0" y2="329" stroke="#8f95ab"/>
+<text x="350.0" y="343" font-size="10" text-anchor="middle" class="d">30 s</text>
+<line x1="429.3" y1="324" x2="429.3" y2="329" stroke="#8f95ab"/>
+<text x="429.3333333333333" y="343" font-size="10" text-anchor="middle" class="d">40 s</text>
+<line x1="508.7" y1="324" x2="508.7" y2="329" stroke="#8f95ab"/>
+<text x="508.6666666666667" y="343" font-size="10" text-anchor="middle" class="d">50 s</text>
+<line x1="588.0" y1="324" x2="588.0" y2="329" stroke="#8f95ab"/>
+<text x="588.0" y="343" font-size="10" text-anchor="middle" class="d">60 s</text>
+<line x1="112" y1="324" x2="588" y2="324" stroke="#343b52"/>
+</svg></div>
+<p class="cap">Fig. 2 · The five layers, placed exactly as the player places them</p>
 <table>
 <tr><th>Layer</th><th>How it is placed</th></tr>
 <tr><td>Voice</td><td>Each measure back to back, followed by its own pause: longer after a sentence, longest after a paragraph. Lines recorded beforehand as finished files play as they are.</td></tr>
@@ -160,14 +276,125 @@ ul.lessons{padding-left:20px}ul.lessons li{padding:5px 0}
 <h2>VI · Where it lives</h2>
 <table>
 <tr><th>Part</th><th>Place</th><th>Status</th></tr>
-<tr><td>The two scripts</td><td><code>Amenti-Readings/tools/mixer/</code>: <code>fetch_voice.js</code>, <code>mix.py</code></td><td>Built; committed after tonight's chapters are checked</td></tr>
+<tr><td>The two scripts</td><td><code>Amenti-Readings/tools/mixer/</code>: <code>fetch_voice.js</code>, <code>mix.py</code></td><td>Built and committed, 13 Nov</td></tr>
 <tr><td>The workflow</td><td><code>Amenti-Readings/.github/workflows/mix.yml</code></td><td>Next</td></tr>
 <tr><td>The finished chapters</td><td>The private <code>amenti-studios-private</code> bucket, and Amenti-Print-Masters</td><td>Bucket ready</td></tr>
 </table>
-<p>The workflow runs in Amenti-Readings because the cue sheets, sounds and player are there, and the bucket's keys were added there on the twelfth. The repository is public, which gives it GitHub's larger free machines, and also means anything it saves on GitHub can be seen. So <strong>no finished chapter is ever saved on GitHub</strong>. Each machine sends its chapter straight to the private bucket. The logs show only chapter numbers and times.</p>
+<div class="law">AMENTI-READINGS IS PUBLIC, SO ITS MACHINES ARE THE FREE, BIGGER ONES.<br>4 PROCESSORS EACH · ABOUT 20 AT ONCE · NO CHARGE.</div>
+<div class="tally">
+  <div class="tile"><div class="n">4</div><div class="k">processors per machine</div></div>
+  <div class="tile"><div class="n">16 GB</div><div class="k">memory per machine</div></div>
+  <div class="tile"><div class="n">≈ 20</div><div class="k">machines at once</div></div>
+  <div class="tile"><div class="n">$0</div><div class="k">for a public repository</div></div>
+  <div class="tile"><div class="n">2</div><div class="k">processors on a private repo, metered minutes</div></div>
+</div>
+<p>The workflow runs in Amenti-Readings because the cue sheets, sounds and player are there, and the bucket's keys were added there on the twelfth. A private repository would get smaller machines (2 processors) and a monthly allowance of minutes. Being public also means anything it saves on GitHub can be seen. So <strong>no finished chapter is ever saved on GitHub</strong>. Each machine sends its chapter straight to the private bucket. The logs show only chapter numbers and times.</p>
+<div class="figwrap"><svg class="fig" viewBox="0 0 600 420" role="img" aria-label="One Run button, twenty machines">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4a017"/></marker></defs>
+<rect x="10" y="10" width="150" height="72" rx="8" fill="#0e121b" stroke="#d4a017" stroke-width="1.5"/>
+<text x="85" y="38" font-size="16" text-anchor="middle" class="h" style="fill:#d4a017">RUN</text>
+<text x="85" y="60" font-size="11.5" text-anchor="middle" class="d">book · chapters</text>
+<text x="85" y="74" font-size="10" text-anchor="middle" class="d">from a phone</text>
+<line x1="160" y1="46" x2="208" y2="46" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="210" y="10" width="380" height="72" rx="8" fill="#0e121b" stroke="#00ffe0" stroke-width="1.5"/>
+<text x="226" y="38" font-size="15" text-anchor="start" class="h" style="fill:#00ffe0">AMENTI-READINGS · ACTIONS</text>
+<text x="226" y="62" font-size="12" text-anchor="start" style="fill:#57c98a">public repo: the free, bigger machines</text>
+<line x1="400" y1="82" x2="400" y2="112" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="26" y="116" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="76" y="132" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 1</text>
+<text x="76" y="146" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="138" y="116" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="188" y="132" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 2</text>
+<text x="188" y="146" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="250" y="116" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="300" y="132" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 3</text>
+<text x="300" y="146" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="362" y="116" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="412" y="132" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 4</text>
+<text x="412" y="146" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="474" y="116" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="524" y="132" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 5</text>
+<text x="524" y="146" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="26" y="162" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="76" y="178" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 6</text>
+<text x="76" y="192" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="138" y="162" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="188" y="178" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 7</text>
+<text x="188" y="192" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="250" y="162" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="300" y="178" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 8</text>
+<text x="300" y="192" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="362" y="162" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="412" y="178" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 9</text>
+<text x="412" y="192" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="474" y="162" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="524" y="178" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 10</text>
+<text x="524" y="192" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="26" y="208" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="76" y="224" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 11</text>
+<text x="76" y="238" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="138" y="208" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="188" y="224" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 12</text>
+<text x="188" y="238" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="250" y="208" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="300" y="224" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 13</text>
+<text x="300" y="238" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="362" y="208" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="412" y="224" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 14</text>
+<text x="412" y="238" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="474" y="208" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="524" y="224" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 15</text>
+<text x="524" y="238" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="26" y="254" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="76" y="270" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 16</text>
+<text x="76" y="284" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="138" y="254" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="188" y="270" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 17</text>
+<text x="188" y="284" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="250" y="254" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="300" y="270" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 18</text>
+<text x="300" y="284" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="362" y="254" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="412" y="270" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 19</text>
+<text x="412" y="284" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<rect x="474" y="254" width="100" height="36" rx="8" fill="#0b1512" stroke="#57c98a" stroke-width="1.5"/>
+<text x="524" y="270" font-size="12" text-anchor="middle" class="h" style="fill:#57c98a">CH 20</text>
+<text x="524" y="284" font-size="9.5" text-anchor="middle" class="d">4 CPU · 16 GB</text>
+<text x="300" y="318" font-size="11" text-anchor="middle" class="d">about 20 machines at once · chapters 21–27 start as machines free up</text>
+<line x1="160" y1="326" x2="160" y2="344" stroke="#d4a017" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="440" y1="326" x2="440" y2="344" stroke="#8f95ab" stroke-width="2" marker-end="url(#ah)" stroke-dasharray="4 3"/>
+<rect x="10" y="346" width="300" height="66" rx="8" fill="#15120a" stroke="#d4a017" stroke-width="1.5"/>
+<text x="26" y="372" font-size="14" text-anchor="start" class="h" style="fill:#d4a017">🔒 PRIVATE BUCKET</text>
+<text x="26" y="396" font-size="11.5" text-anchor="start">the finished chapters, and only here</text>
+<rect x="320" y="346" width="270" height="66" rx="8" fill="#0e121b" stroke="#8f95ab" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="336" y="372" font-size="14" text-anchor="start" class="h" style="fill:#8f95ab">PUBLIC LOG</text>
+<text x="336" y="396" font-size="11.5" text-anchor="start" class="d">chapter numbers and times · no audio</text>
+</svg></div>
+<p class="cap">Fig. 4 · One Run, twenty machines, nothing paid left in public</p>
 <div class="note">To run it: open Amenti-Readings, go to the Actions tab, choose the mixer, enter the book and the chapters, and press Run. It works from a phone.</div>
 
 <h2>VII · What it changes</h2>
+<div class="figwrap"><svg class="fig" viewBox="0 0 600 300" role="img" aria-label="Time to make the road tracks">
+<text x="10" y="26" font-size="13" text-anchor="start" class="h" style="fill:#d4a017">ONE CHAPTER · DRACULA I · 40 MINUTES OF AUDIO</text>
+<text x="10" y="56" font-size="12.5" text-anchor="start">Live recording</text>
+<rect x="150" y="40" width="330.0" height="22" rx="3" fill="#f87171" fill-opacity=".85" stroke="#f87171"/>
+<text x="488.0" y="56" font-size="12.5" text-anchor="start" style="fill:#f87171">40 min</text>
+<text x="10" y="88" font-size="12.5" text-anchor="start">MixMaster</text>
+<rect x="150" y="72" width="22.7" height="22" rx="3" fill="#57c98a" fill-opacity=".85" stroke="#57c98a"/>
+<text x="180.6875" y="88" font-size="12.5" text-anchor="start" style="fill:#57c98a">2 min 45 s</text>
+<text x="10" y="140" font-size="13" text-anchor="start" class="h" style="fill:#d4a017">TEN CHAPTERS · DRACULA XV, XIX–XXVII · 7 HOURS OF AUDIO</text>
+<text x="10" y="170" font-size="12.5" text-anchor="start">Live recording</text>
+<rect x="150" y="154" width="330.0" height="22" rx="3" fill="#f87171" fill-opacity=".85" stroke="#f87171"/>
+<text x="488.0" y="170" font-size="12.5" text-anchor="start" style="fill:#f87171">7 h or more</text>
+<text x="10" y="202" font-size="12.5" text-anchor="start">MixMaster</text>
+<rect x="150" y="186" width="35.2" height="22" rx="3" fill="#57c98a" fill-opacity=".85" stroke="#57c98a"/>
+<text x="193.18957345971563" y="202" font-size="12.5" text-anchor="start" style="fill:#57c98a">≈ 45 min</text>
+<text x="10" y="234" font-size="12.5" text-anchor="start">GitHub, at once</text>
+<rect x="150" y="218" width="4.7" height="22" rx="3" fill="#00ffe0" fill-opacity=".35" stroke="#00ffe0" stroke-dasharray="4 3"/>
+<text x="162.69194312796208" y="234" font-size="12.5" text-anchor="start" style="fill:#00ffe0">minutes (est.)</text>
+<text x="10" y="280" font-size="11" text-anchor="start" class="d">Live times are the audio length itself; every stop added more. GitHub figure is an estimate.</text>
+</svg></div>
+<p class="cap">Fig. 3 · Time to make the road tracks, measured on 13 November</p>
 <table>
 <tr><th></th><th>Live recording</th><th>The cloud workspace</th><th>GitHub Actions</th></tr>
 <tr><td>A 40-minute chapter</td><td class="m">40 min or more</td><td class="m">about 3–4 min</td><td class="m">about 3–4 min, many at once</td></tr>
@@ -177,10 +404,10 @@ ul.lessons{padding-left:20px}ul.lessons li{padding:5px 0}
 <p>The deeper change is to how a book is made. With a chapter rebuilt in minutes, a note like <em>"the wind is too loud in chapter 9"</em> becomes a change to the sound sheet and a new chapter the same evening. That is what makes the plan Ian set on the thirteenth practical: <strong>finish the recordings, review them by ear, then illustrate.</strong></p>
 
 <div class="decide"><div class="dk">Next</div><ol>
-<li>Finish Dracula: chapters XV and XIX–XXVII are being mixed tonight.</li>
-<li>Commit the two scripts to Amenti-Readings and write <code>mix.yml</code>.</li>
-<li>Fix line 86 of chapter XV for the website player.</li>
-<li>A Christmas Carol, then Treasure Island and A Tale of Two Cities, voiced and reviewed by ear before they are illustrated.</li>
+<li>Done 13 Nov: Dracula complete (27 chapters) and A Christmas Carol complete (5 staves), backed up.</li>
+<li>Write <code>mix.yml</code> and move the mixer onto GitHub's machines.</li>
+<li>Fix lines with no words (XV line 86, and the rows of dots in XXIV, XXV and XXVI) for the website player.</li>
+<li>Treasure Island and A Tale of Two Cities, voiced and reviewed by ear before they are illustrated.</li>
 </ol></div>
 
 <div class="foot">AMENTI · INGRAM MANOR LLC · WRITTEN 13 NOVEMBER 2026 · THE MIX IS BUILT, NOT RECORDED</div>
