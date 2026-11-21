@@ -1,0 +1,377 @@
+<title>Production Workflow</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: a bound legal file. A narrow register of briefs on the left, the open brief on the right; one column on a phone. */
+/* Layout: a bound legal file. A narrow register of briefs on the left, the open brief on the right; one column on a phone.
+   Two views: Amenti (black granite and gold, the default) and Traditional (white paper, navy ink), switched by the button. */
+:root{
+  --paper:#07090c; --sheet:#0e1216; --ink:#d6e8df; --muted:#9ab0a6; --rule:rgba(255,255,255,.09);
+  --accent:#e0a53c; --accent-soft:rgba(224,165,60,.09); --onaccent:#07090c; --flag:#e0a53c; --flag-soft:rgba(224,165,60,.07); --warn:#d9694f; --warn-soft:rgba(217,105,79,.12);
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Cormorant Garamond",Georgia,serif;
+  --label:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --h1:2.6rem; --body:1.12rem;
+  color-scheme:dark;
+}
+:root[data-view="paper"]{
+  --paper:#f6f7f8; --sheet:#ffffff; --ink:#1d2430; --muted:#5b6574; --rule:#d9dee5;
+  --accent:#1f4e79; --accent-soft:#e6eef7; --onaccent:#ffffff; --flag:#8a2a1f; --flag-soft:#f8e9e6; --warn:#8a2a1f; --warn-soft:#f8e9e6;
+  --serif:"Libre Caslon Text",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --label:"Source Sans 3",system-ui,sans-serif;
+  --h1:2.1rem; --body:1rem;
+  color-scheme:light;
+}
+body{background:var(--paper);color:var(--ink);font:var(--body)/1.6 var(--sans);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;align-items:start}
+@media (max-width:820px){.wrap{grid-template-columns:minmax(0,1fr)}}
+header.file{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+header.file h1{font:600 var(--h1)/1.1 var(--serif);margin:0;letter-spacing:.01em}
+header.file .sub{color:var(--muted);font-size:.95rem}
+.kicker{font:600 .7rem/1 var(--label);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+nav.register{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:flex;flex-direction:column;gap:10px}
+@media (max-width:820px){nav.register{position:static}}
+nav.register a{display:block;text-decoration:none;color:inherit;background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:12px 14px}
+nav.register a[aria-current="true"]{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+nav.register a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav.register .no{font:600 .68rem/1 var(--label);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+nav.register .t{display:block;font:700 1rem/1.3 var(--serif);margin-top:6px}
+nav.register .d{display:block;color:var(--muted);font-size:.85rem;margin-top:4px}
+nav.register .empty{color:var(--muted);font-size:.85rem;padding:4px 2px}
+article{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:32px clamp(18px,4vw,44px);min-width:0}
+article h2{font:700 1.75rem/1.2 var(--serif);margin:.35em 0 .2em;text-wrap:balance}
+article h3{font:700 1.15rem/1.3 var(--serif);margin:2em 0 .6em;padding-top:1em;border-top:1px solid var(--rule)}
+article p,article li{max-width:68ch}
+.meta{color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:4px 16px;margin-bottom:18px}
+.holding{background:var(--accent-soft);border-left:3px solid var(--accent);padding:14px 18px;border-radius:0 6px 6px 0;font-family:var(--serif);font-size:1.02rem}
+.note{color:var(--muted);font-size:.85rem;font-style:italic}
+.tablebox{overflow-x:auto;margin:12px 0;border:1px solid var(--rule);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:720px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:600 .68rem/1.2 var(--label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.top td{background:var(--flag-soft)}
+.tier{display:inline-block;font:600 .64rem/1 var(--label);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:999px;white-space:nowrap}
+.t1{background:var(--flag);color:var(--onaccent)} .t2{border:1px solid var(--accent);color:var(--accent)} .t3{border:1px solid var(--rule);color:var(--muted)}
+ol.steps{padding-left:1.3em} ol.steps li{margin:.5em 0}
+ul.q{list-style:none;padding:0} ul.q li{padding:6px 0 6px 26px;position:relative} ul.q li::before{content:"";position:absolute;left:2px;top:12px;width:12px;height:12px;border:1.5px solid var(--muted);border-radius:3px}
+.sources li{font-size:.9rem}
+a{color:var(--accent)}
+.viewbtn{font:500 .6rem/1 var(--label);letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:5px 9px;cursor:pointer}
+.viewbtn:hover{color:var(--accent)}
+.viewbtn:hover{background:var(--accent-soft)} .viewbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+:root:not([data-view="paper"]) header.file{border-bottom:1px solid var(--accent)}
+:root:not([data-view="paper"]) article h2,:root:not([data-view="paper"]) header.file h1{color:var(--accent);font-weight:500}
+:root:not([data-view="paper"]) .holding{font-style:italic;font-size:1.2rem}
+/* Brief No. 2 diagrams: plain HTML and CSS, so they wrap on a phone and take the view's colours. */
+.fig{margin:18px 0 8px;border:1px solid var(--rule);border-radius:6px;padding:18px clamp(12px,3vw,22px);background:var(--paper)}
+.fig .cap{font:600 .66rem/1.3 var(--label);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
+.flow .st{flex:1 1 130px;border:1px solid var(--rule);border-radius:6px;padding:10px 12px;background:var(--sheet)}
+.flow .st b{display:block;font:700 .98rem/1.25 var(--serif)}
+.flow .st span{display:block;color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.35}
+.flow .st.new{border-color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+.flow .ar{align-self:center;color:var(--accent);font:600 1.1rem/1 var(--label)}
+@media (max-width:640px){.flow{flex-direction:column}.flow .ar{transform:rotate(90deg)}}
+.flow .st span.tag,.tag{display:inline-block;font:600 .58rem/1 var(--label);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:3px 6px;margin-top:8px}
+.road{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start}
+.road .dot{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--accent);display:grid;place-items:center;font:600 .72rem/1 var(--label);color:var(--accent);background:var(--sheet)}
+.road.last .dot{background:var(--accent);color:var(--onaccent)}
+.road .body{padding-top:3px} .road .body b{font:700 1rem/1.3 var(--serif)} .road .body span{display:block;color:var(--muted);font-size:.84rem}
+.road .link{width:28px;display:flex;justify-content:center} .road .link i{display:block;width:1.5px;height:26px;background:var(--accent);opacity:.5}
+.road .why{color:var(--muted);font:500 .66rem/26px var(--label);letter-spacing:.08em;text-transform:uppercase}
+.bars{display:flex;flex-direction:column;gap:12px}
+.bar{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) 72px;gap:12px;align-items:center}
+@media (max-width:640px){.bar{grid-template-columns:minmax(0,1fr) 64px}.bar .lab{grid-column:1/-1}}
+.bar .lab b{display:block;font:700 .95rem/1.25 var(--serif)} .bar .lab span{color:var(--muted);font-size:.8rem}
+.bar .track{height:18px;border-radius:3px;background:var(--rule);overflow:hidden}
+.bar .fill{height:100%;background:var(--accent);border-radius:3px}
+.bar .val{font:600 .9rem/1 var(--label);font-variant-numeric:tabular-nums;text-align:right}
+.lanes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:640px){.lanes{grid-template-columns:minmax(0,1fr)}}
+.lanes h4{margin:0 0 10px;font:700 1rem/1.3 var(--serif)}
+.lane{display:flex;align-items:center;gap:8px;margin:6px 0}
+.lane .k{width:54px;flex:none;font:600 .62rem/1 var(--label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.chip{flex:1;border-radius:4px;padding:7px 9px;font:600 .72rem/1.2 var(--label);border:1px solid var(--rule);background:var(--sheet)}
+.chip.on{border-color:var(--accent)} .chip.hot{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+article code{font-size:.82em} .chip.wait{border-style:dashed;color:var(--muted)}
+.steps-chart{display:flex;align-items:flex-end;gap:6px;height:150px;padding-top:20px;border-bottom:1px solid var(--rule)}
+.steps-chart div{flex:1;background:var(--accent-soft);border:1px solid var(--accent);border-bottom:0;border-radius:3px 3px 0 0;position:relative;min-width:0}
+.steps-chart div span{position:absolute;top:-17px;left:0;right:0;text-align:center;font:600 .62rem/1 var(--label);color:var(--muted)}
+.steps-x{display:flex;gap:6px;margin-top:6px} .steps-x span{flex:1;text-align:center;font:600 .6rem/1 var(--label);color:var(--muted);min-width:0}
+footer{grid-column:1/-1;color:var(--muted);font-size:.82rem;border-top:1px solid var(--rule);padding-top:12px}
+</style>
+
+<div class="wrap">
+  <header class="file">
+    <div>
+      <div class="kicker">Ingram Manor LLC · Amenti Studios</div>
+      <h1>Production Workflow</h1>
+    </div>
+    <div class="tools">
+      <div class="sub">How the studio works, what we decided, and why. One brief per question.</div>
+      <button class="viewbtn" id="viewbtn" type="button">Traditional view</button>
+    </div>
+  </header>
+
+  <nav class="register" aria-label="Briefs">
+    <a href="#throttle" data-brief="throttle">
+      <span class="no">Brief No. 2 · 20 Nov 2026</span>
+      <span class="t">One Job at a Time</span>
+      <span class="d">The rejection problem, the three-slot throttle, and the new picture roads through Tier 2</span>
+    </a>
+    <a href="#storyboarding" data-brief="storyboarding">
+      <span class="no">Brief No. 1 · 18 Nov 2026</span>
+      <span class="t">Storyboarding</span>
+      <span class="d">Pictures, agents, and the road to one automated painter</span>
+    </a>
+    <div class="empty">Further briefs are added here as questions arise.</div>
+  </nav>
+
+  <main>
+    <article id="throttle">
+      <div class="kicker">Brief No. 2</div>
+      <h2>One Job at a Time</h2>
+      <div class="meta"><span>20 November 2026</span><span>Amenti Studios · Storyboard workflow</span><span>Status: in force; deployed and committed</span></div>
+
+      <p class="holding">Google's refusals were caused mostly by us: up to five storyboard runs drawing at once against one shared picture quota. The cure is discipline first and machinery second. No more than three runs draw at once, each picture waits longer before it gives up, and when Vertex is full the Worker now tries three more regions and then our own Tier 2 AI Studio key.</p>
+
+      <h3>The problem in one chart</h3>
+      <p>On the night of 19–20 November the Dracula batches for XX to XXIV went out in quick succession. The early ones ran one or two at a time and almost every beat came back. Later, at 06:18–06:36 UTC, four batches overlapped; at 07:00–07:17 UTC, five did, all of them ours. Refusals climbed with the number of runs at once.</p>
+      <div class="fig" role="img" aria-label="Bar chart: share of beats refused. XX to XXII, one or two runs at once: 1 of 55. XXIII and retakes, up to four at once: 7 of 16. XXIV, up to five at once: 13 of 21.">
+        <div class="cap">Figure 1 · Beats refused by Google, by batch group</div>
+        <div class="bars">
+          <div class="bar"><div class="lab"><b>XX – XXII</b><span>1–2 runs at once · 55 beats</span></div><div class="track"><div class="fill" style="width:1.8%"></div></div><div class="val">1 · 2%</div></div>
+          <div class="bar"><div class="lab"><b>XXIII + retakes</b><span>up to 4 at once · 16 beats</span></div><div class="track"><div class="fill" style="width:43.8%"></div></div><div class="val">7 · 44%</div></div>
+          <div class="bar"><div class="lab"><b>XXIV</b><span>up to 5 at once · 21 beats</span></div><div class="track"><div class="fill" style="width:61.9%"></div></div><div class="val">13 · 62%</div></div>
+        </div>
+      </div>
+      <p class="note">Counted from the takes files of each batch (a beat is refused when no picture came back after every retry). The pairing of batches with the four- and five-run windows is from the run log and is approximate; the trend is not.</p>
+
+      <h3>Why more runs meant more refusals</h3>
+      <ul>
+        <li><strong>Pictures share one quota.</strong> Every storyboard picture is drawn by Vertex AI on Google's shared capacity for the image model. Five runs each sending pictures back to back looks to Google like one very busy customer, and it answers with 429 (too many requests) or 503 (busy).</li>
+        <li><strong>The old retries gave up too soon.</strong> A refused picture had fewer tries with shorter waits, mostly inside the same busy minutes, and then the beat was marked empty.</li>
+        <li><strong>There was nowhere else to go.</strong> The Worker sent every picture to one place, Vertex's global endpoint. When that was full, the picture failed.</li>
+        <li><strong>It was not the new tier.</strong> The Tier 2 increase applies to the AI Studio key, which until now only the voice used. The pictures never touched it, so the higher limit could not help them, until this change.</li>
+      </ul>
+
+      <h3>The new workflow</h3>
+      <div class="fig" role="img" aria-label="Flow: dispatch a batch, wait for a drawing slot, draw each beat with patient retries, Worker tries Vertex regions then AI Studio Tier 2, contact sheet committed.">
+        <div class="cap">Figure 2 · A storyboard batch, start to finish (new steps in gold)</div>
+        <div class="flow">
+          <div class="st"><b>Dispatch</b><span>One batch of beats for one chapter</span></div>
+          <div class="ar" aria-hidden="true">→</div>
+          <div class="st new"><b>Wait for a slot</b><span>Proceeds only when fewer than 3 earlier runs are drawing</span><span class="tag">New · throttle</span></div>
+          <div class="ar" aria-hidden="true">→</div>
+          <div class="st new"><b>Draw each beat</b><span>storyboard.py; up to 10 tries, waits growing to 3 min</span><span class="tag">New · patience</span></div>
+          <div class="ar" aria-hidden="true">→</div>
+          <div class="st new"><b>Worker picks a road</b><span>Vertex global, three regions, then AI Studio Tier 2</span><span class="tag">New · fallback</span></div>
+          <div class="ar" aria-hidden="true">→</div>
+          <div class="st"><b>Contact sheet</b><span>Committed to <code>dracula/storyboard-test/</code>, with the road each picture took</span></div>
+        </div>
+      </div>
+
+      <h3>1 · The throttle: three at most</h3>
+      <p>A new step at the start of every storyboard run asks GitHub how many earlier storyboard runs are drawing. If three are, it waits 30 seconds and asks again, for up to two hours. Runs keep their place in line: the oldest waiting run goes next.</p>
+      <div class="fig" role="img" aria-label="Diagram: before, five runs drawing at once, all hitting the quota. After, three runs drawing and two waiting in line.">
+        <div class="cap">Figure 3 · Runs drawing at once, before and after</div>
+        <div class="lanes">
+          <div>
+            <h4>Before · 20 Nov, 07:00 UTC</h4>
+            <div class="lane"><span class="k">Slot 1</span><span class="chip hot">Run 1 · refusals</span></div>
+            <div class="lane"><span class="k">Slot 2</span><span class="chip hot">Run 2 · refusals</span></div>
+            <div class="lane"><span class="k">Slot 3</span><span class="chip hot">Run 3 · refusals</span></div>
+            <div class="lane"><span class="k">Slot 4</span><span class="chip hot">Run 4 · refusals</span></div>
+            <div class="lane"><span class="k">Slot 5</span><span class="chip hot">Run 5 · refusals</span></div>
+          </div>
+          <div>
+            <h4>After · the rule from now on</h4>
+            <div class="lane"><span class="k">Slot 1</span><span class="chip on">Batch A · drawing</span></div>
+            <div class="lane"><span class="k">Slot 2</span><span class="chip on">Batch B · drawing</span></div>
+            <div class="lane"><span class="k">Slot 3</span><span class="chip on">Batch C · drawing</span></div>
+            <div class="lane"><span class="k">Queue</span><span class="chip wait">Batch D · waits its turn</span></div>
+            <div class="lane"><span class="k">Queue</span><span class="chip wait">Batch E · waits its turn</span></div>
+          </div>
+        </div>
+      </div>
+      <p>Three is a ceiling, not a target. Ian's rule for the working day is <em>one job at a time</em>: one chapter's batch, checked, then the next. The throttle only guarantees that a busy moment, or another chat's runs, can never stack up to five again.</p>
+      <p class="note">GitHub's own "concurrency group" was tried first and removed the same hour: it keeps only one run waiting and silently cancels the rest, which would have lost batches.</p>
+
+      <h3>2 · Patience: retries that outlast a busy minute</h3>
+      <p>A refused picture is now tried up to ten times. The wait before each new try grows by 30 seconds, to a ceiling of three minutes, so the tries spread across about twenty minutes instead of one busy minute. A dropped connection while reading Google's answer no longer stops the run.</p>
+      <div class="fig" role="img" aria-label="Chart: wait before each retry in seconds: 30, 60, 90, 120, 150, 180, 180, 180, 180. Total about 19.5 minutes.">
+        <div class="cap">Figure 4 · Wait before each retry, seconds (total ≈ 19½ minutes)</div>
+        <div class="steps-chart">
+          <div style="height:16.7%"><span>30</span></div><div style="height:33.3%"><span>60</span></div><div style="height:50%"><span>90</span></div>
+          <div style="height:66.7%"><span>120</span></div><div style="height:83.3%"><span>150</span></div><div style="height:100%"><span>180</span></div>
+          <div style="height:100%"><span>180</span></div><div style="height:100%"><span>180</span></div><div style="height:100%"><span>180</span></div>
+        </div>
+        <div class="steps-x"><span>2nd</span><span>3rd</span><span>4th</span><span>5th</span><span>6th</span><span>7th</span><span>8th</span><span>9th</span><span>10th</span></div>
+      </div>
+
+      <h3>3 · The new roads, and where Tier 2 comes in</h3>
+      <p>The Worker's picture route (<code>/storyboard/image</code>) no longer has a single destination. When a road answers 429, 503 or 404 it takes the next one; any other answer, good or bad, is final. The last road is our own AI Studio key, now on <strong>Tier 2</strong>, the same key the voice has used as its fallback since 19 November.</p>
+      <div class="fig" role="img" aria-label="Diagram: road chain. 1 Vertex global, 2 Vertex us-central1, 3 Vertex us-east4, 4 Vertex europe-west4, 5 AI Studio Tier 2. Each step is taken only when the previous one answers 429, 503 or 404.">
+        <div class="cap">Figure 5 · The road chain for one picture</div>
+        <div class="roads">
+          <div class="road"><div class="dot">1</div><div class="body"><b>Vertex AI · global</b><span>Google's shared capacity; the usual road, as before</span></div></div>
+          <div class="road"><div class="link"><i></i></div><div class="why">if 429 · 503 · 404</div></div>
+          <div class="road"><div class="dot">2</div><div class="body"><b>Vertex AI · us-central1</b><span>Iowa; the region the voice renders in</span></div></div>
+          <div class="road"><div class="link"><i></i></div><div class="why">if 429 · 503 · 404</div></div>
+          <div class="road"><div class="dot">3</div><div class="body"><b>Vertex AI · us-east4</b><span>Virginia</span></div></div>
+          <div class="road"><div class="link"><i></i></div><div class="why">if 429 · 503 · 404</div></div>
+          <div class="road"><div class="dot">4</div><div class="body"><b>Vertex AI · europe-west4</b><span>Netherlands; a separate European pool</span></div></div>
+          <div class="road"><div class="link"><i></i></div><div class="why">if still busy</div></div>
+          <div class="road last"><div class="dot">5</div><div class="body"><b>AI Studio · Tier 2 key</b><span>Our own quota, separate from Vertex's shared pool</span></div></div>
+        </div>
+      </div>
+      <p>Each picture now reports the road it took (<code>vertex:global</code>, <code>vertex:europe-west4</code>, <code>studio</code> and so on), and the run log prints it, so we can see how often the fallback is needed and what it costs.</p>
+      <div class="tablebox"><table>
+        <thead><tr><th>Key</th><th>Used by</th><th>Before 20 Nov</th><th>From 20 Nov</th></tr></thead>
+        <tbody>
+          <tr><td>Vertex AI (service account)</td><td>Voice renders, pictures</td><td>Pictures: global endpoint only</td><td>Pictures: global, then three regions</td></tr>
+          <tr class="top"><td>AI Studio key, Tier 2</td><td>Voice fallback (since 19 Nov), pictures</td><td>Voice only; Pro TTS about 250 a minute and 2,500 a day</td><td>Also the last road for pictures, only when every Vertex road is busy</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>What was changed, and where</h3>
+      <div class="tablebox"><table>
+        <thead><tr><th>Where</th><th>Change</th><th>Record</th></tr></thead>
+        <tbody>
+          <tr><td>Worker <code>amenti-proxy</code></td><td>Picture road chain and the <code>roads</code> report. Live Worker read first and matched the repo; all 12 bindings kept. Voice path untouched.</td><td>Admin <code>[IMG-FALLBACK]</code>; deployed with Ian's OK ("the worker change is ok")</td></tr>
+          <tr><td>Amenti-Readings <code>storyboard.yml</code></td><td>"Wait for a drawing slot" step; read access to Actions so it can count runs</td><td>f65cb58</td></tr>
+          <tr><td>Amenti-Readings <code>storyboard.py</code></td><td>Ten tries with growing waits; survives a dropped connection; logs the road</td><td>38b9885, 30b2a2f, a6cb58a</td></tr>
+          <tr><td>Working rule</td><td>One job at a time; three at most</td><td>Ian, 20 Nov: "One job at a time. That's the answer to our rejection problem."</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>What it costs</h3>
+      <ul>
+        <li><strong>Time.</strong> A batch may wait for a slot, and a refused beat may take up to twenty minutes to come back instead of failing at once. Batches finish later, but a redraw round is not needed.</li>
+        <li><strong>Money.</strong> Nothing new on the Vertex roads. Pictures that reach AI Studio are billed there at its own rate; the <code>roads</code> report shows how many.</li>
+        <li><strong>Risk.</strong> The voice and the pictures now share the AI Studio key in a pinch. Pictures reach it only after four Vertex roads are busy, so the voice keeps nearly all of it.</li>
+      </ul>
+
+      <h3>Recommendation</h3>
+      <p>Keep the rule and the machinery as they are. Redraw XXIV's refused beats one batch at a time and read the roads in the log: if most still come back from <code>vertex:global</code>, the throttle alone was the cure.</p>
+      <p><strong>Open questions</strong></p>
+      <ul class="q">
+        <li>After a week of road reports, should the ceiling stay at three or drop to two, the level that never failed?</li>
+        <li>Should the agents' books (Musketeers, Gallic War) be bound by the same slot count, so that all chats share the three slots?</li>
+        <li>Should a monthly cap be set on AI Studio picture spending, so the voice's fallback is always left room?</li>
+      </ul>
+
+      <h3>Sources</h3>
+      <ul class="sources">
+        <li>Run log of Amenti-Readings storyboard runs, 19–20 Nov 2026; takes files of batches XX–XXIV</li>
+        <li>Admin <code>workers/amenti-proxy/worker.js</code> (<code>/storyboard/image</code>); Amenti-Readings <code>.github/workflows/storyboard.yml</code>, <code>tools/storyboard/storyboard.py</code></li>
+        <li>Project docs: <code>claude/logbook.md</code>, <code>claude/dracula-book3-status.md</code></li>
+      </ul>
+    </article>
+
+    <article id="storyboarding">
+      <div class="kicker">Brief No. 1</div>
+      <h2>Storyboarding</h2>
+      <div class="meta"><span>18 November 2026</span><span>Amenti Studios</span><span>Status: in force; the quality goal is open</span></div>
+
+      <p class="holding">For now Google's image model is the storyboard and the establishing camera, and Midjourney paints the people. The goal is one painter we can automate end to end: Google at Midjourney's quality. Until a blind test says it is there, the split stands.</p>
+
+      <h3>What changed in the last sessions</h3>
+      <ul>
+        <li><strong>The split.</strong> Google (Nano Banana 2.1, through the storyboard workflow) draws establishing shots, exteriors, grounds, rooftops, far views and the scene seen through a lit window from outside, and makes small repairs: a beard removed, tears softened. Midjourney, run by Ian, paints close and medium shots of people.</li>
+        <li><strong>Camera rhythm.</strong> Each chapter is planned in shot sizes before drawing. A new place opens on an establishing shot; long narration sits on far shots ("the eye is less critical"); close-ups are kept for a few moments; a chapter stuck in one room steps outside every scene or two.</li>
+        <li><strong>Light.</strong> Day scenes are painted brilliant, as the counterweight to the dark chapters; night keeps Book I's tone.</li>
+        <li><strong>The face check comes first.</strong> Every picture is checked against the cast portraits before it is placed, not after Ian finds the fault.</li>
+        <li><strong>Recording by machine.</strong> The offline mixer records whole books on GitHub with the render key. This was built on 14 November; the rulebook still said otherwise until 18 November.</li>
+        <li><strong>Running a tight ship.</strong> Skills are the rulebook and are updated in the same sitting as any change of method; a logbook entry closes every session; a weekly audit (Sundays, 6:40 p.m.) compares the skills with the docs and the workflows and flags drift.</li>
+      </ul>
+
+      <h3>Agents: what they add</h3>
+      <p>On 18 November two agents took a whole book each, unattended: <em>The Three Musketeers</em> and Caesar's <em>Gallic War</em>, from library text to cast, cue sheets, sound and score, style plate, chapter 1 pictures, intro and voicing.</p>
+      <div class="tablebox"><table>
+        <thead><tr><th>Gain</th><th>How</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>Throughput</td><td>Books run in parallel, overnight, while Ian sleeps.</td><td>Voicing shares two machines and Google's per-minute quota.</td></tr>
+          <tr><td>A clear desk</td><td>Thousands of cue lines and contact sheets stay in the agent; the main session gets a summary.</td><td>Their choices are only as good as the rulebook they inherit.</td></tr>
+          <tr><td>A paper trail</td><td>Each writes a status page: what was done, the cast and why, what needs Ian.</td><td>Ian still judges chapter 1 by eye and ear.</td></tr>
+          <tr><td>Repeatability</td><td>The same pipeline every time, once it is written down as a skill.</td><td>Midjourney cannot be automated; people scenes wait for Ian.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">The lesson of the night: an agent copies whatever the rulebook says. A stale rule ("only Ian's Safari can record") would have been copied into both books. Hence the same-sitting skill updates and the weekly audit.</p>
+
+      <h3>Why we went back to Midjourney</h3>
+      <ul>
+        <li><strong>The evidence.</strong> In chapter XVII Google drew 23 close and medium shots that followed the text well and kept every face on model. Ian rejected them as "too commercial": smooth surfaces, finished faces, the look of a book cover. A second pass styled on the Book I paintings moved the light and colour a long way, but the faces stayed illustrated.</li>
+        <li><strong>What Midjourney has.</strong> Loose brushwork, real shadow, faces painted rather than rendered. Side by side with the Midjourney picture of Mina and Jonathan sorting the papers, the gap was plain.</li>
+        <li><strong>What it costs.</strong> Every prompt is pasted by hand. Relax mode refuses permutations and ran about one prompt an hour on 17 November. It gives Seward a beard even with his portrait as reference. Session zips with the same name overwrote each other.</li>
+        <li><strong>What Google does better.</strong> Following the text, keeping faces consistent across a chapter, repairs by instruction, and landscapes and architecture: Ian, of the exteriors, "holding up well".</li>
+      </ul>
+
+      <h3>The goal: one painter we can automate</h3>
+      <p>Google's model has an official API and runs on the account that already voices the books, so it can run all night inside our workflows. Midjourney has no API and must not be automated. The aim is Google at Midjourney's level for close and medium shots, so a whole chapter can be painted without hand work. The experiments, cheapest first:</p>
+      <ol class="steps">
+        <li><strong>Midjourney paintings as the style reference.</strong> Feed Google our best Midjourney takes, not Google-made pictures, as the style image, so it copies painted faces and brushwork. Cost: nothing new.</li>
+        <li><strong>A repaint pass.</strong> Draw the scene for composition and faces, then edit it with an instruction to repaint in loose oil with visible strokes and broken edges. Two calls per picture, about 7¢.</li>
+        <li><strong>Larger output.</strong> 2K instead of 1K (about 5¢ instead of 3.4¢) gives more surface for brushwork. Needs a small Worker change, which waits for Ian's OK.</li>
+        <li><strong>Newer models as they come.</strong> Test each new Google image model on the same scenes the day it is available.</li>
+        <li><strong>A blind test, as we did for the voices.</strong> Twenty close shots, Google and Midjourney mixed and unlabelled; Ian picks the better of each pair. When Google wins about half, it takes over people scenes for that book.</li>
+      </ol>
+
+      <h3>Costs at a glance</h3>
+      <div class="tablebox"><table>
+        <thead><tr><th>Item</th><th>Cost</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Google picture, 1K</td><td class="n">≈ 3.4¢</td><td>Two near-identical images per call</td></tr>
+          <tr><td>Google picture, 2K</td><td class="n">≈ 5¢</td><td>Needs the Worker change</td></tr>
+          <tr><td>A chapter's fill shots (20–30)</td><td class="n">≈ $1</td><td>Dracula XVII–XIX</td></tr>
+          <tr><td>Midjourney</td><td>Subscription + Ian's time</td><td>Fast mode for batches</td></tr>
+          <tr><td>Voicing by the mixer</td><td class="n">≈ $7.50 per 4 h of reading</td><td>Two Cities Book II</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Recommendation</h3>
+      <p>Keep the split for Dracula Book III and the new books' people scenes. Run experiments 1 and 2 on one chapter of <em>The Three Musketeers</em> this week, and the blind test when they look close. Approve the 2K change if the repaint pass is promising.</p>
+      <p><strong>Open questions</strong></p>
+      <ul class="q">
+        <li>Approve the 2K Worker change now, or after experiments 1 and 2?</li>
+        <li>Which twenty scenes for the blind test: Dracula, so Midjourney's best is the benchmark, or a new book?</li>
+        <li>Should the agents paint people scenes in Google as placeholders until Midjourney takes arrive, or leave those beats to far shots?</li>
+      </ul>
+
+      <h3>Sources</h3>
+      <ul class="sources">
+        <li>Project docs: <code>claude/logbook.md</code>, <code>claude/studio-pipeline-plan.md</code>, <code>claude/dracula-book3-status.md</code>, <code>claude/two-cities-status.md</code></li>
+        <li>Workflows: Amenti-Readings <code>storyboard.yml</code>, <code>mix.yml</code>, <code>voice-sampler.yml</code></li>
+        <li>Skill: amenti-studios-production §7 (Recording), §8 (Pictures), §9 (Sound under the reading)</li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>Production Workflow is a working file for Amenti Studios. · © 2026 Ingram Manor LLC · All Rights Reserved</footer>
+</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('nav.register a[data-brief]'));
+  var briefs=[].slice.call(document.querySelectorAll('main article'));
+  function show(){
+    var id=(location.hash||'').slice(1);
+    if(!briefs.some(function(b){return b.id===id;})) id=briefs[0].id;
+    briefs.forEach(function(b){b.hidden=b.id!==id;});
+    links.forEach(function(a){a.setAttribute('aria-current',a.dataset.brief===id?'true':'false');});
+  }
+  window.addEventListener('hashchange',show); show();
+  var root=document.documentElement, btn=document.getElementById('viewbtn');
+  function setView(v){ if(v==='paper') root.setAttribute('data-view','paper'); else root.removeAttribute('data-view');
+    btn.textContent = v==='paper' ? 'Amenti view' : 'Traditional view';
+    try{ localStorage.setItem('engineering-view', v); }catch(e){} }
+  var saved='amenti'; try{ saved=localStorage.getItem('engineering-view')||'amenti'; }catch(e){}
+  setView(saved);
+  btn.addEventListener('click',function(){ setView(root.getAttribute('data-view')==='paper'?'amenti':'paper'); });
+})();
+</script>
